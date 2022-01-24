@@ -16,4 +16,5 @@ jobs:
          known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - run: |
         git remote add prod ssh://root@e2fs3bt.de:69/root/git/bare_project.git
+        git checkout main
         git push -u prod main
