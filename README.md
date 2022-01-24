@@ -1,10 +1,15 @@
-# Git per Konsole verwenden
+# Per Konsole pushen(Datein per Konsole auf die Repo laden) [Grundsätzlich erstmal nicht machen]
 
 ```
 git add *
 git commit -m "ÄNDERUNGEN DES COMMITS"
 git push
 
-
-git clone git@github.com:Nicooo1809/Delta-Hardware.git
 ```
+
+# Per Konsole pullen (von der Repo auf den Server ziehen)
+
+```
+pull
+``` 
+^^^^^ Nur in die Konsole und das eingeben ^^^^
