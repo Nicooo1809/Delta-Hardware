@@ -102,7 +102,7 @@ li, a, button {
 
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
     .navbar.responsive {position: relative;}
     .responsive a {
         display: block;
