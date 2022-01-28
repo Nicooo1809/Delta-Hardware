@@ -9,18 +9,20 @@
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <title>E2FS3BT</title>
+    <title>Delta-Hardware</title>
 </head>
 
 <body>
 
     <div class="header">
-        <img class="logo-topleft" src="#" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100">
-        <a data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100">Delta-Hardware</a>
-        <img class="Profil" src="#" target="_blank" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100"></img>
+        <img class="logo-topleft" src="favicon-32x32.png" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100">
+        <a data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100">Delta 
+        Hardware</a>
+        <img class="profile-icon" src="icons/profile-icon-darkmode.png" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100"></img>
+        <a href="javascript:void(0);" class="expandicon" onclick="ResponsiveFunction()" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100"><img class="OpenCloseNavBarIcon" src="icons/expand-icon-darkmode.png"></a>
     </div>
 
-    <div class="navbar">
+    <div class="navbar" id="myTopnav">
         <a class="navlink" href="pc/home" data-aos="fade-down" data-aos-duration="500" data-aos-delay="100">PC Komponenten</a>
         <a class="navlink" href="pc/grafikkarten" data-aos="fade-down" data-aos-duration="500" data-aos-delay="200">Server Komponenten</a>
         <a class="navlink" href="template" data-aos="fade-down" data-aos-duration="500" data-aos-delay="300">Monitore</a>
@@ -33,7 +35,16 @@
     </div>
 
 
-
+    <script>
+        function ResponsiveFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "navbar") {
+                x.className= "responsive";
+            } else {
+                x.className = "navbar"
+            }
+        }
+    </script>
 
 
 
