@@ -10,11 +10,12 @@
 
 
 html, body {
-    background-color: rgb(48, 48, 48);
+    background-color: rgb(66, 66, 66);
     height: 100%;
 	margin: 0;
 }
 
+/*
 .container {
 	height: 100%;
 	display: flex;
@@ -22,6 +23,8 @@ html, body {
 	justify-content: center;
 	flex-direction: column;
 }
+
+*/
 
 
 .header {
@@ -81,16 +84,19 @@ li, a, button {
     text-align: center;
     text-decoration: none;
 }
-
 .header .expandicon {
     display: none;
 }
+
+
+
+
 
 .navbar .navbar-logo-responsive-a {
     display: none;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
     .navbar {display: none;}
     .header .expandicon {
         float: right;
@@ -107,8 +113,22 @@ li, a, button {
     .responsive a {
         display: block;
         text-align: left;
-        font-size: 40px;
+        font-size: 35px;
+        background-color: rgb(32, 32, 32);
 
+    }
+    .navlink {
+        border-style:solid;
+        border-width: 0.1px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+
+        
+    }
+    .navlink:hover
+    {
+        background-color: rgb(49, 49, 49);
     }
 }
 
