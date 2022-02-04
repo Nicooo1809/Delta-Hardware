@@ -2,7 +2,6 @@
 session_start();
 require_once("inc/mysql.php");
 require_once("inc/functions.php");
-
 include("templates/header.php")
 ?>
 <div>

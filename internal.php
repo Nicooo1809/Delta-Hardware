@@ -2,11 +2,6 @@
 session_start();
 require_once("php/mysql.php");
 require_once("php/functions.php");
-
-//Überprüfe, dass der User eingeloggt ist
-//Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
-$user = check_user();
-
 include("templates/header.php");
 ?>
 
@@ -16,6 +11,8 @@ include("templates/header.php");
 
 Hallo <?php echo htmlentities($user['vorname']); ?>,<br>
 Herzlich Willkommen im internen Bereich!<br><br>
+
+<a href="logout.php">Logout</a>
 
 <div>
  
