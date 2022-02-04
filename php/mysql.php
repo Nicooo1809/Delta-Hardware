@@ -6,6 +6,6 @@ try {
   //Connected successfully
 } catch(PDOException $e) {
   // If there is an error with the connection, stop the script and display the error.  
-  header('location: error.php?error=Connection failed: ' . $e->getMessage());
+  error('Connection failed: ' . $e->getMessage());
 }
 ?>
