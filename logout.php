@@ -11,4 +11,5 @@ require_once("inc/mysql.php");
 require_once("inc/functions.php");
 
 header("location: index.php");
+exit();
 ?>
