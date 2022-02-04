@@ -92,8 +92,9 @@ if(isset($error_msg) && !empty($error_msg)) {
     <li role="presentation"><a href="#passwort" aria-controls="messages" role="tab" data-toggle="tab">Passwort</a></li>
   </ul>
 
-  <!-- Persönliche Daten-->
   <div>
+    <!-- Persönliche Daten-->
+    <h2 onclick="toggle(document.getElementById('data'))">Persönliche Daten</h2>
     <div id="data">
     	<br>
     	<form action="?save=personal_data" method="post">
@@ -106,7 +107,8 @@ if(isset($error_msg) && !empty($error_msg)) {
 		<button type="submit">Speichern</button>
     	</form>
     </div>
-    
+
+	<h2 onclick="toggle(document.getElementById('data'))">E-Mail-Adresse</h2>
     <!-- Änderung der E-Mail-Adresse -->
     <div id="email">
     	<br>
@@ -125,6 +127,7 @@ if(isset($error_msg) && !empty($error_msg)) {
     	</form>
     </div>
     
+	<h2 onclick="toggle(document.getElementById('data'))">Passworts</h2>
     <!-- Änderung des Passworts -->
     <div id="passwort">
     	<br>
