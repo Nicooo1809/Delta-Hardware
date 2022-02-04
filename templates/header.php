@@ -18,7 +18,7 @@
         <a href="index.php"><img class="logo-topleft" src="favicon.svg" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100"></a>
         <a data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100">Delta 
         Hardware</a>
-        <a href="index.php"><img class="profile-icon" src="images/profile-icon-darkmode.png" atl="Profil" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100"></a>
+        <a href="<?php if(check_user()) {print("settings.php");} else {print("login.php");} ?>"><img class="profile-icon" src="images/profile-icon-darkmode.png" atl="Profil" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100"></a>
         
         <a href="javascript:void(0);" class="expandicon" onclick="ResponsiveFunction()" id="expandcollapseicon" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100"><img class="OpenCloseNavBarIcon" src="images/expand-icon-darkmode.png" atl="Dropdown"></a>
     </div>
