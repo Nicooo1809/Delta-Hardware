@@ -84,15 +84,6 @@ if(isset($error_msg) && !empty($error_msg)) {
 ?>
 
 <div>
-
-  <!-- Nav tabs -->
-  <ul role="tablist">
-    <li role="presentation"><a href="#data" aria-controls="home" role="tab" data-toggle="tab">Persönliche Daten</a></li>
-    <li role="presentation"><a href="#email" aria-controls="profile" role="tab" data-toggle="tab">E-Mail</a></li>
-    <li role="presentation"><a href="#passwort" aria-controls="messages" role="tab" data-toggle="tab">Passwort</a></li>
-  </ul>
-
-  <div>
     <!-- Persönliche Daten-->
     <h2 onclick="toggle(document.getElementById('data'))">Persönliche Daten</h2>
     <div id="data">
@@ -108,7 +99,7 @@ if(isset($error_msg) && !empty($error_msg)) {
     	</form>
     </div>
 
-	<h2 onclick="toggle(document.getElementById('data'))">E-Mail-Adresse</h2>
+	<h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2>
     <!-- Änderung der E-Mail-Adresse -->
     <div id="email">
     	<br>
@@ -127,7 +118,7 @@ if(isset($error_msg) && !empty($error_msg)) {
     	</form>
     </div>
     
-	<h2 onclick="toggle(document.getElementById('data'))">Passworts</h2>
+	<h2 onclick="toggle(document.getElementById('passwort'))">Passworts</h2>
     <!-- Änderung des Passworts -->
     <div id="passwort">
     	<br>
@@ -146,8 +137,6 @@ if(isset($error_msg) && !empty($error_msg)) {
 
     	</form>
     </div>
-  </div>
-
 </div>
 
 
