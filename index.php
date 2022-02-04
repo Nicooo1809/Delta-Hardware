@@ -1,5 +1,5 @@
 <?php 
-require_once("header.php");
+require_once("templates/header.php");
 ?>
 
 <video style="width=100%;" autoplay muted loop>
@@ -8,5 +8,5 @@ require_once("header.php");
 </video> 
 
 <?php
-require_once("footer.html");
+require_once("templates/footer.html");
 ?>
