@@ -1,7 +1,7 @@
 <?php 
 session_start();
-require_once("inc/mysql.php");
-require_once("inc/functions.php");
+require_once("php/mysql.php");
+require_once("php/functions.php");
 include("templates/header.php")
 ?>
 <div>
