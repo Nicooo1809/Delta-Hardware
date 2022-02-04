@@ -86,7 +86,7 @@ if(isset($error_msg) && !empty($error_msg)) {
 <div>
     <!-- Persönliche Daten-->
     <h2 onclick="toggle(document.getElementById('data'))">Persönliche Daten</h2>
-    <div id="data">
+    <div id="data" style="display: none;">
     	<br>
     	<form action="?save=personal_data" method="post">
     		<label for="inputVorname">Vorname</label>
@@ -101,7 +101,7 @@ if(isset($error_msg) && !empty($error_msg)) {
 
 	<h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2>
     <!-- Änderung der E-Mail-Adresse -->
-    <div id="email">
+    <div id="email" style="display: none;">
     	<br>
     	<p>Zum Änderen deiner E-Mail-Adresse gib bitte dein aktuelles Passwort sowie die neue E-Mail-Adresse ein.</p>
     	<form action="?save=email" method="post">
@@ -120,7 +120,7 @@ if(isset($error_msg) && !empty($error_msg)) {
     
 	<h2 onclick="toggle(document.getElementById('passwort'))">Passworts</h2>
     <!-- Änderung des Passworts -->
-    <div id="passwort">
+    <div id="passwort" style="display: none;">
     	<br>
     	<p>Zum Änderen deines Passworts gib bitte dein aktuelles Passwort sowie das neue Passwort ein.</p>
     	<form action="?save=passwort" method="post">
