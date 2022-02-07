@@ -21,7 +21,9 @@ if(isset($_GET['save'])) {
 		} else {
 			$statement = $pdo->prepare("UPDATE users SET vorname = :vorname, nachname = :nachname, updated_at=NOW() WHERE id = :userid");
 			$result = $statement->execute(array('vorname' => $vorname, 'nachname'=> $nachname, 'userid' => $user['id'] ));
-			
+			$user['vorname'] = $vorname;
+			$user['nachname'] = $nachname;
+
 			$success_msg = "Daten erfolgreich gespeichert.";
 		}
 	} else if($save == 'email') {
@@ -38,7 +40,8 @@ if(isset($_GET['save'])) {
 		} else {
 			$statement = $pdo->prepare("UPDATE users SET email = :email WHERE id = :userid");
 			$result = $statement->execute(array('email' => $email, 'userid' => $user['id'] ));
-				
+			$user['email'] = $email;
+			
 			$success_msg = "E-Mail-Adresse erfolgreich gespeichert.";
 		}
 		
