@@ -60,8 +60,6 @@ if(isset($error_msg) && !empty($error_msg)) {
 	  </label>
 	</div>
 	<button type="submit">Login</button>
-	<br>
-	<a href="passwortvergessen.php">Passwort vergessen</a>
   </form>
 
 </div> <!-- /container -->
