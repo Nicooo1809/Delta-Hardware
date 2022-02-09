@@ -1,5 +1,6 @@
 <?php
-require "mysql.php";
+require_once("php/mysql.php");
+require_once("php/functions.php");
 require "header.php";
 // The amounts of products to show on each page
 $num_products_on_each_page = 4;
