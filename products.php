@@ -1,7 +1,7 @@
 <?php
 require_once("php/mysql.php");
 require_once("php/functions.php");
-require "header.php";
+require "templates/header.php";
 // The amounts of products to show on each page
 $num_products_on_each_page = 4;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
@@ -67,5 +67,5 @@ $total_products = $pdo->query('SELECT * FROM products')->rowCount();
     </div>
 </div>
 <?php
-require "footer.php";
+require "templates/footer.php";
 ?>
