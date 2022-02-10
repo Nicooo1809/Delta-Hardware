@@ -59,10 +59,10 @@ $total_products = $pdo->query('SELECT * FROM products')->rowCount();
     </div>
     <div class="buttons">
         <?php if ($current_page > 1): ?>
-        <a href="products.php?p=<?=$current_page-1?>">Prev</a>
+        <a href="products.php?p=<?=$current_page-1?><?php print('&' . http_build_query($_GET)); ?>">Prev</a>
         <?php endif; ?>
         <?php if ($total_products > ($current_page * $num_products_on_each_page) - $num_products_on_each_page + count($products)): ?>
-        <a href="products.php?p=<?=$current_page+1?>">Next</a>
+        <a href="products.php?p=<?=$current_page+1?><?php print('&' . http_build_query($_GET)); ?>">Next</a>
         <?php endif; ?>
     </div>
 </div>
