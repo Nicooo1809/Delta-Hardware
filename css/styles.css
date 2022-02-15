@@ -27,6 +27,16 @@ html, body {
 */
 
 
+.bg-video {
+    position: absolute;
+    overflow: visible;
+    object-fit: cover;
+    width: 100%;
+    height: 90vh;
+    visibility: visible;
+    size: 100%;
+}
+
 .header {
     display:flex;
     justify-content: space-between;
