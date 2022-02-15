@@ -16,12 +16,15 @@ if (isset($_GET["sortby"])) {
     }
     $_SESSION["sortsql"] = "ORDER BY " . $_GET["sortby"] . $order;
 }
+$type = "";
+if (isset($_GET["type"])) {
+    $type = 'and products_types.name = ' . $_GET["type"] . ' ';
+}
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT * FROM products, products_types where products.product_id = products_types.id and products_types.name = ? ' . $_SESSION["sortsql"] . ' LIMIT ?,?');
+$stmt = $pdo->prepare('SELECT * FROM products, products_types where products.product_id = products_types.id ' . $type . $_SESSION["sortsql"] . ' LIMIT ?,?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
-$stmt->bindValue(1, $_GET['type']);
-$stmt->bindValue(2, ($current_page - 1) * $num_products_on_each_page, PDO::PARAM_INT);
-$stmt->bindValue(3, $num_products_on_each_page, PDO::PARAM_INT);
+$stmt->bindValue(1, ($current_page - 1) * $num_products_on_each_page, PDO::PARAM_INT);
+$stmt->bindValue(2, $num_products_on_each_page, PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -58,10 +61,10 @@ $total_products = $pdo->query('SELECT * FROM products')->rowCount();
     </div>
     <div class="buttons">
         <?php if ($current_page > 1): ?>
-        <a href="products.php?p=<? print($current_page-1 . '&type=' . $_GET['type'])?>">Prev</a>
+        <a href="products.php?p=<?php print($current_page-1 . '&type=' . $_GET['type']); ?>">Prev</a>
         <?php endif; ?>
         <?php if ($total_products > ($current_page * $num_products_on_each_page) - $num_products_on_each_page + count($products)): ?>
-        <a href="products.php?p=<? print($current_page+1 . '&type=' . $_GET['type'])?>">Next</a>
+        <a href="products.php?p=<?php print($current_page+1 . '&type=' . $_GET['type']); ?>">Next</a>
         <?php endif; ?>
     </div>
 </div>
