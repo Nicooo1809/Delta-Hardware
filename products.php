@@ -18,7 +18,7 @@ if (isset($_GET["sortby"])) {
 }
 $type = "";
 if (isset($_GET["type"])) {
-    $type = 'and products_types.name = ' . $_GET["type"] . ' ';
+    $type = "and products_types.name = '" . $_GET["type"] . "' ";
 }
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT * FROM products, products_types where products.product_id = products_types.id ' . $type . $_SESSION["sortsql"] . ' LIMIT ?,?');
@@ -29,7 +29,7 @@ $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Get the total number of products
-$total_products = $pdo->query('SELECT * FROM products')->rowCount();
+$total_products = $pdo->query('SELECT * FROM products, products_types where products.product_id = products_types.id ' . $type)->rowCount();
 ?>
 
 <div class="products content-wrapper">
