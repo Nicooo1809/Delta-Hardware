@@ -2,12 +2,12 @@
 require_once("php/mysql.php");
 require_once("php/functions.php");
 require "templates/header.php";
+session_start();
 // The amounts of products to show on each page
 $num_products_on_each_page = 4;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
 $_SESSION["sortsql"] = "";
-print($_GET["order"]);
 if (isset($_GET["order"])) {
     if ($_GET["order"] == "Absteigend"){
         $order = " DESC";
@@ -64,5 +64,5 @@ print($_SESSION["sortsql"]);
     </div>
 </div>
 <?php
-require "templates/footer.php";
+require "templates/footer.html";
 ?>
