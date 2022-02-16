@@ -42,9 +42,10 @@ $total_products = $pdo->query('SELECT * FROM products, products_types where prod
             <option value="rrp">UVP</option>
             <option value="created_at">Date</option>
         </select>
-        <?php foreach (array_keys($_GET) as $getindex): ?>
-        <input type=text name="<?php print($getindex); ?>" value="<?php print($_GET[$getindex]); ?>" hidden>
-        <?php endforeach; ?>
+        <?php foreach (array_keys($_GET) as $getindex) {
+            if ($getindex != "order" && $getindex != "sortby") {
+                print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
+        } } ?>
         <input type="Submit" value="Aufsteigend" name="order"></input>
         <input type="Submit" value="Absteigend" name="order"></input>
     </form>
