@@ -48,6 +48,7 @@ $total_products = $pdo->query('SELECT * FROM products, products_types where prod
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
             <?php print_r($product); ?>
+            <?php print('Test'); ?>
         <a href="product.php?id=<?=$product['products.id']?>" class="product">
             <img src="imgs/<?=$product['products.img']?>" width="200" height="200" alt="<?=$product['products.name']?>">
             <span class="name"><?=$product['products.name']?></span>
