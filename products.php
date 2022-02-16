@@ -28,6 +28,7 @@ $stmt->bindValue(2, $num_products_on_each_page, PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->debugDumpParams();
 // Get the total number of products
 $total_products = $pdo->query('SELECT * FROM products, products_types where products.product_id = products_types.id ' . $type)->rowCount();
 ?>
