@@ -49,14 +49,13 @@ $total_products = $pdo->query('SELECT * FROM products, products_types where prod
     <div class="products-wrapper">
     <?php print_r($products); ?>
         <?php foreach ($products as $product): ?>
-            <?php print('Test'); ?>
-        <a href="product.php?id=<?=$product['products.id']?>" class="product">
-            <img src="imgs/<?=$product['products.img']?>" width="200" height="200" alt="<?=$product['products.name']?>">
-            <span class="name"><?=$product['products.name']?></span>
+        <a href="product.php?id=<?=$product['id']?>" class="product">
+            <img src="imgs/<?=$product['img']?>" width="200" height="200" alt="<?=$product['name']?>">
+            <span class="name"><?=$product['name']?></span>
             <span class="price">
-                &dollar;<?=$product['products.price']?>
-                <?php if ($product['products.rrp'] > 0): ?>
-                <span class="rrp">&dollar;<?=$product['products.rrp']?></span>
+                &dollar;<?=$product['price']?>
+                <?php if ($product['rrp'] > 0): ?>
+                <span class="rrp">&dollar;<?=$product['rrp']?></span>
                 <?php endif; ?>
             </span>
         </a>
