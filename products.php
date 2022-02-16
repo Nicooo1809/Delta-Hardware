@@ -35,16 +35,19 @@ $total_products = $pdo->query('SELECT * FROM products, products_types where prod
 
 <div class="products content-wrapper">
     <h1>Products</h1>
-    <!--form action="products.php?<?php print(http_build_query($_GET)); ?>" method="get"-->
-    <select name="sortby" id="sortby">
-        <option value="name">Name</option>
-        <option value="price">Preis</option>
-        <option value="rrp">UVP</option>
-        <option value="created_at">Date</option>
-    </select>
-    <input type="Submit" value="Aufsteigend" id="order" name="order" href="products.php?order=Aufsteigend&<?php print(http_build_query($_GET)); ?>"></input>
-    <input type="Submit" value="Absteigend" id="order" name="order" href="products.php?order=Absteigend&<?php print(http_build_query($_GET)); ?>"></input>
-    <!--/form-->
+    <form action="products.php" method="get">
+        <select name="sortby">
+            <option value="name">Name</option>
+            <option value="price">Preis</option>
+            <option value="rrp">UVP</option>
+            <option value="created_at">Date</option>
+        </select>
+        <?php foreach (array_keys($_GET) as $getindex): ?>
+        <input type=text name="<?php print($getindex); ?>" value="<?php print($_GET[$getindex]); ?>" hidden>
+        <?php endforeach; ?>
+        <input type="Submit" value="Aufsteigend" name="order"></input>
+        <input type="Submit" value="Absteigend" name="order"></input>
+    </form>
     <p><?php print($total_products); ?> Products</p>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
