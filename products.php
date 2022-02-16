@@ -14,7 +14,7 @@ if (isset($_GET["sortby"])) {
     if ($_GET["order"] == "Absteigend"){
         $order = " DESC";
     }
-    $_SESSION["sortsql"] = "ORDER BY " . $_GET["sortby"] . $order;
+    $_SESSION["sortsql"] = "ORDER BY products." . $_GET["sortby"] . $order;
 }
 $type = "";
 if (isset($_GET["type"])) {
