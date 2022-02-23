@@ -20,7 +20,7 @@ print_r($products);
 $stmt->debugDumpParams();
 ?>
 <div class="products content-wrapper">
-    <h1><?=$product[0]['name']?></h1>
+    <h1><?=$product['name']?></h1>
     <div class="products-wrapper">
         <a href="product.php?id=<?=$product[0]['id']?>" class="product">
             <img src="product_img/<?=$product[0]['img']?>" width="200" height="200" alt="<?=$product[0]['name']?>">
