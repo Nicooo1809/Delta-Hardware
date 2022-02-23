@@ -16,7 +16,7 @@ $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($products);
+print_r($products);
 #$stmt->debugDumpParams();
 ?>
 <div class="products content-wrapper">
