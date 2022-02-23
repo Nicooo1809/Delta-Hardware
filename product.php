@@ -20,16 +20,15 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #$stmt->debugDumpParams();
 ?>
 <div class="products content-wrapper">
-    <h1><?=$product['name']?></h1>
-    <p><?php print($total_products); ?> Products</p>
+    <h1><?=$product[0]['name']?></h1>
     <div class="products-wrapper">
-        <a href="product.php?id=<?=$product['id']?>" class="product">
-            <img src="product_img/<?=$product['img']?>" width="200" height="200" alt="<?=$product['name']?>">
-            <span class="name"><?=$product['name']?></span>
+        <a href="product.php?id=<?=$product[0]['id']?>" class="product">
+            <img src="product_img/<?=$product[0]['img']?>" width="200" height="200" alt="<?=$product[0]['name']?>">
+            <span class="name"><?=$product[0]['name']?></span>
             <span class="price">
-                &dollar;<?=$product['price']?>
-                <?php if ($product['rrp'] > 0): ?>
-                <span class="rrp">&dollar;<?=$product['rrp']?></span>
+                &dollar;<?=$product[0]['price']?>
+                <?php if ($product[0]['rrp'] > 0): ?>
+                <span class="rrp">&dollar;<?=$product[0]['rrp']?></span>
                 <?php endif; ?>
             </span>
         </a>
