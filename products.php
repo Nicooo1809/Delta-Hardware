@@ -20,6 +20,7 @@ $type = "";
 if (isset($_GET["type"])) {
     $type = "and products_types.type = '" . $_GET["type"] . "' ";
 }
+// SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id ' . $type . $_SESSION["sortsql"]);
 $stmt->execute();
