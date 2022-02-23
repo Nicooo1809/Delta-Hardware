@@ -23,7 +23,7 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="products content-wrapper">
     <h1><?=$product[0]['name']?></h1>
     <div class="products-wrapper">
-        <a href="product.php?id=<?=$product[0]['id']?>" class="product">
+        <div class="product">
             <img src="product_img/<?=$product[0]['img']?>" width="500" height="500" alt="<?=$product[0]['name']?>">
             <span class="price">
                 &dollar;<?=$product[0]['price']?>
@@ -32,7 +32,7 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
             </span>
             <span class="desc"><?=$product[0]['desc']?></span>
-        </a>
+        </div>
     </div>
 </div>
 <?php
