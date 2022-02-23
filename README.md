@@ -1,35 +1,33 @@
 # Step by Step anleitung GitHub
 
-[e2fs3bt.de](https://e2fs3bt.de/)
+## [Link zur Haupt-Seite (e2fs3bt.de)](https://e2fs3bt.de/)
+## [Link zur Dev-Seite (dev.e2fs3bt.de)](https://dev.e2fs3bt.de/)
 
 
 ## 1. Klicke auf "Current Branch" und wähle Dev aus
+###     -> Wichtig: Oben links muss Delta-Hardware ausgewält sein
 
 
 ## 2. Klicke auf "Fetch Origin"
-###     -> Wichtig: Oben links muss Delta-Hardware ausgewält sein
-
 ![](/readmebilder/Bild_4.png)
 
 
 
-## 8. Öffne die GitHub Repo in deinen Editor (bei mir VSC)
+## 3. Öffne die GitHub Repo in deinen Editor (bei mir VSC)
 ### -> Wenn dieser Button nicht angezeigt wird auf "File" -> "Integrations" -> "Editor".
 ### -> Öffnen kann man den Editor auch wenn man oben auf "Repository geht" und dann auf "Open in ..."
 ![](/readmebilder/Bild_5.png)
 
 
 
-## 9. Trage einen Titel ein (was du gemacht hast z.B.: Readme update"). Wenn du willst noch eine Beschreibung.
-## 
-
-## 10. Klicke auf "Commit to Dev"
+## 4. Trage einen Titel ein (was du gemacht hast z.B.: Readme update"). Wenn du willst noch eine Beschreibung.
+## 5. Klicke auf "Commit to Dev"
 ### -> Wichtig: da MUSS dev stehen und nicht main
 ![](/readmebilder/Bild_6.png)
 
 
 
-## 11. Klicke auf "Push origin"
+## 6. Klicke auf "Push origin"
 ![](/readmebilder/Bild_7.png)
 
 
@@ -37,27 +35,27 @@
 
 
 
-# FOLGENDES NUR WENN MAN AUF DIE HAUPTSEITE PULLT UND NICHT WENN MAN ENTWICKELT!
+# Folgendes nur wenn man fertig ist und von der dev Seite auf die Hauptseite übertragen möchte!
 
 
 
 
-## 12. Klicke auf "Create Pull Request"
+## 7. Klicke auf "Create Pull Request"
 ### -> Es öffnet sich der Browser mit GitHub
 ![](/readmebilder/Bild_8.png)
 
 
 
-## 13. Achte darauf dass die Roten kästen genau so aussehen wie in diesem Bild
 
-## 14. Klicke auf "Create Pull Request"
+
+## 8. Klicke auf "Create Pull Request"
+###     -> Achte darauf dass die Roten kästen genau so aussehen wie in diesem Bild
 ![](/readmebilder/Bild_9.png)
 
 
 
-## 15. Achte darauf dass der Roten kasten genau so aussieht wie auf diesem Bild
-
-## 16. Klicke auf "Merge Pull Request"
+## 9. Klicke auf "Merge Pull Request" (sobald die überprüfung fertig ist)
+###     -> Achte darauf dass die Roten kästen genau so aussehen wie in diesem Bild
 ![](/readmebilder/Bild_10.png)
 
 
