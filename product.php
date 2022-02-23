@@ -6,13 +6,13 @@ require "templates/header.php";
 $num_products_on_each_page = 4;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
-if (!isset($_SESSION["id"])) {
+if (!isset($_GET["id"])) {
     header("location: products.php");
 }
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
-$stmt->bindValue(1, $_SESSION["id"], PDO::PARAM_INT);
+$stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
