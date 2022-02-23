@@ -1,0 +1,22 @@
+name: push to delta-hw dev
+on:  
+  push:
+    branches:
+      - dev
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+        ref: 'dev'
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+         key: ${{ secrets.SSH_PRIVATE_KEY }}
+         name: id_rsa # optional
+         known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - run: |
+        git remote add prod ssh://root@e2fs3bt.de:69/root/git/dev.git
+        git push prod main
