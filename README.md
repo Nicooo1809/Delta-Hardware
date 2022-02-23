@@ -3,29 +3,12 @@
 [e2fs3bt.de](https://e2fs3bt.de/)
 
 
-## 1. Starte die GitHub Desktop App
+## 1. Klicke auf "Current Branch" und wähle Dev aus
+
 
 ## 2. Klicke auf "Fetch Origin"
 ###     -> Wichtig: Oben links muss Delta-Hardware ausgewält sein
 
-## 3. Klicke auf "Current Branch"
-![](/readmebilder/Bild_1.png)
-
-
-
-## 4. Klicke auf "dev" und anschließend auf "Choose a branch to merge into dev"
-![](/readmebilder/Bild_2.png)
-
-
-
-## 5. Klicke auf "main"
-
-## 6. Wenn unten steht "This will merge 1 commit from MAIN into DEV", dann auf "Create a merge commit" klicken, falls nicht kann dieser Schritt ausgelassen werden.
-![](/readmebilder/Bild_3.png)
-
-
-
-## 7. Klicke nochmal auf "Fetich Origin"
 ![](/readmebilder/Bild_4.png)
 
 
@@ -48,6 +31,14 @@
 
 ## 11. Klicke auf "Push origin"
 ![](/readmebilder/Bild_7.png)
+
+
+
+
+
+
+# FOLGENDES NUR WENN MAN AUF DIE HAUPTSEITE PULLT UND NICHT WENN MAN ENTWICKELT!
+
 
 
 
