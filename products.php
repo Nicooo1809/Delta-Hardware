@@ -21,14 +21,14 @@ if (isset($_GET["type"])) {
     $type = "and products_types.type = '" . $_GET["type"] . "' ";
 }
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT * FROM products_types, products where products.product_type_id = products_types.id ' . $type . $_SESSION["sortsql"]);
+$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id ' . $type . $_SESSION["sortsql"]);
 $stmt->execute();
+// Get the total number of products
+$total_products = $stmt->rowCount();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
-// Get the total number of products
-$total_products = $pdo->query('SELECT * FROM products, products_types where products.product_type_id = products_types.id ' . $type)->rowCount();
 ?>
 
 <div class="products content-wrapper">
@@ -51,7 +51,7 @@ $total_products = $pdo->query('SELECT * FROM products, products_types where prod
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
         <a href="product.php?id=<?=$product['id']?>" class="product">
-            <img src="product_img/<?=$product['img']?>" width="200" alt="<?=$product['name']?>">
+            <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
             <span class="name"><?=$product['name']?></span>
             <span class="price">
                 &dollar;<?=$product['price']?>
