@@ -19,12 +19,22 @@ $stmt->execute();
 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($product);
 #$stmt->debugDumpParams();
+
+$stmt = $pdo->prepare('SELECT * FROM products_images where product_id = ?');
+// bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
+$stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
+$stmt->execute();
+// Fetch the products from the database and return the result as an Array
+$images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <div class="products content-wrapper">
     <h1><?=$product[0]['name']?></h1>
     <div class="products-wrapper">
         <div class="product">
-            <img src="product_img/<?=$product[0]['img']?>" width="500" alt="<?=$product[0]['name']?>">
+            <?php foreach ($images as $image) {
+                print('<img src="product_img/'.$image['img'].'" width="500" alt="'.$product[0]['name'].'">');
+            } ?>
             <span class="price">
                 &dollar;<?=$product[0]['price']?>
                 <?php if ($product[0]['rrp'] > 0): ?>
