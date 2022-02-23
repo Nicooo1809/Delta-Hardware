@@ -24,7 +24,7 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h1><?=$product[0]['name']?></h1>
     <div class="products-wrapper">
         <div class="product">
-            <img src="product_img/<?=$product[0]['img']?>" width="500" height="500" alt="<?=$product[0]['name']?>">
+            <img src="product_img/<?=$product[0]['img']?>" width="500" alt="<?=$product[0]['name']?>">
             <span class="price">
                 &dollar;<?=$product[0]['price']?>
                 <?php if ($product[0]['rrp'] > 0): ?>
