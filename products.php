@@ -18,7 +18,7 @@ if (isset($_GET["sortby"])) {
 }
 $type = "";
 if (isset($_GET["type"])) {
-    $type = "and products_types.name = '" . $_GET["type"] . "' ";
+    $type = "and products_types.type = '" . $_GET["type"] . "' ";
 }
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT * FROM products, products_types where products.product_type_id = products_types.id ' . $type . $_SESSION["sortsql"] . ' LIMIT ?,?');
