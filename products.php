@@ -21,7 +21,7 @@ if (isset($_GET["type"])) {
     $type = "and products_types.name = '" . $_GET["type"] . "' ";
 }
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT * FROM products, products_types where products.product_id = products_types.id ' . $type . $_SESSION["sortsql"] . ' LIMIT ?,?');
+$stmt = $pdo->prepare('SELECT * FROM products, products_types where products.product_type_id = products_types.id ' . $type . $_SESSION["sortsql"] . ' LIMIT ?,?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, ($current_page - 1) * $num_products_on_each_page, PDO::PARAM_INT);
 $stmt->bindValue(2, $num_products_on_each_page, PDO::PARAM_INT);
@@ -30,7 +30,7 @@ $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #$stmt->debugDumpParams();
 // Get the total number of products
-$total_products = $pdo->query('SELECT * FROM products, products_types where products.product_id = products_types.id ' . $type)->rowCount();
+$total_products = $pdo->query('SELECT * FROM products, products_types where products.product_type_id = products_types.id ' . $type)->rowCount();
 ?>
 
 <div class="products content-wrapper">
