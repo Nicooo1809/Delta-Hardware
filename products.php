@@ -23,6 +23,7 @@ if (isset($_GET["type"])) {
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT * FROM products_types, products where products.product_type_id = products_types.id ' . $type . $_SESSION["sortsql"]);
 $stmt->execute();
+print('TEST: '.$stmt->rowCount());
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
