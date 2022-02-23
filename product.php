@@ -15,22 +15,23 @@ $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
 $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
+
 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-print_r($product);
-$stmt->debugDumpParams();
+#print_r($product);
+#$stmt->debugDumpParams();
 ?>
 <div class="products content-wrapper">
     <h1><?=$product[0]['name']?></h1>
     <div class="products-wrapper">
         <a href="product.php?id=<?=$product[0]['id']?>" class="product">
-            <img src="product_img/<?=$product[0]['img']?>" width="200" height="200" alt="<?=$product[0]['name']?>">
-            <span class="name"><?=$product[0]['name']?></span>
+            <img src="product_img/<?=$product[0]['img']?>" width="500" height="500" alt="<?=$product[0]['name']?>">
             <span class="price">
                 &dollar;<?=$product[0]['price']?>
                 <?php if ($product[0]['rrp'] > 0): ?>
-                <span class="rrp">&dollar;<?=$product[0]['rrp']?></span>
+                <span class="rrp">RRP &dollar;<?=$product[0]['rrp']?></span>
                 <?php endif; ?>
             </span>
+            <span class="desc"><?=$product[0]['desc']?></span>
         </a>
     </div>
 </div>
