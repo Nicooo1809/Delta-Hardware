@@ -20,7 +20,7 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($product);
 #$stmt->debugDumpParams();
 
-$stmt = $pdo->prepare('SELECT * FROM products_images where product_id = ?');
+$stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
 $stmt->execute();
