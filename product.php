@@ -15,12 +15,12 @@ $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
 $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-print_r($products);
+$product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+print_r($product);
 $stmt->debugDumpParams();
 ?>
 <div class="products content-wrapper">
-    <h1><?=$product['name']?></h1>
+    <h1><?=$product[0]['name']?></h1>
     <div class="products-wrapper">
         <a href="product.php?id=<?=$product[0]['id']?>" class="product">
             <img src="product_img/<?=$product[0]['img']?>" width="200" height="200" alt="<?=$product[0]['name']?>">
