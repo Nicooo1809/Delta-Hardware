@@ -17,7 +17,7 @@ $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 print_r($products);
-#$stmt->debugDumpParams();
+$stmt->debugDumpParams();
 ?>
 <div class="products content-wrapper">
     <h1><?=$product[0]['name']?></h1>
