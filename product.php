@@ -26,8 +26,8 @@ $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
-print_r($images);
-$stmt->debugDumpParams();
+#print_r($images);
+#$stmt->debugDumpParams();
 ?>
 <div class="products content-wrapper">
     <h1><?=$product[0]['name']?></h1>
