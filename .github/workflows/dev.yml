@@ -19,4 +19,4 @@ jobs:
          known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - run: |
         git remote add prod ssh://root@e2fs3bt.de:69/root/git/dev.git
-        git push prod dev
+        git push prod main
