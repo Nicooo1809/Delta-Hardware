@@ -60,7 +60,7 @@
 
 
 
-## 17. Klicke auf "Confirm Merge"
+## 10. Klicke auf "Confirm Merge"
 ![](/readmebilder/Bild_11.png)
 
 
