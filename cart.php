@@ -34,6 +34,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <span class="rrp">&dollar;<?=$product['rrp']?></span>
                 <?php endif; ?>
             </span>
+            <span class="quantity"><?=$product['quantity']?></span>
         </a>
         <?php endforeach; ?>
     </div>
