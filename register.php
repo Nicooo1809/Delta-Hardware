@@ -50,7 +50,7 @@ if(isset($_GET['register'])) {
 	//Überprüfe, ob die DSGVO gelesen wurde
 	if(!$error) { 
 		if(!(isset($_POST['dsgvo']))) {
-			echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+			echo 'Sie müssen die Datenschutzerklärung lesen!<br>';
 			$error = true;
 		}	
 	}
