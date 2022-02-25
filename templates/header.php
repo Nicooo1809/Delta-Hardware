@@ -51,7 +51,22 @@ session_start();
                 <button class="btn btn-outline-success" type="submit">Suchen</button>
             </form>
             </i>
-            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><span class="anmelden-profil-text-navbar <?php if (is_user_logged_in()) {content: "test"}"></span><i class="bi-person-fill" style="font-size: 2rem; color: #ffffff;"></i></a>
+
+            <?php 
+            $anmeldentext  = "Anmelden";
+            $profiltext = "Profil";
+            if(isset($_SESSION['userid']))
+            {
+                $output = $profiltext;
+            }
+            else
+            {
+                $output = $anmeldentext;
+            }
+            ?>
+
+            if()
+            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><span class="anmelden-profil-text-navbar"><?php echo $output ?></span><i class="bi-person-fill" style="font-size: 2rem; color: #ffffff;"></i></a>
         </div>
     </div>
 </nav>
