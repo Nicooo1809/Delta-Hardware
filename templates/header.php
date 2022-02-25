@@ -23,15 +23,15 @@ session_start();
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/index">Delta-Hardware</a>
+    <div class="container-fluid me-3 ms-3">
+        <a class="navbar-brand" href="/index"><img src="/favicon.png" style="width:2.5rem;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Test</a>
+                    <a class="nav-link" href="#">PC-Komponenten</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -47,11 +47,11 @@ session_start();
                 </li>
             </ul>
             <form class="d-flex" action="search.php">
-                <input class="form-control me-2" name="search" type="search" placeholder="Grafikkarte..." aria-label="Suche">
+                <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Suche">
                 <button class="btn btn-outline-success" type="submit">Suchen</button>
             </form>
             </i>
-            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="bi-person-fill" style="font-size: 2rem; color: #ffffff;"></i></a>
+            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><span class="anmelden-profil-text-navbar <?php if (is_user_logged_in()) {content: "test"}"></span><i class="bi-person-fill" style="font-size: 2rem; color: #ffffff;"></i></a>
         </div>
     </div>
 </nav>
