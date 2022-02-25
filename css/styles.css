@@ -19,16 +19,7 @@ header {
     margin-bottom: 0 !important;
 }
 
-/*
-.container {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}
 
-*/
 
 
 .bg-video {
@@ -41,14 +32,6 @@ header {
     size: 100%;
 }
 
-.header {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 10%;
-    background-color: rgb(15, 15, 15);
-    text-align:center;
-}
 
 
 li, a, button {
@@ -60,6 +43,31 @@ li, a, button {
 }
 
 
+
+
+
+
+
+
+
+/*
+
+.container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.header {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: rgb(15, 15, 15);
+    text-align:center;
+}
 
 .logo-topleft {
     width: 37px;
@@ -165,4 +173,12 @@ a.navlink:hover:before {
     transform: scaleX(1);
 }
 
-/*test*/
+*/
+
+.navbar-icon {
+    background: url('/favicon.png');
+    height: 50px;
+    width: 50px;
+    display: block;
+}
+
