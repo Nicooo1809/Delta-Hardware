@@ -45,8 +45,8 @@ session_start();
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Grafikkarte..." aria-label="Suche">
+            <form class="d-flex" action="search.php">
+                <input class="form-control me-2" name="search" type="search" placeholder="Grafikkarte..." aria-label="Suche">
                 <button class="btn btn-outline-success" type="submit">Suchen</button>
             </form>
         </div>
