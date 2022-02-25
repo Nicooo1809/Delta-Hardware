@@ -47,10 +47,18 @@ if(isset($_GET['register'])) {
 		}	
 	}
 	
-	//Überprüfe, ob die DSGVO gelesen wurde
+	//Überprüfe, ob die DSGVO akzeptiert wurde
 	if(!$error) { 
 		if(!(isset($_POST['dsgvo']))) {
-			echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+			echo 'Sie müssen die Datenschutzerklärung akzeptieren!<br>';
+			$error = true;
+		}	
+	}
+
+	//Überprüfe, ob die AGBs akzeptiert wurden
+	if(!$error) { 
+		if(!(isset($_POST['agb']))) {
+			echo 'Sie müssen die AGBs akzeptieren!<br>';
 			$error = true;
 		}	
 	}
@@ -78,29 +86,34 @@ if($showFormular) {
 
 <div>
 <label for="inputVorname">Vorname:</label>
-<input type="text" id="inputVorname" size="40" maxlength="250" name="vorname" required>
+<input type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" required>
 </div>
 
 <div>
 <label for="inputNachname">Nachname:</label>
-<input type="text" id="inputNachname" size="40" maxlength="250" name="nachname" required>
+<input type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" required>
 </div>
 
 <div>
 <label for="inputEmail">E-Mail:</label>
-<input type="email" id="inputEmail" size="40" maxlength="250" name="email" required>
+<input type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" required>
 </div>
 
 <div>
 <label for="inputPasswort">Dein Passwort:</label>
-<input type="password" id="inputPasswort" size="40"  maxlength="250" name="passwort" required>
+<input type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" required>
 </div> 
 
 <div>
 <label for="inputPasswort2">Passwort wiederholen:</label>
 <input type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" required>
 </div> 
-<input type="checkbox" name="dsgvo" value="gelesen"> Ich habe die Datenschutzerklärung gelesen
+<div>
+<input type="checkbox" name="dsgvo" value="gelesen"> Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.
+</div>
+<div>
+<input type="checkbox" name="agb" value="gelesen"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.
+</div>
 <button type="submit">Registrieren</button>
 </form>
  
