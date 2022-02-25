@@ -34,7 +34,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="products-wrapper">
         <div class="product">
             <?php foreach ($images as $image) {
-                print('<img src="product_img/'.$image['img'].'" width="500" alt="'.$product[0]['name'].'">');
+                print('<img src="product_img/'.$image['img'].'" width="350" alt="'.$product[0]['name'].'">');
             } ?>
             <span class="price">
                 &dollar;<?=$product[0]['price']?>
