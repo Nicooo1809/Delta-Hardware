@@ -2,8 +2,6 @@
 require_once("php/mysql.php");
 require_once("php/functions.php");
 require "templates/header.php";
-// The amounts of products to show on each page
-$num_products_on_each_page = 4;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
 if (!isset($_SESSION["sortsql"])) {
