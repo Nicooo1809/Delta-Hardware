@@ -46,7 +46,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background-color: teal;
+    background-color: rgb(15, 15, 15);
     text-align:center;
 }
 
@@ -74,15 +74,13 @@ li, a, button {
 .OpenCloseNavBarIcon {
     width: 50px;
 }
-
-
+/*
 
 .navbar {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0px !important;
     padding: 15px 10%;
-    background-color: rgb(0, 172, 172);
     text-align:center;
     overflow: hidden;
     border-radius: 0px !important;
@@ -167,5 +165,7 @@ a.navlink:hover:before {
     transform: scaleX(1);
 }
 
+
+*/
 
 /*test*/

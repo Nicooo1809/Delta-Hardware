@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +16,18 @@ session_start();
     <script src="https://kit.fontawesome.com/3386a0b16e.js" crossorigin="anonymous"></script>
     <title>Delta-Hardware</title>
 </head>
-
 <body>
+
+
+
+
+<nav class="navbar navbar-expand-lg"
+
+
+
+
+
+<!--
 
     <div class="header">
         <a href="index.php"><img class="logo-topleft" src="favicon.svg"></a>
@@ -54,15 +65,7 @@ session_start();
     </script>
 
 
-
-
-
-    
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script>
-    AOS.init();
-</script>
+    -->
 
 
 </body>
