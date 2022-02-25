@@ -28,7 +28,7 @@ $total_products = $stmt->rowCount();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
-#$stmt->debugDumpParams();
+$stmt->debugDumpParams();
 ?>
 
 <div class="products content-wrapper">
