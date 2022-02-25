@@ -86,7 +86,7 @@ if($showFormular) {
 
 <div>
 <label for="inputVorname">Vorname:</label>
-<input type="text" value="<?=$_GET["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" required>
+<input type="text" value="TEST" id="inputVorname" size="40" maxlength="250" name="vorname" required>
 </div>
 
 <div>
