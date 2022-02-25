@@ -10,6 +10,7 @@ $user = check_user();
 
 $stmt = $pdo->prepare('SELECT *,(SELECT quantity From product_list WHERE product_list.product_id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? )) LIMIT 1) AS quantity,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? ))');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+$stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
 $stmt->execute();
 // Get the total number of products
 $total_products = $stmt->rowCount();
