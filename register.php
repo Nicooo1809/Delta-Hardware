@@ -101,7 +101,7 @@ if($showFormular) {
 <input type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" required>
 </div> 
 <div>
-<input type="checkbox" name="dsgvo" value="gelesen"> Ich habe die <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Datenschutzerklärung</a> gelesen
+<input type="checkbox" name="dsgvo" value="gelesen"> Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen
 </div>
 <button type="submit">Registrieren</button>
 </form>
