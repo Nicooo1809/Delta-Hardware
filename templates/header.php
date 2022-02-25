@@ -51,7 +51,7 @@ session_start();
                 <button class="btn btn-outline-success" type="submit">Suchen</button>
             </form>
             </i>
-            <i class="bi-person-fill" style="font-size: 2rem; color: #ffffff;" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"></i>
+            <i class="bi-person-fill" style="font-size: 2rem; color: #ffffff;"><a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"></i>
         </div>
     </div>
 </nav>
