@@ -86,27 +86,27 @@ if($showFormular) {
 
 <div>
 <label for="inputVorname">Vorname:</label>
-<input type="text" value="TEST" id="inputVorname" size="40" maxlength="250" name="vorname" required>
+<input type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" required>
 </div>
 
 <div>
 <label for="inputNachname">Nachname:</label>
-<input type="text" value="<?=$_GET["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" required>
+<input type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" required>
 </div>
 
 <div>
 <label for="inputEmail">E-Mail:</label>
-<input type="email" value="<?=$_GET["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" required>
+<input type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" required>
 </div>
 
 <div>
 <label for="inputPasswort">Dein Passwort:</label>
-<input type="password" value="<?=$_GET["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" required>
+<input type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" required>
 </div> 
 
 <div>
 <label for="inputPasswort2">Passwort wiederholen:</label>
-<input type="password" value="<?=$_GET[""]?>" id="inputPasswort2" size="40" maxlength="250" name="passwort2" required>
+<input type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" required>
 </div> 
 <div>
 <input type="checkbox" name="dsgvo" value="gelesen"> Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.
