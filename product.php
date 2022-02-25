@@ -39,8 +39,10 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <span class="price">
                 &dollar;<?=$product[0]['price']?>
                 <?php if ($product[0]['rrp'] > 0): ?>
-                <span class="rrp">RRP &dollar;<?=$product[0]['rrp']?></span>
+                <span class="rrp">UVP &euro;<?=$product[0]['rrp']?></span>
                 <?php endif; ?>
+                <span class="addtocart">Zum Warenkorb Hinzufügen</span>
+                <span class="test">Anzahl<?=$product[0]['quantity']?></span>
             </span>
             <span class="desc"><?=$product[0]['desc']?></span>
         </div>
