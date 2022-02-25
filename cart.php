@@ -2,24 +2,13 @@
 require_once("php/mysql.php");
 require_once("php/functions.php");
 require "templates/header.php";
-// The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
-$current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
-if (!isset($_SESSION["sortsql"])) {
-    $_SESSION["sortsql"] = "";
-}
-if (isset($_GET["sortby"])) {
-    $order = "";
-    if ($_GET["order"] == "Absteigend"){
-        $order = " DESC";
-    }
-    $_SESSION["sortsql"] = "ORDER BY products." . $_GET["sortby"] . $order;
-}
-$type = "";
-if (isset($_GET["type"])) {
-    $type = "and products_types.type = '" . $_GET["type"] . "' ";
-}
+
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
+$stmt = $pdo->prepare('SELECT * FROM product_list where list_id = (select id from orders where kunden_id = ? ))');
+$stmt->execute();
+
+
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id ' . $type . $_SESSION["sortsql"]);
 $stmt->execute();
 // Get the total number of products
@@ -31,21 +20,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="products content-wrapper">
-    <h1>Products</h1>
-    <form action="products.php" method="get">
-        <select name="sortby">
-            <option value="name">Name</option>
-            <option value="price">Preis</option>
-            <option value="rrp">UVP</option>
-            <option value="created_at">Date</option>
-        </select>
-        <?php foreach (array_keys($_GET) as $getindex) {
-            if ($getindex != "order" && $getindex != "sortby") {
-                print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
-        } } ?>
-        <input type="Submit" value="Aufsteigend" name="order"></input>
-        <input type="Submit" value="Absteigend" name="order"></input>
-    </form>
+    <h1>Cart</h1>
     <p><?php print($total_products); ?> Products</p>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
