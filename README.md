@@ -35,7 +35,7 @@
 
 
 
-# Folgendes nur wenn man fertig ist und von der dev Seite auf die Hauptseite übertragen möchte!
+# FOLGENDES BITTE NUR NACH ABSPRACHE MIT ALLEN ANDEREN
 
 
 
