@@ -74,7 +74,7 @@ li, a, button {
 .OpenCloseNavBarIcon {
     width: 50px;
 }
-/*
+
 
 .navbar {
     display: flex;
@@ -164,8 +164,5 @@ a.navlink:hover:before {
     visibility: visible;
     transform: scaleX(1);
 }
-
-
-*/
 
 /*test*/

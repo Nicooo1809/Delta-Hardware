@@ -20,14 +20,14 @@ session_start();
 
 
 
-
-<nav class="navbar navbar-expand-lg"
-
-
-
-
-
 <!--
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+-->
+
+
+
+
+
 
     <div class="header">
         <a href="index.php"><img class="logo-topleft" src="favicon.svg"></a>
@@ -63,9 +63,6 @@ session_start();
 
         
     </script>
-
-
-    -->
 
 
 </body>
