@@ -61,6 +61,13 @@ li, a, button {
 
 
 
+
+
+
+
+
+/*
+
 .logo-topleft {
     width: 37px;
     cursor: pointer;
@@ -165,4 +172,12 @@ a.navlink:hover:before {
     transform: scaleX(1);
 }
 
-/*test*/
+*/
+
+.navbar-icon {
+    background: url('/favicon.png');
+    height: 50px;
+    width: 50px;
+    display: block;
+}
+
