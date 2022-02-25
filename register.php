@@ -47,6 +47,14 @@ if(isset($_GET['register'])) {
 		}	
 	}
 	
+	//Überprüfe, ob die DSGVO gelesen wurde
+	if(!$error) { 
+		if(!(isset($_POST['dsgvo']))) {
+			echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+			$error = true;
+		}	
+	}
+
 	//Keine Fehler, wir können den Nutzer registrieren
 	if(!$error) {	
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
@@ -92,6 +100,7 @@ if($showFormular) {
 <label for="inputPasswort2">Passwort wiederholen:</label>
 <input type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" required>
 </div> 
+<input type="checkbox" name="dsgvo" value="gelesen"> Ich habe die Datenschutzerklärung gelesen
 <button type="submit">Registrieren</button>
 </form>
  
