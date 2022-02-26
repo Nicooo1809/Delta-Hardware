@@ -153,7 +153,7 @@ session_start();
                 </li>
             </ul>
 
-            <form class="d-flex" action="search.php">
+            <form class="d-flex mb-1 mt-1" action="search.php">
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Suche">
                 <button class="btn btn-outline-primary" type="submit">Suchen</button>
             </form>
@@ -175,8 +175,8 @@ session_start();
                 $output = $anmeldentext;
             }
             ?>
-
-            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-4" style="font-size: 1.7rem; color: #ffffff;" id="user-icon-navbar"></i><span class="anmelden-profil-text-navbar"><?php echo $output ?></span></a>
+            
+            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-4 mt-2" style="font-size: 1.7rem; color: #ffffff;" id="user-icon-navbar"></i><span class="anmelden-profil-text-navbar"><?php echo $output ?></span></a>
         </div>
     </div>
 </nav>
