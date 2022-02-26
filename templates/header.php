@@ -153,9 +153,9 @@ session_start();
                 </li>
             </ul>
 
-            <form class="d-flex mb-1 mt-1" action="search.php">
+            <form class="d-flex mb-2 mt-1" action="search.php">
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Suche">
-                <button class="btn btn-outline-primary" type="submit">Suchen</button>
+                <button class="btn btn-outline-primary me-4" type="submit">Suchen</button>
             </form>
 
             </i>
@@ -177,10 +177,9 @@ session_start();
             */
             ?>
 
-            
-            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
-            <a href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
-            <a href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
+            <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 mt-2" id="user-icon-navbar"></i></a>
+            <a class="icon-navbar-a" href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
+            <a class="icon-navbar-a" href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
 
         
                 
