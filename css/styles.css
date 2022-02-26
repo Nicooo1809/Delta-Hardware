@@ -55,6 +55,26 @@ li, a, button {
 }
 
 
+
+.nav-link {
+    font-size: 1.3rem;
+}
+
+
+.dropdown-menu {
+    background-color: #212529 !important;
+}
+
+.dropdown-item {
+    font-size: 1.3rem;
+    color: #ffffff !important;
+}
+
+.dropdown-item:hover {
+    background-color: #2c3135 !important;
+}
+
+
 /*
 
 .container {
