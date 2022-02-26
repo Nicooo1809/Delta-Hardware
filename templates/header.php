@@ -176,10 +176,20 @@ session_start();
             }
             ?>
             
-            
-            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-4 mt-2" style="font-size: 1.7rem; color: #ffffff;" id="user-icon-navbar"></i><span class="anmelden-profil-text-navbar"><?php echo $output ?></span></a>
+            <ul class="navbar-nav">
+                <li>
+                    <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-4 mt-2" id="user-icon-navbar"></i><span class="anmelden-profil-text-navbar"><?php echo $output ?></span></a>
+                </li>
+                <li>
+                    <a href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
+                </li>
+                <li>
+                    <a href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
+                </li>
+
         
-            <a href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" style="font-size: 1.7rem; color: #ffffff;" id="user-icon-navbar"></i></a>
+                
+            </ul>
         </div>
     </div>
 </nav>
