@@ -48,9 +48,12 @@ session_start();
             </ul>
             <form class="d-flex" action="search.php">
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Suche">
-                <button class="btn btn-outline-success" type="submit">Suchen</button>
+                <button class="btn btn-outline-primary" type="submit">Suchen</button>
             </form>
             </i>
+
+
+            <!-- Entscheided ob neben dem Profil-icon Anmelden oder Profil steht -->
 
             <?php 
             $anmeldentext  = "Anmelden";
@@ -66,7 +69,7 @@ session_start();
             ?>
 
             if()
-            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><span class="anmelden-profil-text-navbar"><?php echo $output ?></span><i class="bi-person-fill" style="font-size: 2rem; color: #ffffff;"></i></a>
+            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-1" style="font-size: 1.7rem; color: #ffffff;" id="user-icon-navbar"></i><span class="anmelden-profil-text-navbar"><?php echo $output ?></span></a>
         </div>
     </div>
 </nav>
