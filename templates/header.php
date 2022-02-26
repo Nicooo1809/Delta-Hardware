@@ -176,7 +176,7 @@ session_start();
             }
             ?>
 
-            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-2" style="font-size: 1.7rem; color: #ffffff;" id="user-icon-navbar"></i><span class="anmelden-profil-text-navbar"><?php echo $output ?></span></a>
+            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-4" style="font-size: 1.7rem; color: #ffffff;" id="user-icon-navbar"></i><span class="anmelden-profil-text-navbar"><?php echo $output ?></span></a>
         </div>
     </div>
 </nav>
