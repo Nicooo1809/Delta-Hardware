@@ -189,48 +189,7 @@ session_start();
 </nav>
 
 
-
-
 <!--
-
-    <div class="header">
-        <a href="index.php"><img class="logo-topleft" src="favicon.svg"></a>
-        <a>Delta 
-        Hardware</a>
-        <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><img class="profile-icon" src="images/profile-icon-darkmode.png" atl="Profil" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="100"></a>
-        
-        <a href="javascript:void(0);" class="expandicon" onclick="ResponsiveFunction()" id="expandcollapseicon"><img class="OpenCloseNavBarIcon" src="images/expand-icon-darkmode.png" atl="Dropdown"></a>
-    </div>
-
-    <div class="navbar" id="myTopnav">
-        <a class="navlink" href="pc/home">PC Komponenten</a>
-        <a class="navlink" href="pc/grafikkarten">Server Komponenten</a>
-        <a class="navlink" href="template">Monitore</a>
-        <a class="navlink" href="template">Eingabegeräte</a>
-        <a class="navlink" href="#">Drucker</a>
-        <a class="navlink" href="#">Netzwerktechnik</a>
-        <a class="navlink" href="#">Audio</a>
-        <a class="navlink" href="#">Peripherie</a>
-        <a class="navlink" href="#">Kabel & Adapter</a>
-    </div>
-
-
-    <script>
-        function ResponsiveFunction() {
-            var x = document.getElementById("myTopnav");
-            if (x.className == "navbar") {
-                x.className = "responsive";
-            } else {
-                x.className = "navbar";
-            }
-        }
-
-        
-    </script>
-
-
-
-
 </body>
 </html>
-    -->
+-->
