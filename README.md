@@ -35,7 +35,7 @@
 
 
 
-# FOLGENDES BITTE NUR NACH ABSPRACHE MIT ALLEN ANDEREN
+# Von dem Pull-Request den anderen bitte Bescheid geben und kurz warten falls jemand noch etwas macht
 
 
 
