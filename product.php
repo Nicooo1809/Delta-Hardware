@@ -48,7 +48,11 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="buttons">
         <div class="cart">
-            <span class="addtocart">Zum Warenkorb Hinzufügen</span>
+            <form>
+		        <label for="inputAmount">Anzahl:</label>
+                <input type="number" value="<?=$_POST["amount"]?>" id="inputAmount" size="40" maxlength="80" name="amount" required>
+                <button type="submit">Zum Warenkorb Hinzufügen</button>
+            </form>
         </div>
     </div>
 </div>
