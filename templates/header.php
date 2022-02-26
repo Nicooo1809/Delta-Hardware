@@ -161,9 +161,9 @@ session_start();
             </i>
 
 
-            <!-- Entscheided ob neben dem Profil-icon Anmelden oder Profil steht -->
-
+            
             <?php 
+            /*
             $anmeldentext  = "Anmelden";
             $profiltext = "Profil";
             if(isset($_SESSION['userid']))
@@ -174,18 +174,13 @@ session_start();
             {
                 $output = $anmeldentext;
             }
+            */
             ?>
+
             
-            <ul class="navbar-nav">
-                <li>
-                    <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-4 mt-2" id="user-icon-navbar"></i><span class="anmelden-profil-text-navbar"><?php echo $output ?></span></a>
-                </li>
-                <li>
-                    <a href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
-                </li>
-                <li>
-                    <a href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
-                </li>
+            <a href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
+            <a href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
+            <a href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
 
         
                 
