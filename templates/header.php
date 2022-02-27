@@ -21,24 +21,20 @@ session_start();
 
 
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid me-3 ms-3">
+    <div class="container-fluid">
         <a class="navbar-brand" href="/index"><img src="/favicon.svg" style="width:2.5rem;"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Katalog</a>
-                </li>
 
-                <!--PC Komponenten Dropdown-->
+                <!--Hardware Komponenten Dropdown-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        PC
+                        Hardware
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Arbeitsspeicher</a></li>
@@ -50,32 +46,12 @@ session_start();
                         <li><a class="dropdown-item" href="#">Mainboards</a></li>
                         <li><a class="dropdown-item" href="#">Netzteile</a></li>
                         <li><a class="dropdown-item" href="#">Gehäuse</a></li>
-                        <li><a class="dropdown-item" href="#">Lüfter</a></li>
-                        <li><a class="dropdown-item" href="#">Wasserkühlung</a></li>
+                        <li><a class="dropdown-item" href="#">Kühlung</a></li>
+                        <li><a class="dropdown-item" href="#">Serverschrank</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">SONDERANGEBOT - RTX 3080ti</a></li>
                     </ul>
                 </li>
-
-                <!--Server Komponenten Dropdown-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Server
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item " href="#">Server Festplatten</a></li>
-                        <li><a class="dropdown-item" href="#">Server Gehäuse</a></li>
-                        <li><a class="dropdown-item" href="#">Server Mainboard</a></li>
-                        <li><a class="dropdown-item" href="#">Server Prozessor</a></li>
-                        <li><a class="dropdown-item" href="#">Server SSDs</a></li>
-                        <li><a class="dropdown-item" href="#">Serverkühlung</a></li>
-                        <li><a class="dropdown-item" href="#">Serverschrank</a></li>
-                        <li><a class="dropdown-item" href="#">Redundantes Netzteil</a></li>
-                        <li><a class="dropdown-item" href="#">R-DIMM</a></li>
-                        <li><a class="dropdown-item" href="#">ECC Ram</a></li>
-                    </ul>
-                </li>
-
 
 
                 <!--Monitore Komponenten Dropdown-->
@@ -104,7 +80,7 @@ session_start();
                 <!--Eingabegeräte Komponenten Dropdown-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Eingabegeräte
+                        Peripherie
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item " href="#">Office-Mäuse</a></li>
@@ -113,7 +89,7 @@ session_start();
                         <li><a class="dropdown-item" href="#">Office-Tastaturen</a></li>
                         <li><a class="dropdown-item" href="#">Gaming-Tastaturen</a></li>
                         <li><a class="dropdown-item" href="#">Joystick</a></li>
-                        <li><a class="dropdown-item" href="#">Länkräder</a></li>
+                        <li><a class="dropdown-item" href="#">Lenkräder</a></li>
                         <li><a class="dropdown-item" href="#">Controller</a></li>
                     </ul>
                 </li>
@@ -136,7 +112,6 @@ session_start();
                 </li>
 
 
-
                 <!--Audio Komponenten Dropdown-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -151,44 +126,43 @@ session_start();
                         <li><a class="dropdown-item" href="#">Soundkarten</a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul> 
 
-            <form class="d-flex mb-2 mt-1" action="search.php">
-                <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Suche">
-                <button class="btn btn-outline-primary me-4" type="submit">Suchen</button>
+            <form class="d-flex" action="search.php">
+                <input class="form-control me-2" type="search" placeholder="Suchen" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Suchen</button>
             </form>
-
-            </i>
-
-
-            
-            <?php 
-            /*
-            $anmeldentext  = "Anmelden";
-            $profiltext = "Profil";
-            if(isset($_SESSION['userid']))
-            {
-                $output = $profiltext;
-            }
-            else
-            {
-                $output = $anmeldentext;
-            }
-            */
-            ?>
-
-            <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user me-2 mt-2" id="user-icon-navbar"></i></a>
-            <a class="icon-navbar-a" href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
-            <a class="icon-navbar-a" href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
-
-        
-                
-            </ul>
+            <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+            <a class="icon-navbar-a" href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
+            <!--
+            <a class="d-flex icon-navbar-a" href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
+            -->
         </div>
     </div>
 </nav>
 
 
+
+
+
+
+
+
+
+<?php 
+/*
+$anmeldentext  = "Anmelden";
+$profiltext = "Profil";
+if(isset($_SESSION['userid']))
+{
+    $output = $profiltext;
+}
+else
+{
+    $output = $anmeldentext;
+}
+*/
+?>
 <!--
 </body>
 </html>
