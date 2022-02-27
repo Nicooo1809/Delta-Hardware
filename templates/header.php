@@ -129,7 +129,7 @@ session_start();
             </ul> 
 
             <form class="d-flex" action="search.php">
-                <input class="form-control me-2" type="search" placeholder="Suchen" aria-label="Search">
+                <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Suchen</button>
             </form>
             <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
