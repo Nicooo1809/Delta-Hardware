@@ -2,11 +2,7 @@
 require_once("templates/header.php");
 ?>
 
-
-
-
-
-
+<img src="media/RTX_Showcase.jpg" class="bg-video">
 
 <!--
 <video preload="auto" autoplay="true" loop="loop" muted="" volume="0" class="bg-video">
