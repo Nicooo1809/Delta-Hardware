@@ -54,9 +54,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
             <span class="name"><?=$product['name']?></span>
             <span class="price">
-                &dollar;<?=$product['price']?>
+                &euro;<?=$product['price']?>
                 <?php if ($product['rrp'] > 0): ?>
-                <span class="rrp">&dollar;<?=$product['rrp']?></span>
+                <span class="rrp">&euro;<?=$product['rrp']?></span>
                 <?php endif; ?>
             </span>
         </a>

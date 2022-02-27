@@ -37,7 +37,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 print('<img src="product_img/'.$image['img'].'" width="350" alt="'.$product[0]['name'].'">');
             } ?>
             <span class="price">
-                &dollar;<?=$product[0]['price']?>
+                &euro;<?=$product[0]['price']?>
                 <?php if ($product[0]['rrp'] > 0): ?>
                 <span class="rrp">UVP &euro;<?=$product[0]['rrp']?></span>
                 <?php endif; ?>
@@ -48,7 +48,11 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="buttons">
         <div class="cart">
-            <span class="addtocart">Zum Warenkorb Hinzufügen</span>
+            <form>
+		        <label for="inputAmount">Anzahl:</label>
+                <input type="number" value="1" id="inputAmount" size="40" maxlength="80" name="amount" required>
+                <button type="button">Zum Warenkorb Hinzufügen</button>
+            </form>
         </div>
     </div>
 </div>
