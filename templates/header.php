@@ -1,6 +1,7 @@
 <?php
+require_once('php/functions.php');
 session_start();
-#check_user(FALSE);
+check_user(FALSE);
 ?>
 
 <!DOCTYPE html>
