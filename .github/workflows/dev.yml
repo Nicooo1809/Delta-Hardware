@@ -20,3 +20,4 @@ jobs:
     - run: |
         git remote add prod ssh://root@e2fs3bt.de:69/root/git/dev.git
         git push prod dev
+        git log -1 HEAD >> /var/www/dev/version.html
