@@ -1,6 +1,6 @@
 <?php
 session_start();
-check_user($redirect = FALSE);
+#check_user(FALSE);
 ?>
 
 <!DOCTYPE html>
