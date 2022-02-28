@@ -3,7 +3,7 @@
  * Checks that the user is logged in. 
  * @return Returns the row of the logged in user
  */
-function check_user() {
+function check_user($redirect = TRUE) {
 	global $pdo;
 	
 	if(!isset($_SESSION['userid']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
@@ -34,26 +34,19 @@ function check_user() {
 	
 	
 	if(!isset($_SESSION['userid'])) {
-		header("location: login.php");
-		exit();
+		if($redirect) {
+			header("location: login.php");
+			exit();
+		} else {
+			return FALSE;
+		}
+	} else {
+		$statement = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+		$result = $statement->execute(array('id' => $_SESSION['userid']));
+		$user = $statement->fetch();
+		return $user;
 	}
-	
-
-	$statement = $pdo->prepare("SELECT * FROM users WHERE id = :id");
-	$result = $statement->execute(array('id' => $_SESSION['userid']));
-	$user = $statement->fetch();
-	return $user;
 }
-
-#################################################
-/**
- * Returns the URL to the site without the script name
- */
-function getSiteURL() {
-	$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-	return $protocol.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/';
-}
-#################################################
 /**
  * Outputs an error message and stops the further exectution of the script.
  */
