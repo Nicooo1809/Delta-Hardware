@@ -61,18 +61,18 @@ include("templates/header.php");
 							
 							<form action="login.php" method="post">
 								<div class="form-group mb-3">
-									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" required autofocus class="form-control border-0 shadow-sm px-4 text-white">
+									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 shadow-sm px-4 text-white" required>
 								</div>
 								<div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" placeholder="Passwort" required="" class="form-control border-0 shadow-sm px-4 text-white">
+                                    <input id="inputPassword" type="password" name="passwort" placeholder="Passwort" class="form-control border-0 shadow-sm px-4 text-white" required>
                                 </div>
 
 								<div class="custom-control custom-checkbox mb-3">
 									<input value="remember-me" id="customCheck1" type="checkbox" name="angemeldet_bleiben" value="1" checked class="custom-control-input">
-									<label for="customCheck1" class="custom-control-label">Angemeldet bleiben</label>
+									<label for="customCheck1" class="custom-control-label text-white">Angemeldet bleiben</label>
 								</div>
 								<button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm">Anmelden</button>
-								<div class="text-center d-flex justify-content-between mt-4"><p>Noch kein Kunde? <a href="register" class="font-italic text-muted"> 
+								<div class="text-center d-flex justify-content-between mt-4 text-white"><p>Noch kein Kunde? <a href="register" class="font-italic text-muted"> 
 									<u>Registrieren</u></a></p>
 								</div>
 							</form>
