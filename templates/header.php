@@ -138,6 +138,7 @@ check_user(FALSE);
             <?php if(!isset($_SESSION['userid'])): ?>
                 <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(isset($_SESSION['userid'])): ?>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -146,6 +147,7 @@ check_user(FALSE);
                     <li><a class="dropdown-item" href="logout.php">Abmelden</a></li>
                 </ul>
             </li>
+            </ul>
             <?php endif; ?>
             <?php if(isset($_SESSION['userid'])): ?>
             <a class="icon-navbar-a" href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
