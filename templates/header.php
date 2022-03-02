@@ -135,7 +135,9 @@ check_user(FALSE);
                 <button class="btn btn-outline-primary" type="submit">Suchen</button>
             </form>
             <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+            <?php if(isset($_SESSION['userid'])): ?>
             <a class="icon-navbar-a" href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
+            <?php endif; ?>
             <!--
             <a class="d-flex icon-navbar-a" href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
             -->
@@ -143,28 +145,6 @@ check_user(FALSE);
     </div>
 </nav>
 
-
-
-
-
-
-
-
-
-<?php 
-/*
-$anmeldentext  = "Anmelden";
-$profiltext = "Profil";
-if(isset($_SESSION['userid']))
-{
-    $output = $profiltext;
-}
-else
-{
-    $output = $anmeldentext;
-}
-*/
-?>
 <!--
 </body>
 </html>
