@@ -44,9 +44,8 @@ include("templates/header.php");
 ?>
 <div class="container-fluid">
 	<div class="row no-gutter">
-		<div class="col-md-6 d-none d-md-flex login-bg-image"></div>
 
-		<div class="cold-md-6 bg-dark">
+		<div class="cold-md-6 bg-secondary">
 			<div class="login-login d-flex align-items-center py-5">
 				<div class="container">
 					<div class="row">
@@ -61,10 +60,10 @@ include("templates/header.php");
 							
 							<form action="login.php" method="post">
 								<div class="form-group mb-3">
-									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 shadow-sm px-4 text-dark" required>
+									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" name="passwort" placeholder="Passwort" class="form-control border-0 shadow-sm px-4 text-dark" required>
+                                    <input id="inputPassword" type="password" name="passwort" placeholder="Passwort" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
                                 </div>
 
 								<div class="custom-control custom-checkbox mb-3">
