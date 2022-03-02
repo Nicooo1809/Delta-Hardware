@@ -142,7 +142,7 @@ check_user(FALSE);
             <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
-                <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item " href="internal.php">Intern</a></li>
                     <li><a class="dropdown-item" href="settings.php">Einstellungen</a></li>
                     <li><a class="dropdown-item" href="logout.php">Abmelden</a></li>
