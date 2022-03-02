@@ -83,7 +83,9 @@ li, a, button {
 
 
 
-
+.bg-custom-dark {
+    background-color: #383f45 !important;
+}
 
 
 .login-login {
