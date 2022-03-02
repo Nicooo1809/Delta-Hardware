@@ -61,7 +61,7 @@ include("templates/header.php");
 							
 							<form action="login.php" method="post">
 								<div class="form-group mb-3">
-									<input id="inputEmail" type="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" required autofocus class="form-control border-0 shadow-sm px-4 text-primary">
+									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" required autofocus class="form-control border-0 shadow-sm px-4 text-primary">
 								</div>
 								<div class="form-group mb-3">
                                     <input id="inputPassword" type="password" placeholder="Passwort" required="" class="form-control border-0 shadow-sm px-4 text-primary">
