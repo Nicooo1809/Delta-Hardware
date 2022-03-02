@@ -86,8 +86,9 @@ li, a, button {
 
 
 
-.login-login {
-    min-height: 95vh;
+.login-login,
+.image {
+    min-height: 93vh;
 }
 
 .login-bg-image {
