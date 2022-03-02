@@ -51,7 +51,7 @@ include("templates/header.php");
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-10 col-xl-7 mx-auto">
-							<h3 class="display-4">Anmelden</h3>
+							<h3 class="display-4 text-white">Anmelden</h3>
 							<?php 
 							if(isset($error_msg) && !empty($error_msg)) {
 								echo $error_msg;
@@ -61,10 +61,10 @@ include("templates/header.php");
 							
 							<form action="login.php" method="post">
 								<div class="form-group mb-3">
-									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" required autofocus class="form-control border-0 shadow-sm px-4 text-primary">
+									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" required autofocus class="form-control border-0 shadow-sm px-4 text-white">
 								</div>
 								<div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" placeholder="Passwort" required="" class="form-control border-0 shadow-sm px-4 text-primary">
+                                    <input id="inputPassword" type="password" placeholder="Passwort" required="" class="form-control border-0 shadow-sm px-4 text-white">
                                 </div>
 
 								<div class="custom-control custom-checkbox mb-3">

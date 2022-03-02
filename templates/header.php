@@ -137,7 +137,7 @@ check_user(FALSE);
             <?php if(isset($_SESSION['userid'])): ?>
             <a class="icon-navbar-a" href="cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(!isset($_SESSION['userid'])): ?>
-                <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+                <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings");} else {print("login");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(isset($_SESSION['userid'])): ?>
             <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item dropdown">
