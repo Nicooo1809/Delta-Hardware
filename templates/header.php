@@ -134,7 +134,19 @@ check_user(FALSE);
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Suchen</button>
             </form>
-            <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+            
+            <?php if(!isset($_SESSION['userid'])): ?>
+                <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+            <?php endif; if(isset($_SESSION['userid'])): ?>
+            <li class="nav-item dropdown">
+                <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item " href="internal.php">Intern</a></li>
+                    <li><a class="dropdown-item" href="settings.php">Einstellungen</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Abmelden</a></li>
+                </ul>
+            </li>
+            <?php endif; ?>
             <?php if(isset($_SESSION['userid'])): ?>
             <a class="icon-navbar-a" href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; ?>
