@@ -19,15 +19,15 @@ require_once("templates/header.php");
 
 
 
-<!--
+<div class="alert text-center cookiealert" role="alert">
+  <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten. <a href="https://cookiesandyou.com/" target="_blank">Mehr erfahren</a>
 
-<img src="media/RTX_Showcase.jpg" class="bg-video">
+  <button type="button" class="btn btn-primary btn-sm acceptcookies">
+      Ich stimme zu
+  </button>
+</div>
 
-<video preload="auto" autoplay="true" loop="loop" muted="" volume="0" class="bg-video">
-  <source src="media/GeForce RTX 3080 Ti _ The New Gaming Flagship.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video> 
--->
+<script src="/js/cookies.js"></script>
 
 <?php
 require_once("templates/footer.html");
