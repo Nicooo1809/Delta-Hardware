@@ -10,7 +10,8 @@
 
 
 html, body {
-    background-color: rgb(66, 66, 66);
+    /*background-color: rgb(66, 66, 66); */
+    background-color: #2d3238 !important;
     height: 100%;
 	margin: 0;
 }
