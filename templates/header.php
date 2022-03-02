@@ -132,7 +132,7 @@ check_user(FALSE);
 
             <form class="d-flex" action="search.php">
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search">
-                <button class="btn btn-outline-primary" type="submit">Suchen</button>
+                <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
             </form>
             <?php if(isset($_SESSION['userid'])): ?>
             <a class="icon-navbar-a" href="cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
@@ -142,7 +142,7 @@ check_user(FALSE);
             <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
-                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item " href="internal.php">Intern</a></li>
                     <li><a class="dropdown-item" href="settings.php">Einstellungen</a></li>
                     <li><a class="dropdown-item" href="logout.php">Abmelden</a></li>
