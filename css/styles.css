@@ -77,3 +77,21 @@ li, a, button {
     display: block;
 }
 
+
+
+
+
+
+
+
+
+
+.login-login {
+    min-height: 95vh;
+}
+
+.login-bg-image {
+    background-image: url('/media/RTX_Showcase.jpg');
+    background-size: cover;
+    background-position: center center;
+  }  
