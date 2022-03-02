@@ -134,8 +134,9 @@ check_user(FALSE);
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Suchen</button>
             </form>
-            
-            <?php if(!isset($_SESSION['userid'])): ?>
+            <?php if(isset($_SESSION['userid'])): ?>
+            <a class="icon-navbar-a" href="cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
+            <?php endif; if(!isset($_SESSION['userid'])): ?>
                 <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(isset($_SESSION['userid'])): ?>
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -148,9 +149,6 @@ check_user(FALSE);
                 </ul>
             </li>
             </ul>
-            <?php endif; ?>
-            <?php if(isset($_SESSION['userid'])): ?>
-            <a class="icon-navbar-a" href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; ?>
             <!--
             <a class="d-flex icon-navbar-a" href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
