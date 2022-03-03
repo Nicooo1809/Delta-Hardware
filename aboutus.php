@@ -35,5 +35,5 @@ if(!isMobile()):
 
 
 <?php
-require_once("templates/footer.html");
+include("templates/footer.html")
 ?>

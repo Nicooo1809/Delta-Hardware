@@ -51,11 +51,11 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <form>
 		        <label for="inputAmount">Anzahl:</label>
                 <input type="number" value="1" id="inputAmount" size="40" maxlength="80" name="amount" required>
-                <button type="button" class="button">Zum Warenkorb Hinzufügen</button>
+                <button type="button" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
             </form>
         </div>
     </div>
 </div>
 <?php
-require "templates/footer.html";
+include_once("templates/footer.html")
 ?>

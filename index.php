@@ -18,5 +18,5 @@ require_once("templates/header.php");
 </div>
 
 <?php
-require_once("templates/footer.html");
+include_once("templates/footer.html")
 ?>
