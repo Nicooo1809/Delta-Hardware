@@ -84,7 +84,7 @@ if(isset($_GET['save'])) {
 
 	<div>
 		<!-- Persönliche Daten-->
-		<h2 onclick="toggle(getElementById('data'))">Persönliche Daten</h2>
+		<h2 onclick="showData()"><a>Persönliche Daten</a></h2>
 		<div id="data" style="display: none;">
 			<br>
 			<form action="?save=personal_data" method="post">
@@ -96,7 +96,18 @@ if(isset($_GET['save'])) {
 
 			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 			</form>
-		</div>
+	</div>
+
+<script>
+function showData() {
+  var x = document.getElementById("data");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 
 		<h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2>
 		<!-- Änderung der E-Mail-Adresse -->
