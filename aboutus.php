@@ -14,8 +14,9 @@ if(!isMobile()):
     <div class="text-white">
         <h1>Wer sind wir?</h1>
         <p>
-            Wir sind Schüler der Berufsschule <a href="https://its-stuttgart.de/">it.schule</a> Stuttgart. <br>
-            Um genau zu sein sind wir die Projektgruppe Delta, diese Webseite stellt unser BfK-S Projekt für die Klasse E2FS3BT dar.
+            Wir sind Schüler*innen der <a href="https://its-stuttgart.de/">it.schule</a> Stuttgart.<br>
+            Genau genommen sind wir die Projektgruppe Delta, welche an der erstellung eines Hardware Webshops arbeitet. <br>
+            Dieser Webshop wird das Produkt unserer BfK-S Projektarbeit in der Klasse E2FS3BT sein.
         </p>
     </div>
 </div>
@@ -26,8 +27,9 @@ if(!isMobile()):
     <div class="text-white">
         <h1>Wer sind wir?</h1>
         <p>
-        Wir sind Schüler der Berufsschule <a href="https://its-stuttgart.de/">it.schule</a> Stuttgart. <br>
-            Um genau zu sein sind wir die Projektgruppe Delta, diese Webseite stellt unser BfK-S Projekt für die Klasse E2FS3BT dar.
+            Wir sind Schüler*innen der <a href="https://its-stuttgart.de/">it.schule</a> Stuttgart.<br>
+            Genau genommen sind wir die Projektgruppe Delta, welche an der erstellung eines Hardware Webshops arbeitet. <br>
+            Dieser Webshop wird das Produkt unserer BfK-S Projektarbeit in der Klasse E2FS3BT sein.
         </p>
     </div>
 </div>
