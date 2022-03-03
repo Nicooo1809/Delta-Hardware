@@ -8,7 +8,6 @@ include_once('templates/header.php');
         <li>Login Remember me Funktion</li>
         <li>Das Speichern der Cookie Einstellung</li>
     </p>
-    
 </div>
     
 <?php
