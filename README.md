@@ -1,7 +1,7 @@
 # Step by Step anleitung GitHub
 
-## [Link zur Haupt-Seite (e2fs3bt.de)](https://e2fs3bt.de/)
-## [Link zur Dev-Seite (dev.e2fs3bt.de)](https://dev.e2fs3bt.de/)
+## [Link zur Haupt-Seite (delta-hardware.de)](https://delta-hardware.de/)
+## [Link zur Dev-Seite (dev.delta-hardware.de)](https://dev.delta-hardware.de/)
 
 
 ## 1. Klicke auf "Current Branch" und wähle Dev aus
@@ -60,7 +60,7 @@
 
 
 
-## 17. Klicke auf "Confirm Merge"
+## 10. Klicke auf "Confirm Merge"
 ![](/readmebilder/Bild_11.png)
 
 
