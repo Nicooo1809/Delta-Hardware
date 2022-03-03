@@ -2,11 +2,11 @@
 include_once('templates/header.php');
 ?>
 <div>
-    <h1 class="text-white">Cookies</h1>
+    <h1 class="px-2 text-white">Cookies</h1>
     <div class="text-white">Wir verwenden nur die Cookies, die die Webseite zum Funktionieren benötigt, nämlich für:
-        <li>Das speichern der PHP Session</li>
-        <li>Login Remember me Funktion</li>
-        <li>Das Speichern der Cookie Einstellung</li>
+        <li class="px-2">Das speichern der PHP Session</li>
+        <li class="px-2">Login Remember me Funktion</li>
+        <li class="px-2">Das Speichern der Cookie Einstellung</li>
     </div>
 </div>
     
