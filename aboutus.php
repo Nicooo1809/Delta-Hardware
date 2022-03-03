@@ -2,7 +2,7 @@
 require_once("templates/header.php");
 ?>
 
-<div class="px-5 py-5 text-center" style="width: 90%;">
+<div class="mx-auto py-5 text-center" style="width: 90%;">
     <div class="text-white">
         <h1>Wer sind wir?</h1>
         <p>
