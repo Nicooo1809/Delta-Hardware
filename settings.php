@@ -69,7 +69,7 @@ if(isset($_GET['save'])) {
 }
 ?>
 
-<div class="text-white">
+<div class="text-white mx-3 my-3">
 	<h1>Einstellungen</h1>
 	<?php 
 	if(isset($success_msg) && !empty($success_msg)) {
@@ -84,7 +84,7 @@ if(isset($_GET['save'])) {
 
 	<div>
 		<!-- Persönliche Daten-->
-		<element onclick="toggle(document.getElementById('data'))"><h2>Persönliche Daten</h2>
+		<h2 onclick="toggle(getElementById('data'))">Persönliche Daten</h2>
 		<div id="data" style="display: none;">
 			<br>
 			<form action="?save=personal_data" method="post">
