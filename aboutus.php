@@ -2,7 +2,7 @@
 require_once("templates/header.php");
 ?>
 
-<div class="mx-auto">
+<div class="px-5 text-center">
     <div class="text-white">
         <h1>Wer sind wir?</h1>
         <p>
