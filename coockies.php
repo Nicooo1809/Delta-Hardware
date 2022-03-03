@@ -12,5 +12,5 @@ include_once('templates/header.php');
 </div>
     
 <?php
-include_once('templates/footer.php');
+require_once("templates/footer.html");
 ?>
