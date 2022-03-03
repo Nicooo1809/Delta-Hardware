@@ -84,7 +84,17 @@ if(isset($_GET['save'])) {
 
 	<div>
 		<!-- Persönliche Daten-->
-		<h2 onclick="toggle2(data)">Persönliche Daten</h2>
+		<h2 onclick="toggleData(data)">Persönliche Daten</h2>
+		<script>
+			function toggleData() {
+				var x = document.getElementById("data");
+				if (x.style.display === "none") {
+					x.style.display = "block";
+				} else {
+					x.style.display = "none";
+				}
+			}
+		</script>
 		<div id="data" style="display: none;">
 			<br>
 			<form action="?save=personal_data" method="post">
@@ -96,20 +106,20 @@ if(isset($_GET['save'])) {
 
 			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 			</form>
-	</div>
+		</div>
 
-<script>
-	function toggle2(elementee) {
-		var x = document.getElementById(elementee);
-		if (x.style.display === "none") {
-			x.style.display = "block";
-		} else {
-			x.style.display = "none";
-		}
-	}
-</script>
-
-		<h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2>
+		<!-- <h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2> -->
+		<h2 onclick="toggleEmail()">E-Mail-Adresse</h2>
+		<script>
+			function toggleEmail() {
+				var x = document.getElementById("email");
+				if (x.style.display === "none") {
+					x.style.display = "block";
+				} else {
+					x.style.display = "none";
+				}
+			}
+		</script>
 		<!-- Änderung der E-Mail-Adresse -->
 		<div id="email" style="display: none;">
 			<br>
@@ -127,8 +137,18 @@ if(isset($_GET['save'])) {
 			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 			</form>
 		</div>
-		
-		<h2 onclick="toggle(document.getElementById('passwort'))">Passworts</h2>
+
+		<h2 onclick="togglePassword()">Passworts</h2>
+		<script>
+			function togglePassword() {
+				var x = document.getElementById("passwort");
+				if (x.style.display === "none") {
+					x.style.display = "block";
+				} else {
+					x.style.display = "none";
+				}
+			}
+		</script>
 		<!-- Änderung des Passworts -->
 		<div id="passwort" style="display: none;">
 			<br>
