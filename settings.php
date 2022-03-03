@@ -98,7 +98,7 @@ if(isset($error_msg) && !empty($error_msg)) {
     		<label for="inputNachname">Nachname</label>
     		<input id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user['nachname']); ?>" required>
 
-		<button type="submit">Speichern</button>
+		<button type="submit" class="button">Speichern</button>
     	</form>
     </div>
 
@@ -117,7 +117,7 @@ if(isset($error_msg) && !empty($error_msg)) {
     		<label for="inputEmail2">E-Mail (wiederholen)</label>
    		<input id="inputEmail2" name="email2" type="email"  required>
 
-		<button type="submit">Speichern</button>
+		<button type="submit" class="button">Speichern</button>
     	</form>
     </div>
     
@@ -136,7 +136,7 @@ if(isset($error_msg) && !empty($error_msg)) {
     		<label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
     		<input id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
 
-		<button type="submit">Speichern</button>
+		<button type="submit" class="button">Speichern</button>
 
     	</form>
     </div>
