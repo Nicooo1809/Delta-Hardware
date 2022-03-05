@@ -34,10 +34,13 @@ if(!isMobile()):
     <footer class="footer fixed-bottom py-3 bg-dark">
         <div class="container-fluid">
             <div class="text-white">
-                <div class="col text-center">
+                <div class="col my-1 text-center">
+                    Delta-Hardware
+                </div>
+                <div class="col my-1 text-center">
                     <a href="aboutus.php" class="text-white">Über uns</a>
                 </div>
-                <div class="col me-2 text-end">
+                <div class="col my-1 text-center">
                     Version 0.0.3 - 05.03.2022
                 </div>
             </div>
