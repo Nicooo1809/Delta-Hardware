@@ -31,12 +31,9 @@ if(!isMobile()):
     </footer>
 
 <?php else:?>
-    <footer class="footer fixed-bottom py-3 bg-dark">
+    <footer class="footer fixed-bottom py-1 bg-dark">
         <div class="container-fluid">
             <div class="text-white">
-                <div class="col my-1 text-center">
-                    Delta-Hardware
-                </div>
                 <div class="col my-1 text-center">
                     <a href="aboutus.php" class="text-white">Über uns</a>
                 </div>
