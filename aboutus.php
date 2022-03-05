@@ -20,7 +20,7 @@ if(!isMobile()):
 
 <!-- Mobile Devices -->
 <?php else:?>
-    <div class="mx-auto my-3 py-2 px-3 text-center rounded bg-dark" style="width: 90%;">
+    <div class="mx-auto my-3 mx-3 py-2 px-3 text-center rounded bg-dark">
     <div class="text-white">
         <h1>Wer sind wir?</h1>
         <p>
