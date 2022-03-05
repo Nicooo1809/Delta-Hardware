@@ -20,11 +20,11 @@ if(!isMobile()):
 
 <!-- Mobile Devices -->
 <?php else:?>
-    <div class="mx-auto my-5 py-2 px-3 text-center rounded bg-dark" style="width: 90%;">
+    <div class="mx-auto my-3 py-2 px-3 text-center rounded bg-dark" style="width: 90%;">
     <div class="text-white">
         <h1>Wer sind wir?</h1>
         <p>
-            Wir sind Schüler*innen der <a href="https://its-stuttgart.de/">it.schule</a> Stuttgart.<br>
+            Wir sind Schüler*innen der<br><a href="https://its-stuttgart.de/">it.schule</a> Stuttgart.<br>
             Genau genommen sind wir die Projektgruppe Delta, welche an der erstellung eines Hardware Webshops arbeitet. <br>
             Dieser Webshop wird das Produkt unserer BfK-S Projektarbeit in der Klasse E2FS3BT sein.
         </p>
