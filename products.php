@@ -30,7 +30,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #$stmt->debugDumpParams();
 ?>
 
-<div class="container products content-wrapper">
+<div class="container-fluid products content-wrapper">
     <h1>Products</h1>
     <form action="products.php" method="get">
         <select class="form-select" name="sortby">
@@ -49,7 +49,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <p><?php print($total_products); ?> Products</p>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
-        <a href="product.php?id=<?=$product['id']?>" class="product">
+        <a class="container" href="product.php?id=<?=$product['id']?>" class="product">
             <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
             <span class="name"><?=$product['name']?></span>
             <span class="price">
