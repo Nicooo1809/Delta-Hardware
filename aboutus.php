@@ -1,5 +1,4 @@
 <?php 
-require("js/custom");
 require_once("templates/header.php");
 ?>
 
