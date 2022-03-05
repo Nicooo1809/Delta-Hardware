@@ -47,9 +47,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input class="btn btn-outline-primary" type="Submit" value="Absteigend" name="order"></input>
     </form>
     <p><?php print($total_products); ?> Products</p>
-    <div class="products-wrapper">
+    <div class="products-wrapper row">
         <?php foreach ($products as $product): ?>
-            <div class="card px-3 py-3" style="width: 18rem;">
+            <div class="card px-3 py-3 mx-3 my-3 bg-dark text-white" style="width: 20rem;">
                 <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
                     <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
                     <span class="name"><?=$product['name']?></span>
