@@ -1,7 +1,7 @@
 <?php
 require_once("php/mysql.php");
 require_once("php/functions.php");
-require "templates/header.php";
+require_once "templates/header.php";
 
 $user = check_user();
 
@@ -40,5 +40,5 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 <?php
-require "templates/footer.html";
+include_once("templates/footer.php")
 ?>

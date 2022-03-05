@@ -67,83 +67,108 @@ if(isset($_GET['save'])) {
 		
 	}
 }
-
 ?>
 
-<div>
+<div class="text-white mx-3 my-3">
+	<h1>Einstellungen</h1>
+	<?php 
+	if(isset($success_msg) && !empty($success_msg)) {
+		echo $success_msg;
+	}
+	?>
+	<?php 
+	if(isset($error_msg) && !empty($error_msg)) {
+		echo $error_msg;
+	}
+	?>
 
-<h1>Einstellungen</h1>
+	<div>
+		<!-- Persönliche Daten-->
+		<h2 onclick="toggleData(data)">Persönliche Daten</h2>
+		<script>
+			function toggleData() {
+				var x = document.getElementById("data");
+				if (x.style.display === "none") {
+					x.style.display = "block";
+				} else {
+					x.style.display = "none";
+				}
+			}
+		</script>
+		<div id="data" style="display: none;">
+			<br>
+			<form action="?save=personal_data" method="post">
+				<label for="inputVorname">Vorname</label>
+				<input id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user['vorname']); ?>" required>
 
-<?php 
-if(isset($success_msg) && !empty($success_msg)) {
-	echo $success_msg;
-}
-?>
+				<label for="inputNachname">Nachname</label>
+				<input id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user['nachname']); ?>" required>
 
-<?php 
-if(isset($error_msg) && !empty($error_msg)) {
-	echo $error_msg;
-}
-?>
+			<button type="submit" class="btn btn-outline-primary">Speichern</button>
+			</form>
+		</div>
 
-<div>
-    <!-- Persönliche Daten-->
-    <h2 onclick="toggle(document.getElementById('data'))">Persönliche Daten</h2>
-    <div id="data" style="display: none;">
-    	<br>
-    	<form action="?save=personal_data" method="post">
-    		<label for="inputVorname">Vorname</label>
-    		<input id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user['vorname']); ?>" required>
+		<!-- <h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2> -->
+		<h2 onclick="toggleEmail()">E-Mail-Adresse</h2>
+		<script>
+			function toggleEmail() {
+				var x = document.getElementById("email");
+				if (x.style.display === "none") {
+					x.style.display = "block";
+				} else {
+					x.style.display = "none";
+				}
+			}
+		</script>
+		<!-- Änderung der E-Mail-Adresse -->
+		<div id="email" style="display: none;">
+			<br>
+			<p>Zum Änderen deiner E-Mail-Adresse gib bitte dein aktuelles Passwort sowie die neue E-Mail-Adresse ein.</p>
+			<form action="?save=email" method="post">
+				<label for="inputPasswort">Passwort</label>
+				<input id="inputPasswort" name="passwort" type="password" required>
 
-    		<label for="inputNachname">Nachname</label>
-    		<input id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user['nachname']); ?>" required>
+				<label for="inputEmail">E-Mail</label>
+			<input id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user['email']); ?>" required>
 
-		<button type="submit">Speichern</button>
-    	</form>
-    </div>
+				<label for="inputEmail2">E-Mail (wiederholen)</label>
+			<input id="inputEmail2" name="email2" type="email"  required>
 
-	<h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2>
-    <!-- Änderung der E-Mail-Adresse -->
-    <div id="email" style="display: none;">
-    	<br>
-    	<p>Zum Änderen deiner E-Mail-Adresse gib bitte dein aktuelles Passwort sowie die neue E-Mail-Adresse ein.</p>
-    	<form action="?save=email" method="post">
-    		<label for="inputPasswort">Passwort</label>
-    		<input id="inputPasswort" name="passwort" type="password" required>
+			<button type="submit" class="btn btn-outline-primary">Speichern</button>
+			</form>
+		</div>
 
-    		<label for="inputEmail">E-Mail</label>
- 		<input id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user['email']); ?>" required>
+		<h2 onclick="togglePassword()">Passworts</h2>
+		<script>
+			function togglePassword() {
+				var x = document.getElementById("passwort");
+				if (x.style.display === "none") {
+					x.style.display = "block";
+				} else {
+					x.style.display = "none";
+				}
+			}
+		</script>
+		<!-- Änderung des Passworts -->
+		<div id="passwort" style="display: none;">
+			<br>
+			<p>Zum Änderen deines Passworts gib bitte dein aktuelles Passwort sowie das neue Passwort ein.</p>
+			<form action="?save=passwort" method="post">
+				<label for="inputPasswort">Altes Passwort</label>
+				<input id="inputPasswort" name="passwortAlt" type="password" required>
 
-    		<label for="inputEmail2">E-Mail (wiederholen)</label>
-   		<input id="inputEmail2" name="email2" type="email"  required>
+				<label for="inputPasswortNeu">Neues Passwort</label>
+				<input id="inputPasswortNeu" name="passwortNeu" type="password" required>
 
-		<button type="submit">Speichern</button>
-    	</form>
-    </div>
-    
-	<h2 onclick="toggle(document.getElementById('passwort'))">Passworts</h2>
-    <!-- Änderung des Passworts -->
-    <div id="passwort" style="display: none;">
-    	<br>
-    	<p>Zum Änderen deines Passworts gib bitte dein aktuelles Passwort sowie das neue Passwort ein.</p>
-    	<form action="?save=passwort" method="post">
-    		<label for="inputPasswort">Altes Passwort</label>
-    		<input id="inputPasswort" name="passwortAlt" type="password" required>
+				<label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
+				<input id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
 
-    		<label for="inputPasswortNeu">Neues Passwort</label>
-    		<input id="inputPasswortNeu" name="passwortNeu" type="password" required>
+			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 
-    		<label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
-    		<input id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
-
-		<button type="submit">Speichern</button>
-
-    	</form>
-    </div>
+			</form>
+		</div>
+	</div>
 </div>
-
-
-</div>
 <?php 
-include("templates/footer.html")
+include_once("templates/footer.php")
 ?>

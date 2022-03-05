@@ -20,3 +20,4 @@ function toggle (elements, specifiedDisplay) {
       return window.getComputedStyle(element, null).getPropertyValue('display') === 'none';
     }
   }
+  

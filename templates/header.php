@@ -17,6 +17,7 @@ check_user(FALSE);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/3386a0b16e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/cookiebanner.css">
     <title>Delta-Hardware</title>
 </head>
 <body>
@@ -132,10 +133,24 @@ check_user(FALSE);
 
             <form class="d-flex" action="search.php">
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search">
-                <button class="btn btn-outline-primary" type="submit">Suchen</button>
+                <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
             </form>
-            <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
-            <a class="icon-navbar-a" href="#WARENKORB"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
+            <?php if(isset($_SESSION['userid'])): ?>
+            <a class="icon-navbar-a" href="cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
+            <?php endif; if(!isset($_SESSION['userid'])): ?>
+                <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings");} else {print("login");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+            <?php endif; if(isset($_SESSION['userid'])): ?>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item " href="internal.php">Intern</a></li>
+                    <li><a class="dropdown-item" href="settings.php">Einstellungen</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Abmelden</a></li>
+                </ul>
+            </li>
+            </ul>
+            <?php endif; ?>
             <!--
             <a class="d-flex icon-navbar-a" href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
             -->
@@ -143,28 +158,6 @@ check_user(FALSE);
     </div>
 </nav>
 
-
-
-
-
-
-
-
-
-<?php 
-/*
-$anmeldentext  = "Anmelden";
-$profiltext = "Profil";
-if(isset($_SESSION['userid']))
-{
-    $output = $profiltext;
-}
-else
-{
-    $output = $anmeldentext;
-}
-*/
-?>
 <!--
 </body>
 </html>

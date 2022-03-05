@@ -30,10 +30,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #$stmt->debugDumpParams();
 ?>
 
-<div class="products content-wrapper">
+<div class="container-fluid products content-wrapper">
     <h1>Products</h1>
     <form action="products.php" method="get">
-        <select name="sortby">
+        <select class="form-select py-3" name="sortby">
             <option value="name">Name</option>
             <option value="price">Preis</option>
             <option value="rrp">UVP</option>
@@ -43,25 +43,27 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($getindex != "order" && $getindex != "sortby") {
                 print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
         } } ?>
-        <input type="Submit" value="Aufsteigend" name="order"></input>
-        <input type="Submit" value="Absteigend" name="order"></input>
+        <input class="btn btn-outline-primary" type="Submit" value="Aufsteigend" name="order"></input>
+        <input class="btn btn-outline-primary" type="Submit" value="Absteigend" name="order"></input>
     </form>
     <p><?php print($total_products); ?> Products</p>
-    <div class="products-wrapper">
+    <div class="products-wrapper row">
         <?php foreach ($products as $product): ?>
-        <a href="product.php?id=<?=$product['id']?>" class="product">
-            <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
-            <span class="name"><?=$product['name']?></span>
-            <span class="price">
-                &euro;<?=$product['price']?>
-                <?php if ($product['rrp'] > 0): ?>
-                <span class="rrp">&euro;<?=$product['rrp']?></span>
-                <?php endif; ?>
-            </span>
-        </a>
+            <div class="card px-3 py-3 mx-2 my-2 bg-dark" style="width: 20rem;">
+                <a href="product.php?id=<?=$product['id']?>" class="product stretched-link stretched-link">
+                    <img src="product_img/<?=$product['image']?>" class="rounded" style="width: 200px;" alt="<?=$product['name']?>">
+                    <span class="name"><br><?=$product['name']?></span>
+                    <span class="price"><br>Preis: 
+                        &euro;<?=$product['price']?>
+                        <?php if ($product['rrp'] > 0): ?>
+                        <span class="rrp"><br>UVP: &euro;<?=$product['rrp']?></span>
+                        <?php endif; ?>
+                    </span>
+                </a>
+            </div>
         <?php endforeach; ?>
     </div>
 </div>
 <?php
-require "templates/footer.html";
+include_once("templates/footer.php")
 ?>

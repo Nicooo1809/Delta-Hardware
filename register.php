@@ -110,7 +110,7 @@ if($showFormular) {
 	<div>
 		<input type="checkbox" name="agb" value="gelesen"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.
 	</div>
-	<button type="submit">Registrieren</button>
+	<button type="submit" class="btn btn-outline-primary">Registrieren</button>
 </form>
  
 <?php
@@ -120,5 +120,5 @@ if($showFormular) {
 ?>
 </div>
 <?php 
-include("templates/footer.php")
+include_once("templates/footer.php")
 ?>

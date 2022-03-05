@@ -35,13 +35,63 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 
 }
 
+
 $email_value = "";
 if(isset($_POST['email']))
 	$email_value = htmlentities($_POST['email']); 
 
 include("templates/header.php");
 ?>
- <div class="form-signin">
+<div class="container-fluid">
+	<div class="row no-gutter">
+
+		<div class="cold-md-6 bg-custom-dark">
+			<div class="login-login d-flex align-items-center py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-10 col-xl-7 mx-auto">
+							<h3 class="display-4 text-white">Anmelden</h3>
+							<?php 
+							if(isset($error_msg) && !empty($error_msg)) {
+								echo $error_msg;
+							}
+							?>
+							<p class="text-muted mb-4">Schön, dass du wieder da bist!</p>
+							
+							<form action="login.php" method="post">
+								<div class="form-group mb-3">
+									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								</div>
+								<div class="form-group mb-3">
+                                    <input id="inputPassword" type="password" name="passwort" placeholder="Passwort" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+                                </div>
+
+								<div class="custom-control custom-checkbox mb-3">
+									<input value="remember-me" id="customCheck1" type="checkbox" name="angemeldet_bleiben" value="1" checked class="custom-control-input">
+									<label for="customCheck1" class="custom-control-label text-white">Angemeldet bleiben</label>
+								</div>
+								<button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm">Anmelden</button>
+								<div class="text-center d-flex justify-content-between mt-4 text-white"><p>Noch kein Kunde? <a href="register" class="font-italic text-muted"> 
+									<u>Registrieren</u></a></p>
+								</div>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<?php
+/*
+
+<div class="form-signin">
   <form action="login.php" method="post">
 	<h2>Login</h2>
 	
@@ -62,9 +112,12 @@ if(isset($error_msg) && !empty($error_msg)) {
 	<button type="submit">Login</button>
   </form>
 
-</div> <!-- /container -->
- 
+</div>
+*/
+?>
+
+
 
 <?php 
-include("templates/footer.html")
+include_once("templates/footer.php")
 ?>
