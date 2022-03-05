@@ -30,10 +30,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #$stmt->debugDumpParams();
 ?>
 
-<div class="products content-wrapper">
+<div class="container products content-wrapper">
     <h1>Products</h1>
     <form action="products.php" method="get">
-        <select name="sortby">
+        <select class="form-select" name="sortby">
             <option value="name">Name</option>
             <option value="price">Preis</option>
             <option value="rrp">UVP</option>
@@ -43,8 +43,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($getindex != "order" && $getindex != "sortby") {
                 print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
         } } ?>
-        <input type="Submit" value="Aufsteigend" name="order"></input>
-        <input type="Submit" value="Absteigend" name="order"></input>
+        <input class="btn btn-outline-primary" type="Submit" value="Aufsteigend" name="order"></input>
+        <input class="btn btn-outline-primary" type="Submit" value="Absteigend" name="order"></input>
     </form>
     <p><?php print($total_products); ?> Products</p>
     <div class="products-wrapper">
