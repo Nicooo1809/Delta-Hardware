@@ -49,14 +49,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <p><?php print($total_products); ?> Products</p>
     <div class="products-wrapper row">
         <?php foreach ($products as $product): ?>
-            <div class="card px-3 py-3 mx-3 my-3 bg-dark text-white" style="width: 20rem;">
-                <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
-                    <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
-                    <span class="name"><?=$product['name']?></span>
-                    <span class="price">
+            <div class="card px-3 py-3 mx-2 my-2 bg-dark" style="width: 20rem;">
+                <a href="product.php?id=<?=$product['id']?>" class="product stretched-link stretched-link">
+                    <img src="product_img/<?=$product['image']?>" class="position-absolute start-50; rounded" style="width: 90rem;" alt="<?=$product['name']?>">
+                    <span class="name"><br><?=$product['name']?></span>
+                    <span class="price"><br>Preis: 
                         &euro;<?=$product['price']?>
                         <?php if ($product['rrp'] > 0): ?>
-                        <span class="rrp">&euro;<?=$product['rrp']?></span>
+                        <span class="rrp"><br>UVP: &euro;<?=$product['rrp']?></span>
                         <?php endif; ?>
                     </span>
                 </a>
