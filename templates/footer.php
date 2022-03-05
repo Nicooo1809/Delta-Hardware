@@ -8,7 +8,7 @@
   
 <script src="/js/cookies.js"></script>
 
-<?php if(!isMobile()):?>
+
     <footer class="footer fixed-bottom py-3 bg-dark">
         <div class="container-fluid">
             <div class="row text-white">
@@ -25,7 +25,7 @@
         </div>
     </footer>
 
-<?php else:?>
+
     <footer class="footer fixed-bottom py-3 bg-dark">
         <div class="container-fluid">
             <div class="text-white">
@@ -38,7 +38,7 @@
             </div>
         </div>
     </footer>
-<?php endif;?>
+
 
 </body>
 </html>
