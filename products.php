@@ -49,16 +49,18 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <p><?php print($total_products); ?> Products</p>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
-        <a class="container" href="product.php?id=<?=$product['id']?>" class="product">
-            <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
-            <span class="name"><?=$product['name']?></span>
-            <span class="price">
-                &euro;<?=$product['price']?>
-                <?php if ($product['rrp'] > 0): ?>
-                <span class="rrp">&euro;<?=$product['rrp']?></span>
-                <?php endif; ?>
-            </span>
-        </a>
+            <div class="container">
+                <a href="product.php?id=<?=$product['id']?>" class="product">
+                    <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
+                    <span class="name"><?=$product['name']?></span>
+                    <span class="price">
+                        &euro;<?=$product['price']?>
+                        <?php if ($product['rrp'] > 0): ?>
+                        <span class="rrp">&euro;<?=$product['rrp']?></span>
+                        <?php endif; ?>
+                    </span>
+                </a>
+                </div>
         <?php endforeach; ?>
     </div>
 </div>
