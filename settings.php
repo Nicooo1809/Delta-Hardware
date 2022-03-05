@@ -170,5 +170,5 @@ if(isset($_GET['save'])) {
 	</div>
 </div>
 <?php 
-include_once("templates/footer.html")
+include_once("templates/footer.php")
 ?>

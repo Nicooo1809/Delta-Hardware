@@ -65,5 +65,5 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 <?php
-include_once("templates/footer.html")
+include_once("templates/footer.php")
 ?>
