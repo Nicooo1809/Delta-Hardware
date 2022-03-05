@@ -11,9 +11,6 @@
 <?php
 $vernum = "0.0.4";
 $verdate ="05.03.2022";
-function isMobile () {
-    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-  }
 if(!isMobile()):
 ?>
     <footer class="footer fixed-bottom py-3 bg-dark">
