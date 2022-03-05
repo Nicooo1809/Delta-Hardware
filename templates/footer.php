@@ -9,6 +9,8 @@
 <script src="/js/cookies.js"></script>
 
 <?php
+$vernum = "0.0.4";
+$verdate ="05.03.2022";
 function isMobile () {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
   }
@@ -24,7 +26,7 @@ if(!isMobile()):
                     <a href="aboutus.php" class="text-white">Über uns</a>
                 </div>
                 <div class="col me-2 text-end">
-                    Version 0.0.3 - 05.03.2022
+                    Version <?=$vernum?> - <?=$verdate?>
                 </div>
             </div>
         </div>
@@ -38,7 +40,7 @@ if(!isMobile()):
                     <a href="aboutus.php" class="text-white">Über uns</a>
                 </div>
                 <div class="col my-1 text-center">
-                    Version 0.0.3 - 05.03.2022
+                    Version <?=$vernum?> - <?=$verdate?>
                 </div>
             </div>
         </div>
