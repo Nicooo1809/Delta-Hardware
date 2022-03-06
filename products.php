@@ -50,7 +50,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="products-wrapper row row-cols-1 row-cols-md-5 g-4">
         <?php foreach ($products as $product): ?>
             <div class="col">
-                <div class="card h-200 bg-dark">
+                <div class="card prodcard h-200 bg-dark">
                     <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
                         <div class="card-body">
                             <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
