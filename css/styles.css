@@ -79,7 +79,7 @@ li, a, button {
 }
 
 .footer {
-    z-index: 0 !important;
+    z-index: 900 !important;
 }
 
 .bg-custom-dark {
