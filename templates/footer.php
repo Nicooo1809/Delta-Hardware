@@ -13,8 +13,8 @@ $vernum = "0.0.4";
 $verdate ="06.03.2022";
 if(!isMobile()):
 ?>
-    <footer class="footer sticky-bottom py-3 bg-dark">
-        <div class="container-fluid">
+    <footer class="container-fluid footer py-3 bg-dark">
+        <div class="">
             <div class="row text-white">
                 <div class="col">
                     Delta-Hardware
@@ -22,7 +22,7 @@ if(!isMobile()):
                 <div class="col text-center">
                     <a href="aboutus.php" class="text-white">Über uns</a>
                 </div>
-                <div class="col me-2 text-end">
+                <div class="col text-end">
                     Version <?=$vernum?> - <?=$verdate?>
                 </div>
             </div>
@@ -30,8 +30,8 @@ if(!isMobile()):
     </footer>
 
 <?php else:?>
-    <footer class="footer sticky-bottom py-1 bg-dark">
-        <div class="container-fluid">
+    <footer class="container-fluid mfooter py-1 bg-dark">
+        <div class="">
             <div class="text-white">
                 <div class="col my-1 text-center">
                     <a href="aboutus.php" class="text-white">Über uns</a>
