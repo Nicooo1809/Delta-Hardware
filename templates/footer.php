@@ -14,7 +14,7 @@ $vernum = "0.0.4";
 $verdate ="06.03.2022";
 if(!isMobile()):
 ?>
-    <!--<div class="container-fluid py-3" style="height: 59px;">-->
+    <div class="container-fluid py-3" style="height: 59px;">
         <div class="row text-white">
         </div>
     </div>
@@ -33,7 +33,7 @@ if(!isMobile()):
     </footer>
 
 <?php else:?>
-    <!--<div class="container-fluid py-1" style="height: 75px;"></div>-->
+    <div class="container-fluid py-1" style="height: 75px;"></div>
     <footer class="container-fluid sticky-bottom footer py-1 bg-dark">
         <div class="text-white">
             <div class="col py-1 text-center">
