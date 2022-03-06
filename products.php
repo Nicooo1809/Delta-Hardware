@@ -50,19 +50,19 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container-fluid products-wrapper row row-cols-1 row-cols-md-5 g-4">
         <?php foreach ($products as $product): ?>
             <div class="col">
-                <div class="card bg-dark">
+                <div class="card h-50 bg-dark">
+                    <div class="card-body">
                     <a href="product.php?id=<?=$product['id']?>" class="product stretched-link stretched-link">
                         <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
-                        <div class="card-body">
-                        <div class="card-title name"><br><?=$product['name']?></div>
-                        <div class="card-text price"><br>Preis: 
+                        <div class="name"><br><?=$product['name']?></div>
+                        <div class="price"><br>Preis: 
                             &euro;<?=$product['price']?>
                             <?php if ($product['rrp'] > 0): ?>
-                            <div class="card-text rrp"><br>UVP: &euro;<?=$product['rrp']?></div>
+                            <div class="rrp"><br>UVP: &euro;<?=$product['rrp']?></div>
                             <?php endif; ?>
                         </div>
-                        </div>
                     </a>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
