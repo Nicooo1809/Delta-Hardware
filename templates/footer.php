@@ -14,7 +14,7 @@ $vernum = "0.0.4";
 $verdate ="06.03.2022";
 if(!isMobile()):
 ?>
-    <div class="container-fluid py-3" style="height: 59px;">
+    <!--<div class="container-fluid py-3" style="height: 59px;">-->
         <div class="row text-white">
         </div>
     </div>
