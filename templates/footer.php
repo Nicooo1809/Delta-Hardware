@@ -33,10 +33,10 @@ if(!isMobile()):
     <footer class="container-fluid fixed-bottom footer py-1 bg-dark">
         <div class="">
             <div class="text-white">
-                <div class="col my-1 text-center">
+                <div class="col py-1 text-center">
                     <a href="aboutus.php" class="text-white">Über uns</a>
                 </div>
-                <div class="col my-1 text-center">
+                <div class="col py-1 text-center">
                     Version <?=$vernum?> - <?=$verdate?>
                 </div>
             </div>
