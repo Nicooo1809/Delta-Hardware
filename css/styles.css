@@ -83,8 +83,6 @@ li, a, button {
     bottom: 0;
     width: 100%;
     z-index: 900;
-    height: 60px; /* Set the fixed height of the footer here */
-    line-height: 60px; /* Vertically center the text there */
   }
 
 .mfooter {
@@ -92,8 +90,6 @@ li, a, button {
     bottom: 0;
     width: 100%;
     z-index: 900;
-    height: 60px; /* Set the fixed height of the footer here */
-    line-height: 60px; /* Vertically center the text there */
   }
 
 .oldfooter {
