@@ -8,37 +8,48 @@
   
 <script src="/js/cookies.js"></script>
 
+
 <?php
 $vernum = "0.0.4";
 $verdate ="06.03.2022";
 if(!isMobile()):
 ?>
+    <div class="container-fluid fixed-bottom py-3 bg-dark">
+        <div class="row text-white">
+            <div class="col">
+                Delta-Hardware
+            </div>
+            <div class="col text-center">
+                <a href="aboutus.php" class="text-white">Über uns</a>
+            </div>
+            <div class="col text-end">
+                Version <?=$vernum?> - <?=$verdate?>
+            </div>
+        </div>
+    </div>
     <footer class="container-fluid fixed-bottom footer py-3 bg-dark">
-        <div class="">
-            <div class="row text-white">
-                <div class="col">
-                    Delta-Hardware
-                </div>
-                <div class="col text-center">
-                    <a href="aboutus.php" class="text-white">Über uns</a>
-                </div>
-                <div class="col text-end">
-                    Version <?=$vernum?> - <?=$verdate?>
-                </div>
+        <div class="row text-white">
+            <div class="col">
+                Delta-Hardware
+            </div>
+            <div class="col text-center">
+                <a href="aboutus.php" class="text-white">Über uns</a>
+            </div>
+            <div class="col text-end">
+                Version <?=$vernum?> - <?=$verdate?>
             </div>
         </div>
     </footer>
 
 <?php else:?>
+    <div class="container-fluid fixed-bottom py-1 bg-dark"></div>
     <footer class="container-fluid fixed-bottom footer py-1 bg-dark">
-        <div class="">
-            <div class="text-white">
-                <div class="col py-1 text-center">
-                    <a href="aboutus.php" class="text-white">Über uns</a>
-                </div>
-                <div class="col py-1 text-center">
-                    Version <?=$vernum?> - <?=$verdate?>
-                </div>
+        <div class="text-white">
+            <div class="col py-1 text-center">
+                <a href="aboutus.php" class="text-white">Über uns</a>
+            </div>
+            <div class="col py-1 text-center">
+                Version <?=$vernum?> - <?=$verdate?>
             </div>
         </div>
     </footer>
