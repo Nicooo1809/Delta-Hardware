@@ -79,21 +79,7 @@ li, a, button {
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
     z-index: 900;
-  }
-
-.mfooter {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    z-index: 900;
-  }
-
-.oldfooter {
-    z-index: 900 !important;
 }
 
 

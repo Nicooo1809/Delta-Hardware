@@ -13,7 +13,7 @@ $vernum = "0.0.4";
 $verdate ="06.03.2022";
 if(!isMobile()):
 ?>
-    <footer class="container-fluid footer py-3 bg-dark">
+    <footer class="container-fluid fixed-bottom footer py-3 bg-dark">
         <div class="">
             <div class="row text-white">
                 <div class="col">
@@ -30,7 +30,7 @@ if(!isMobile()):
     </footer>
 
 <?php else:?>
-    <footer class="container-fluid mfooter py-1 bg-dark">
+    <footer class="container-fluid fixed-bottom footer py-1 bg-dark">
         <div class="">
             <div class="text-white">
                 <div class="col my-1 text-center">
