@@ -47,23 +47,21 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input class="btn btn-outline-primary" type="Submit" value="Absteigend" name="order"></input>
     </form>
     <p class="text-white"><?php print($total_products); ?> Products</p>
-    <div class="container-fluid products-wrapper row row-cols-1 row-cols-md-5 g-4">
+    <div class="products-wrapper row row-cols-1 row-cols-md-5 g-4">
         <?php foreach ($products as $product): ?>
             <div class="col">
-                <div class="card h-200 bg-dark">
-                    <a href="product.php?id=<?=$product['id']?>" class="product stretched-link stretched-link">
-                        <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
-                        <div class="card-body">
-                            <h5 class="card-title name"><br><?=$product['name']?></h5>
-                            <span class="card-text price"><br>Preis: 
-                                &euro;<?=$product['price']?>
-                                <?php if ($product['rrp'] > 0): ?>
-                                <span class="card-text rrp"><br>UVP: &euro;<?=$product['rrp']?></span>
-                                <?php endif; ?>
-                            </span>
-                        </div>
-                    </a>
+                <div href="product.php?id=<?=$product['id']?>" class="card h-200 bg-dark stretched-link">
+                    <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
+                    <div class="card-body">
+                        <h5 class="card-title name"><br><?=$product['name']?></h5>
+                        <p class="card-text price"><br>Preis: 
+                            &euro;<?=$product['price']?>
+                            <?php if ($product['rrp'] > 0): ?>
+                            <span class="card-text rrp"><br>UVP: &euro;<?=$product['rrp']?></span>
+                            <?php endif; ?>
+                        </p>
                     </div>
+                </div>
             </div>
         <?php endforeach; ?>
     </div>
