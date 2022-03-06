@@ -50,17 +50,17 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container-fluid products-wrapper row row-cols-1 row-cols-md-5 g-4">
         <?php foreach ($products as $product): ?>
             <div class="col">
-                <div class="card h-50 bg-dark">
+                <div class="card h-200 bg-dark">
                     <div class="card-body">
                     <a href="product.php?id=<?=$product['id']?>" class="product stretched-link stretched-link">
                         <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
-                        <div class="name"><br><?=$product['name']?></div>
-                        <div class="price"><br>Preis: 
+                        <h5 class="card-title name"><br><?=$product['name']?></h5>
+                        <span class="card-text price"><br>Preis: 
                             &euro;<?=$product['price']?>
                             <?php if ($product['rrp'] > 0): ?>
-                            <div class="rrp"><br>UVP: &euro;<?=$product['rrp']?></div>
+                            <span class="card-text rrp"><br>UVP: &euro;<?=$product['rrp']?></span>
                             <?php endif; ?>
-                        </div>
+                        </span>
                     </a>
                     </div>
                 </div>
