@@ -10,7 +10,7 @@
 
 <?php
 $vernum = "0.0.4";
-$verdate ="05.03.2022";
+$verdate ="06.03.2022";
 if(!isMobile()):
 ?>
     <footer class="footer fixed-bottom py-3 bg-dark">
