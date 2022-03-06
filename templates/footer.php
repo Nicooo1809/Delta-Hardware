@@ -18,7 +18,7 @@ if(!isMobile()):
         <div class="row text-white">
         </div>
     </div>
-    <footer class="container-fluid sticky-bottom footer py-3 bg-dark">
+    <footer class="container-fluid fixed-bottom footer py-3 bg-dark">
         <div class="row text-white">
             <div class="col">
                 Delta-Hardware
@@ -34,7 +34,7 @@ if(!isMobile()):
 
 <?php else:?>
     <div class="container-fluid py-1" style="height: 75px;"></div>
-    <footer class="container-fluid sticky-bottom footer py-1 bg-dark">
+    <footer class="container-fluid fixed-bottom footer py-1 bg-dark">
         <div class="text-white">
             <div class="col py-1 text-center">
                 <a href="aboutus.php" class="text-white">Über uns</a>
