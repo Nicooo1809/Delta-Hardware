@@ -20,9 +20,6 @@ header {
     margin-bottom: 0 !important;
 }
 
-footer {
-    margin-top: 0 !important;
-}
 
 .bg-video {
     position: absolute;
@@ -82,12 +79,8 @@ li, a, button {
 }
 
 .footer {
-    z-index: 900;
+    z-index: 900 !important;
 }
-
-
-
-
 
 .bg-custom-dark {
     background-color: #2d3238 !important;
