@@ -33,7 +33,7 @@ if(!isMobile()):
     </footer>
 
 <?php else:?>
-    <div class="container-fluid fixed-bottom py-1" style="height: 75px;"></div>
+    <div class="container-fluid py-1" style="height: 75px;"></div>
     <footer class="container-fluid fixed-bottom footer py-1 bg-dark">
         <div class="text-white">
             <div class="col py-1 text-center">
