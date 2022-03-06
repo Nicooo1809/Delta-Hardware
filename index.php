@@ -11,14 +11,10 @@ require_once("templates/header.php");
           labore accusamus sequi, voluptate debitis tenetur in deleniti possimus modi voluptatum
           neque maiores dolorem unde? Aut dolorum quod excepturi fugit.
       </p>
-      <div class="fill">
-      </div>
+      <div class="full-height"></div>
     </div>
   </div>
 </div>
-
-
-
 
 <?php
 include_once("templates/footer.php")
