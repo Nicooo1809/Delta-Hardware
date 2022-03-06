@@ -30,7 +30,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #$stmt->debugDumpParams();
 ?>
 
-<div class="container-fluid px-3 py-3 mb-5 products content-wrapper">
+<div class="container-fluid px-3 py-3 products content-wrapper">
     <h1 class="text-white">Products</h1>
     <form action="products.php" method="get" class="mx-0">
         <select class="form-select me-2" name="sortby">
@@ -47,7 +47,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input class="btn btn-outline-primary my-2 me-2" type="Submit" value="Absteigend" name="order"></input>
     </form>
     <p class="text-white"><?php print($total_products); ?> Products</p>
-    <div class="products-wrapper mb-5 row row-cols-1 row-cols-md-5 g-4">
+    <div class="products-wrapper row row-cols-1 row-cols-md-5 g-4">
         <?php foreach ($products as $product): ?>
             <div class="col">
                 <div class="card prodcard bg-dark">
