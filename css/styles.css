@@ -20,6 +20,10 @@ header {
     margin-bottom: 0 !important;
 }
 
+.fill { 
+    min-height: 100%;
+    height: 100%;
+}
 
 .bg-video {
     position: absolute;
