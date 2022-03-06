@@ -52,8 +52,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col">
                 <div class="card prodcard bg-dark">
                     <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
-                        <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
                         <div class="card-body text-white">
+                            <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
                             <h4 class="card-title name"><?=$product['name']?></h4>
                             <p class="card-text price">Preis: 
                                 &euro;<?=$product['price']?>
