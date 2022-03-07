@@ -13,7 +13,9 @@ if(isset($_GET['action'])) {
             $stmt->bindValue(2, $_GET['productid']);
             $stmt->bindValue(3, $_GET['quantity'], PDO::PARAM_INT);
             $stmt->execute();
-            $error_msg = 'Some informations are missing!';
+            if(!$result) {
+                $error_msg = 'Fehler beim Abspeichern!';
+            }
         } else {
             $error_msg = 'Some informations are missing!';
         }
