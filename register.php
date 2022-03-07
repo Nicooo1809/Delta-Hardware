@@ -85,8 +85,6 @@ if(isset($_GET['register'])) {
 
 			
 
-
-
 			<?php
 			endif;
 		} else {
