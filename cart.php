@@ -19,7 +19,9 @@ if(isset($_GET['action'])) {
         } else {
             $error_msg = 'Some informations are missing!';
         }
-        error($error_msg);
+        if(isset($error_msg)){
+            error($error_msg);
+        }
     }
 }
 
