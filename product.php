@@ -41,7 +41,9 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php if ($product[0]['rrp'] > 0): ?>
                 <span class="rrp">UVP &euro;<?=$product[0]['rrp']?></span>
                 <?php endif; ?>
-                <span class="amount">Anzahl: <?=$product[0]['quantity']?></span>
+                <?php if ($product[0]['quantity'] <= 5): ?>
+                    <span class="amount">Nur noch <?=$product[0]['quantity']?> auf lager jetzt bestellen</span>
+                <?php endif; ?>
             </span>
             <span class="desc"><?=$product[0]['desc']?></span>
         </div>
@@ -50,7 +52,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="cart">
             <form>
 		        <label for="inputAmount">Anzahl:</label>
-                <input type="number" value="1" id="inputAmount" size="40" maxlength="80" name="amount" required>
+                <input type="number" value="1" id="inputAmount" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="amount" required>
                 <button type="button" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
             </form>
         </div>
