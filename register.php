@@ -112,42 +112,6 @@ if(isset($_GET['register'])) {
 
 if($showFormular) {
 ?>
-<!--
-<div>
-<h1>Registrierung</h1>
-</div>
-
-	<form action="?register=1" method="post">
-		<div>
-			<label for="inputVorname">Vorname:</label>
-			<input type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" required>
-		</div>
-		<div>
-			<label for="inputNachname">Nachname:</label>
-			<input type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" required>
-		</div>
-		<div>
-			<label for="inputEmail">E-Mail:</label>
-			<input type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" required>
-		</div>
-		<div>
-			<label for="inputPasswort">Dein Passwort:</label>
-			<input type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" required>
-		</div> 
-		<div>
-			<label for="inputPasswort2">Passwort wiederholen:</label>
-			<input type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" required>
-		</div> 
-		<div>
-			<input type="checkbox" name="dsgvo" value="gelesen"> Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.
-		</div>
-		<div>
-			<input type="checkbox" name="agb" value="gelesen"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.
-		</div>
-		<button type="submit" class="btn btn-outline-primary">Registrieren</button>
-	</form>
-
--->
 
 <div class="container-fluid">
 	<div class="row no-gutter">
