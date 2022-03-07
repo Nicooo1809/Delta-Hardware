@@ -4,8 +4,7 @@ require_once("php/mysql.php");
 require_once("php/functions.php");
 include("templates/header.php")
 ?>
-<div>
-<h1>Registrierung</h1>
+
 <?php
 $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
  
@@ -80,8 +79,12 @@ if(isset($_GET['register'])) {
 }
 
 
+
 if($showFormular) {
 ?>
+
+<div>
+<h1>Registrierung</h1>
 
 <form action="?register=1" method="post">
 	<div>
