@@ -76,8 +76,8 @@ if(isset($_GET['register'])) {
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
-						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH <i class="fa-solid fa-check"></i></h1>
-						<p>
+						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH<i class="fa-solid fa-check"></i></h1>
+						<p class="text-white">
 						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login">hier</a>.
 						</p>
 					</div>
