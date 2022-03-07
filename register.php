@@ -162,11 +162,14 @@ if($showFormular) {
 
 								<div class="custom-control custom-checkbox mb-3">
 									<input type="checkbox" id="customCheck1" name="dsgvo" value="gelesen" class="custom-control-input" required> 
-									
-									Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.
+									<label for="customCheck1" class="custom-control-label text-white">Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.</label>
 								</div>
+								<div class="custom-control custom-checkbox mb-3">
+									<input type="checkbox" id="customCheck2" name="agb" value="gelesen" class="custom-control-input" required> 
+									<label for="customCheck2" class="custom-control-label text-white"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.</label>		
+								</div>
+								<button type="submit" class="btn btn-outline-primary btn-block text-uppercase mb-2 shadow-sm">Registrieren</button>
 							</form>
-
 						</div>
 					</div>
 				</div>
