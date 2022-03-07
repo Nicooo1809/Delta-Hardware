@@ -1,6 +1,6 @@
 <?php
-require_once("php/mysql.php");
 require_once("php/functions.php");
+require_once("php/mysql.php");
 require_once "templates/header.php";
 
 $user = check_user();
