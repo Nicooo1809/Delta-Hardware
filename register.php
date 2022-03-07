@@ -86,8 +86,8 @@ if(isset($_GET['register'])) {
 
 			
 
-			<?php
-			endif;
+		<?php
+		endif;
 		else {
 			echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
 		}
