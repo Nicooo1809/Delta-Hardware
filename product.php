@@ -50,10 +50,10 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="buttons">
         <div class="cart">
-            <form action="cart.php" method="get">
+            <form action="cart.php?productid=<?=$product[0]['id']?>" method="get">
 		        <label for="inputAmount">Anzahl:</label>
-                <input type="number" value="1" id="quantity" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="amount" required>
-                <button type="submit" id="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
+                <input type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
+                <button type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
             </form>
         </div>
     </div>
