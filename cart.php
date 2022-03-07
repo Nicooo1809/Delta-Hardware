@@ -5,6 +5,24 @@ require_once "templates/header.php";
 
 $user = check_user();
 
+if(isset($_GET['action'])) {
+    if($_GET['action'] = 'add') {
+        if(isset($_GET['productid']) and isset($_GET['quantity']) and empty($_GET['productid']) and empty($_GET['quantity'])) {
+            $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and delivered = 0), ?, ?)');
+            $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $_GET['productid']);
+            $stmt->bindValue(3, $_GET['quantity'], PDO::PARAM_INT);
+            $stmt->execute();
+            $error_msg = 'Some informations are missing!';
+        } else {
+            $error_msg = 'Some informations are missing!';
+        }
+        error($error_msg);
+    }
+}
+
+
+
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT *,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products, product_list where product_list.product_id = products.id and products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? )) and product_list.list_id = (select id from orders where kunden_id = ? )');
