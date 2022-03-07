@@ -69,7 +69,7 @@ if(isset($_GET['register'])) {
 		$statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
 		$result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
 		
-		if($result) {
+		if(!$result) {
 			$showFormular = false;
 			?>
 			
