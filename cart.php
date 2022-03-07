@@ -13,6 +13,8 @@ if(isset($_GET['action'])) {
             $stmt->execute();
             $stmt->debugDumpParams();
         } else {
+            print_r($_GET);
+            print_r($_POST);
             error('Some informations are missing!');
         }
     }
