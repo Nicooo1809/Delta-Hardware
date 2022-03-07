@@ -37,7 +37,7 @@ li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
     font-size: 18px !important;
-    color: #edf0f1;
+    color: #ffffff !important;
     text-decoration: none !important;
 }
 
@@ -67,8 +67,14 @@ li, a, button {
     transition: all 0.5s ease;
 }
 
-.fa-user:hover, .fa-cart-shopping:hover, .fa-circle-info:hover, .fa-exclamation:hover {
+
+.fa-user:hover, .fa-cart-shopping:hover, .fa-circle-info:hover {
     color: #0d6efd;
+}
+
+.fa-exclamation{
+    font-size: 1.5rem;
+    color: red;
 }
 
 .navbar-icon {

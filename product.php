@@ -42,7 +42,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <span class="rrp">UVP &euro;<?=$product[0]['rrp']?></span>
                 <?php endif; ?>
                 <?php if ($product[0]['quantity'] <= 5): ?>
-                    <i class="fa-solid fa-exclamation"></i><span class="amount">Nur noch <?=$product[0]['quantity']?> auf lager jetzt bestellen</span>
+                    <i class="fa-solid fa-exclamation"></i><span class="amount"> Nur noch <?=$product[0]['quantity']?> auf Lager, jetzt bestellen</span>
                 <?php endif; ?>
             </span>
             <span class="desc"><?=$product[0]['desc']?></span>
