@@ -69,9 +69,26 @@ if(isset($_GET['register'])) {
 		$statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
 		$result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
 		
-		if($result) {		
-			echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+		if($result) :
 			$showFormular = false;
+			?>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
+						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH <i class="fa-solid fa-check"></i></h1>
+						<p>
+						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login">hier</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			
+
+
+
+			<?php
+			endif;
 		} else {
 			echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
 		}
