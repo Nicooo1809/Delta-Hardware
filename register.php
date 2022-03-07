@@ -88,7 +88,23 @@ if(isset($_GET['register'])) {
 
 		<?php
 		} else {
-			echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
+			?>
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
+						<h1 class="text-danger">Oops, das hat nicht geklappt!<i class="fa-solid fa-x"></i></h1>
+						<p class="text-white">
+						Beim Abspeichern ist leider ein Fehler aufgetreten, bitte versuche es später erneut.
+						Du wirst automatisch in 5 Sekunden zurückgeleitet, solltest du nicht weitergeleitet werden klicke <a href="register">hier</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			
+
+		<?php
 		}
 	} 
 }
