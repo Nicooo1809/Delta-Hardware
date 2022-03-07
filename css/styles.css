@@ -37,7 +37,7 @@ li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
     font-size: 18px !important;
-    color: #ffffff !important;
+    color: #ffffff;
     text-decoration: none !important;
 }
 
@@ -101,3 +101,6 @@ li, a, button {
     height: 100% !important; 
   }
 
+.amount {
+    color: #ffffff !important;
+}
