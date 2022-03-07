@@ -72,6 +72,7 @@ if(isset($_GET['register'])) {
 		if($result) :
 			$showFormular = false;
 			?>
+			
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
@@ -87,7 +88,7 @@ if(isset($_GET['register'])) {
 
 			<?php
 			endif;
-		} else {
+		else {
 			echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
 		}
 	} 
