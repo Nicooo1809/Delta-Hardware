@@ -5,7 +5,7 @@ require_once "templates/header.php";
 
 if(isset($_GET['action'])) {
     if($_GET['action'] = 'add') {
-        if(isset($_GET['productid']) and isset($_GET['quantity']) and empty($_GET['productid']) and empty($_GET['quantity'])) {
+        if(isset($_GET['productid']) and isset($_GET['quantity']) and !empty($_GET['productid']) and !empty($_GET['quantity'])) {
             $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and delivered = 0), ?, ?)');
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
             $stmt->bindValue(2, $_GET['productid']);
@@ -13,9 +13,6 @@ if(isset($_GET['action'])) {
             $stmt->execute();
             $stmt->debugDumpParams();
         } else {
-            print_r($_GET);
-            print('test');
-            print_r($_POST);
             error('Some informations are missing!');
         }
     }
