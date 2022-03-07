@@ -121,7 +121,39 @@ if($showFormular) {
 
 <div class="container-fluid">
 	<div class="row no-gutter">
-		<div class="col"></div>
+		<div class="bg-custom-dark">
+			<div class="register-register d-flex align-items-center py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-10 col-xl-7 mx-auto">
+
+
+							<h3 class="display-4 text-white">Registrierung</h3>
+
+							<?php 
+							if(isset($error_msg) && !empty($error_msg)) {
+								echo $error_msg;
+							}
+							?>
+							<p class="text-muted mb-4">Herzlich Willkommen!</p>
+
+							<form action="?register=1" method="post">
+
+								<div class="form-group mb-3">
+									<label for="inputVorname" class="custom-control-label text-white">Vorname:</label>
+									<input type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								</div>
+								<div class="form-group mb-3">
+
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
  
