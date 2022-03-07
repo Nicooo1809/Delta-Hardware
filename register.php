@@ -135,7 +135,7 @@ if($showFormular) {
 								echo $error_msg;
 							}
 							?>
-							<p class="text-muted mb-4">Herzlich Willkommen!</p>
+							<p class="text-white mb-4">Herzlich Willkommen!</p>
 
 							<form action="?register=1" method="post">
 
