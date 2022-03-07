@@ -1,9 +1,8 @@
 <?php
-require_once("php/functions.php");
+#require_once("php/functions.php");
+$user = check_user();
 require_once("php/mysql.php");
 require_once "templates/header.php";
-
-$user = check_user();
 
 if(isset($_GET['action'])) {
     if($_GET['action'] = 'add') {
@@ -19,8 +18,6 @@ if(isset($_GET['action'])) {
         }
     }
 }
-
-
 
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
