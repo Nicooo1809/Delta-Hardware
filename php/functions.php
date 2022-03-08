@@ -52,8 +52,12 @@ function check_user($redirect = TRUE) {
  * Outputs an error message and stops the further exectution of the script.
  */
 function error($error_msg) {
-	include("templates/header.inc.php");
-	include("templates/error.inc.php");
-	include("templates/footer.inc.php");
+	include_once("templates/header.php");
+	include_once("templates/error.php");
+	include_once("templates/footer.php");
 	exit();
+}
+
+function isMobile () {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }

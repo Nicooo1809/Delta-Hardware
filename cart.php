@@ -1,9 +1,23 @@
 <?php
-require_once("php/mysql.php");
 require_once("php/functions.php");
-require_once "templates/header.php";
-
 $user = check_user();
+
+if(isset($_POST['action'])) {
+    if($_POST['action'] = 'add') {
+        if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
+            $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and delivered = 0), ?, ?)');
+            $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $_POST['productid']);
+            $stmt->bindValue(3, $_POST['quantity'], PDO::PARAM_INT);
+            $stmt->execute();
+            header("location: cart.php");
+            exit;
+            #$stmt->debugDumpParams();
+        } else {
+            error('Some informations are missing!');
+        }
+    }
+}
 
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
@@ -18,6 +32,7 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
+require_once "templates/header.php";
 ?>
 
 <div class="products content-wrapper">

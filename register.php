@@ -4,8 +4,7 @@ require_once("php/mysql.php");
 require_once("php/functions.php");
 include("templates/header.php")
 ?>
-<div>
-<h1>Registrierung</h1>
+
 <?php
 $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
  
@@ -70,55 +69,114 @@ if(isset($_GET['register'])) {
 		$statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
 		$result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
 		
-		if($result) {		
-			echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+		if(!$result) {
 			$showFormular = false;
+			?>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
+						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH<i class="fa-solid fa-check"></i></h1>
+						<p class="text-white">
+						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login">hier</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			
+
+		<?php
 		} else {
-			echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
+			$showFormular = false;
+			?>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
+						<h1 class="text-danger">Oops, das hat nicht geklappt!<br><i class="fa-solid fa-x"></i></h1>
+						<p class="text-white">
+						Beim Abspeichern ist leider ein Fehler aufgetreten, bitte versuche es später erneut.
+						Du wirst automatisch in 5 Sekunden zurückgeleitet, solltest du nicht weitergeleitet werden klicke <a href="register">hier</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			
+
+		<?php
 		}
 	} 
 }
 
 
+
 if($showFormular) {
 ?>
 
-<form action="?register=1" method="post">
-	<div>
-		<label for="inputVorname">Vorname:</label>
-		<input type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" required>
+<div class="container-fluid">
+	<div class="row no-gutter">
+		<div class="bg-custom-dark">
+			<div class="register-register d-flex align-items-center py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-10 col-xl-7 mx-auto">
+
+
+							<h3 class="display-4 text-white">Registrierung</h3>
+
+							<?php 
+							if(isset($error_msg) && !empty($error_msg)) {
+								echo $error_msg;
+							}
+							?>
+							<p class="text-white mb-4">Herzlich Willkommen!</p>
+
+							<form action="?register=1" method="post">
+
+								<div class="form-group mb-3">
+									<label for="inputVorname" class="custom-control-label text-white">Vorname:</label>
+									<input placeholder="Max" type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								</div>
+								<div class="form-group mb-3">
+									<label for="inputNachname" class="custom-control-label text-white">Vorname:</label>
+									<input placeholder="Mustermann" type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								</div>
+								<div class="form-group mb-3">
+									<label for="inputEmail" class="custom-control-label text-white">E-Mail:</label>
+									<input placeholder="max@mustermann.de" type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								</div>
+								<div class="form-group mb-3">
+									<label for="inputPasswort" class="custom-control-label text-white">Dein Passwort:</label>
+									<input placeholder="Passwort" type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								</div>
+								<div class="form-group mb-3">
+									<label for="inputPasswort2" class="custom-control-label text-white">Passwort wiederholen:</label>
+									<input placeholder="Passwort wiederholen" type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								</div>
+
+								<div class="custom-control custom-checkbox mb-3">
+									<input type="checkbox" id="customCheck1" name="dsgvo" value="gelesen" class="custom-control-input" required> 
+									<label for="customCheck1" class="custom-control-label text-white">Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.</label>
+								</div>
+								<div class="custom-control custom-checkbox mb-3">
+									<input type="checkbox" id="customCheck2" name="agb" value="gelesen" class="custom-control-input" required> 
+									<label for="customCheck2" class="custom-control-label text-white"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.</label>		
+								</div>
+								<button type="submit" class="btn btn-outline-primary btn-block text-uppercase mb-2 shadow-sm">Registrieren</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div>
-		<label for="inputNachname">Nachname:</label>
-		<input type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" required>
-	</div>
-	<div>
-		<label for="inputEmail">E-Mail:</label>
-		<input type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" required>
-	</div>
-	<div>
-		<label for="inputPasswort">Dein Passwort:</label>
-		<input type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" required>
-	</div> 
-	<div>
-		<label for="inputPasswort2">Passwort wiederholen:</label>
-		<input type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" required>
-	</div> 
-	<div>
-		<input type="checkbox" name="dsgvo" value="gelesen"> Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.
-	</div>
-	<div>
-		<input type="checkbox" name="agb" value="gelesen"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.
-	</div>
-	<button type="submit" class="btn btn-outline-primary">Registrieren</button>
-</form>
+</div>
  
 <?php
 } //Ende von if($showFormular)
 	
 
 ?>
-</div>
 <?php 
 include_once("templates/footer.php")
 ?>

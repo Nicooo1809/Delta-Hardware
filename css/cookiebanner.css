@@ -1,11 +1,11 @@
-/* * Bootstrap Cookie Alert by Wruczek * https://github.com/Wruczek/Bootstrap-Cookie-Alert * Released under MIT license */
+/* * Bootstrap Cookie Alert von Wruczek * https://github.com/Wruczek/Bootstrap-Cookie-Alert */
 .cookiealert {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     margin: 0 !important;
-    z-index: 999 !important;
+    z-index: 999;
     opacity: 0;
     visibility: hidden;
     border-radius: 0;

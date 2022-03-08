@@ -44,8 +44,7 @@ include("templates/header.php");
 ?>
 <div class="container-fluid">
 	<div class="row no-gutter">
-
-		<div class="cold-md-6 bg-custom-dark">
+		<div class="bg-custom-dark">
 			<div class="login-login d-flex align-items-center py-5">
 				<div class="container">
 					<div class="row">
@@ -70,6 +69,7 @@ include("templates/header.php");
 									<input value="remember-me" id="customCheck1" type="checkbox" name="angemeldet_bleiben" value="1" checked class="custom-control-input">
 									<label for="customCheck1" class="custom-control-label text-white">Angemeldet bleiben</label>
 								</div>
+								
 								<button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm">Anmelden</button>
 								<div class="text-center d-flex justify-content-between mt-4 text-white"><p>Noch kein Kunde? <a href="register" class="font-italic text-muted"> 
 									<u>Registrieren</u></a></p>
