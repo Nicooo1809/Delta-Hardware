@@ -34,10 +34,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h1 class="text-white">Products</h1>
     <form action="products.php" method="get" class="mx-0">
         <select class="form-select me-2" name="sortby">
-            <option value="name">Name</option>
-            <option value="price">Preis</option>
-            <option value="rrp">UVP</option>
-            <option value="created_at">Date</option>
+            <option value="name" <?php if ($_GET["sortby"] = 'name') {print('selected');} ?>>Name</option>
+            <option value="price" <?php if ($_GET["sortby"] = 'price') {print('selected');} ?>>Preis</option>
+            <option value="rrp" <?php if ($_GET["sortby"] = 'rrp') {print('selected');} ?>>UVP</option>
+            <option value="created_at" <?php if ($_GET["sortby"] = 'created_at') {print('selected');} ?>>Date</option>
         </select>
         <?php foreach (array_keys($_GET) as $getindex) {
             if ($getindex != "order" && $getindex != "sortby") {
