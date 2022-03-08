@@ -97,6 +97,10 @@ li, a, button {
     min-height: 89vh;
 }
 
+.footer-footer {
+    min-height: 5vh;
+}
+
 .prodcard{
     height: 100% !important; 
   }
