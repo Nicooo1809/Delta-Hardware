@@ -1,5 +1,5 @@
 <?php
-chdir('..');
+chdir('../..');
 require_once("php/functions.php");
 // Prepare the SQL statement and get records from our contacts table, LIMIT will determine the page
 $stmt = $pdo->prepare('SELECT * FROM users ORDER BY id');

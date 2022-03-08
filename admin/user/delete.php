@@ -1,5 +1,5 @@
 <?php
-chdir('..');
+chdir('../..');
 require_once("php/functions.php");
 $msg = '';
 // Check that the contact ID exists
