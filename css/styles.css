@@ -8,7 +8,6 @@
     font-family: "Montserrat", sans-serif;
 }
 
-
 html, body {
     /*background-color: rgb(66, 66, 66); */
     background-color: #2d3238 !important;
@@ -16,12 +15,10 @@ html, body {
 	margin: 0;
 }
 
-
 header {
     margin-bottom: 0 !important;
 }
-
-
+/*
 .bg-video {
     position: absolute;
     overflow: visible;
@@ -31,9 +28,7 @@ header {
     visibility: visible;
     size: 100%;
 }
-
-
-
+*/
 li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
@@ -42,12 +37,9 @@ li, a, button {
     text-decoration: none !important;
 }
 
-
-
 .nav-link {
     font-size: 1.3rem;
 }
-
 
 .dropdown-menu {
     background-color: #212529 !important;
@@ -93,9 +85,6 @@ li, a, button {
     background-color: #2d3238 !important;
 }
 
-
-
-
 .header-header {
     min-height: 8vh;
 }
@@ -108,12 +97,6 @@ li, a, button {
     min-height: 6vh;
 }
 
-
-
 .prodcard{
     height: 100% !important; 
   }
-
-.amount {
-    color: #ffffff !important;
-}
