@@ -118,8 +118,8 @@ require("templates/header.php");
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
-                                <div class="input-group mb-3">
-                                    <label class="" for="inputAmount">Anzahl:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Anzahl:</span>
                                     <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
                                     <input type="number" value="1" min="1" max="<?=$product[0]['quantity']?>" class="form-control" name="quantity" required>
                                     <button class="btn btn-outline-primary" type="button" id="button-addon2">Button</button>
