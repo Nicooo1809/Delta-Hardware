@@ -29,6 +29,7 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
+unset($_SESSION["sortsql"]);
 ?>
 
 <div class="container-fluid px-3 py-3 products content-wrapper">
