@@ -14,13 +14,10 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 
 	//Überprüfung des Passworts
 	if ($user !== false && password_verify($passwort, $user['passwort'])) {
-		error_log("1");
 		$_SESSION['userid'] = $user['id'];
 
 		//Möchte der Nutzer angemeldet beleiben?
-		error_log("2");
 		if(isset($_POST['angemeldet_bleiben'])) {
-			error_log("3");
 			$identifier = md5(uniqid());
 			$securitytoken = md5(uniqid());
 				
@@ -28,6 +25,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			$insert->execute(array('user_id' => $user['id'], 'identifier' => $identifier, 'securitytoken' => sha1($securitytoken)));
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
+			error_log($insert->debugDumpParams());
 		}
 
 		header("location: internal.php");
