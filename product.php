@@ -32,7 +32,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php if (!(isMobile())):?>
 <div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
     <div class="row">
-        <div class="col col-sm-6">
+        <div class="card bg-dark col col-sm-6">
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <?php if($images == null):?>
                     <div class="carousel-inner">
@@ -86,7 +86,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif;?>              
             </div>
         </div>
-        <div class="col">
+        <div class="card bg-dark col">
             <div class="row">
                 <div>
                     <h2 class="text-white"><?=$product[0]['name']?></h2>
