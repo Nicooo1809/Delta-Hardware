@@ -35,7 +35,11 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="product">
             <?php foreach ($images as $image) {
                 print('<img src="product_img/'.$image['img'].'" width="350" alt="'.$product[0]['name'].'">');
-            } ?>
+            } 
+            if (isset($image)) {
+                print('<img src="images/image-not-found.png" width="350" alt="'.$product[0]['name'].'">');
+            }
+            ?>
             <span class="price">
                 &euro;<?=$product[0]['price']?>
                 <?php if ($product[0]['rrp'] > 0): ?>
