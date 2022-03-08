@@ -138,7 +138,7 @@ require("templates/header.php");
 <?php else:?>
 <div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
     <div class="">
-        <div class="row">
+        <div class="row py-3">
             <div class="card bg-dark py-2 px-2">
                 <div class="card-body px-3 py-3">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -196,7 +196,7 @@ require("templates/header.php");
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row py-3">
             <div class="card bg-dark py-2 px-2">
                 <div class="card-body px-3 py-3">
                     <div class="row">
