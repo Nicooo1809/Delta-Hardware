@@ -29,37 +29,88 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($images);
 #$stmt->debugDumpParams();
 ?>
-<div class="products content-wrapper">
-    <h1><?=$product[0]['name']?></h1>
-    <div class="products-wrapper">
-        <div class="product">
-            <?php foreach ($images as $image) {
-                print('<img src="product_img/'.$image['img'].'" width="350" alt="'.$product[0]['name'].'">');
-            } 
-            if (!isset($image)) {
-                print('<img src="images/image-not-found.png" width="350" alt="'.$product[0]['name'].'">');
-            }
-            ?>
-            <span class="price">
-                &euro;<?=$product[0]['price']?>
-                <?php if ($product[0]['rrp'] > 0): ?>
-                <span class="rrp">UVP &euro;<?=$product[0]['rrp']?></span>
-                <?php endif; ?>
-                <?php if ($product[0]['quantity'] <= 5): ?>
-                    <i class="fa-solid fa-exclamation"></i><span class="amount"> Nur noch <?=$product[0]['quantity']?> auf Lager, jetzt bestellen</span>
-                <?php endif; ?>
-            </span>
-            <span class="desc"><?=$product[0]['desc']?></span>
+<div class="container-fluid products content-wrapper">
+    <h1 class="text-white"><?=$product[0]['name']?></h1>
+    <div class="row">
+        <div class="col col-sm-6">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <?php if($images == null):?>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img src="images/image-not-found.png" class="img-fluid" alt="<?=$product[0]['name']?>">
+                        </div>
+                    </div>
+                <?php elseif (count($images) == 1):?>
+                    <div class="carousel-inner">
+                        <?php foreach ($images as $image) {
+                                print('<div class="carousel-item active">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('</div>');
+                        } ?>
+                    </div>
+                <?php elseif (count($images) != 1):?>
+                    <div class="carousel-indicators">
+                        <?php $i = 0; foreach ($images as $image) {
+                            if ($i == 0) {
+                                print('<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Img 1"></button>');
+                            }
+                            else {
+                                print('<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="'.$i.'" aria-label="Img'.$i.'"></button>');
+                            }
+                            $i++;
+                        } ?>
+                    </div>
+                    <div class="carousel-inner">
+                        <?php $i = 1; foreach ($images as $image) {
+                            if ($i == 1) {
+                                print('<div class="carousel-item active">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('</div>');
+                            }
+                            else {
+                                print('<div class="carousel-item">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('</div>');
+                            }
+                            $i++;
+                        } ?>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                <?php endif;?>              
+            </div>
         </div>
-    </div>
-    <div class="buttons">
-        <div class="cart">
-            <form action="cart.php" method="post">
-		        <label for="inputAmount">Anzahl:</label>
-                <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
-                <input type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
-                <button type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
-            </form>
+        <div class="col">
+            <div class="products-wrapper">
+                <div class="product">
+                    <span class="price text-white">
+                        &euro;<?=$product[0]['price']?>
+                        <?php if ($product[0]['rrp'] > 0): ?>
+                        <span class="rrp text-white">UVP &euro;<?=$product[0]['rrp']?></span>
+                        <?php endif; ?>
+                        <?php if ($product[0]['quantity'] <= 5): ?>
+                            <i class="fa-solid fa-exclamation"></i><span class="amount"> Nur noch <?=$product[0]['quantity']?> auf Lager, jetzt bestellen</span>
+                        <?php endif; ?>
+                    </span>
+                    <span class="desc text-white"><?=$product[0]['desc']?></span>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="cart">
+                    <form action="cart.php" method="post">
+                        <label for="inputAmount" class="text-white">Anzahl:</label>
+                        <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
+                        <input type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
+                        <button type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

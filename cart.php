@@ -40,7 +40,7 @@ require_once "templates/header.php";
     <p><?php print($total_products); ?> Products</p>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
-        <a href="product.php?id=<?=$product['id']?>" class="product">
+        <a href="product.php?id=<?=$product['product_id']?>" class="product">
             <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
             <span class="name"><?=$product['name']?></span>
             <span class="price">
