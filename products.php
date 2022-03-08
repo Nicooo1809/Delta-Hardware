@@ -4,23 +4,23 @@ require_once("php/functions.php");
 require "templates/header.php";
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
-if (!isset($_SESSION["sortsql"])) {
-    $_SESSION["sortsql"] = "";
-}
 if (isset($_GET["sortby"])) {
     $order = "";
     if ($_GET["order"] == "Absteigend"){
         $order = " DESC";
     }
-    $_SESSION["sortsql"] = "ORDER BY products." . $_GET["sortby"] . $order;
+    $sortsql = "ORDER BY products." . $_GET["sortby"] . $order;
 }
 $type = "";
 if (isset($_GET["type"])) {
     $type = "and products_types.type = '" . $_GET["type"] . "' ";
 }
+if (isset($_GET["serch"])) {
+    $search = 'and lower(name) like lower(' . $_GET["serch"] . ') ';
+}
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id ' . $type . $_SESSION["sortsql"]);
+$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id ' . $type . $search . $sortsql);
 $stmt->execute();
 // Get the total number of products
 $total_products = $stmt->rowCount();

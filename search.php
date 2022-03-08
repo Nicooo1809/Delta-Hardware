@@ -15,12 +15,12 @@ if (isset($_GET["sortby"])) {
     if ($_GET["order"] == "Absteigend"){
         $order = " DESC";
     }
-    $_SESSION["sortsql"] = "ORDER BY products." . $_GET["sortby"] . $order;
+    $sortsql = "ORDER BY products." . $_GET["sortby"] . $order;
 }
 
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id and lower(name) like lower(?) ' . $type . $_SESSION["sortsql"]);
+$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id and lower(name) like lower(?) ' . $type . $sortsql);
 $stmt->bindValue(1, '%' . $_GET["search"] . '%');
 $stmt->execute();
 // Get the total number of products
@@ -29,7 +29,6 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
-unset($_SESSION["sortsql"]);
 ?>
 
 <div class="container-fluid px-3 py-3 products content-wrapper">
