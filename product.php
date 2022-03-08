@@ -87,8 +87,8 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif;?>              
             </div>
         </div>
-        <div class="col row">
-            <div>
+        <div class="col">
+            <div class="row">
                 <div>
                     <h2 class="text-white row"><?=$product[0]['name']?></h2>
                     <span class="text-white col">&euro;<?=$product[0]['price']?></span> 
@@ -100,16 +100,16 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <i class="fa-solid fa-exclamation row"></i><span class="text-white"> Nur noch <?=$product[0]['quantity']?> auf Lager, jetzt bestellen</span>
                     <?php endif; ?>
                 </div>
-            </div>
-            <div class="buttons">
-                <div class="cart">
-                    <form action="cart.php" method="post">
-                        <label for="inputAmount" class="text-white">Anzahl:</label>
-                        <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
-                        <input type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
-                        <button type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
-                    </form>
-                </div>
+                <div class="buttons">
+                    <div class="cart">
+                        <form action="cart.php" method="post">
+                            <label for="inputAmount" class="text-white">Anzahl:</label>
+                            <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
+                            <input type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
+                            <button type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
+                        </form>
+                    </div>
+                    </div>
             </div>
         </div>
     </div>
