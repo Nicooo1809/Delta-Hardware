@@ -16,7 +16,7 @@ if (isset($_GET["type"])) {
     $type = "and products_types.type = '" . $_GET["type"] . "' ";
 }
 if (isset($_GET["search"])) {
-    $search = 'and lower(name) like lower("%' . $_GET["serch"] . '%") ';
+    $search = 'and lower(products.name) like lower("%' . $_GET["search"] . '%") ';
 }
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
