@@ -103,6 +103,8 @@ require("templates/header.php");
                                 <span class=" col">UVP &euro;<?=$product[0]['rrp']?></span>
                             <?php endif; ?>
                             <p class=""><?=$product[0]['desc']?></p>
+                            <?php if ($product[0]['visible'] == 1):?>
+                                <h2 class="text-danger my-2">Das Produkt aktuell nicht bestellbar!</h2>
                             <?php if ($product[0]['quantity'] >= 20):?>
                                 <h2 class="text-success my-2">Auf Lager</h2>
                             <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
