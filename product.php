@@ -108,7 +108,7 @@ require("templates/header.php");
                             <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
                                 <h2 class="text-warning my-2">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
                             <?php elseif ($product[0]['quantity'] == 0):?>
-                                <h2 class="text-warning my-2">Das Produkt ist ausverkauft!</h2>
+                                <h2 class="text-danger my-2">Das Produkt ist ausverkauft!</h2>
                             <?php else: ?>
                                 <h2 class="text-danger my-2">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
                             <?php endif; ?>
@@ -118,7 +118,7 @@ require("templates/header.php");
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
-                                <label class="" for="inputAmount">Anzahl:</label>
+                                <label class="form-control" for="inputAmount">Anzahl:</label>
                                 <input class="mx-2" type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
                                 <input class="mx-2" type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
                                 <button type="submit" name="action" value="add" class="mx-2 btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
