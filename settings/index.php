@@ -1,5 +1,6 @@
 <?php
 session_start();
+chdir('..');
 require_once("php/mysql.php");
 require_once("php/functions.php");
 
