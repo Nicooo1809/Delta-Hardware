@@ -17,7 +17,7 @@ html, body {
 }
 
 .header-header {
-    min-height: 6vh;
+    min-height: 8vh;
 }
 
 header {
@@ -98,7 +98,7 @@ li, a, button {
 
 
 .login-login {
-    min-height: 88vh;
+    min-height: 86vh;
 }
 
 .footer-footer {
