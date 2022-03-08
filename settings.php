@@ -69,7 +69,7 @@ if(isset($_GET['save'])) {
 }
 ?>
 
-<div class="text-white mx-3 my-3">
+<div class="text-white minheight100 mx-3 my-3">
 	<h1>Einstellungen</h1>
 	<?php 
 	if(isset($success_msg) && !empty($success_msg)) {

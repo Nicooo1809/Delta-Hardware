@@ -7,7 +7,7 @@ if(!isMobile()):
 ?>
 
 <!-- Desktop Devices -->
-<div class="mx-auto my-5 py-3 px-5 text-center rounded bg-dark" style="width: 55%;">
+<div class="minheight100 mx-auto my-5 py-3 px-5 text-center rounded bg-dark" style="width: 55%;">
     <div class="text-white">
         <h1>Wer sind wir?</h1>
         <p>
@@ -20,7 +20,7 @@ if(!isMobile()):
 
 <!-- Mobile Devices -->
 <?php else:?>
-    <div class="my-3 mx-3 py-2 px-2 text-center rounded bg-dark">
+    <div class="minheight100 my-3 mx-3 py-2 px-2 text-center rounded bg-dark">
     <div class="text-white">
         <h1>Wer sind wir?</h1>
         <p>

@@ -32,7 +32,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 print('OLD use product.php');
 ?>
 
-<div class="container-fluid px-3 py-3 products content-wrapper">
+<div class="container-fluid minheight100 px-3 py-3 products content-wrapper">
     <h1 class="text-white">Products</h1>
     <form action="search.php" method="get" class="mx-0">
         <select class="form-select me-2" name="sortby">

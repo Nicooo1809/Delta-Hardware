@@ -30,7 +30,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #$stmt->debugDumpParams();
 ?>
 <?php if (!(isMobile())):?>
-<div class="container-fluid px-3 py-3 product content-wrapper">
+<div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
     <h1 class="text-white"><?=$product[0]['name']?></h1>
     <div class="row">
         <div class="col col-sm-6">

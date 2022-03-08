@@ -16,9 +16,6 @@ html, body {
 	margin: 0;
 }
 
-.header-header {
-    min-height: 8vh;
-}
 
 header {
     margin-bottom: 0 !important;
@@ -97,13 +94,21 @@ li, a, button {
 }
 
 
-.login-login {
+
+
+.header-header {
+    min-height: 8vh;
+}
+
+.minheight100 {
     min-height: 86vh;
 }
 
 .footer-footer {
     min-height: 6vh;
 }
+
+
 
 .prodcard{
     height: 100% !important; 

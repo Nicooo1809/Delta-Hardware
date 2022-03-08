@@ -118,7 +118,7 @@ if(isset($_GET['register'])) {
 if($showFormular) {
 ?>
 
-<div class="container-fluid">
+<div class="container-fluid minheight100">
 	<div class="row no-gutter">
 		<div class="bg-custom-dark">
 			<div class="register-register d-flex align-items-center py-5">

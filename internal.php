@@ -9,7 +9,7 @@ include("templates/header.php");
 $user = check_user();
 ?>
 
-<div>
+<div class="container-fluid minheight100">
 
 <h1>Herzlich Willkommen!</h1>
 

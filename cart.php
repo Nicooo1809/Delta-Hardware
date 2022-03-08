@@ -35,7 +35,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 require_once "templates/header.php";
 ?>
 
-<div class="products content-wrapper">
+<div class="minheight100 products content-wrapper">
     <h1>Cart</h1>
     <p><?php print($total_products); ?> Products</p>
     <div class="products-wrapper">
