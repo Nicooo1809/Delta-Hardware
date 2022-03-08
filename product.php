@@ -112,9 +112,7 @@ require("templates/header.php");
                             <?php endif; ?>
                         </div>
                     </div>
-                    <?php if ($product[0]['visible'] == 0): {
-                        error('Product ID wurde nicht gefunden!');
-                    } else: ?>
+                    <?php if ($product[0]['visible'] == 1):?>
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
