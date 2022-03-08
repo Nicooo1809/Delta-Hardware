@@ -11,7 +11,9 @@ if(isset($_GET['action'])) {
             $stmt->bindValue(2, $_GET['productid']);
             $stmt->bindValue(3, $_GET['quantity'], PDO::PARAM_INT);
             $stmt->execute();
-            $stmt->debugDumpParams();
+            header("location: cart.php");
+            exit;
+            #$stmt->debugDumpParams();
         } else {
             error('Some informations are missing!');
         }

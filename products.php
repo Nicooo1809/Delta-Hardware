@@ -53,7 +53,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="card prodcard bg-dark">
                     <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
                         <div class="card-body text-white">
-                            <img src="product_img/<?=$product['image']?>" class="card-img-top rounded mb-3" alt="<?=$product['name']?>">
+                            <?php if (empty($product['image'])) {
+                                print('<img src="product_img/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                            } else {
+                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                            }?>
                             <h4 class="card-title name"><?=$product['name']?></h4>
                             <p class="card-text price">Preis: 
                                 &euro;<?=$product['price']?>
