@@ -32,7 +32,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container-fluid products content-wrapper">
     <h1 class="text-white"><?=$product[0]['name']?></h1>
     <div class="row">
-        <div class="col col-sm-8">
+        <div class="col col-sm-6">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php $i = 1; foreach ($images as $image) {
