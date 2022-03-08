@@ -11,7 +11,8 @@
 
 <?php
 $vernum = "0.0.4";
-$verdate ="08.03.2022";
+#$verdate ="08.03.2022";
+$verdate = date("d.m.Y");
 if(!isMobile()):
 ?>
     <div class="container-fluid py-3" style="height: 59px;">
