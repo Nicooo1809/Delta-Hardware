@@ -34,35 +34,56 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="col col-sm-6">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <?php $i = 1; foreach ($images as $image) {
-                        if ($i == 1) {
-                            print('<div class="carousel-item active">');
-                            print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
-                            print('</div>');
+                <?php if(!isset($images)):?>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img src="images/image-not-found.png" class="img-fluid" alt="<?=$product[0]['name']?>">
+                        </div>
+                    </div>
+                <?php elseif (count($images) == 1):?>
+                    <div class="carousel-inner">
+                        <?php foreach ($images as $image) {
+                                print('<div class="carousel-item active">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('</div>');
+                        } ?>
+                    </div>
+                <?php elseif (count($images) != 1):?>
+                    <div class="carousel-indicators">
+                    <?php $i = 0; foreach ($images as $image) {
+                        if ($i == 0) {
+                            print('<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Img 1"></button>');
                         }
                         else {
-                            print('<div class="carousel-item">');
-                            print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
-                            print('</div>');
+                            print('<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'.$i.'" aria-label="Img'.$i.'"></button>');
                         }
                         $i++;
-                    } 
-                    if (!isset($image)) {
-                        print('<div class="carousel-item active">');
-                        print('<img src="images/image-not-found.png" class="img-fluid" alt="'.$product[0]['name'].'">');
-                        print('</div>');
-                    }
-                    ?>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                    } ?>
+                    </div>
+                    <div class="carousel-inner">
+                        <?php $i = 1; foreach ($images as $image) {
+                            if ($i == 1) {
+                                print('<div class="carousel-item active">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('</div>');
+                            }
+                            else {
+                                print('<div class="carousel-item">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('</div>');
+                            }
+                            $i++;
+                        } ?>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                <?php endif;?>              
             </div>
         </div>
         <div class="col">
