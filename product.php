@@ -13,7 +13,7 @@ $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
 $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $stmt->execute();
 if ($stmt->rowCount() != 1) {
-    error('Product ID not found');
+    error('Product ID wurde nicht gefunden!');
 }
 // Fetch the products from the database and return the result as an Array
 
@@ -41,15 +41,15 @@ require("templates/header.php");
                         <?php if($images == null):?>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                <img src="images/image-not-found.png" class="img-fluid rounded" alt="<?=$product[0]['name']?>">
+                                    <img src="images/image-not-found.png" class="img-fluid rounded" alt="<?=$product[0]['name']?>">
                                 </div>
                             </div>
                         <?php elseif (count($images) == 1):?>
                             <div class="carousel-inner">
                                 <?php foreach ($images as $image) {
-                                        print('<div class="carousel-item active">');
+                                    print('<div class="carousel-item active">');
                                         print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
-                                        print('</div>');
+                                    print('</div>');
                                 } ?>
                             </div>
                         <?php elseif (count($images) != 1):?>
@@ -68,12 +68,12 @@ require("templates/header.php");
                                 <?php $i = 1; foreach ($images as $image) {
                                     if ($i == 1) {
                                         print('<div class="carousel-item active" data-bs-interval="10000">');
-                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                            print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
                                         print('</div>');
                                     }
                                     else {
                                         print('<div class="carousel-item" data-bs-interval="10000">');
-                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                            print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
                                         print('</div>');
                                     }
                                     $i++;
@@ -128,7 +128,101 @@ require("templates/header.php");
     </div>
 </div>
 <?php else:?>
-
+    <div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="card bg-dark py-2 px-2">
+                <div class="card-body px-3 py-3">
+                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <?php if($images == null):?>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="images/image-not-found.png" class="img-fluid rounded" alt="<?=$product[0]['name']?>">
+                                </div>
+                            </div>
+                        <?php elseif (count($images) == 1):?>
+                            <div class="carousel-inner">
+                                <?php foreach ($images as $image) {
+                                    print('<div class="carousel-item active">');
+                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                    print('</div>');
+                                } ?>
+                            </div>
+                        <?php elseif (count($images) != 1):?>
+                            <div class="carousel-indicators">
+                                <?php $i = 0; foreach ($images as $image) {
+                                    if ($i == 0) {
+                                        print('<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Img 1"></button>');
+                                    }
+                                    else {
+                                        print('<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="'.$i.'" aria-label="Img'.$i.'"></button>');
+                                    }
+                                    $i++;
+                                } ?>
+                            </div>
+                            <div class="carousel-inner">
+                                <?php $i = 1; foreach ($images as $image) {
+                                    if ($i == 1) {
+                                        print('<div class="carousel-item active" data-bs-interval="10000">');
+                                            print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                        print('</div>');
+                                    }
+                                    else {
+                                        print('<div class="carousel-item" data-bs-interval="10000">');
+                                            print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                        print('</div>');
+                                    }
+                                    $i++;
+                                } ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        <?php endif;?>              
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card bg-dark py-2 px-2">
+                <div class="card-body px-3 py-3">
+                    <div class="row">
+                        <div>
+                            <h1 class="text-white"><?=$product[0]['name']?></h1>
+                            <span class="text-white col">Preis: &euro;<?=$product[0]['price']?></span> 
+                            <?php if ($product[0]['rrp'] > 0): ?>
+                                <span class="text-white col">UVP &euro;<?=$product[0]['rrp']?></span>
+                            <?php endif; ?>
+                            <p class="text-white"><?=$product[0]['desc']?></p>
+                            <?php if ($product[0]['quantity'] >= 20):?>
+                                <h2 class="text-success my-2">Auf Lager</h2>
+                            <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
+                                <h2 class="text-warning my-2">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
+                            <?php else: ?>
+                                <h2 class="text-danger my-2">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cart">
+                            <form action="cart.php" method="post">
+                                <label class="text-white" for="inputAmount">Anzahl:</label>
+                                <input class="mx-2" type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
+                                <input class="mx-2" type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
+                                <button type="submit" name="action" value="add" class="mx-2 btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php endif; ?>    
 <?php
 include_once("templates/footer.php")
