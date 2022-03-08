@@ -104,11 +104,11 @@ require("templates/header.php");
                             <?php endif; ?>
                             <p class="text-white"><?=$product[0]['desc']?></p>
                             <?php if ($product[0]['quantity'] >= 20):?>
-                                <h2 class="text-success my-0">Auf Lager</h2>
+                                <h2 class="text-success my-2">Auf Lager</h2>
                             <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
-                                <h2 class="text-warning my-0">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
+                                <h2 class="text-warning my-2">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
                             <?php else: ?>
-                                <h2 class="text-danger my-0">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
+                                <h2 class="text-danger my-2">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
                             <?php endif; ?>
                         </div>
                     </div>
