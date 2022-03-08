@@ -157,8 +157,3 @@ check_user(FALSE);
         </div>
     </div>
 </nav>
-
-<!--
-</body>
-</html>
--->
