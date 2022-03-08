@@ -14,6 +14,7 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Get the total number of contacts, this is so we can determine whether there should be a next and previous button
 $num_contacts = $pdo->query('SELECT COUNT(*) FROM contacts')->fetchColumn();
 require_once("templates/header.php");
+echo getcwd() . "\n";
 ?>
 
 <div class="content read">
