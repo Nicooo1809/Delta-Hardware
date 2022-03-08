@@ -29,16 +29,16 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($images);
 #$stmt->debugDumpParams();
 ?>
-<div class="products content-wrapper">
-    <h1><?=$product[0]['name']?></h1>
-    <div class="products-wrapper">
-        <div class="product">
+<div class="container-fluid products content-wrapper">
+    <h1 class="text-white"><?=$product[0]['name']?></h1>
+    <div class="row">
+        <div class="col">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php $i = 1; foreach ($images as $image) {
                         if ($i == 1) {
                             print('<div class="carousel-item active">');
-                            print('<img src="product_img/'.$image['img'].'" class="d-block w-45" alt="'.$product[0]['name'].'">');
+                            print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
                             print('</div>');
                         }
                         else {
@@ -64,26 +64,32 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <span class="price">
-                &euro;<?=$product[0]['price']?>
-                <?php if ($product[0]['rrp'] > 0): ?>
-                <span class="rrp">UVP &euro;<?=$product[0]['rrp']?></span>
-                <?php endif; ?>
-                <?php if ($product[0]['quantity'] <= 5): ?>
-                    <i class="fa-solid fa-exclamation"></i><span class="amount"> Nur noch <?=$product[0]['quantity']?> auf Lager, jetzt bestellen</span>
-                <?php endif; ?>
-            </span>
-            <span class="desc"><?=$product[0]['desc']?></span>
         </div>
-    </div>
-    <div class="buttons">
-        <div class="cart">
-            <form action="cart.php" method="post">
-		        <label for="inputAmount">Anzahl:</label>
-                <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
-                <input type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
-                <button type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
-            </form>
+        <div class="col">
+            <div class="products-wrapper">
+                <div class="product">
+                    <span class="price">
+                        &euro;<?=$product[0]['price']?>
+                        <?php if ($product[0]['rrp'] > 0): ?>
+                        <span class="rrp">UVP &euro;<?=$product[0]['rrp']?></span>
+                        <?php endif; ?>
+                        <?php if ($product[0]['quantity'] <= 5): ?>
+                            <i class="fa-solid fa-exclamation"></i><span class="amount"> Nur noch <?=$product[0]['quantity']?> auf Lager, jetzt bestellen</span>
+                        <?php endif; ?>
+                    </span>
+                    <span class="desc"><?=$product[0]['desc']?></span>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="cart">
+                    <form action="cart.php" method="post">
+                        <label for="inputAmount">Anzahl:</label>
+                        <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
+                        <input type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
+                        <button type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
