@@ -126,12 +126,6 @@ require("templates/header.php");
                                     <input type="number" value="1" min="1" max="<?=$product[0]['quantity']?>" class="form-control" name="quantity" required>
                                     <button class="btn btn-outline-primary" type="button" id="button-addon2">Button</button>
                                 </div>
-                                <!--
-                                <label class="" for="inputAmount">Anzahl:</label>
-                                <input class="mx-2" type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
-                                <input class="mx-2 form-control" type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
-                                <button type="submit" name="action" value="add" class="mx-2 btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
-                                -->
                             </form>
                         </div>
                     </div>
@@ -142,9 +136,9 @@ require("templates/header.php");
     </div>
 </div>
 <?php else:?>
-    <div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
+<div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
     <div class="row">
-        <div class="col col-sm-6">
+        <div class="">
             <div class="card bg-dark py-2 px-2">
                 <div class="card-body px-3 py-3">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -202,36 +196,44 @@ require("templates/header.php");
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="row">
             <div class="card bg-dark py-2 px-2">
                 <div class="card-body px-3 py-3">
                     <div class="row">
                         <div>
                             <h1 class=""><?=$product[0]['name']?></h1>
-                            <span class="col">Preis: &euro;<?=$product[0]['price']?></span> 
+                            <span class=" col">Preis: &euro;<?=$product[0]['price']?></span> 
                             <?php if ($product[0]['rrp'] > 0): ?>
                                 <span class=" col">UVP &euro;<?=$product[0]['rrp']?></span>
                             <?php endif; ?>
                             <p class=""><?=$product[0]['desc']?></p>
-                            <?php if ($product[0]['quantity'] >= 20):?>
+                            <?php if ($product[0]['visible'] == 0):?>
+                                <h2 class="text-danger my-2">Das Produkt aktuell nicht bestellbar!</h2>
+                            <?php elseif ($product[0]['quantity'] >= 20):?>
                                 <h2 class="text-success my-2">Auf Lager</h2>
                             <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
-                                <h2 class="text-warning my-2">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
+                                <h2 class="text-warning my-2">Nur noch <?=$product[0]['quantity']?> auf Lager!</h2>
+                            <?php elseif ($product[0]['quantity'] == 0):?>
+                                <h2 class="text-danger my-2">Das Produkt ist ausverkauft!</h2>
                             <?php else: ?>
-                                <h2 class="text-danger my-2">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
+                                <h2 class="text-danger my-2">Nur noch <?=$product[0]['quantity']?> auf Lager!</h2>
                             <?php endif; ?>
                         </div>
                     </div>
+                    <?php if ($product[0]['visible'] == 1 && $product[0]['quantity'] != 0):?>
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
-                                <label class="" for="inputAmount">Anzahl:</label>
-                                <input class="mx-2" type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
-                                <input class="mx-2" type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
-                                <button type="submit" name="action" value="add" class="mx-2 btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
+                                <div class="input-group">
+                                    <span class="input-group-text">Anzahl:</span>
+                                    <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
+                                    <input type="number" value="1" min="1" max="<?=$product[0]['quantity']?>" class="form-control" name="quantity" required>
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">Button</button>
+                                </div>
                             </form>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
