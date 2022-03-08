@@ -51,7 +51,7 @@ require_once("templates/header.php");
     <p class="text-white"><?php print($total_products); ?> Products</p>
     <div class="products-wrapper row row-cols-1 row-cols-md-5 g-4">
         <?php foreach ($products as $product): ?>
-            <?php if ($product['visible'] == 1):?>
+            
                 <div class="col">
                     <div class="card prodcard bg-dark">
                         <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
@@ -72,7 +72,7 @@ require_once("templates/header.php");
                         </a>
                     </div>
                 </div>
-            <?php endif; ?>
+            
         <?php endforeach; ?>
     </div>
 </div>
