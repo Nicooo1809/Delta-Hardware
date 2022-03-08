@@ -49,7 +49,7 @@ include("templates/header.php");
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-10 col-xl-7 mx-auto">
-							<h3 class="display-4 text-white">Anmelden</h3>
+							<h3 class="display-4 ">Anmelden</h3>
 							<?php 
 							if(isset($error_msg) && !empty($error_msg)) {
 								echo $error_msg;
@@ -67,11 +67,11 @@ include("templates/header.php");
 
 								<div class="custom-control custom-checkbox mb-3">
 									<input value="remember-me" id="customCheck1" type="checkbox" name="angemeldet_bleiben" value="1" checked class="custom-control-input">
-									<label for="customCheck1" class="custom-control-label text-white">Angemeldet bleiben</label>
+									<label for="customCheck1" class="custom-control-label ">Angemeldet bleiben</label>
 								</div>
 								
 								<button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm">Anmelden</button>
-								<div class="text-center d-flex justify-content-between mt-4 text-white"><p>Noch kein Kunde? <a href="register" class="font-italic text-muted"> 
+								<div class="text-center d-flex justify-content-between mt-4 "><p>Noch kein Kunde? <a href="register" class="font-italic text-muted"> 
 									<u>Registrieren</u></a></p>
 								</div>
 							</form>

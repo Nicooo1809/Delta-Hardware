@@ -97,12 +97,12 @@ require("templates/header.php");
                 <div class="card-body px-3 py-3">
                     <div class="row">
                         <div>
-                            <h1 class="text-white"><?=$product[0]['name']?></h1>
-                            <span class="text-white col">Preis: &euro;<?=$product[0]['price']?></span> 
+                            <h1 class=""><?=$product[0]['name']?></h1>
+                            <span class=" col">Preis: &euro;<?=$product[0]['price']?></span> 
                             <?php if ($product[0]['rrp'] > 0): ?>
-                                <span class="text-white col">UVP &euro;<?=$product[0]['rrp']?></span>
+                                <span class=" col">UVP &euro;<?=$product[0]['rrp']?></span>
                             <?php endif; ?>
-                            <p class="text-white"><?=$product[0]['desc']?></p>
+                            <p class=""><?=$product[0]['desc']?></p>
                             <?php if ($product[0]['quantity'] >= 20):?>
                                 <h2 class="text-success my-2">Auf Lager</h2>
                             <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
@@ -115,7 +115,7 @@ require("templates/header.php");
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
-                                <label class="text-white" for="inputAmount">Anzahl:</label>
+                                <label class="" for="inputAmount">Anzahl:</label>
                                 <input class="mx-2" type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
                                 <input class="mx-2" type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
                                 <button type="submit" name="action" value="add" class="mx-2 btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
@@ -194,11 +194,11 @@ require("templates/header.php");
                     <div class="row">
                         <div>
                             <h1 class=""><?=$product[0]['name']?></h1>
-                            <span class="text-white col">Preis: &euro;<?=$product[0]['price']?></span> 
+                            <span class="col">Preis: &euro;<?=$product[0]['price']?></span> 
                             <?php if ($product[0]['rrp'] > 0): ?>
-                                <span class="text-white col">UVP &euro;<?=$product[0]['rrp']?></span>
+                                <span class=" col">UVP &euro;<?=$product[0]['rrp']?></span>
                             <?php endif; ?>
-                            <p class="text-white"><?=$product[0]['desc']?></p>
+                            <p class=""><?=$product[0]['desc']?></p>
                             <?php if ($product[0]['quantity'] >= 20):?>
                                 <h2 class="text-success my-2">Auf Lager</h2>
                             <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
@@ -211,7 +211,7 @@ require("templates/header.php");
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
-                                <label class="text-white" for="inputAmount">Anzahl:</label>
+                                <label class="" for="inputAmount">Anzahl:</label>
                                 <input class="mx-2" type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
                                 <input class="mx-2" type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
                                 <button type="submit" name="action" value="add" class="mx-2 btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
