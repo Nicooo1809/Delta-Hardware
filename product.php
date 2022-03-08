@@ -35,13 +35,21 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="product">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <?php foreach ($images as $image) {
-                        print('<div class="carousel-item">');
-                        print('<img src="product_img/'.$image['img'].'" class="d-block w-45" alt="'.$product[0]['name'].'">');
-                        print('</div>');
+                    <?php $i = 1; foreach ($images as $image) {
+                        if ($i == 1) {
+                            print('<div class="carousel-item active">');
+                            print('<img src="product_img/'.$image['img'].'" class="d-block w-45" alt="'.$product[0]['name'].'">');
+                            print('</div>');
+                        }
+                        else {
+                            print('<div class="carousel-item">');
+                            print('<img src="product_img/'.$image['img'].'" class="d-block w-45" alt="'.$product[0]['name'].'">');
+                            print('</div>');
+                        }
+                        $i++;
                     } 
                     if (!isset($image)) {
-                        print('<div class="carousel-item">');
+                        print('<div class="carousel-item active">');
                         print('<img src="images/image-not-found.png" class="d-block w-45" alt="'.$product[0]['name'].'">');
                         print('</div>');
                     }
