@@ -33,6 +33,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
 require_once "templates/header.php";
+print_r($products);
 ?>
 
 <div class="products content-wrapper">
