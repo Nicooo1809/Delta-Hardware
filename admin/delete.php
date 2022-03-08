@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
 require_once("templates/header.php");
 ?>
 
-<div class="content delete">
+<div class="minheight100 content delete">
 	<h2>Delete Contact #<?=$contact['id']?></h2>
     <?php if ($msg): ?>
     <p><?=$msg?></p>

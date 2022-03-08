@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
 require_once("templates/header.php");
 ?>
 
-<div class="content update">
+<div class="minheight100 content update">
 	<h2>Update Contact #<?=$contact['id']?></h2>
     <form action="update.php?id=<?=$contact['id']?>" method="post">
         <label for="id">ID</label>

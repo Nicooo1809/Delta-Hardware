@@ -22,7 +22,7 @@ if (!empty($_POST)) {
 require_once("templates/header.php");
 ?>
 
-<div class="content update">
+<div class="minheight100 content update">
 	<h2>Create Contact</h2>
     <form action="create.php" method="post">
         <label for="id">ID</label>

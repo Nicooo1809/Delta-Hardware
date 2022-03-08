@@ -9,7 +9,7 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 require_once("templates/header.php");
 ?>
 
-<div class="content read">
+<div class="minheight100 content read">
 	<h2>Read Contacts</h2>
 	<a href="create.php" class="create-contact">Create Contact</a>
 	<table>
