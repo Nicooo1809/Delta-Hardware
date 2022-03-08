@@ -16,6 +16,10 @@ html, body {
 	margin: 0;
 }
 
+.header-header {
+    min-height: 6vh;
+}
+
 header {
     margin-bottom: 0 !important;
 }
@@ -98,7 +102,7 @@ li, a, button {
 }
 
 .footer-footer {
-    min-height: 5vh;
+    min-height: 6vh;
 }
 
 .prodcard{
