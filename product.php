@@ -32,7 +32,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container-fluid products content-wrapper">
     <h1 class="text-white"><?=$product[0]['name']?></h1>
     <div class="row">
-        <div class="col">
+        <div class="col col-sm-8">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php $i = 1; foreach ($images as $image) {
@@ -43,14 +43,14 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         }
                         else {
                             print('<div class="carousel-item">');
-                            print('<img src="product_img/'.$image['img'].'" class="d-block w-45" alt="'.$product[0]['name'].'">');
+                            print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
                             print('</div>');
                         }
                         $i++;
                     } 
                     if (!isset($image)) {
                         print('<div class="carousel-item active">');
-                        print('<img src="images/image-not-found.png" class="d-block w-45" alt="'.$product[0]['name'].'">');
+                        print('<img src="images/image-not-found.png" class="img-fluid" alt="'.$product[0]['name'].'">');
                         print('</div>');
                     }
                     ?>
