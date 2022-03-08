@@ -96,17 +96,17 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="row">
                         <div>
                             <h1 class="text-white"><?=$product[0]['name']?></h1>
-                            <span class="text-white col">&euro;<?=$product[0]['price']?></span> 
+                            <span class="text-white col">Preis: &euro;<?=$product[0]['price']?></span> 
                             <?php if ($product[0]['rrp'] > 0): ?>
                                 <span class="text-white col">UVP &euro;<?=$product[0]['rrp']?></span>
                             <?php endif; ?>
                             <p class="text-white"><?=$product[0]['desc']?></p>
                             <?php if ($product[0]['quantity'] >= 20):?>
-                                <h2 class="text-success">Auf Lager</h2>
+                                <h2 class="text-success my-0">Auf Lager</h2>
                             <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
-                                <h2 class="text-warning">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
+                                <h2 class="text-warning my-0">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
                             <?php else: ?>
-                                <h2 class="text-danger">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
+                                <h2 class="text-danger my-0">Nurnoch <?=$product[0]['quantity']?> auf Lager!</h2>
                             <?php endif; ?>
                         </div>
                     </div>
