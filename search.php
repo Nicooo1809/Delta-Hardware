@@ -43,7 +43,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach (array_keys($_GET) as $getindex) {
             if ($getindex != "order" && $getindex != "sortby") {
                 print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
-        } } ?>
+        } } print($_GET["sortby"]); ?>
         <input class="btn btn-outline-primary my-2 me-2" type="Submit" value="Aufsteigend" name="order"></input>
         <input class="btn btn-outline-primary my-2 me-2" type="Submit" value="Absteigend" name="order"></input>
     </form>
@@ -57,7 +57,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php if (empty($product['image'])) {
                                 print('<img src="product_img/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             } else {
-                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                print('<img src="images/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             }?>
                             <h4 class="card-title name"><?=$product['name']?></h4>
                             <p class="card-text price">Preis: 
