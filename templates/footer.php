@@ -10,8 +10,8 @@
 
 
 <?php
-$vernum = "0.0.5";
-$verdate ="07.03.2022";
+$vernum = "0.0.4";
+$verdate ="08.03.2022";
 if(!isMobile()):
 ?>
     <div class="container-fluid py-3" style="height: 59px;">
