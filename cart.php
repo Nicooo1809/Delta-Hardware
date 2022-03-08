@@ -32,7 +32,7 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
-require_once "templates/header.php";
+require_once("templates/header.php");
 ?>
 
 <div class="minheight100 products content-wrapper">

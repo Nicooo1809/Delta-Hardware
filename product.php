@@ -1,7 +1,5 @@
 <?php
-require_once("php/mysql.php");
 require_once("php/functions.php");
-require "templates/header.php";
 // The amounts of products to show on each page
 $num_products_on_each_page = 4;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
@@ -24,10 +22,14 @@ $stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
 $stmt->execute();
+if ($stmt->rowCount() >= 0) {
+    error('Product ID not found');
+}
 // Fetch the products from the database and return the result as an Array
 $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($images);
 #$stmt->debugDumpParams();
+require("templates/header.php");
 ?>
 <?php if (!(isMobile())):?>
 <div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
