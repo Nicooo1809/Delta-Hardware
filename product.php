@@ -33,13 +33,29 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h1><?=$product[0]['name']?></h1>
     <div class="products-wrapper">
         <div class="product">
-            <?php foreach ($images as $image) {
-                print('<img src="product_img/'.$image['img'].'" width="350" alt="'.$product[0]['name'].'">');
-            } 
-            if (!isset($image)) {
-                print('<img src="images/image-not-found.png" width="350" alt="'.$product[0]['name'].'">');
-            }
-            ?>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <?php foreach ($images as $image) {
+                        print('<div class="carousel-item active">');
+                        print('<img src="product_img/'.$image['img'].'" class="d-block w-100" alt="'.$product[0]['name'].'">');
+                        print('</div>');
+                    } 
+                    if (!isset($image)) {
+                        print('<div class="carousel-item active">');
+                        print('<img src="images/image-not-found.png" class="d-block w-100" alt="'.$product[0]['name'].'">');
+                        print('</div>');
+                    }
+                    ?>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
             <span class="price">
                 &euro;<?=$product[0]['price']?>
                 <?php if ($product[0]['rrp'] > 0): ?>
