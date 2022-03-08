@@ -18,9 +18,6 @@ if ($stmt->rowCount() != 1) {
 // Fetch the products from the database and return the result as an Array
 
 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if ($product[0]['visible'] == 0) {
-    error('Product ID wurde nicht gefunden!');
-}
 #print_r($product);
 #$stmt->debugDumpParams();
 
@@ -115,6 +112,9 @@ require("templates/header.php");
                             <?php endif; ?>
                         </div>
                     </div>
+                    <?php if ($product[0]['visible'] == 0): {
+                        error('Product ID wurde nicht gefunden!');
+                    } else: ?>
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
@@ -125,6 +125,7 @@ require("templates/header.php");
                             </form>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
