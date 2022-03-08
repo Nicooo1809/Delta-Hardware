@@ -3,13 +3,13 @@ require_once("php/functions.php");
 $user = check_user();
 require_once "templates/header.php";
 
-if(isset($_GET['action'])) {
-    if($_GET['action'] = 'add') {
-        if(isset($_GET['productid']) and isset($_GET['quantity']) and !empty($_GET['productid']) and !empty($_GET['quantity'])) {
+if(isset($_POST['action'])) {
+    if($_POST['action'] = 'add') {
+        if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
             $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and delivered = 0), ?, ?)');
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
-            $stmt->bindValue(2, $_GET['productid']);
-            $stmt->bindValue(3, $_GET['quantity'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $_POST['productid']);
+            $stmt->bindValue(3, $_POST['quantity'], PDO::PARAM_INT);
             $stmt->execute();
             header("location: cart.php");
             exit;
