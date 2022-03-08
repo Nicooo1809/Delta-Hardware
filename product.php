@@ -113,10 +113,10 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
-                                <label class="text-white mx-2" for="inputAmount">Anzahl:</label>
+                                <label class="text-white" for="inputAmount">Anzahl:</label>
                                 <input class="mx-2" type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
                                 <input class="mx-2" type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
-                                <button class="my-2" type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
+                                <button type="submit" name="action" value="add" class="mx-2 btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
                             </form>
                         </div>
                     </div>
