@@ -18,6 +18,9 @@ if ($stmt->rowCount() != 1) {
 // Fetch the products from the database and return the result as an Array
 
 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if ($product[0]['visible'] == 0) {
+    error('Product ID wurde nicht gefunden!');
+}
 #print_r($product);
 #$stmt->debugDumpParams();
 
