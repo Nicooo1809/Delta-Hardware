@@ -1,4 +1,5 @@
 <?php
+chdir('..');
 require_once("php/functions.php");
 $msg = '';
 // Check if POST data is not empty
