@@ -43,7 +43,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach (array_keys($_GET) as $getindex) {
             if ($getindex != "order" && $getindex != "sortby") {
                 print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
-        } } print($_GET["sortby"]); ?>
+        } } ?>
         <input class="btn btn-outline-primary my-2 me-2" type="Submit" value="Aufsteigend" name="order"></input>
         <input class="btn btn-outline-primary my-2 me-2" type="Submit" value="Absteigend" name="order"></input>
     </form>
