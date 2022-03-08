@@ -3,7 +3,8 @@ require_once("templates/header.php");
 ?>
 
 
-<div class="minheight100" style="background-image: url('/media/RTX_Showcase.jpg');">
+<div class="minheight100 bg-img">
+<div style="width: fit-content;"></div>
 </div>
 <!--
 <div class="minheight100 bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="background-image: url('/media/RTX_Showcase.jpg');">
