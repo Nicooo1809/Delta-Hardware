@@ -118,10 +118,18 @@ require("templates/header.php");
                     <div class="row">
                         <div class="cart">
                             <form action="cart.php" method="post">
-                                <label class="form-control" for="inputAmount">Anzahl:</label>
+                                <div class="input-group mb-3">
+                                    <label class="" for="inputAmount">Anzahl:</label>
+                                    <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
+                                    <input type="number" value="1" min="1" max="<?=$product[0]['quantity']?>" class="form-control" name="quantity" required>
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">Button</button>
+                                </div>
+                                <!--
+                                <label class="" for="inputAmount">Anzahl:</label>
                                 <input class="mx-2" type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
                                 <input class="mx-2 form-control" type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
                                 <button type="submit" name="action" value="add" class="mx-2 btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
+                                -->
                             </form>
                         </div>
                     </div>
