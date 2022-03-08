@@ -14,10 +14,13 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 
 	//Überprüfung des Passworts
 	if ($user !== false && password_verify($passwort, $user['passwort'])) {
+		error_log("1");
 		$_SESSION['userid'] = $user['id'];
 
 		//Möchte der Nutzer angemeldet beleiben?
+		error_log("2");
 		if(isset($_POST['angemeldet_bleiben'])) {
+			error_log("3");
 			$identifier = md5(uniqid());
 			$securitytoken = md5(uniqid());
 				
