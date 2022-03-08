@@ -31,7 +31,6 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php if (!(isMobile())):?>
 <div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
-    <h1 class="text-white pd-3"><?=$product[0]['name']?></h1>
     <div class="row">
         <div class="col col-sm-6">
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -90,12 +89,12 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col">
             <div class="row">
                 <div>
-                    <h2 class="text-white row"><?=$product[0]['name']?></h2>
+                    <h2 class="text-white"><?=$product[0]['name']?></h2>
                     <span class="text-white col">&euro;<?=$product[0]['price']?></span> 
                     <?php if ($product[0]['rrp'] > 0): ?>
                         <span class="text-white col">UVP &euro;<?=$product[0]['rrp']?></span>
                     <?php endif; ?>
-                    <span class="text-white row"><?=$product[0]['desc']?></span>
+                    <p class="text-white"><?=$product[0]['desc']?></p>
                     <?php if ($product[0]['quantity'] <= 5): ?>
                         <i class="fa-solid fa-exclamation row"></i><span class="text-white"> Nur noch <?=$product[0]['quantity']?> auf Lager, jetzt bestellen</span>
                     <?php endif; ?>
