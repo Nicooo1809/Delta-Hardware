@@ -28,7 +28,7 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
-if ($_GET["sortby"] = 'rrp'){
+if ($_GET["sortby"] == 'rrp'){
     print($_GET["sortby"]);
 }
 ?>
