@@ -59,7 +59,7 @@ if ($_GET["sortby"] == 'rrp'){
                             <?php if (empty($product['image'])) {
                                 print('<img src="product_img/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             } else {
-                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                print('<img src="images/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             }?>
                             <h4 class="card-title name"><?=$product['name']?></h4>
                             <p class="card-text price">Preis: 
