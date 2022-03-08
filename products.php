@@ -57,9 +57,9 @@ if ($_GET["sortby"] == 'rrp'){
                     <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
                         <div class="card-body text-white">
                             <?php if (empty($product['image'])) {
-                                print('<img src="product_img/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             } else {
-                                print('<img src="images/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             }?>
                             <h4 class="card-title name"><?=$product['name']?></h4>
                             <p class="card-text price">Preis: 
