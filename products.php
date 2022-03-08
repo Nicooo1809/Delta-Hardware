@@ -28,7 +28,9 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
-print($_GET["sortby"]);
+if ($_GET["sortby"] = 'rrp'){
+    print($_GET["sortby"]);
+}
 ?>
 
 <div class="container-fluid px-3 py-3 products content-wrapper">
