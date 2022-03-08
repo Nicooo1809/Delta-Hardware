@@ -1,4 +1,5 @@
 <?php
+error_log(getcwd());
 require_once("php/functions.php");
 // Get the page via GET request (URL param: page), if non exists default the page to 1
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -14,7 +15,6 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Get the total number of contacts, this is so we can determine whether there should be a next and previous button
 $num_contacts = $pdo->query('SELECT COUNT(*) FROM contacts')->fetchColumn();
 require_once("templates/header.php");
-echo getcwd() . "\n";
 ?>
 
 <div class="content read">
