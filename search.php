@@ -33,7 +33,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="container-fluid px-3 py-3 products content-wrapper">
     <h1 class="text-white">Products</h1>
-    <form action="products.php" method="get" class="mx-0">
+    <form action="search.php" method="get" class="mx-0">
         <select class="form-select me-2" name="sortby">
             <option value="name" <?php if ($_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
             <option value="price" <?php if ($_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
