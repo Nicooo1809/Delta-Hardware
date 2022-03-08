@@ -36,9 +36,9 @@ if(isset($_GET['register'])) {
 	
 	//Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
 	if(!$error) { 
-		$statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-		$result = $statement->execute(array('email' => $email));
-		$user = $statement->fetch();
+		$stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+		$result = $stmt->execute(array('email' => $email));
+		$user = $stmt->fetch();
 		
 		if($user !== false) {
 			echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
@@ -66,9 +66,13 @@ if(isset($_GET['register'])) {
 	if(!$error) {	
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 		
-		$statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
-		$result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
-		
+		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
+		$result = $stmt->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
+
+		$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `delivered`) VALUES ((select id from users where email = ?), '0', '0')");
+		$stmt->bindValue(1, $email);
+		$stmt->execute();
+
 		if(!$result) {
 			$showFormular = false;
 			?>
