@@ -18,7 +18,7 @@ if (isset($_GET["search"])) {
 }
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id ' . $type . $search . $sortsql);
+$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id AND visible = 1' . $type . $search . $sortsql);
 $stmt->execute();
 // Get the total number of products
 $total_products = $stmt->rowCount();
@@ -51,7 +51,6 @@ require_once("templates/header.php");
     <p class="text-white"><?php print($total_products); ?> Products</p>
     <div class="products-wrapper row row-cols-1 row-cols-md-5 g-4">
         <?php foreach ($products as $product): ?>
-            <?php if ($product['visible'] == 1):?>
                 <div class="col">
                     <div class="card prodcard bg-dark">
                         <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
@@ -72,7 +71,6 @@ require_once("templates/header.php");
                         </a>
                     </div>
                 </div>
-            <?php endif; ?>
         <?php endforeach; ?>
     </div>
 </div>
