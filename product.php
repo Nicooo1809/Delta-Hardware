@@ -29,6 +29,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($images);
 #$stmt->debugDumpParams();
 ?>
+<?if (!(isMobile())):?>
 <div class="container-fluid products content-wrapper">
     <h1 class="text-white"><?=$product[0]['name']?></h1>
     <div class="row">
@@ -114,6 +115,9 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </div>
+<?else:?>
+
+<?endif; ?>    
 <?php
 include_once("templates/footer.php")
 ?>
