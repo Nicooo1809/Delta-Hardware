@@ -1,7 +1,5 @@
 <?php
-require_once("php/mysql.php");
 require_once("php/functions.php");
-require "templates/header.php";
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
 if (isset($_GET["sortby"])) {
@@ -31,6 +29,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if ($_GET["sortby"] == 'rrp'){
     print($_GET["sortby"]);
 }
+require_once("templates/header.php");
 ?>
 
 <div class="container-fluid minheight100 px-3 py-3 products content-wrapper">
