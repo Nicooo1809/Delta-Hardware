@@ -29,6 +29,7 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
+print('OLD use product.php');
 ?>
 
 <div class="container-fluid px-3 py-3 products content-wrapper">
