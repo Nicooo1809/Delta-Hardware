@@ -34,7 +34,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="col col-sm-6">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <?php if($images != null):?>
+                <?php if($images == null):?>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                         <img src="images/image-not-found.png" class="img-fluid" alt="<?=$product[0]['name']?>">
