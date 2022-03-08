@@ -64,12 +64,12 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="carousel-inner">
                         <?php $i = 1; foreach ($images as $image) {
                             if ($i == 1) {
-                                print('<div class="carousel-item active">');
+                                print('<div class="carousel-item active" data-bs-interval="10000">');
                                 print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
                                 print('</div>');
                             }
                             else {
-                                print('<div class="carousel-item">');
+                                print('<div class="carousel-item" data-bs-interval="10000">');
                                 print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
                                 print('</div>');
                             }
