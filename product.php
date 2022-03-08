@@ -38,14 +38,14 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php if($images == null):?>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                        <img src="images/image-not-found.png" class="img-fluid" alt="<?=$product[0]['name']?>">
+                        <img src="images/image-not-found.png" class="img-fluid rounded" alt="<?=$product[0]['name']?>">
                         </div>
                     </div>
                 <?php elseif (count($images) == 1):?>
                     <div class="carousel-inner">
                         <?php foreach ($images as $image) {
                                 print('<div class="carousel-item active">');
-                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
                                 print('</div>');
                         } ?>
                     </div>
@@ -65,12 +65,12 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php $i = 1; foreach ($images as $image) {
                             if ($i == 1) {
                                 print('<div class="carousel-item active">');
-                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
                                 print('</div>');
                             }
                             else {
                                 print('<div class="carousel-item">');
-                                print('<img src="product_img/'.$image['img'].'" class="img-fluid" alt="'.$product[0]['name'].'">');
+                                print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
                                 print('</div>');
                             }
                             $i++;
