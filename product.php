@@ -36,7 +36,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach ($images as $image) {
                 print('<img src="product_img/'.$image['img'].'" width="350" alt="'.$product[0]['name'].'">');
             } 
-            if (isset($image)) {
+            if (!isset($image)) {
                 print('<img src="images/image-not-found.png" width="350" alt="'.$product[0]['name'].'">');
             }
             ?>
