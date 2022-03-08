@@ -1,7 +1,6 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-require_once "templates/header.php";
 
 if(isset($_POST['action'])) {
     if($_POST['action'] = 'add') {
@@ -33,6 +32,7 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
+require_once "templates/header.php";
 ?>
 
 <div class="products content-wrapper">
