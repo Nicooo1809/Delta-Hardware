@@ -33,8 +33,8 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
     <div class="row">
         <div class="col col-sm-6">
-            <div class="card bg-dark py-1 px-3">
-                <div class="card-body px-3 py-1">
+            <div class="card bg-dark py-2 px-2">
+                <div class="card-body px-3 py-3">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                         <?php if($images == null):?>
                             <div class="carousel-inner">
@@ -91,8 +91,8 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark px-3">
-                <div class="card-body px-3 py-1">
+            <div class="card bg-dark py-2 px-2">
+                <div class="card-body px-3 py-3">
                     <div class="row">
                         <div>
                             <h2 class="text-white"><?=$product[0]['name']?></h2>
