@@ -49,17 +49,6 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         } ?>
                     </div>
                 <?php elseif (count($images) != 1):?>
-                    <div class="carousel-indicators">
-                    <?php $i = 0; foreach ($images as $image) {
-                        if ($i == 0) {
-                            print('<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Img 1"></button>');
-                        }
-                        else {
-                            print('<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'.$i.'" aria-label="Img'.$i.'"></button>');
-                        }
-                        $i++;
-                    } ?>
-                    </div>
                     <div class="carousel-inner">
                         <?php $i = 1; foreach ($images as $image) {
                             if ($i == 1) {
