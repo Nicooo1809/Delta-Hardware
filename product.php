@@ -89,22 +89,22 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col">
             <div class="products-wrapper">
                 <div class="product">
-                    <span class="price">
+                    <span class="price text-white">
                         &euro;<?=$product[0]['price']?>
                         <?php if ($product[0]['rrp'] > 0): ?>
-                        <span class="rrp">UVP &euro;<?=$product[0]['rrp']?></span>
+                        <span class="rrp text-white">UVP &euro;<?=$product[0]['rrp']?></span>
                         <?php endif; ?>
                         <?php if ($product[0]['quantity'] <= 5): ?>
                             <i class="fa-solid fa-exclamation"></i><span class="amount"> Nur noch <?=$product[0]['quantity']?> auf Lager, jetzt bestellen</span>
                         <?php endif; ?>
                     </span>
-                    <span class="desc"><?=$product[0]['desc']?></span>
+                    <span class="desc text-white"><?=$product[0]['desc']?></span>
                 </div>
             </div>
             <div class="buttons">
                 <div class="cart">
                     <form action="cart.php" method="post">
-                        <label for="inputAmount">Anzahl:</label>
+                        <label for="inputAmount" class="text-white">Anzahl:</label>
                         <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
                         <input type="number" value="1" size="40" maxlength="80" min=1 max="<?=$product[0]['quantity']?>" name="quantity" required>
                         <button type="submit" name="action" value="add" class="btn btn-outline-primary">Zum Warenkorb Hinzufügen</button>
