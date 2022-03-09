@@ -3,7 +3,7 @@ require_once("templates/header.php");
 ?>
 
 <div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog bg-black">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="cookieModalLabel">Mhhh Lecker...</h5>
