@@ -166,7 +166,7 @@ foreach ($products as $product) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; foreach ($products as $product): ?>
+                        <?php $i = 0; foreach ($products as $product): ?>
                         <tr>
                             <th scope="row" class="border-0">
                                 <div class="p-2">
@@ -201,10 +201,10 @@ foreach ($products as $product) {
                                     <button type="submit" name="action" value="del" class="btn btn-primary"></button>
                                 </form>
                             </td>
-                        </tr>
-                        <?php if ($i < $total_products):?>
+                            <?php if ($i < $total_products):?>
                             <hr class="hr-light my-3">
-                        <?php endif; $i++;?>
+                            <?php endif; $i++;?>
+                        </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
