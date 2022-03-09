@@ -128,7 +128,8 @@ foreach ($products as $product) {
 }
 ?>
 
-<div class="container minheight100 products content-wrapper my-3 py-3 px-3 bg-dark rounded">
+<div class="container minheight100 products content-wrapper py-3 px-3 bg-dark rounded">
+    <div class="my-3 bg-dark rounded">
     <h1>Warenkorb</h1>
     <p><?php print($total_products); ?> Produkt(e)</p>
 
@@ -183,6 +184,7 @@ foreach ($products as $product) {
         </a>
         <?php endforeach; ?>
     </div-->
+    </div>
 </div>
 <?php
 include_once("templates/footer.php")
