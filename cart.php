@@ -89,7 +89,6 @@ require_once("templates/header.php");
     <table>
         <thead>
             <tr>
-                <td>#</td>
                 <td>Img</td>
                 <td>Name</td>
                 <td>Price</td>
@@ -100,7 +99,6 @@ require_once("templates/header.php");
         <tbody>
             <?php foreach ($products as $product): ?>
             <tr>
-                <td><?=$product['id']?></td>
                 <td><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
                 <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
                 <td><?=$product['price']?></td>
