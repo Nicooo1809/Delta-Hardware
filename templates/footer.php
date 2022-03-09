@@ -27,7 +27,7 @@ if(!isMobile()):
                 Delta-Hardware
             </div>
             <div class="col text-center">
-                <a href="aboutus.php" class="text-white">Über uns</a>
+                <a href="/aboutus.php" class="text-white">Über uns</a>
             </div>
             <div class="col text-end">
                 Version <?=$vernum?> 

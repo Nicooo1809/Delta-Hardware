@@ -131,7 +131,7 @@ check_user(FALSE);
                 </li>
             </ul> 
 
-            <form class="d-flex" action="products.php">
+            <form class="d-flex" action="/products.php">
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search">
                 <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
             </form>
@@ -144,9 +144,9 @@ check_user(FALSE);
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item " href="internal.php">Intern</a></li>
-                    <li><a class="dropdown-item" href="settings/index.php">Einstellungen</a></li>
-                    <li><a class="dropdown-item" href="logout.php">Abmelden</a></li>
+                    <li><a class="dropdown-item " href="/internal.php">Intern</a></li>
+                    <li><a class="dropdown-item" href="/settings/index.php">Einstellungen</a></li>
+                    <li><a class="dropdown-item" href="/logout.php">Abmelden</a></li>
                 </ul>
             </li>
             </ul>
