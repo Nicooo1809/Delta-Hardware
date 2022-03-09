@@ -4,10 +4,9 @@
     <button type="button" class="btn btn-primary btn-sm acceptcookies">
         Ich stimme zu
     </button>
-</div>
-  
-<script src="/js/cookies.js"></script>
 
+<script src="/js/cookies.js"></script>
+</div>
 
 <?php
 $vernum = "0.0.6";
