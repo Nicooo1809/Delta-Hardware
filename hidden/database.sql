@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 08, 2022 at 09:30 PM
+-- Generation Time: Mar 09, 2022 at 08:51 AM
 -- Server version: 10.5.12-MariaDB-0+deb11u1
 -- PHP Version: 7.4.28
 
@@ -45,6 +45,29 @@ INSERT INTO `orders` (`id`, `kunden_id`, `ordered`, `ordered_date`, `sent`, `sen
 (4, 2, 0, NULL, 0, NULL),
 (6, 3, 0, NULL, 0, NULL),
 (7, 5, 0, NULL, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permission_group`
+--
+
+CREATE TABLE `permission_group` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `modifyUser` tinyint(1) DEFAULT 0,
+  `deleteUser` tinyint(1) DEFAULT 0,
+  `createProduct` tinyint(1) DEFAULT 0,
+  `modifyProduct` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `permission_group`
+--
+
+INSERT INTO `permission_group` (`id`, `name`, `modifyUser`, `deleteUser`, `createProduct`, `modifyProduct`) VALUES
+(1, 'default', 0, 0, 0, 0),
+(2, 'admin', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -151,7 +174,9 @@ INSERT INTO `product_list` (`id`, `list_id`, `product_id`, `quantity`) VALUES
 (15, 1, 1, 200),
 (16, 1, 5, 1),
 (17, 1, 5, 2),
-(18, 1, 3, 10);
+(18, 1, 3, 10),
+(24, 1, 3, 1),
+(25, 6, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +189,7 @@ CREATE TABLE `securitytokens` (
   `user_id` int(10) NOT NULL,
   `identifier` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `securitytoken` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -172,10 +197,9 @@ CREATE TABLE `securitytokens` (
 --
 
 INSERT INTO `securitytokens` (`id`, `user_id`, `identifier`, `securitytoken`, `created_at`) VALUES
-(1, 3, '934d26cdec6a73edc1a83a722047800a', 'f20b4090b40a777e530a85a2ae08643b3e2354a3', '2022-03-08 18:44:57'),
-(2, 1, '7ca107d93b58d594a9d73769a833f08e', 'ad8e8068b17bb3a9ddb9a0972608b8ff0c25aeb7', '2022-03-08 19:15:55'),
-(3, 1, 'eddde59e91d744ad938c4643d801a83c', '1f1153bb3ec341d335269573eae0dad65a0638d6', '2022-03-08 19:16:12'),
-(4, 1, 'ea34344e7e02dabaca0398f04180657c', 'ce22cf8df00cce37b2a0f731bc3a80d508efd784', '2022-03-08 19:17:00');
+(5, 3, 'cabdab583aa4be27614eba1ea75329a2', 'df21c3e0cb55927075d1ab68f1f83db310fa6ab4', '2022-03-09 08:09:23'),
+(6, 1, '04fef56f661f51f6ce00398b6cb8f085', 'e80a28ff6d8123c71ee97a21bcc25ab2b0aeecb2', '2022-03-09 08:09:46'),
+(7, 1, '172d003be4f62a4ec0d42eedede7c865', '9043f9c7867c0ff5933158e816fc939d6fe25a52', '2022-03-09 08:10:11');
 
 -- --------------------------------------------------------
 
@@ -193,18 +217,18 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `passwortcode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `passwortcode_time` timestamp NULL DEFAULT NULL,
-  `admin` tinyint(1) DEFAULT 0
+  `permission_group` int(10) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `created_at`, `updated_at`, `passwortcode`, `passwortcode_time`, `admin`) VALUES
-(1, 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'Vorname', 'Nachname', '2022-02-04 08:57:26', '2022-02-08 11:14:46', NULL, NULL, 0),
-(2, 'ich@paul-vassen.de', '$2y$10$cF/QL88OkKuyizY3e0BwnOeoS0eNpBjPX5ufukqYsDzKZMPyqmatq', 'Paul', 'Vaßen', '2022-02-04 15:34:37', '2022-02-07 06:38:23', NULL, NULL, 0),
-(3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', 'Jan', 'Schniebs', '2022-02-23 07:14:00', '2022-02-23 07:15:50', NULL, NULL, 0),
-(5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', 'Gerhard', 'Einkaufstüte', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 0);
+INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `created_at`, `updated_at`, `passwortcode`, `passwortcode_time`, `permission_group`) VALUES
+(1, 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'Vorname', 'Nachname', '2022-02-04 08:57:26', '2022-02-08 11:14:46', NULL, NULL, 1),
+(2, 'ich@paul-vassen.de', '$2y$10$cF/QL88OkKuyizY3e0BwnOeoS0eNpBjPX5ufukqYsDzKZMPyqmatq', 'Paul', 'Vaßen', '2022-02-04 15:34:37', '2022-03-08 21:57:54', NULL, NULL, 2),
+(3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', 'Jan', 'Schniebs', '2022-02-23 07:14:00', '2022-03-08 21:57:49', NULL, NULL, 2),
+(5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', 'Gerhard', 'Einkaufstüte', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -216,6 +240,12 @@ INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `created_
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kunden_id` (`kunden_id`);
+
+--
+-- Indexes for table `permission_group`
+--
+ALTER TABLE `permission_group`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -256,7 +286,8 @@ ALTER TABLE `securitytokens`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `permission_group` (`permission_group`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -267,6 +298,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `permission_group`
+--
+ALTER TABLE `permission_group`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -290,13 +327,13 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `securitytokens`
 --
 ALTER TABLE `securitytokens`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
