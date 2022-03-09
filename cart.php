@@ -13,6 +13,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            error_log(print_r($product, true));
             
             if (isset($product[0])) {
                 if ($_POST['quantity'] + $product[0]['quantity'] > $product[0]['maxquantity']) {
