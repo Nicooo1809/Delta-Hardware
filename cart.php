@@ -10,9 +10,9 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $_POST['productid']);
             $stmt->bindValue(3, $_POST['quantity'], PDO::PARAM_INT);
             $stmt->execute();
-            #header("location: cart.php");
+            header("location: cart.php");
             exit;
-            $stmt->debugDumpParams();
+            error_log(pdo_debugStrParams($insert));
         } else {
             error('Some informations are missing!');
         }
