@@ -110,6 +110,10 @@ li, a, button {
     background-color: #2d3238 !important;
 }
 
+.custom-dark2 {
+    background-color: #3e444d !important;
+}
+
 .prodcard{
     height: 100% !important; 
 }

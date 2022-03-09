@@ -130,62 +130,41 @@ foreach ($products as $product) {
 
 <div class="container minheight100 products content-wrapper py-3 px-3">
     <div class="py-3 px-3 bg-dark rounded">
-    <h1>Warenkorb</h1>
-    <p><?php print($total_products); ?> Produkt(e)</p>
-
-
-    <table>
-        <thead>
-            <tr>
-                <td>Img</td>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Quantity</td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($products as $product): ?>
-            <tr>
-                <td><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
-                <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
-                <td><?=$product['price']?></td>
-                <td><?=$product['quantity']?></td>
-
-                <td class="actions">
-                    <form action="cart.php" method="post">
-                        <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                        <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
-                        <button type="submit" name="action" value="mod" class="fas fa-pen fa-xs"></button>
-                        <button type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
-                    </form>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <p><?=$summprice?></p>
-
-
-
-
-    <!--div class="products-wrapper">
-        <?php foreach ($products as $product): ?>
-        <a href="product.php?id=<?=$product['product_id']?>" class="product">
-            <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
-            <span class="name"><?=$product['name']?></span>
-            <span class="price">
-                &dollar;<?=$product['price']?>
-                <?php if ($product['rrp'] > 0): ?>
-                <span class="rrp">&dollar;<?=$product['rrp']?></span>
-                <?php endif; ?>
-            </span>
-            <span class="quantity"><?=$product['quantity']?></span>
-        </a>
-        <?php endforeach; ?>
-    </div-->
+        <h1>Warenkorb</h1>
+        <p><?php print($total_products); ?> Produkt(e)</p>
+        <table>
+            <thead>
+                <tr>
+                    <td>Img</td>
+                    <td>Name</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($products as $product): ?>
+                <tr>
+                    <td><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
+                    <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
+                    <td><?=$product['price']?></td>
+                    <td><?=$product['quantity']?></td>
+                    <td class="actions">
+                        <form action="cart.php" method="post">
+                            <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                            <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
+                            <button type="submit" name="action" value="mod" class="fas fa-pen fa-xs"></button>
+                            <button type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
+                        </form>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <p class="custom-dark2">Summe: <?=$summprice?></p>
     </div>
 </div>
+
 <?php
 include_once("templates/footer.php")
 ?>
