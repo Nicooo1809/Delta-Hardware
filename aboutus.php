@@ -7,7 +7,7 @@ require_once("templates/header.php")
     <div class="row no-gutter">
         <div class="col">
             <div class="card bg-dark mx-auto" style="width: 75rem;">
-                <img src="media/who.jpg" class="card-img-top" alt="who">
+                <img src="media/bg-img.jpg" class="card-img-top" alt="we">
                 <div class="card-body">
                     <h1 class="card-title mb-2 text-center">Wer sind wir?</h1>
                     <p class="card-text text-center">
