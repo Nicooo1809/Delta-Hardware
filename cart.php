@@ -21,7 +21,7 @@ if(isset($_POST['action'])) {
         }
     }
     error_log('1');
-    if($_POST['action'] = 'del') {
+    if($_POST['action'] == 'del') {
         error_log('2');
 
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
