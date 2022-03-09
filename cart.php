@@ -145,7 +145,7 @@ foreach ($products as $product) {
             <tbody>
                 <?php foreach ($products as $product): ?>
                 <tr>
-                    <td scope="row"><img class="rounded mx-auto d-block" height="50vh" src="product_img/<?=$product['image']?>" alt="<?=$product['name']?>"></td>
+                    <td scope="row" class="d-flex align-self-center"><img class="rounded mx-auto d-block" height="50vh" src="product_img/<?=$product['image']?>" alt="<?=$product['name']?>"></td>
                     <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
                     <td><?=$product['price']?></td>
                     <td><?=$product['quantity']?></td>
