@@ -6,7 +6,7 @@ error_log(isset($_POST['listid']));
 error_log(empty($_POST['listid']));
 
 if(isset($_POST['action'])) {
-    if($_POST['action'] = 'add') {
+    if($_POST['action'] == 'add') {
         if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
             $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
@@ -20,7 +20,7 @@ if(isset($_POST['action'])) {
             error('Some informations are missing!');
         }
     }
-    if($_POST['action'] = 'del') {
+    if($_POST['action'] == 'del') {
         error_log('hgdfjhds');
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
