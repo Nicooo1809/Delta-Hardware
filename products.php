@@ -49,7 +49,7 @@ require_once("templates/header.php");
         <input class="btn btn-outline-primary my-2 me-2" type="Submit" value="Absteigend" name="order"></input>
     </form>
     <p class="text-white"><?php print($total_products); ?> Products</p>
-    <div class="products-wrapper row row-cols-1 row-cols-md-5 g-4">
+    <div class="products-wrapper row row-cols-1 row-cols-md-4 g-4">
         <?php foreach ($products as $product): ?>
                 <div class="col">
                     <div class="card prodcard bg-dark">
