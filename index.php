@@ -11,7 +11,7 @@ require_once("templates/header.php");
             </div>
             <div class="modal-body text-white bg-dark fw-normal">
                 <div class="px-2">
-                    <h4>Wir verwenden Cookies um folgende Funktion bereitzustellen:</h4>
+                    <h4 class="fw-bold">Wir verwenden Cookies um folgende Funktion bereitzustellen:</h4>
                     <br>
                     <p class="fs-5 cookie-p-text">- Speichern der PHP-Session</p>
                     <p class="fs-5 cookie-p-text">- Angemeldet bleiben</p>
