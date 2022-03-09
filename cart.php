@@ -32,8 +32,8 @@ if(isset($_POST['action'])) {
                 $stmt->execute();
                 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 print_r($product);
-                if ($_POST['quantity'] > $product[0]['maxquantity']) {
-                    $quantity = $product[0]['maxquantity'];
+                if ($_POST['quantity'] > $product[0]['quantity']) {
+                    $quantity = $product[0]['quantity'];
                 } else {
                     $quantity = $_POST['quantity'];
                 }
