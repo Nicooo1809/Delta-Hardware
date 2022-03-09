@@ -20,6 +20,9 @@ if(isset($_POST['action'])) {
                 } else {
                     $quantity = $_POST['quantity'] + $product[0]['quantity'];
                 }
+                if ($quantity < 1) {
+                    $quantity = 1;
+                }
                 $stmt = $pdo->prepare('UPDATE product_list SET quantity = ? WHERE id = ?');
                 $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
                 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
@@ -36,6 +39,9 @@ if(isset($_POST['action'])) {
                     $quantity = $product[0]['quantity'];
                 } else {
                     $quantity = $_POST['quantity'];
+                }
+                if ($quantity < 1) {
+                    $quantity = 1;
                 }
                 $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
                 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
@@ -94,6 +100,9 @@ if(isset($_POST['action'])) {
                 $quantity = $product[0]['maxquantity'];
             } else {
                 $quantity = $_POST['quantity'];
+            }
+            if ($quantity < 1) {
+                $quantity = 1;
             }
             $stmt = $pdo->prepare('UPDATE product_list SET quantity = ? WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
             $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
