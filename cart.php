@@ -157,6 +157,7 @@ foreach ($products as $product) {
                             </div>
                         </tr>
                     </thead>
+
                     <tbody>
                         <?php foreach ($products as $product): ?>
                         <tr>
