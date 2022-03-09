@@ -5,8 +5,8 @@ require_once("templates/header.php");
 <div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-dark">
         <div class="modal-content bg-dark">
-            <div class="modal-header text-white bg-dark">
-                <h4 class="modal-title text-dark fw-bold" id="cookieModalLabel">Mhhh Lecker...</h4>
+            <div class="modal-header bg-dark">
+                <h4 class="modal-title text-white fw-bold" id="cookieModalLabel">Mhhh Lecker...</h4>
                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-white bg-dark fw-normal">
