@@ -10,11 +10,11 @@ if(isset($_POST['action'])) {
             #$stmt = $pdo->prepare('SELECT * FROM product_list where product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
             $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
-            $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+            $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
             error_log(print_r($product, true));
-            
+
             if (isset($product[0])) {
                 if ($_POST['quantity'] + $product[0]['quantity'] > $product[0]['maxquantity']) {
                     $quantity = $product[0]['maxquantity'];
