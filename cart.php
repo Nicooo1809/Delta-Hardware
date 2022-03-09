@@ -167,42 +167,46 @@ foreach ($products as $product) {
                     </thead>
                     <tbody>
                         <?php $i = 0; foreach ($products as $product): ?>
-                        <tr>
-                            <th scope="row" class="border-0">
-                                <div class="p-2">
-                                    <?php if (empty($product['image'])) {
-                                        print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                    } else {
-                                        print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                    }?>
-                                    <div class="ml-3 d-inline-block align-middle">
-                                        <h5 class="mb-0"> 
-                                            <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
-                                        </h5>
-                                    </div>
-                                </div>
-                            </th>
-                            <td class="border-0 align-middle">
-                                <strong><?=$product['price']?></strong>
-                            </td>
-                            <td class="border-0 align-middle">
-                                <strong><?=$product['quantity']?></strong>
-                            </td>
-                            <td class="border-0 align-middle actions">
-                                <form action="cart.php" method="post">
-                                    <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                    <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
-                                    <button type="submit" name="action" value="mod" class="btn btn-primary"></button>
-                                </form>
-                            </td>
-                            <td class="border-0 align-middle actions">
-                                <form action="cart.php" method="post">
-                                    <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                    <button type="submit" name="action" value="del" class="btn btn-primary"></button>
-                                </form>
-                            </td>
-                        </tr>
-                            <hr class="hr-light">
+                            <div>
+                                <tr>
+                                    <th scope="row" class="border-0">
+                                        <div class="p-2">
+                                            <?php if (empty($product['image'])) {
+                                                print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                            } else {
+                                                print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                            }?>
+                                            <div class="ml-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"> 
+                                                    <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td class="border-0 align-middle">
+                                        <strong><?=$product['price']?></strong>
+                                    </td>
+                                    <td class="border-0 align-middle">
+                                        <strong><?=$product['quantity']?></strong>
+                                    </td>
+                                    <td class="border-0 align-middle actions">
+                                        <form action="cart.php" method="post">
+                                            <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                            <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
+                                            <button type="submit" name="action" value="mod" class="btn btn-primary"></button>
+                                        </form>
+                                    </td>
+                                    <td class="border-0 align-middle actions">
+                                        <form action="cart.php" method="post">
+                                            <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                            <button type="submit" name="action" value="del" class="btn btn-primary"></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php if ($i < $total_products):?>
+                                    <hr class="hr-light my-1">
+                                <?php endif; $i++;?>
+                            </div>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
