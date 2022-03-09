@@ -22,7 +22,7 @@ $verdate ="09.03.2022";
 if(!isMobile()):
 ?>
     <footer class="container-fluid footer-footer sticky-bottom footer py-3 bg-dark">
-        <div class="row text-white">
+        <div class="row">
             <div class="col">
                 Delta-Hardware
             </div>
