@@ -7,13 +7,12 @@ if(isset($_POST['action'])) {
         if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
 
             $stmt = $pdo->prepare('SELECT *, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and product_id = ? and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
-            #$stmt = $pdo->prepare('SELECT * FROM product_list where product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
             $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            error_log(print_r($product, true));
+            #error_log(print_r($product, true));
 
             if (isset($product[0])) {
                 if ($_POST['quantity'] + $product[0]['quantity'] > $product[0]['maxquantity']) {
@@ -28,7 +27,15 @@ if(isset($_POST['action'])) {
                 header("location: cart.php");
                 exit;
             } else {
-                $quantity = $_POST['quantity'];
+                $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
+                $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
+                $stmt->execute();
+                $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($_POST['quantity'] > $product[0]['maxquantity']) {
+                    $quantity = $product[0]['maxquantity'];
+                } else {
+                    $quantity = $_POST['quantity'];
+                }
                 $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
                 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
                 $stmt->bindValue(2, $_POST['productid']);
