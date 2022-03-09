@@ -142,7 +142,7 @@ foreach ($products as $product) {
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody class="d-flex align-self-center">
+            <tbody>
                 <?php foreach ($products as $product): ?>
                 <tr>
                     <td scope="row"><img class="rounded mx-auto d-block" height="50vh" src="product_img/<?=$product['image']?>" alt="<?=$product['name']?>"></td>
