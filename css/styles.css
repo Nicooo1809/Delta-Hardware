@@ -127,8 +127,9 @@ li, a, button {
 
 hr {
     border: 0;
-    border-top: 1px solid #32373d;
+    border-top: 1px solid #2e3338;
     width: 80%;
+    justify-content: center;
 }
 
 
