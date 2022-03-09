@@ -1,9 +1,6 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-print_r($_POST);
-error_log(isset($_POST['listid']));
-error_log(empty($_POST['listid']));
 
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'add') {
@@ -30,7 +27,8 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $user['id']);
                     $stmt->execute();
-                    $msg = 'You have deleted the contact!';
+                    header('Location: cart.php');
+                    exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
                     header('Location: cart.php');
@@ -45,6 +43,7 @@ if(isset($_POST['action'])) {
                     <button class="btn btn-outline-primary" type="submit" name="confirm" value="no">No</button>
                 </form>
                 <?php
+                exit;
             }
         } else {
             error('Some informations are missing!');
