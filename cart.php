@@ -66,7 +66,45 @@ require_once("templates/header.php");
 <div class="minheight100 products content-wrapper">
     <h1>Cart</h1>
     <p><?php print($total_products); ?> Products</p>
-    <div class="products-wrapper">
+
+
+    <table>
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Title</td>
+                <td>Created</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($products as $product): ?>
+            <tr>
+                <td><?=$product['id']?></td>
+                <td><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
+                <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
+                <td><?=$product['price']?></td>
+                <td><?=$product['quantity']?></td>
+
+                <td class="actions">
+                    <form action="cart.php" method="post">
+                        <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                        <button type="submit" name="action" value="del"><i class="fas fa-trash fa-xs"></i></button>
+                    </form>
+                    <a href="update.php?id=<?=$product['id']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+
+
+
+    <!--div class="products-wrapper">
         <?php foreach ($products as $product): ?>
         <a href="product.php?id=<?=$product['product_id']?>" class="product">
             <img src="product_img/<?=$product['image']?>" width="200" alt="<?=$product['name']?>">
@@ -80,7 +118,7 @@ require_once("templates/header.php");
             <span class="quantity"><?=$product['quantity']?></span>
         </a>
         <?php endforeach; ?>
-    </div>
+    </div-->
 </div>
 <?php
 include_once("templates/footer.php")
