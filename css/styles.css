@@ -117,19 +117,18 @@ li, a, button {
 
 .modal-header {
     /* border-bottom: 1px solid #32373d !important; */
-    border-bottom: 0px;
+    border-bottom: 0px !important;
 }
 
 .modal-footer {
     /* border-top: 1px solid #32373d !important; */
-    border-top: 0px
+    border-top: 0px !important;
 }
 
 hr {
     border: 0;
     border-top: 1px solid #32373d;
-    margin-left: 5px;
-    margin-right: 5px;
+    width: 80%;
 }
 
 
