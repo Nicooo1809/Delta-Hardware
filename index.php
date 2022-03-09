@@ -9,6 +9,7 @@ require_once("templates/header.php");
                 <h4 class="modal-title text-white fw-bold" id="cookieModalLabel">Mhhh Lecker &#x1F36A;!</h4>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <hr>
             <div class="modal-body text-white bg-dark fw-normal">
                 <div class="px-2">
                     <h4 class="fw-bold">Wir verwenden Cookies um folgende Funktion bereitzustellen:</h4>
