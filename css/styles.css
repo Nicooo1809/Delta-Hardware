@@ -52,17 +52,6 @@ li, a, button {
     min-height: 6vh;
 }
 
-
-
-.bg-img {
-    background-image: url("/media/bg-img.jpg"); /* The image used */
-    background-color: #2d3238; /* Used if the image is unavailable */
-    width: 100%;
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-}
-
 .nav-link {
     font-size: 1.3rem;
 }
@@ -146,3 +135,20 @@ hr {
 .impressum-breite{
     width: 75%;
 }
+
+
+
+
+
+/* INDEX.PHP */
+
+
+
+.bg { 
+    /* The image used */
+    background-image: url("/media/bg-img.jpg");
+    height: 85%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
