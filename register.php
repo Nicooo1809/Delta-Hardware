@@ -143,7 +143,7 @@ if($showFormular) {
 									<input placeholder="Max" type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-group mb-3">
-									<label for="inputNachname" class="custom-control-label text-white">Vorname:</label>
+									<label for="inputNachname" class="custom-control-label text-white">Nachname:</label>
 									<input placeholder="Mustermann" type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-group mb-3">
