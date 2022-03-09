@@ -2,6 +2,8 @@
 require_once("php/functions.php");
 $user = check_user();
 print_r($_POST);
+error_log(isset($_POST['listid']).empty($_POST['listid']));
+
 if(isset($_POST['action'])) {
     if($_POST['action'] = 'add') {
         if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
@@ -18,7 +20,6 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] = 'del') {
-        print(isset($_POST['listid']).empty($_POST['listid']));
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
             if (isset($_POST['confirm']) and empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
