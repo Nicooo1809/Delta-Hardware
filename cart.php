@@ -181,6 +181,9 @@ foreach ($products as $product) {
                                         </h5>
                                     </div>
                                 </div>
+                                <?php if ($i < $total_products):?>
+                                <hr class="hr-light my-3">
+                                <?php endif; $i++;?>
                             </th>
                             <td class="border-0 align-middle">
                                 <strong><?=$product['price']?></strong>
@@ -201,9 +204,6 @@ foreach ($products as $product) {
                                     <button type="submit" name="action" value="del" class="btn btn-primary"></button>
                                 </form>
                             </td>
-                            <?php if ($i < $total_products):?>
-                            <hr class="hr-light my-3">
-                            <?php endif; $i++;?>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
