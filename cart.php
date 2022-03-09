@@ -6,33 +6,25 @@ error_log(isset($_POST['listid']));
 error_log(empty($_POST['listid']));
 
 if(isset($_POST['action'])) {
-    if($_POST['action'] = 'add') {
+    if($_POST['action'] == 'add') {
         if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
             $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['productid']);
             $stmt->bindValue(3, $_POST['quantity'], PDO::PARAM_INT);
             $stmt->execute();
-            error_log(pdo_debugStrParams($stmt));
+            #error_log(pdo_debugStrParams($stmt));
             header("location: cart.php");
             exit;
         } else {
             error('Some informations are missing!');
         }
     }
-    error_log('1');
     if($_POST['action'] == 'del') {
-        error_log('2');
-
+        error_log('hgdfjhds');
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
-            error_log('3');
-
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
-                error_log('4');
-
                 if ($_POST['confirm'] == 'yes') {
-                    error_log('5');
-
                     // User clicked the "Yes" button, delete record
                     $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
                     $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
