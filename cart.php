@@ -17,7 +17,7 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] = 'del') {
-        print_r($_POST);
+        error_log(print_r($_POST));
         if(isset($_POST['listid']) and empty($_POST['listid'])) {
             if (isset($_POST['confirm']) and empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
