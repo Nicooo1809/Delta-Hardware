@@ -9,10 +9,14 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            error_log(print_r($products, true));
-
-            if($_POST['productid'] )
             
+            foreach ($products as $product) {
+                if($_POST['productid'] == $product['product_id']) {
+                    if ($_POST['quantity'] + $product['quantity'] ==) {
+
+                    }
+                }
+            }
             
             $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
