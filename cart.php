@@ -35,6 +35,7 @@ if(isset($_POST['action'])) {
                     exit;
                 }
             } else {
+                require_once("templates/header.php");
                 ?>
                 <form action="cart.php" method="post">
                     <input type="number" value="<?=$_POST['listid']?>" name="listid" style="display: none;" required>
@@ -43,6 +44,7 @@ if(isset($_POST['action'])) {
                     <button class="btn btn-outline-primary" type="submit" name="confirm" value="no">No</button>
                 </form>
                 <?php
+                require_once("templates/footer.php");
                 exit;
             }
         } else {
