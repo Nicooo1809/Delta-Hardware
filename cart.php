@@ -57,6 +57,8 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $_POST['listid'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
+            header('Location: cart.php');
+            exit;
         } else {
             error('Some informations are missing!');
         }
@@ -75,7 +77,7 @@ $total_products = $stmt->rowCount();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
-$stmt->debugDumpParams();
+#$stmt->debugDumpParams();
 require_once("templates/header.php");
 ?>
 
