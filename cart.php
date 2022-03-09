@@ -12,7 +12,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
+            error_log(print_r($products, true));
             foreach ($products as $product) {
                 if($_POST['productid'] == $product['product_id']) {
                     if ($_POST['quantity'] + $product['quantity'] == 1) {
