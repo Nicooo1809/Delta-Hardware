@@ -129,7 +129,7 @@ foreach ($products as $product) {
 ?>
 
 <div class="container minheight100 products content-wrapper py-3 px-3">
-    <div class="my-3 bg-dark rounded">
+    <div class="py-3 px-3 bg-dark rounded">
     <h1>Warenkorb</h1>
     <p><?php print($total_products); ?> Produkt(e)</p>
 
