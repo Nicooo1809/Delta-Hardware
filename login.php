@@ -10,7 +10,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 	$statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
 	$result = $statement->execute(array('email' => $email));
 	$user = $statement->fetch();
-	error_log($user);
+	error_log(str($user));
 
 	//Überprüfung des Passworts
 	if ($user !== false && password_verify($passwort, $user['passwort'])) {
