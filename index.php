@@ -2,7 +2,7 @@
 require_once("templates/header.php");
 ?>
 
-<div class="modal fade bg-dark" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+<div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-dark">
         <div class="modal-content bg-dark">
             <div class="modal-header text-white bg-dark">
