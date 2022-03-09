@@ -2,7 +2,6 @@
 require_once("templates/header.php")
 ?>
 
-<!-- Desktop Devices -->
 <div class="container-fluid minheight100 py-4 px-3">
     <div class="row no-gutter">
         <div class="col">
