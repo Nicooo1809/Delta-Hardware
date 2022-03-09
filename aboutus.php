@@ -3,9 +3,9 @@ require_once("templates/header.php")
 ?>
 
 <!-- Desktop Devices -->
-<div class="container minheight100 row my-3 py-3 px-3 text-center rounded bg-dark">
+<div class="container minheight100 row my-3 py-3 px-3 text-center">
     <div class="col">
-        <div class="card" style="width: 50rem;">
+        <div class="card bg-dark" style="width: 50rem;">
             <div class="card-body">
                 <h1 class="card-title my-0">Wer sind wir?</h1>
                 <p class="card-text">
