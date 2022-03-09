@@ -192,7 +192,7 @@ foreach ($products as $product) {
                                             <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                         </div>
-                                        <div class="col px-3">
+                                        <div class="col-3 px-3">
                                             <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                             <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                         </div>
