@@ -9,6 +9,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            print_r($products);
 
             if($_POST['productid'] )
             
