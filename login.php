@@ -10,7 +10,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 	$statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
 	$result = $statement->execute(array('email' => $email));
 	$user = $statement->fetch();
-	error_log(print_r($user,true));
+	#error_log(print_r($user,true));
 
 	//Überprüfung des Passworts
 	if ($user !== false && password_verify($passwort, $user['passwort'])) {
@@ -25,7 +25,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			$insert->execute(array('user_id' => $user['id'], 'identifier' => $identifier, 'securitytoken' => sha1($securitytoken)));
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
-			error_log(pdo_debugStrParams($insert));
+			#error_log(pdo_debugStrParams($insert));
 		}
 
 		header("location: internal.php");
