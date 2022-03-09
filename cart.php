@@ -202,9 +202,7 @@ foreach ($products as $product) {
                                 </form>
                             </td>
                         </tr>
-                        <?php if ($i < $total_products):?>
                             <hr class="hr-light">
-                        <?php endif; $i++;?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
