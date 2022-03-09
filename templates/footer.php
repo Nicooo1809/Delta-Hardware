@@ -5,6 +5,7 @@
     <button type="button" class="btn btn-outline-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#cookieModal">
         Mehr erfahren
     </button>
+    <div class="vr"></div>
     <button type="button" class="btn btn-primary btn-sm acceptcookies">
         Ich stimme zu
     </button>
@@ -29,7 +30,9 @@ if(!isMobile()):
                 <a href="aboutus.php" class="text-white">Über uns</a>
             </div>
             <div class="col text-end">
-                Version <?=$vernum?> - <?=$verdate?>
+                Version <?=$vernum?> 
+                <div class="vr"></div>
+                 <?=$verdate?>
             </div>
         </div>
     </footer>
