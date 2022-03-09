@@ -25,7 +25,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			$insert->execute(array('user_id' => $user['id'], 'identifier' => $identifier, 'securitytoken' => sha1($securitytoken)));
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
-			error_log($insert->debugDumpParams());
+			error_log(pdo_debugStrParams($insert));
 		}
 
 		header("location: internal.php");
