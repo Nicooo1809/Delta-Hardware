@@ -112,4 +112,12 @@ li, a, button {
 
 .prodcard{
     height: 100% !important; 
-  }
+}
+
+.modal-header {
+    border-bottom: 1px #32373d !important;
+}
+
+.modal-footer {
+    border-top: 1px #32373d !important;
+}
