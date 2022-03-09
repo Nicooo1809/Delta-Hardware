@@ -5,14 +5,18 @@ $user = check_user();
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'add') {
         if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
-            $stmt = $pdo->prepare('SELECT * from product_list ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
+            $stmt = $pdo->prepare('SELECT * FROM product_list where product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
-            $stmt->bindValue(2, $_POST['productid']);
-            $stmt->bindValue(3, $_POST['quantity'], PDO::PARAM_INT);
             $stmt->execute();
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
-            if($_POST['productid'] )
-            
+            foreach ($products as $product) {
+                if($_POST['productid'] == $product['product_id']) {
+                    if ($_POST['quantity'] + $product['quantity'] ==) {
+
+                    }
+                }
+            }
             
             $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);

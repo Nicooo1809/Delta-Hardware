@@ -27,7 +27,8 @@ require_once("templates/header.php");
         </div>
     </div>
 </div>
-
+<div class="minheight100">
+</div>
 <!--
 <div class="bg-image" id="start-img">
 
