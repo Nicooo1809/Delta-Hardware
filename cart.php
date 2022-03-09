@@ -168,6 +168,9 @@ foreach ($products as $product) {
                     <tbody>
                         <?php $i = 0; foreach ($products as $product): ?>
                         <tr>
+                            <?php if ($i < $total_products):?>
+                                <hr class="hr-light my-3">
+                            <?php endif; $i++;?>
                             <th scope="row" class="border-0">
                                 <div class="p-2">
                                     <?php if (empty($product['image'])) {
@@ -181,9 +184,6 @@ foreach ($products as $product) {
                                         </h5>
                                     </div>
                                 </div>
-                                <?php if ($i < $total_products):?>
-                                <hr class="hr-light my-3">
-                                <?php endif; $i++;?>
                             </th>
                             <td class="border-0 align-middle">
                                 <strong><?=$product['price']?></strong>
