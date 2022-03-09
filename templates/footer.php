@@ -7,6 +7,7 @@
 </div>
 <script src="/js/cookies.js"></script>
 
+
 <?php
 $vernum = "0.0.6";
 # Like this, cause we want the Date the current Version was developed, not the current dates
