@@ -132,19 +132,19 @@ foreach ($products as $product) {
     <div class="py-3 px-3 bg-dark rounded">
         <h1>Warenkorb</h1>
         <p><?php print($total_products); ?> Produkt(e)</p>
-        <table>
+        <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <td>Img</td>
-                    <td>Name</td>
-                    <td>Price</td>
-                    <td>Quantity</td>
-                    <td></td>
+                    <td class="col">Img</td>
+                    <td class="col">Name</td>
+                    <td class="col">Price</td>
+                    <td class="col">Quantity</td>
+                    <td class="col"></td>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($products as $product): ?>
-                <tr>
+                <tr class="row">
                     <td><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
                     <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
                     <td><?=$product['price']?></td>
