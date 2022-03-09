@@ -33,7 +33,7 @@ require_once("templates/header.php");
     <div class="view bg">
         <div class="mask rgba-black-light align-items-center">
             <div class="container">
-                <div class="row min-vh-100 justify-content-center align-items-center">
+                <div class="row minimum-vh justify-content-center align-items-center">
                     <div class="col-md-12 mt-1 white-text text-center">
                         <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>Die Neue RTX 3070 Ti</strong></h1>   
                         <hr class="hr-light my-3">
