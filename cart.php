@@ -21,7 +21,12 @@ if(isset($_POST['action'])) {
                 } else {
                     $quantity = $_POST['quantity'] + $product[0]['quantity'];
                 }
-
+                $stmt = $pdo->prepare('UPDATE INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
+                $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
+                $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
+                $stmt->execute();
+                header("location: cart.php");
+                exit;
             } else {
                 $quantity = $_POST['quantity'];
                 $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
