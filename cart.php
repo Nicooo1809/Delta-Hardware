@@ -20,10 +20,19 @@ if(isset($_POST['action'])) {
             error('Some informations are missing!');
         }
     }
+    error_log('1');
     if($_POST['action'] = 'del') {
+        error_log('2');
+
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
-            if (isset($_POST['confirm']) and empty($_POST['confirm'])) {
+            error_log('3');
+
+            if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
+                error_log('4');
+
                 if ($_POST['confirm'] == 'yes') {
+                    error_log('5');
+
                     // User clicked the "Yes" button, delete record
                     $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
                     $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
