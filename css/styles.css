@@ -159,3 +159,7 @@ hr {
 .minimum-vh {
 min-height: 92vh !important;
 }
+
+.carousel-vh {
+    min-height: 92vh !important;
+}
