@@ -31,7 +31,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
                 $stmt->execute();
                 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                print_r($product);
+                #print_r($product);
                 if ($_POST['quantity'] > $product[0]['quantity']) {
                     $quantity = $product[0]['quantity'];
                 } else {
@@ -42,7 +42,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(2, $_POST['productid']);
                 $stmt->bindValue(3, $quantity, PDO::PARAM_INT);
                 $stmt->execute();
-                #header("location: cart.php");
+                header("location: cart.php");
                 exit;
             }
             
