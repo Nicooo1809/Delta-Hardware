@@ -135,16 +135,18 @@ foreach ($products as $product) {
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <td class="col">Img</td>
-                    <td class="col">Name</td>
-                    <td class="col">Price</td>
-                    <td class="col">Quantity</td>
-                    <td class="col"></td>
+                    <th scope="col">#</th>
+                    <th scope="col">Img</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($products as $product): ?>
-                <tr class="row">
+                <tr>
+                    <th scope="row"><?=$product['id']?></th>
                     <td><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
                     <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
                     <td><?=$product['price']?></td>
