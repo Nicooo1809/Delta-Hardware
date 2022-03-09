@@ -86,8 +86,17 @@ if(isset($_POST['action'])) {
     }
     if($_POST['action'] == 'mod') {
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
+            $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
+            $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
+            $stmt->execute();
+            $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($_POST['quantity'] > $product[0]['quantity']) {
+                $quantity = $product[0]['quantity'];
+            } else {
+                $quantity = $_POST['quantity'];
+            }
             $stmt = $pdo->prepare('UPDATE product_list SET quantity = ? WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
-            $stmt->bindValue(1, $_POST['quantity'], PDO::PARAM_INT);
+            $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['listid'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
