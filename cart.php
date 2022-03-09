@@ -168,9 +168,6 @@ foreach ($products as $product) {
                     <tbody>
                         <?php $i = 0; foreach ($products as $product): ?>
                         <tr>
-                            <?php if ($i < $total_products):?>
-                                <hr class="hr-light my-3">
-                            <?php endif; $i++;?>
                             <th scope="row" class="border-0">
                                 <div class="p-2">
                                     <?php if (empty($product['image'])) {
@@ -184,12 +181,21 @@ foreach ($products as $product) {
                                         </h5>
                                     </div>
                                 </div>
+                                <?php if ($i < $total_products):?>
+                                <hr class="hr-light">
+                                <?php endif; $i++;?>
                             </th>
                             <td class="border-0 align-middle">
                                 <strong><?=$product['price']?></strong>
+                                <?php if ($i < $total_products):?>
+                                <hr class="hr-light">
+                                <?php endif; $i++;?>
                             </td>
                             <td class="border-0 align-middle">
                                 <strong><?=$product['quantity']?></strong>
+                                <?php if ($i < $total_products):?>
+                                <hr class="hr-light">
+                                <?php endif; $i++;?>
                             </td>
                             <td class="border-0 align-middle actions">
                                 <form action="cart.php" method="post">
@@ -197,12 +203,18 @@ foreach ($products as $product) {
                                     <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
                                     <button type="submit" name="action" value="mod" class="btn btn-primary"></button>
                                 </form>
+                                <?php if ($i < $total_products):?>
+                                <hr class="hr-light">
+                                <?php endif; $i++;?>
                             </td>
                             <td class="border-0 align-middle actions">
                                 <form action="cart.php" method="post">
                                     <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                     <button type="submit" name="action" value="del" class="btn btn-primary"></button>
                                 </form>
+                                <?php if ($i < $total_products):?>
+                                <hr class="hr-light">
+                                <?php endif; $i++;?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
