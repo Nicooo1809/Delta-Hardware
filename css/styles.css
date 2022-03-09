@@ -113,8 +113,3 @@ li, a, button {
 .prodcard{
     height: 100% !important; 
   }
-
-.products{
-    margin-left: var(--bs-gutter-x,.90rem) !important;
-    margin-right: var(--bs-gutter-x,.90rem) !important;
-}
