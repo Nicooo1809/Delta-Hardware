@@ -51,7 +51,7 @@ require_once("templates/header.php");
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div class="carousel-item active carousel-vh">
                 <img src="/media/bg-img.jpg" class="d-block w-100" alt="NEW RTX">
                 <div class="carousel-caption d-none d-md-block">
                     <div class="col-md-12 mt-1 white-text text-center">
