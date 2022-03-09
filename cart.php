@@ -168,6 +168,9 @@ foreach ($products as $product) {
                     <tbody>
                         <?php $i = 0; foreach ($products as $product): ?>
                         <tr>
+                            <?php if ($i < $total_products):?>
+                                <hr class="hr-light my-3">
+                            <?php endif; $i++;?>
                             <th scope="row" class="border-0">
                                 <div class="p-2">
                                     <?php if (empty($product['image'])) {
@@ -201,9 +204,6 @@ foreach ($products as $product) {
                                     <button type="submit" name="action" value="del" class="btn btn-primary"></button>
                                 </form>
                             </td>
-                            <?php if ($i < $total_products):?>
-                                <hr class="hr-light my-3">
-                            <?php endif; $i++;?>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
