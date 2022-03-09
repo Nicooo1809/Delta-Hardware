@@ -1,5 +1,5 @@
 <div class="alert text-center cookiealert" role="alert">
-    <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten. <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cookieModal">Mehr erfahren</button>
+    <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten. <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cookieModal">Mehr erfahren</button>
   
     <button type="button" class="btn btn-primary btn-sm acceptcookies">
         Ich stimme zu
