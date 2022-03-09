@@ -138,21 +138,23 @@ foreach ($products as $product) {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col" class="border-0 bg-black">
-                                <div class="p-2 px-3 text-uppercase">Produkt</div>
-                            </th>
-                            <th scope="col" class="border-0 bg-black">
-                                <div class="p-2 px-3 text-uppercase">Preis</div>
-                            </th>
-                            <th scope="col" class="border-0 bg-black">
-                                <div class="p-2 px-3 text-uppercase">Menge</div>
-                            </th>
-                            <th scope="col" class="border-0 bg-black">
-                                <div class="p-2 px-3 text-uppercase">Anpassen</div>
-                            </th>
-                            <th scope="col" class="border-0 bg-black">
-                                <div class="p-2 px-3 text-uppercase">Entfernen</div>
-                            </th>
+                            <div class="bg-black rounded">
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Produkt</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Preis</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Menge</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Anpassen</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Entfernen</div>
+                                </th>
+                            </div>
                         </tr>
                     </thead>
                     <tbody>
@@ -160,7 +162,7 @@ foreach ($products as $product) {
                         <tr>
                             <th scope="row" class="border-0">
                                 <div class="p-2">
-                                    <img scr="product_img/<?=$product['image']?>" alt="<?=$product['name']?>" width="70" class="img-fluid rounded shadow-sm">
+                                    <img scr="product_img/<?=$product['image']?>" alt="<?=$product['name']?>" width="70" class="img-fluid rounded shadow-sm"></img>
                                     <div class="ml-3 d-inline-block align-middle">
                                         <h5 class="mb-0"> 
                                             <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
