@@ -86,7 +86,7 @@ if(isset($_POST['action'])) {
     }
     if($_POST['action'] == 'mod') {
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
-            $stmt = $pdo->prepare('select * from products, product_list where products.id = product_list.product_id and product_list.id = ?');
+            $stmt = $pdo->prepare('select *, products.quantity as maxquantity from products, product_list where products.id = product_list.product_id and product_list.id = ?');
             $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
             $stmt->execute();
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
