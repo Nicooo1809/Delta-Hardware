@@ -147,7 +147,7 @@ hr {
 .bg { 
     /* The image used */
     background-image: url("/media/bg-img.jpg");
-    height: 85%; 
+    height: 70%; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
