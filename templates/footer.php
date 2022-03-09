@@ -5,7 +5,6 @@
     <button type="button" class="btn btn-primary btn-sm acceptcookies">
         Ich stimme zu
     </button>
-</div>
 
 <?php
 $vernum = "0.0.6";
