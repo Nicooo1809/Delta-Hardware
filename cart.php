@@ -94,7 +94,6 @@ require_once("templates/header.php");
                         <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                         <button type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
                     </form>
-                    <a href="update.php?id=<?=$product['id']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                 </td>
             </tr>
             <?php endforeach; ?>
