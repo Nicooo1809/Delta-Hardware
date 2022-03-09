@@ -157,13 +157,12 @@ foreach ($products as $product) {
                             </div>
                         </tr>
                     </thead>
-
                     <tbody>
                         <?php foreach ($products as $product): ?>
                         <tr>
                             <th scope="row" class="border-0">
                                 <div class="p-2">
-                                    <img scr="product_img/<?=$product['image']?>" alt="<?=$product['name']?>" width="70" class="img-fluid rounded shadow-sm"></img>
+                                    <img src="product_img/<?=$product['image']?>" alt="<?=$product['name']?>" width="70" class="img-fluid rounded shadow-sm"></img>
                                     <div class="ml-3 d-inline-block align-middle">
                                         <h5 class="mb-0"> 
                                             <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
