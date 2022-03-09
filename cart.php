@@ -145,16 +145,16 @@ foreach ($products as $product) {
             <tbody>
                 <?php foreach ($products as $product): ?>
                 <tr>
-                    <td scope="row"><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
+                    <td scope="row"><img src="product_img/<?=$product['image']?>" height="10%" alt="<?=$product['name']?>"></td>
                     <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
                     <td><?=$product['price']?></td>
                     <td><?=$product['quantity']?></td>
-                    <td class="actions row">
+                    <td class="actions">
                         <form action="cart.php" method="post">
                             <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                            <input class="col" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
-                            <button class="col" type="submit" name="action" value="mod" class="fas fa-pen fa-xs"></button>
-                            <button class="col" type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
+                            <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
+                            <button type="submit" name="action" value="mod" class="fas fa-pen fa-xs"></button>
+                            <button type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
                         </form>
                     </td>
                 </tr>
