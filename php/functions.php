@@ -14,7 +14,7 @@ function check_user($redirect = TRUE) {
 		$statement = $pdo->prepare("SELECT * FROM securitytokens WHERE identifier = ?");
 		$result = $statement->execute(array($identifier));
 		$securitytoken_row = $statement->fetch();
-		error_log($result);
+		error_log($securitytoken_row);
 		print_r($securitytoken_row);
 		if(sha1($securitytoken) !== $securitytoken_row['securitytoken']) {
 			//error('');
