@@ -31,13 +31,13 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #$stmt->debugDumpParams();
 require("templates/header.php");
 ?>
-<div class="container-fluid minheight100 px-3 py-3 product content-wrapper">
-    <?php if (!(isMobile())) {
+<div class="container-fluid minheight100 px-3 py-3 row-cols-1 row-cols-md-5 product content-wrapper">
+    <?/*php if (!(isMobile())) {
     print('
     <div class="row">
         <div class="col col-sm-6">'); }
     else {
-        print('<div class="row py-2 px-2">');}?>
+        print('<div class="row py-2 px-2">');}*/?>
             <div class="card bg-dark py-2 px-2">
                 <div class="card-body px-3 py-3">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -135,11 +135,11 @@ require("templates/header.php");
                     <?php endif; ?>
                 </div>
             </div>
-            <?php if (!(isMobile())) {
+            <?/*php if (!(isMobile())) {
             print('
         </div>
     </div>'); }
-    else { print('</div>'); }?>
+    else { print('</div>'); }*/?>
 </div>
 <?php
 include_once("templates/footer.php")
