@@ -86,8 +86,8 @@ if(isset($_POST['action'])) {
     }
     if($_POST['action'] == 'mod') {
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
-            $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
-            $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
+            $stmt = $pdo->prepare('select * from products, product_list where products.id = product_list.product_id and product_list.id = ?');
+            $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
             $stmt->execute();
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($_POST['quantity'] > $product[0]['quantity']) {
