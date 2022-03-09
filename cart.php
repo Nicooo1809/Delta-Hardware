@@ -128,9 +128,9 @@ foreach ($products as $product) {
 }
 ?>
 
-<div class="minheight100 products content-wrapper">
-    <h1>Cart</h1>
-    <p><?php print($total_products); ?> Products</p>
+<div class="container-fluid minheight100 products content-wrapper">
+    <h1>Warenkorb</h1>
+    <p><?php print($total_products); ?> Produkt(e)</p>
 
 
     <table>
