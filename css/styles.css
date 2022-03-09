@@ -113,3 +113,8 @@ li, a, button {
 .prodcard{
     height: 100% !important; 
   }
+
+.products{
+    padding-left: var(--bs-gutter-x,.90rem) !important;
+    padding-right: var(--bs-gutter-x,.90rem) !important;
+}
