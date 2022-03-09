@@ -38,7 +38,9 @@ li, a, button {
     text-decoration: none !important;
 }
 
-
+:-webkit-scrollbar {
+    display: none;
+}
 
 .header-header {
     min-height: 8vh;

@@ -45,6 +45,8 @@ require_once("templates/header.php");
 
 <main>
 
+
+<!--
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -78,9 +80,9 @@ require_once("templates/header.php");
             <span class="visually-hidden">Nächste</span>
         </button>
     </div>
+-->
 
 
-<!--
     <div class="view bg">
         <div class="mask rgba-black-light align-items-center">
             <div class="container">
@@ -94,9 +96,6 @@ require_once("templates/header.php");
             </div>
         </div>
     </div>
-    
-    
--->
 </main>
 
 
