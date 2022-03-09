@@ -192,17 +192,15 @@ foreach ($products as $product) {
                                     <form action="cart.php" method="post">
                                         <div class="input-group">
                                             <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                            <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
-                                            <button type="submit" name="action" value="mod" class="btn btn-outline-primary"></button>
+                                            <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
+                                            <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                         </div>
                                     </form>
                                 </td>
                                 <td class="border-0 align-middle actions">
                                     <form action="cart.php" method="post">
-                                        <div class="input-group">
-                                            <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                            <button type="submit" name="action" value="del" class="btn btn-outline-primary"></button>
-                                        </div>
+                                        <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                        <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                     </form>
                                 </td>
                             </tr>
