@@ -135,7 +135,6 @@ foreach ($products as $product) {
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Img</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
@@ -146,17 +145,16 @@ foreach ($products as $product) {
             <tbody>
                 <?php foreach ($products as $product): ?>
                 <tr>
-                    <th scope="row"><?=$product['id']?></th>
-                    <td><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
+                    <td scope="row"><img src="product_img/<?=$product['image']?>" width="50" alt="<?=$product['name']?>"></td>
                     <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
                     <td><?=$product['price']?></td>
                     <td><?=$product['quantity']?></td>
-                    <td class="actions">
+                    <td class="actions row">
                         <form action="cart.php" method="post">
                             <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                            <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
-                            <button type="submit" name="action" value="mod" class="fas fa-pen fa-xs"></button>
-                            <button type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
+                            <input class="col" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
+                            <button class="col" type="submit" name="action" value="mod" class="fas fa-pen fa-xs"></button>
+                            <button class="col" type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
                         </form>
                     </td>
                 </tr>
