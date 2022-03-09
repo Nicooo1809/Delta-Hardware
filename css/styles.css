@@ -136,7 +136,10 @@ hr {
     width: 75%;
 }
 
-
+.hr-light {
+    border-top: 3px solid #fff;
+    width: 80px;
+}
 
 
 
