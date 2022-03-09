@@ -18,14 +18,13 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'del') {
-        error_log('hgdfjhds');
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
                     // User clicked the "Yes" button, delete record
                     $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
                     $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
-                    $stmt->bindValue(2, $user['id']);
+                    $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
                     $stmt->execute();
                     header('Location: cart.php');
                     exit;
@@ -51,11 +50,22 @@ if(isset($_POST['action'])) {
             error('Some informations are missing!');
         }
     }
+    if($_POST['action'] == 'mod') {
+        if(isset($_POST['listid']) and !empty($_POST['listid'])) {
+            $stmt = $pdo->prepare('UPDATE product_list SET quantity = ? WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
+            $stmt->bindValue(1, $_POST['quantity'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $_POST['listid'], PDO::PARAM_INT);
+            $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
+            $stmt->execute();
+        } else {
+            error('Some informations are missing!');
+        }
+    }
 }
 
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT *,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products, product_list where product_list.product_id = products.id and products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
+$stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, (SELECT quantity From products WHERE products.product_id=products.id LIMIT 1) as maxquantity FROM products_types, products, product_list where product_list.product_id = products.id and products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
 #$stmt = $pdo->prepare('SELECT *,(SELECT quantity From product_list WHERE product_list.product_id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? )) LIMIT 1) AS quantity,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? ))');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
@@ -97,6 +107,8 @@ require_once("templates/header.php");
                 <td class="actions">
                     <form action="cart.php" method="post">
                         <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                        <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
+                        <button type="submit" name="action" value="mod" class="fas fa-pen fa-xs"></button>
                         <button type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
                     </form>
                 </td>
