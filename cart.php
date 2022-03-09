@@ -90,8 +90,8 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
             $stmt->execute();
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if ($_POST['quantity'] > $product[0]['quantity']) {
-                $quantity = $product[0]['quantity'];
+            if ($_POST['quantity'] > $product[0]['maxquantity']) {
+                $quantity = $product[0]['maxquantity'];
             } else {
                 $quantity = $_POST['quantity'];
             }
