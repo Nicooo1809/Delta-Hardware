@@ -130,6 +130,7 @@ hr {
     border-top: 1px solid #2c3035 !important;
     width: 90% !important;
     margin: auto !important;
+    opacity: .25 !important;
 }
 
 
