@@ -3,9 +3,9 @@ require_once("templates/header.php")
 ?>
 
 <!-- Desktop Devices -->
-<div class="container minheight100 my-3 py-3 px-3">
+<div class="container-fluid my-3 py-3 px-3">
     <div class="row no-gutter">
-        <div class="d-flex align-items-center">
+        <div class="minheight100 d-flex align-items-center">
             <div class="col">
                 <div class="card bg-dark" style="width: 50rem;">
                     <div class="card-body">
