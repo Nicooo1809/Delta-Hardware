@@ -133,7 +133,6 @@ foreach ($products as $product) {
         <div class="py-3 px-3 bg-dark rounded">
             <h1>Warenkorb</h1>
             <p><?php print($total_products); ?> Produkt(e)</p>
-
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -158,11 +157,15 @@ foreach ($products as $product) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($products as $product): ?>
+                        <?php $i = 1; foreach ($products as $product): ?>
                         <tr>
                             <th scope="row" class="border-0">
                                 <div class="p-2">
-                                    <img src="product_img/<?=$product['image']?>" alt="<?=$product['name']?>" width="70" class="img-fluid rounded shadow-sm"></img>
+                                    <?php if (empty($product['image'])) {
+                                        print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                    } else {
+                                        print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                    }?>
                                     <div class="ml-3 d-inline-block align-middle">
                                         <h5 class="mb-0"> 
                                             <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
@@ -190,6 +193,9 @@ foreach ($products as $product) {
                                 </form>
                             </td>
                         </tr>
+                        <?php if ($i < $total_products):?>
+                            <hr class="hr-light my-3">
+                        <?php endif; $i++;?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
