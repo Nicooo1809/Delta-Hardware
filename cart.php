@@ -2,7 +2,8 @@
 require_once("php/functions.php");
 $user = check_user();
 print_r($_POST);
-error_log(isset($_POST['listid']).empty($_POST['listid']));
+error_log(isset($_POST['listid']));
+error_log(empty($_POST['listid']));
 
 if(isset($_POST['action'])) {
     if($_POST['action'] = 'add') {
