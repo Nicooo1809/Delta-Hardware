@@ -1,9 +1,27 @@
 <div class="alert text-center cookiealert" role="alert">
-    <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten. <a href="/cookies" target="_blank">Mehr erfahren</a>
+    <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten. <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cookieModal">Mehr erfahren</button>
   
     <button type="button" class="btn btn-primary btn-sm acceptcookies">
         Ich stimme zu
     </button>
+
+
+    <div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cookieModalLabel">Mhhh lecker...</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Test
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
   
 <script src="/js/cookies.js"></script>
