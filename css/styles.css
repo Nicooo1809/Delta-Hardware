@@ -121,3 +121,7 @@ li, a, button {
 .modal-footer {
     border-top: 1px solid #32373d !important;
 }
+
+.cookie-p-text {
+    margin-bottom: 0 !important;
+}

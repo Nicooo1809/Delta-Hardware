@@ -12,11 +12,12 @@ require_once("templates/header.php");
             <div class="modal-body text-white bg-dark fw-normal">
                 <div class="px-2">
                     <h4>Wir verwenden Cookies um folgende Funktion bereitzustellen:</h4>
-                    <p class="fs-5">- Speichern der PHP-Session</p>
-                    <p class="fs-5">- Angemeldet bleiben</p>
-                    <p class="fs-5">- Speichern der Cookie-Einstellung</p>
+                    <br>
+                    <p class="fs-5 cookie-p-text">- Speichern der PHP-Session</p>
+                    <p class="fs-5 cookie-p-text">- Angemeldet bleiben</p>
+                    <p class="fs-5 cookie-p-text">- Speichern der Cookie-Einstellung</p>
 
-                    <p class="fw-light fs-5">Ihre Cookie-Einstellung wird gespeichert.</p>
+                    <p class="fw-light fs-6 cookie-p-text">Ihre Cookie-Einstellung wird gespeichert.</p>
                 </div>
             </div>
             <div class="modal-footer text-white bg-dark fw-bold">
