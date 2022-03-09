@@ -129,41 +129,73 @@ foreach ($products as $product) {
 ?>
 
 <div class="container minheight100 products content-wrapper py-3 px-3">
-    <div class="py-3 px-3 bg-dark rounded">
-        <h1>Warenkorb</h1>
-        <p><?php print($total_products); ?> Produkt(e)</p>
-        <table class="table table-dark table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Img</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($products as $product): ?>
-                <tr>
-                    <td scope="row"><img class="rounded mx-auto d-block" height="50vh" src="product_img/<?=$product['image']?>" alt="<?=$product['name']?>"></td>
-                    <td><a href="product.php?id=<?=$product['product_id']?>"><?=$product['name']?></a></td>
-                    <td><?=$product['price']?></td>
-                    <td><?=$product['quantity']?></td>
-                    <td class="actions">
-                        <form action="cart.php" method="post">
-                            <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                            <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
-                            <button type="submit" name="action" value="mod" class="fas fa-pen fa-xs"></button>
-                            <button type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
-                        </form>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <p class="">Summe: <?=$summprice?></p>
+    <div class="row">
+        <div class="py-3 px-3 bg-dark rounded">
+            <h1>Warenkorb</h1>
+            <p><?php print($total_products); ?> Produkt(e)</p>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="border-0 bg-black">
+                                <div class="p-2 px-3 text-uppercase">Produkt</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-black">
+                                <div class="p-2 px-3 text-uppercase">Preis</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-black">
+                                <div class="p-2 px-3 text-uppercase">Menge</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-black">
+                                <div class="p-2 px-3 text-uppercase">Anpassen</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-black">
+                                <div class="p-2 px-3 text-uppercase">Entfernen</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($products as $product): ?>
+                        <tr>
+                            <th scope="row" class="border-0">
+                                <div class="p-2">
+                                    <img scr="product_img/<?=$product['image']?>" alt="<?=$product['name']?>" width="70" class="img-fluid rounded shadow-sm">
+                                    <div class="ml-3 d-inline-block align-middle">
+                                        <h5 class="mb-0"> 
+                                            <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </th>
+                            <td class="border-0 align-middle">
+                                <strong><?=$product['price']?></strong>
+                            </td>
+                            <td class="border-0 align-middle">
+                                <strong><?=$product['quantity']?></strong>
+                            </td>
+                            <td class="border-0 align-middle actions">
+                                <form action="cart.php" method="post">
+                                    <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                    <input type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control" name="quantity" required>
+                                    <button type="submit" name="action" value="mod" class="btn btn-primary"></button>
+                                </form>
+                            </td>
+                            <td class="border-0 align-middle actions">
+                                <form action="cart.php" method="post">
+                                    <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                    <button type="submit" name="action" value="del" class="btn btn-primary"></button>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>         
+            <p class="">Summe: <?=$summprice?></p>
+        </div>
     </div>
-</div>
+</div> 
 
 <?php
 include_once("templates/footer.php")
