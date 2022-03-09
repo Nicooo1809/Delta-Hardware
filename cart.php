@@ -122,6 +122,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
 require_once("templates/header.php");
+$summprice = 0;
+foreach ($products as $product) {
+    $summprice = $summprice + ($product['price'] * $product['quantity']);
+}
 ?>
 
 <div class="minheight100 products content-wrapper">
@@ -159,6 +163,7 @@ require_once("templates/header.php");
             <?php endforeach; ?>
         </tbody>
     </table>
+    <p><?=$summprice?></p>
 
 
 
