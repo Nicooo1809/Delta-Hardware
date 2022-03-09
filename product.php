@@ -127,7 +127,7 @@ require("templates/header.php");
                                     <span class="input-group-text">Anzahl:</span>
                                     <input type="number" value="<?=$product[0]['id']?>" name="productid" style="display: none;" required>
                                     <input type="number" value="1" min="1" max="<?=$product[0]['quantity']?>" class="form-control" name="quantity" required>
-                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">Zum Warenkorb Hinzufügen</button>
+                                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Zum Warenkorb Hinzufügen</button>
                                 </div>
                             </form>
                         </div>
