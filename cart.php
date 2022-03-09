@@ -16,6 +16,35 @@ if(isset($_POST['action'])) {
             error('Some informations are missing!');
         }
     }
+    if($_POST['action'] = 'del') {
+        if(isset($_POST['listid']) and !empty($_POST['listid'])) {
+            if (isset($_POST['confirm']) and empty($_POST['confirm'])) {
+                if ($_POST['confirm'] == 'yes') {
+                    // User clicked the "Yes" button, delete record
+                    $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
+                    $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
+                    $stmt->bindValue(2, $user['id']);
+                    $stmt->execute();
+                    $msg = 'You have deleted the contact!';
+                } else {
+                    // User clicked the "No" button, redirect them back to the read page
+                    header('Location: cart.php');
+                    exit;
+                }
+            } else {
+                ?>
+                <form action="cart.php" method="post">
+                    <input type="number" value="<?=$_POST['listid']?>" name="listid" style="display: none;" required>
+                    <input type="text" value="del" name="action" style="display: none;" required>
+                    <button class="btn btn-outline-primary" type="submit" name="confirm" value="yes">Yes</button>
+                    <button class="btn btn-outline-primary" type="submit" name="confirm" value="no">No</button>
+                </form>
+                <?php
+            }
+        } else {
+            error('Some informations are missing!');
+        }
+    }
 }
 
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
