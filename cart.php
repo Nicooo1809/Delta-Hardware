@@ -161,7 +161,7 @@ foreach ($products as $product) {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <p class="custom-dark2">Summe: <?=$summprice?></p>
+        <p class="">Summe: <?=$summprice?></p>
     </div>
 </div>
 
