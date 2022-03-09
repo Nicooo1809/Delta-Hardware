@@ -38,6 +38,7 @@ require("templates/header.php");
         <div class="col col-sm-6">'); }
     else {
         print('<div class="row py-2 px-2">');}*/?>
+        <div class="col">
             <div class="card bg-dark py-2 px-2">
                 <div class="card-body px-3 py-3">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -94,6 +95,7 @@ require("templates/header.php");
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <div class="col">
             <div class="card bg-dark py-2 px-2">
