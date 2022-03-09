@@ -31,7 +31,7 @@ if(!isMobile()):
             </div>
             <div class="col text-end">
                 Version <?=$vernum?> 
-                <div class="vr"></div>
+                <div class="vr mx-1"></div>
                  <?=$verdate?>
             </div>
         </div>
