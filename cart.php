@@ -72,11 +72,10 @@ require_once("templates/header.php");
         <thead>
             <tr>
                 <td>#</td>
+                <td>Img</td>
                 <td>Name</td>
-                <td>Email</td>
-                <td>Phone</td>
-                <td>Title</td>
-                <td>Created</td>
+                <td>Price</td>
+                <td>Quantity</td>
                 <td></td>
             </tr>
         </thead>
@@ -92,7 +91,7 @@ require_once("templates/header.php");
                 <td class="actions">
                     <form action="cart.php" method="post">
                         <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                        <button type="submit" name="action" value="del"><i class="fas fa-trash fa-xs"></i></button>
+                        <button type="submit" name="action" value="del" class="fas fa-trash fa-xs"></button>
                     </form>
                     <a href="update.php?id=<?=$product['id']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                 </td>
