@@ -6,7 +6,7 @@
         Mehr erfahren
     </button>
     <div class="vr"></div>
-    <button type="button" class="btn btn-primary btn-sm acceptcookies">
+    <button type="button" class="btn btn-primary btn-sm acceptcookies ms-3">
         Ich stimme zu
     </button>
 </div>
