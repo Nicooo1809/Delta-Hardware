@@ -128,7 +128,7 @@ foreach ($products as $product) {
 }
 ?>
 
-<div class="container-fluid minheight100 products content-wrapper">
+<div class="container-fluid minheight100 products content-wrapper py-3 bg-dark rounded">
     <h1>Warenkorb</h1>
     <p><?php print($total_products); ?> Produkt(e)</p>
 
