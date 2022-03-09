@@ -12,7 +12,7 @@ if(isset($_POST['action'])) {
             $stmt->execute();
             header("location: cart.php");
             exit;
-            #$stmt->debugDumpParams();
+            $stmt->debugDumpParams();
         } else {
             error('Some informations are missing!');
         }
