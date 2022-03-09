@@ -150,17 +150,14 @@ foreach ($products as $product) {
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Produkt</div>
                                 </th>
-                                <th scope="col" class="border-0">
+                                <th scope="col" class="border-0 text-center">
                                     <div class="p-2 px-3 text-uppercase">Preis</div>
                                 </th>
-                                <th scope="col" class="border-0">
+                                <th scope="col" class="border-0 text-center">
                                     <div class="p-2 px-3 text-uppercase">Menge</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Anpassen</div>
-                                </th>
-                                <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Entfernen</div>
+                                    <div class="p-2 px-3 text-uppercase"></div>
                                 </th>
                             </div>
                         </tr>
@@ -182,25 +179,23 @@ foreach ($products as $product) {
                                         </div>
                                     </div>
                                 </th>
-                                <td class="border-0 align-middle">
+                                <td class="border-0 align-middle text-center">
                                     <strong><?=$product['price']?></strong>
                                 </td>
-                                <td class="border-0 align-middle">
+                                <td class="border-0 align-middle text-center">
                                     <strong><?=$product['quantity']?></strong>
                                 </td>
                                 <td class="border-0 align-middle actions">
-                                    <form action="cart.php row g-1" method="post">
-                                        <div class="col input-group">
+                                    <form action="cart.php me-2" method="post">
+                                        <div class="px-3 input-group">
                                             <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                             <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                         </div>
                                     </form>
-                                </td>
-                                <td class="border-0 align-middle actions">
                                     <form action="cart.php" method="post">
                                         <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                        <button type="submit" name="action" value="del" class="btn btn-outline-primary mx-auto">Löschen</button>
+                                        <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                     </form>
                                 </td>
                             </tr>
