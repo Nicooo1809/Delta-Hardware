@@ -21,6 +21,7 @@ require_once("templates/header.php");
                     <p class="fw-light fs-6 cookie-p-text">Ihre Cookie-Einstellung wird gespeichert.</p>
                 </div>
             </div>
+            <hr>
             <div class="modal-footer text-white bg-dark fw-bold">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
             </div>
