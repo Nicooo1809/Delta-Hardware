@@ -152,3 +152,7 @@ hr {
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  .minimum-vh {
+    min-height: 92vh!important;
+  }
