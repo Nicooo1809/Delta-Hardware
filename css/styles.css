@@ -115,9 +115,9 @@ li, a, button {
 }
 
 .modal-header {
-    border-bottom: 1px #32373d !important;
+    border-bottom: 1px solid #32373d !important;
 }
 
 .modal-footer {
-    border-top: 1px #32373d !important;
+    border-top: 1px solid #32373d !important;
 }
