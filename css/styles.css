@@ -156,6 +156,6 @@ hr {
     background-size: cover;
   }
 
-  .minimum-vh {
-    min-height: 92vh!important;
-  }
+.minimum-vh {
+min-height: 92vh!important;
+}

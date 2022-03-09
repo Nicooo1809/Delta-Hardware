@@ -45,7 +45,7 @@ require_once("templates/header.php");
 
 <main>
 
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions minimum-vh" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -54,12 +54,15 @@ require_once("templates/header.php");
             <div class="carousel-item active">
                 <img src="/media/bg-img.jpg" class="d-block w-100" alt="NEW RTX">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Erlebe RayTracing</h5>
-                    <p>Maximale Performance für das bestmögliche Spielerlebnis!</p>
+                    <div class="col-md-12 mt-1 white-text text-center">
+                        <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>Die Neue RTX 3070 Ti</strong></h1>   
+                        <hr class="hr-light my-3">
+                        <h5 class="text-uppercase mb-4 white-text"><strong>Jetzt kaufen!</strong></h5>
+                    </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/media/GeForce RTX 3080 Ti _ The New Gaming Flagship.mp4" class="d-block w-100" alt="RTX Video">
+                <img src="/media/bg-img.jpg" class="d-block w-100" alt="RTX2">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Second slide label</h5>
                     <p>Some representative placeholder content for the second slide.</p>
