@@ -2,7 +2,7 @@
     <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten.
   
 
-    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cookieModal">
+    <button type="button" class="btn btn-outline-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#cookieModal">
         Mehr erfahren
     </button>
     <button type="button" class="btn btn-primary btn-sm acceptcookies">
