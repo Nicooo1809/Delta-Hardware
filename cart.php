@@ -133,7 +133,6 @@ foreach ($products as $product) {
         <div class="py-3 px-3 bg-dark rounded">
             <h1>Warenkorb</h1>
             <p><?php print($total_products); ?> Produkt(e)</p>
-
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -158,7 +157,7 @@ foreach ($products as $product) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($products as $product): ?>
+                        <?php $i = 1; foreach ($products as $product): ?>
                         <tr>
                             <th scope="row" class="border-0">
                                 <div class="p-2">
@@ -194,6 +193,9 @@ foreach ($products as $product) {
                                 </form>
                             </td>
                         </tr>
+                        <?php if ($i < $total_products):?>
+                            <hr class="hr-light my-3">
+                        <?php endif; $i++;?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
