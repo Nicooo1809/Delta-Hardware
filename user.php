@@ -110,12 +110,12 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
+        $save = $_GET['save'];
+        $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
+        $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+        $stmt->execute();
+        $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(isset($_GET['save'])) {
-            $save = $_GET['save'];
-            $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
-            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-            $stmt->execute();
-            $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if($save == 'personal_data') {
                 $vorname = trim($_POST['vorname']);
                 $nachname = trim($_POST['nachname']);
