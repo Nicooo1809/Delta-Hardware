@@ -150,78 +150,112 @@ foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
 }
 ?>
-
-<div class="container minheight100 products content-wrapper py-3 px-3">
-    <div class="row">
-        <div class="py-3 px-3 bg-dark rounded">
-            <h1>Warenkorb</h1>
-            <p><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <div class="bg-black rounded">
-                                <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Produkt</div>
-                                </th>
-                                <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase">Preis</div>
-                                </th>
-                                <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase">Menge</div>
-                                </th>
-                                <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase"></div>
-                                </th>
-                            </div>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($products as $product): ?>
+<?php if (!isMobile()): ?>
+    <div class="container minheight100 products content-wrapper py-3 px-3">
+        <div class="row">
+            <div class="py-3 px-3 bg-dark rounded">
+                <h1>Warenkorb</h1>
+                <p><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <th scope="row" class="border-0">
-                                    <div class="p-2">
-                                        <?php if (empty($product['image'])) {
-                                            print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                        } else {
-                                            print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                        }?>
-                                        <div class="ms-3 d-inline-block align-middle">
-                                            <h5 class="mb-0"> 
-                                                <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </th>
-                                <td class="border-0 align-middle text-center">
-                                    <span><?=$product['price']?>&euro;</span>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <span><?=$product['quantity']?></span>
-                                </td>
-                                <td class="border-0 align-middle actions">
-                                    <form action="cart.php" method="post" class="row me-2">
-                                        <div class="col px-3 input-group">
-                                            <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                            <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
-                                            <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
-                                        </div>
-                                        <div class="col-3 px-3">
-                                            <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                            <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
-                                        </div>
-                                    </form>
-                                </td>
+                                <div class="bg-black rounded">
+                                    <th scope="col" class="border-0">
+                                        <div class="p-2 px-3 text-uppercase">Produkt</div>
+                                    </th>
+                                    <th scope="col" class="border-0 text-center">
+                                        <div class="p-2 px-3 text-uppercase">Preis</div>
+                                    </th>
+                                    <th scope="col" class="border-0 text-center">
+                                        <div class="p-2 px-3 text-uppercase">Menge</div>
+                                    </th>
+                                    <th scope="col" class="border-0">
+                                        <div class="p-2 px-3 text-uppercase"></div>
+                                    </th>
+                                </div>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>         
-            <strong>Summe: <?=$summprice?>&euro;</strong>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($products as $product): ?>
+                                <tr>
+                                    <th scope="row" class="border-0">
+                                        <div class="p-2">
+                                            <?php if (empty($product['image'])) {
+                                                print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                            } else {
+                                                print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                            }?>
+                                            <div class="ms-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"> 
+                                                    <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td class="border-0 align-middle text-center">
+                                        <span><?=$product['price']?>&euro;</span>
+                                    </td>
+                                    <td class="border-0 align-middle text-center">
+                                        <span><?=$product['quantity']?></span>
+                                    </td>
+                                    <td class="border-0 align-middle actions">
+                                        <form action="cart.php" method="post" class="row me-2">
+                                            <div class="col px-3 input-group">
+                                                <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                                <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
+                                                <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                                            </div>
+                                            <div class="col-3 px-3">
+                                                <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                                <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>         
+                <strong>Summe: <?=$summprice?>&euro;</strong>
+            </div>
+        </div>
+    </div> 
+<?php else: ?>
+    <div class="container minheight100 products content-wrapper py-3 px-3">
+        <div class="row row-cols-1 row-cols-md-1 g-4">
+            <?php foreach ($products as $product): ?>
+                <div class="col">
+                    <div class="card bg-dark">
+                        <div class="card-body text-white">
+                            <?php if (empty($product['image'])) {
+                                print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                            } else {
+                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                            }?>
+                            <h4 class="card-title name"><?=$product['name']?></h4>
+                            <span class="card-text price">
+                                Preis: &euro;<?=$product['price']?><br>
+                                Menge: <?=$product['quantity']?>
+                            </span>
+                            <form action="cart.php" method="post" class="row me-2">
+                                <div class="col px-3 input-group">
+                                    <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                    <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
+                                    <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                                </div>
+                                <div class="col-3 px-3">
+                                    <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                    <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
-</div> 
-
+<?php endif; ?>
 <?php
 include_once("templates/footer.php")
 ?>
