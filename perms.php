@@ -157,12 +157,12 @@ if(isset($_POST['action'])) {
 $stmt = $pdo->prepare('desc permission_group');
 $stmt->execute();
 $permissiontypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->debugDumpParams();
 
 $stmt = $pdo->prepare('SELECT * FROM permission_group');
 $stmt->execute();
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
-#$stmt->debugDumpParams();
 require_once("templates/header.php");
 ?>
 
