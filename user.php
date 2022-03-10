@@ -163,7 +163,7 @@ if(isset($_POST['action'])) {
                                     }
                                 }?>
                             </select>
-                        <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
+                        <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
                         <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                     </form>
                 </div>
