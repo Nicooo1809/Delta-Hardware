@@ -1,7 +1,7 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-error_log(pdo_debugStrParams($stmt));
+error_log(print_r($user,true));
 if ($user['showUser'] == 0) {
     error('Permission denied!');
 }
