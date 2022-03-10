@@ -154,13 +154,14 @@ if(isset($_POST['action'])) {
 
 // SELECT * ,(SELECT img From user1_images WHERE user1_images.user1_id=users.id ORDER BY id LIMIT 1) as image FROM users_types, users where users.user1_type_id = users_types.id and users_types.type = 'Test' ORDER BY users.name DESC;
 // Select users ordered by the date added
-$stmt = $pdo->prepare('SELECT * FROM users, permission_group where users.permission_group = permission_group.id ORDER BY users.id');
+$stmt = $pdo->prepare('desc permission_group');
 $stmt->execute();
-// Get the total number of users
-$total_users = $stmt->rowCount();
-// Fetch the users from the database and return the result as an Array
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($users);
+$permissiontypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $pdo->prepare('SELECT * FROM permission_group');
+$stmt->execute();
+$permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+#print_r($permissiontypes);
 #$stmt->debugDumpParams();
 require_once("templates/header.php");
 ?>
@@ -175,16 +176,16 @@ require_once("templates/header.php");
                     <thead>
                         <tr>
                             <div class="bg-black rounded">
-                                <?php foreach ($permissions as $permission) {?>
+                                <?php foreach ($permissiontypes as $permissiontype) {?>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase"><?=$permission['Name']?></div>
+                                    <div class="p-2 px-3 text-uppercase"><?=$permission['Field']?></div>
                                 </th>
                                 <?php }?>
                             </div>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($users as $user1): ?>
+                        <?php foreach ($permissions as $user1): ?>
                             <tr>
                                 <td class="border-0 align-middle">
                                     <strong><?=$user1['id']?></strong>
