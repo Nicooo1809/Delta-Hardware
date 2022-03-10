@@ -115,7 +115,7 @@ if(isset($_POST['action'])) {
                         <label for="inputNachname">Nachname</label>
                         <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
                         <label for="inputEmail">E-Mail</label>
-                        <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
+                        <input class="form-control bl-100" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
                         <label for="inputPasswortNeu">Neues Passwort</label>
                         <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
                         <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
