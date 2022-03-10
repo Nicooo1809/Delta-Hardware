@@ -132,9 +132,11 @@ if(isset($_POST['action'])) {
                                 }?>
                             </select>
                         <?php }?>
-                        <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
-                        <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
-                        <button type="submit" name="action" value="cancel" class="btn btn-outline-primary">Abrechen</button>
+                        <div class="input-group">
+                            <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
+                            <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                            <button type="submit" name="action" value="cancel" class="btn btn-outline-primary">Abrechen</button>
+                        </div>
                     </form>
                 </div>
             </div>
