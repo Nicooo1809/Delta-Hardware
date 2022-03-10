@@ -145,15 +145,15 @@ if(isset($_POST['action'])) {
             <div>
                     <form action="user.php" method="post">
                         <label for="inputVorname">Vorname</label>
-                        <input id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
+                        <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
                         <label for="inputNachname">Nachname</label>
-                        <input id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
+                        <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
                         <label for="inputEmail">E-Mail</label>
-                        <input id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
+                        <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
                         <label for="inputPasswortNeu">Neues Passwort</label>
-                        <input id="inputPasswortNeu" name="passwortNeu" type="password" required>
+                        <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password" required>
                         <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
-                        <input id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
+                        <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
                         <label for="permissions">Permissions</label>
                             <select id="permissions" name="permissions">
                                 <?php foreach ($permissions as $permission) {
