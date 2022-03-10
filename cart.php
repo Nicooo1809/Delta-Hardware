@@ -194,10 +194,10 @@ foreach ($products as $product) {
                                     </div>
                                 </th>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$product['price']?>&euro;</strong>
+                                    <span><?=$product['price']?>&euro;</span>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$product['quantity']?></strong>
+                                    <span><?=$product['quantity']?></span>
                                 </td>
                                 <td class="border-0 align-middle actions">
                                     <form action="cart.php" method="post" class="row me-2">
