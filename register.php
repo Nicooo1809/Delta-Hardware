@@ -74,7 +74,7 @@ if(isset($_GET['register'])) {
 			$result = $stmt->execute();
 		}
 
-		if(!$result) {
+		if($result) {
 			$showFormular = false;
 			?>
 			<div class="container minheight100">
