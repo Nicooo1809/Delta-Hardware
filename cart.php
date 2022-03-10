@@ -238,7 +238,7 @@ foreach ($products as $product) {
                                 Preis: &euro;<?=$product['price']?><br>
                                 Menge: <?=$product['quantity']?>
                             </span>
-                            <form action="cart.php" method="post" class="py-2 row me-2">
+                            <form action="cart.php" method="post" class="text-center py-2 row me-2">
                                 <div class="col-8 px-1 py-2 input-group">
                                     <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                     <span class="input-group-text">Menge:</span>
