@@ -192,12 +192,11 @@ require_once("templates/header.php");
                                 </td>
                                 <td class="border-0 align-middle actions">
                                     <form action="cart.php" method="post" class="row me-2">
-                                        <div class="col px-3 input-group">
+                                        <div class="col px-3">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
-                                            <input class="form-control" type="number" value="<?=$user1['quantity']?>" min="1" max="<?=$user1['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
-                                            <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                                            <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                         </div>
-                                        <div class="col-3 px-3">
+                                        <div class="col-7 px-3">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                         </div>
