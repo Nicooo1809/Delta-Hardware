@@ -186,7 +186,7 @@ foreach ($products as $product) {
                                         } else {
                                             print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
                                         }?>
-                                        <div class="ml-3 d-inline-block align-middle">
+                                        <div class="ms-3 d-inline-block align-middle">
                                             <h5 class="mb-0"> 
                                                 <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
                                             </h5>
