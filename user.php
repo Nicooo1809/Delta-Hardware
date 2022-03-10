@@ -221,15 +221,15 @@ require_once("templates/header.php");
                                 <?php if ($user['modifyUser'] == 1 or $user['modifyUser'] == 1) {?>
                                         <form action="user.php" method="post" class="">
                                             <?php if ($user['modifyUser'] == 1) {?>
-                                            <div>
+                                            <div class="px-1 py-1">
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
-                                                <button type="submit" name="action" value="mod" class="btn btn-outline-primary px-1">Editieren</button>
+                                                <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                             </div>
                                             <?php }?>
                                             <?php if ($user['deleteUser'] == 1) {?>
-                                            <div>
+                                            <div class="px-1 py-1">
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
-                                                <button type="submit" name="action" value="del" class="btn btn-outline-primary px-1">Löschen</button>
+                                                <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                             <?php }?>
                                             </div>
                                         </form>
