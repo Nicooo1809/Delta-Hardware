@@ -119,7 +119,7 @@ if(isset($_POST['action'])) {
         $stmt->execute();
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         error_log('1');
-        if(true) {
+        if(isset($_POST['vorname'])) {
             error_log('2');
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
                 error_log('3');
@@ -135,7 +135,7 @@ if(isset($_POST['action'])) {
                 header("location: user.php");
                 exit;
             }
-        }
+        } else {
         require_once("templates/header.php");
         ?>
         <div class="minheight100 mx-3 my-3">
@@ -172,30 +172,7 @@ if(isset($_POST['action'])) {
         <?php 
         include_once("templates/footer.php");
         exit;
-
-        if(isset($_POST['userid']) and !empty($_POST['userid'])) {
-            $stmt = $pdo->prepare('select *, users.quantity as maxquantity from users, user1_list where users.id = user1_list.user1_id and user1_list.id = ?');
-            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-            $stmt->execute();
-            $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if ($_POST['quantity'] > $user1[0]['maxquantity']) {
-                $quantity = $user1[0]['maxquantity'];
-            } else {
-                $quantity = $_POST['quantity'];
-            }
-            if ($quantity < 1) {
-                $quantity = 1;
-            }
-            $stmt = $pdo->prepare('UPDATE user1_list SET quantity = ? WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
-            $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
-            $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
-            $stmt->bindValue(3, $_POST['userid'], PDO::PARAM_INT);
-            $stmt->execute();
-            header('Location: user.php');
-            exit;
-        } else {
-            error('Some informations are missing!');
-        }
+        } 
     }
 }
 
