@@ -75,7 +75,7 @@ if(isset($_POST['action'])) {
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
-                $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now(), WHERE users.id = ?");
+                $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE users.id = ?");
                 $stmt->bindValue(1, $_POST['email']);
                 $stmt->bindValue(2, $_POST['vorname']);
                 $stmt->bindValue(3, $_POST['nachname']);
