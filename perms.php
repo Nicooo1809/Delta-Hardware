@@ -194,7 +194,7 @@ require_once("templates/header.php");
                                     <div class="p-2 px-3 text-uppercase">Modify Product</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Delete Product</div>
+                                    <div class="p-2 px-3 text-uppercase">Modify Product</div>
                                 </th>
                             </div>
                         </tr>
@@ -278,7 +278,7 @@ require_once("templates/header.php");
                                     <strong><?=$user1['modifyProduct']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['deleteProduct']==1 ? 'selected':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyProduct']==1 ? 'selected':'')?> disabled></strong>
                                 </td>
                             </tr>
                             <?php }?>
