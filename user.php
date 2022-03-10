@@ -125,8 +125,8 @@ if(isset($_POST['action'])) {
                 } else {
                     $statement = $pdo->prepare("UPDATE users SET vorname = :vorname, nachname = :nachname, updated_at=NOW() WHERE id = :userid");
                     $result = $statement->execute(array('vorname' => $vorname, 'nachname'=> $nachname, 'userid' => $_POST['userid'] ));
-                    $user[0]['vorname'] = $vorname;
-                    $user[0]['nachname'] = $nachname;
+                    $user1[0]['vorname'] = $vorname;
+                    $user1[0]['nachname'] = $nachname;
                     header("location: user.php");
                     exit;
                 }
@@ -139,12 +139,12 @@ if(isset($_POST['action'])) {
                     error("Die eingegebenen E-Mail-Adressen stimmten nicht überein.");
                 } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     error("Bitte eine gültige E-Mail-Adresse eingeben.");
-                } else if(!password_verify($passwort, $user[0]['passwort'])) {
+                } else if(!password_verify($passwort, $user1[0]['passwort'])) {
                     error("Bitte korrektes Passwort eingeben.");
                 } else {
                     $statement = $pdo->prepare("UPDATE users SET email = :email WHERE id = :userid");
                     $result = $statement->execute(array('email' => $email, 'userid' => $_POST['userid'] ));
-                    $user[0]['email'] = $email;
+                    $user1[0]['email'] = $email;
                     header("location: user.php");
                     exit;
                 }
@@ -158,7 +158,7 @@ if(isset($_POST['action'])) {
                     error("Die eingegebenen Passwörter stimmten nicht überein.");
                 } else if($passwortNeu == "") {
                     error("Das Passwort darf nicht leer sein.");
-                } else if(!password_verify($passwortAlt, $user[0]['passwort'])) {
+                } else if(!password_verify($passwortAlt, $user1[0]['passwort'])) {
                     error("Bitte korrektes Passwort eingeben.");
                 } else {
                     $passwort_hash = password_hash($passwortNeu, PASSWORD_DEFAULT);
@@ -194,10 +194,10 @@ if(isset($_POST['action'])) {
                     <br>
                     <form action="?save=personal_data" method="post">
                         <label for="inputVorname">Vorname</label>
-                        <input id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user[0]['vorname']); ?>" required>
+                        <input id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user1[0]['vorname']); ?>" required>
 
                         <label for="inputNachname">Nachname</label>
-                        <input id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user[0]['nachname']); ?>" required>
+                        <input id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user1[0]['nachname']); ?>" required>
 
                     <button type="submit" class="btn btn-outline-primary">Speichern</button>
                     </form>
@@ -224,7 +224,7 @@ if(isset($_POST['action'])) {
                         <input id="inputPasswort" name="passwort" type="password" required>
 
                         <label for="inputEmail">E-Mail</label>
-                    <input id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user[0]['email']); ?>" required>
+                    <input id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user1[0]['email']); ?>" required>
 
                         <label for="inputEmail2">E-Mail (wiederholen)</label>
                     <input id="inputEmail2" name="email2" type="email"  required>
