@@ -195,7 +195,7 @@ require_once("templates/header.php");
                                 </th>
                                 <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify Product</div>
+                                    <div class="p-2 px-3 text-uppercase"></div>
                                 </th>
                                 <?php }?>
                             </div>
