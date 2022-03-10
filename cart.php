@@ -241,6 +241,7 @@ foreach ($products as $product) {
                             <form action="cart.php" method="post" class="py-2 row me-2">
                                 <div class="col-8 px-1 py-2 input-group">
                                     <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                    <span class="input-group-text">Menge:</span>
                                     <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
                                     <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                 </div>
