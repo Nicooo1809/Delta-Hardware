@@ -1,7 +1,7 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-
+error_log(print_r($_POST, true));
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'add') {
         if(isset($_POST['user1id']) and isset($_POST['quantity']) and !empty($_POST['user1id']) and !empty($_POST['quantity'])) {
