@@ -192,7 +192,7 @@ require_once("templates/header.php");
                                 </td>
                                 <td class="border-0 align-middle actions">
                                     <form action="cart.php" method="post" class="row me-2">
-                                        <div class="col-3 px-3">
+                                        <div class="col px-3">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                         </div>
