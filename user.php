@@ -1,7 +1,7 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-error_log(print_r($user,true));
+#error_log(print_r($user,true));
 if ($user['showUser'] != 1) {
     error('Permission denied!');
 }
@@ -74,33 +74,34 @@ if(isset($_POST['action'])) {
         $stmt->execute();
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
+            $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE users.id = ?");
+            $stmt->bindValue(1, $_POST['email']);
+            $stmt->bindValue(2, $_POST['vorname']);
+            $stmt->bindValue(3, $_POST['nachname']);
+            $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
+            $stmt->execute();
+            error_log(pdo_debugStrParams($stmt));
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
-                $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now(), WHERE users.id = ?");
-                $stmt->bindValue(1, $_POST['email']);
-                $stmt->bindValue(2, $_POST['vorname']);
-                $stmt->bindValue(3, $_POST['nachname']);
-                $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
-                $stmt->execute();
                 if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
                     $stmt = $pdo->prepare("UPDATE users SET passwort = ?, updated_at = now() WHERE users.id = ?");
                     $stmt->bindValue(1, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $stmt->execute();
                 }
-                if ($user['modifyUserPerms'] != 1) {
-                    error('Permission denied!');
-                } else {
-                    if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
-                        $stmt = $pdo->prepare("UPDATE users SET permission_group = ?, updated_at = now() WHERE users.id = ?");
-                        $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
-                        $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
-                        $stmt->execute();
-                    }
-                }
-                #error_log(pdo_debugStrParams($stmt));
-                header("location: user.php");
-                exit;
+            } else {
+                error('Password not equal!');
             }
+            if ($user['modifyUserPerms'] == 1) {
+                if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
+                    $stmt = $pdo->prepare("UPDATE users SET permission_group = ?, updated_at = now() WHERE users.id = ?");
+                    $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
+                    $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt->execute();
+                }
+            }
+            #error_log(pdo_debugStrParams($stmt));
+            header("location: user.php");
+            exit;
         } else {
         require_once("templates/header.php");
         ?>
@@ -119,7 +120,7 @@ if(isset($_POST['action'])) {
                         <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
                         <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
                         <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
-                        <?php if ($user['modifyUserPerms'] != 1) {?>
+                        <?php if ($user['modifyUserPerms'] == 1) {?>
                         <label for="permissions">Permissions</label>
                             <select class="form-select" id="permissions" name="permissions">
                                 <?php foreach ($permissions as $permission) {
@@ -209,16 +210,22 @@ require_once("templates/header.php");
                                     <strong><?=$user1['created_at']?></strong>
                                 </td>
                                 <td class="border-0 align-middle actions">
+                                <?php if ($user['modifyUser'] == 1 or $user['modifyUser'] == 1) {?>
                                     <form action="user.php" method="post" class="row me-2">
+                                        <?php if ($user['modifyUser'] == 1) {?>
                                         <div class="col px-3">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                         </div>
+                                        <?php }?>
+                                        <?php if ($user['deleteUser'] == 1) {?>
                                         <div class="col-7 px-3">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                         </div>
+                                        <?php }?>
                                     </form>
+                                    <?php }?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
