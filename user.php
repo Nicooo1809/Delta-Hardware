@@ -111,22 +111,24 @@ if(isset($_POST['action'])) {
     }
     if($_POST['action'] == 'mod') {
         $save = $_GET['save'];
+        error_log('1');
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
         $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
         $stmt->execute();
         $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(isset($_GET['save'])) {
+            error_log('2');
             if($save == 'personal_data') {
                 $vorname = trim($_POST['vorname']);
                 $nachname = trim($_POST['nachname']);
-                
+                error_log('3');
                 if($vorname == "" || $nachname == "") {
+                    error_log('4');
                     error( "Bitte Vor- und Nachname ausfüllen.");
                 } else {
+                    error_log('5');
                     $statement = $pdo->prepare("UPDATE users SET vorname = :vorname, nachname = :nachname, updated_at=NOW() WHERE id = :userid");
                     $result = $statement->execute(array('vorname' => $vorname, 'nachname'=> $nachname, 'userid' => $_POST['userid'] ));
-                    $user1[0]['vorname'] = $vorname;
-                    $user1[0]['nachname'] = $nachname;
                     header("location: user.php");
                     exit;
                 }
