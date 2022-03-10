@@ -43,7 +43,7 @@ function check_user($redirect = TRUE) {
 			return FALSE;
 		}
 	} else {
-		$stmt = $pdo->prepare("SELECT * FROM permissions_group, users WHERE users.permission_group = permission_group.id and users.id = ?");
+		$stmt = $pdo->prepare("SELECT * FROM permission_group, users WHERE users.permission_group = permission_group.id and users.id = ?");
 		$stmt->bindValue(1, $_SESSION['userid'], PDO::PARAM_INT);
 		$user = $stmt->fetch();
 		return $user;
