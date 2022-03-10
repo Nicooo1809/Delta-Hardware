@@ -119,7 +119,7 @@ if(isset($_POST['action'])) {
         $stmt->execute();
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         error_log('1');
-        if(isset($_POST['vorname'])) {
+        if(true) {
             error_log('2');
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
                 error_log('3');
