@@ -76,21 +76,23 @@ if(isset($_POST['action'])) {
             } else {
                 require_once("templates/header.php");
                 ?>
-                <div class="container-fluid minheight100 py-4 px-3">
-                    <div class="row no-gutter">
-                        <div class="col">
-                            <div class="card bg-dark text-center mx-auto" style="width: 75%;">
-                                <div class="card-body">
-                                    <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
-                                    <p class="text-center">
-                                        <div>
-                                        <form action="cart.php" method="post">
-                                            <input type="number" value="<?=$_POST['listid']?>" name="listid" style="display: none;" required>
-                                            <input type="text" value="del" name="action" style="display: none;" required>
-                                            <button class="btn btn-outline-primary" type="submit" name="confirm" value="yes">Yes</button>
-                                            <button class="btn btn-outline-primary" type="submit" name="confirm" value="no">No</button>
-                                        </form>
-                                    </p>
+                <div class="minheight100">
+                    <div class="container-fluid py-4 px-3">
+                        <div class="row no-gutter">
+                            <div class="col">
+                                <div class="card bg-dark text-center mx-auto" style="width: 75%;">
+                                    <div class="card-body">
+                                        <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
+                                        <p class="text-center">
+                                            <div>
+                                            <form action="cart.php" method="post">
+                                                <input type="number" value="<?=$_POST['listid']?>" name="listid" style="display: none;" required>
+                                                <input type="text" value="del" name="action" style="display: none;" required>
+                                                <button class="btn btn-outline-primary mx-3" type="submit" name="confirm" value="yes">Yes</button>
+                                                <button class="btn btn-outline-primary mx-3" type="submit" name="confirm" value="no">No</button>
+                                            </form>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
