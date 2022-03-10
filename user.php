@@ -211,7 +211,7 @@ require_once("templates/header.php");
                                 <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['nachname']?></strong>
                                 </td>
-                                <td class="border-0 align-middle bl-80 text-center">
+                                <td class="border-0 align-middle bl-100 text-center">
                                     <strong><a href="mailto:<?=$user1['email']?>"><?=$user1['email']?></a></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
