@@ -154,6 +154,9 @@ require_once("templates/header.php");
                     <thead>
                         <tr>
                             <div class="bg-black rounded">
+                            <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">#</div>
+                                </th>
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Vorname</div>
                                 </th>
