@@ -254,28 +254,28 @@ require_once("templates/header.php");
                             <?php } else {?>
                             <tr>
                                 <td class="border-0 align-middle">
-                                    <strong><?=$user1['id']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['id']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['name']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['name']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['showUser']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['showUser']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['modifyUser']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyUser']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['modifyUserPerms']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyUserPerms']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['deleteUser']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['deleteUser']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['createProduct']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['createProduct']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['modifyProduct']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyProduct']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyProduct']==1 ? 'checked':'')?> disabled></strong>
