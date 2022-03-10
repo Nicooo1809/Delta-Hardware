@@ -118,9 +118,11 @@ if(isset($_POST['action'])) {
         $stmt = $pdo->prepare('SELECT * FROM permission_group');
         $stmt->execute();
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        error_log('1');
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email']) and !empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
+            error_log('2');
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
+                error_log('3');
                 $stmt = $pdo->prepare("UPDATE users SET email = ?, passwort = ?, vorname = ?, nachname = ?, updated_at = now(), permission_group = ? WHERE users.id = ?");
                 $stmt->bindValue(1, $_POST['email']);
                 $stmt->bindValue(2, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
