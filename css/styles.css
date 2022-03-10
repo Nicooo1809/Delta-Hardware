@@ -38,15 +38,17 @@ li, a, button {
     text-decoration: none !important;
 }
 
+.bl-80 {
+    max-width:80px;
+    word-wrap:break-word;
+}
+
 .bl-100 {
     max-width:100px;
     word-wrap:break-word;
 }
 
-.bl-200 {
-    max-width:200px;
-    word-wrap:break-word;
-}
+
 
 span, div, i {
     color: #ffffff;

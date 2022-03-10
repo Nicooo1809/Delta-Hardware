@@ -115,7 +115,7 @@ if(isset($_POST['action'])) {
                         <label for="inputNachname">Nachname</label>
                         <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
                         <label for="inputEmail">E-Mail</label>
-                        <input class="form-control bl-100" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
+                        <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
                         <label for="inputPasswortNeu">Neues Passwort</label>
                         <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
                         <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
@@ -178,7 +178,7 @@ require_once("templates/header.php");
                             <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">#</div>
                                 </th>
-                                <th scope="col" class="border-0">
+                                <th scope="col" class="border-0 text-center">
                                     <div class="p-2 px-3 text-uppercase">Vorname</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
@@ -188,10 +188,13 @@ require_once("templates/header.php");
                                     <div class="p-2 px-3 text-uppercase">E-Mail</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase">Permission Group</div>
+                                    <div class="p-2 px-3 text-uppercase">Rechte</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Created</div>
+                                    <div class="p-2 px-3 text-uppercase">Erstellt</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase"></div>
                                 </th>
                             </div>
                         </tr>
@@ -199,7 +202,7 @@ require_once("templates/header.php");
                     <tbody>
                         <?php foreach ($users as $user1): ?>
                             <tr>
-                                <td class="border-0 align-middle text-center">
+                                <td class="border-0 align-middle">
                                     <strong><?=$user1['id']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
@@ -208,7 +211,7 @@ require_once("templates/header.php");
                                 <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['nachname']?></strong>
                                 </td>
-                                <td class="border-0 align-middle text-center">
+                                <td class="border-0 align-middle bl-80 text-center">
                                     <strong><a href="mailto:<?=$user1['email']?>"><?=$user1['email']?></a></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
