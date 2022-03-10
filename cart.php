@@ -224,9 +224,13 @@ foreach ($products as $product) {
 <?php else: ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row row-cols-1 row-cols-md-1 g-3">
-            <div class="mx-auto py-3 bg-dark rounded">
-                    <h1>Warenkorb</h1>
-                    <p><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
+            <div class="col">
+                <div class="card mx-auto bg-dark">
+                    <div class="card-body">
+                        <h2 class="card-title name">Warenkorb</h2>
+                        <p class="card-text"><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
+                    </div>
+                </div>
             </div>
             <?php foreach ($products as $product): ?>
                 <div class="col">
@@ -258,8 +262,13 @@ foreach ($products as $product) {
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class="mx-auto  py-3 bg-dark rounded">
-                <strong>Summe: <?=$summprice?>&euro;</strong>
+            <div class="col">
+                <div class="card mx-auto bg-dark">
+                    <div class="card-body">
+                        <h2 class="card-title name">Summe:</h2>
+                        <strong class="card-text"><?=$summprice?>&euro;</strong>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
