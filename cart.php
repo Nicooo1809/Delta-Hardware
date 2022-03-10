@@ -194,7 +194,7 @@ foreach ($products as $product) {
                                     </div>
                                 </th>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$product['price']?></strong>
+                                    <strong><?=$product['price']?>&euro;</strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><?=$product['quantity']?></strong>
@@ -217,7 +217,7 @@ foreach ($products as $product) {
                     </tbody>
                 </table>
             </div>         
-            <strong>Summe: <?=$summprice?></strong>
+            <strong>Summe: <?=$summprice?>&euro;</strong>
         </div>
     </div>
 </div> 
