@@ -17,7 +17,7 @@ $user = check_user();
 					Hallo <?=$user['vorname']?>,<br>
 					Herzlich Willkommen im internen Bereich!<br>
 				</span>
-				<button type="button" href="logout.php" class="py-2 btn btn-outline-primary">Abmelden</button>
+				<button type="button" href="logout.php" class="btn btn-outline-primary my-2">Abmelden</button>
 			</div>
 		</div>
 	</div>
