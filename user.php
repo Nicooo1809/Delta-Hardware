@@ -74,32 +74,32 @@ if(isset($_POST['action'])) {
         $stmt->execute();
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
+            $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE users.id = ?");
+            $stmt->bindValue(1, $_POST['email']);
+            $stmt->bindValue(2, $_POST['vorname']);
+            $stmt->bindValue(3, $_POST['nachname']);
+            $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
+            $stmt->execute();
+            error_log(pdo_debugStrParams($stmt));
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
-                $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE users.id = ?");
-                $stmt->bindValue(1, $_POST['email']);
-                $stmt->bindValue(2, $_POST['vorname']);
-                $stmt->bindValue(3, $_POST['nachname']);
-                $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
-                $stmt->execute();
-                error_log(pdo_debugStrParams($stmt));
                 if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
                     $stmt = $pdo->prepare("UPDATE users SET passwort = ?, updated_at = now() WHERE users.id = ?");
                     $stmt->bindValue(1, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $stmt->execute();
                 }
-                if ($user['modifyUserPerms'] == 1) {
-                    if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
-                        $stmt = $pdo->prepare("UPDATE users SET permission_group = ?, updated_at = now() WHERE users.id = ?");
-                        $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
-                        $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
-                        $stmt->execute();
-                    }
-                }
-                #error_log(pdo_debugStrParams($stmt));
-                header("location: user.php");
-                exit;
             }
+            if ($user['modifyUserPerms'] == 1) {
+                if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
+                    $stmt = $pdo->prepare("UPDATE users SET permission_group = ?, updated_at = now() WHERE users.id = ?");
+                    $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
+                    $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt->execute();
+                }
+            }
+            #error_log(pdo_debugStrParams($stmt));
+            header("location: user.php");
+            exit;
         } else {
         require_once("templates/header.php");
         ?>
