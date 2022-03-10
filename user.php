@@ -196,7 +196,7 @@ require_once("templates/header.php");
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                         </div>
-                                        <div class="col-3 px-3">
+                                        <div class="col-7 px-3">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                         </div>
