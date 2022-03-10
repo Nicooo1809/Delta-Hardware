@@ -87,9 +87,7 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $stmt->execute();
                 }
-                if ($user['modifyUserPerms'] != 1) {
-                    error('Permission denied!');
-                } else {
+                if ($user['modifyUserPerms'] == 1) {
                     if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
                         $stmt = $pdo->prepare("UPDATE users SET permission_group = ?, updated_at = now() WHERE users.id = ?");
                         $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
