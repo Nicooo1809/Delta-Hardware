@@ -77,9 +77,9 @@ if(isset($_POST['action'])) {
                 require_once("templates/header.php");
                 ?>
                 <div class="">
-                    <div class="container-fluid py-4 px-3">
+                    <div class="container-fluid">
                         <div class="row no-gutter">
-                            <div class="minheight100 col">
+                            <div class="minheight100 col py-4 px-3">
                                 <div class="card bg-dark text-center mx-auto" style="width: 75%;">
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
