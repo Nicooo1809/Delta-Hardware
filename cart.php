@@ -223,7 +223,7 @@ foreach ($products as $product) {
     </div> 
 <?php else: ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
-        <div class="row row-cols-1 row-cols-md-1 g-4">
+        <div class="row row-cols-1 row-cols-md-1 g-3">
             <div class="mx-auto py-3 bg-dark rounded">
                     <h1>Warenkorb</h1>
                     <p><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
@@ -242,7 +242,7 @@ foreach ($products as $product) {
                                 Preis: &euro;<?=$product['price']?><br>
                                 Menge: <?=$product['quantity']?>
                             </span>
-                            <form action="cart.php" method="post" class="py-2">
+                            <form action="cart.php" method="post" class="pt-2">
                                 <div class="mx-auto pb-3 input-group">
                                     <span class="input-group-text">Menge:</span>
                                     <input class="form-control" type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
