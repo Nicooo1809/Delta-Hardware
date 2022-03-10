@@ -152,7 +152,7 @@ if(isset($_POST['action'])) {
 
 // SELECT * ,(SELECT img From user1_images WHERE user1_images.user1_id=users.id ORDER BY id LIMIT 1) as image FROM users_types, users where users.user1_type_id = users_types.id and users_types.type = 'Test' ORDER BY users.name DESC;
 // Select users ordered by the date added
-$stmt = $pdo->prepare('SELECT * FROM users ORDER BY id');
+$stmt = $pdo->prepare('SELECT * FROM users, permission_group where users.permission_group = permission_group.id ORDER BY id');
 $stmt->execute();
 // Get the total number of users
 $total_users = $stmt->rowCount();
@@ -185,6 +185,9 @@ require_once("templates/header.php");
                                 <th scope="col" class="border-0 text-center">
                                     <div class="p-2 px-3 text-uppercase">E-Mail</div>
                                 </th>
+                                <th scope="col" class="border-0 text-center">
+                                    <div class="p-2 px-3 text-uppercase">Permission Group</div>
+                                </th>
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Created</div>
                                 </th>
@@ -205,6 +208,9 @@ require_once("templates/header.php");
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><a href="mailto:<?=$user1['email']?>"><?=$user1['email']?></a></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['name']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['created_at']?></strong>
