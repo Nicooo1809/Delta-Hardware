@@ -23,11 +23,11 @@ if(isset($_POST['action'])) {
                     $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
                     $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
                     $stmt->execute();
-                    header('Location: user.php');
+                    header('Location: perms.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
-                    header('Location: user.php');
+                    header('Location: perms.php');
                     exit;
                 }
             } else {
@@ -41,7 +41,7 @@ if(isset($_POST['action'])) {
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <p class="text-center">
                                             <div>
-                                            <form action="user.php" method="post">
+                                            <form action="perms.php" method="post">
                                                 <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
@@ -100,7 +100,7 @@ if(isset($_POST['action'])) {
                 }
             }
             #error_log(pdo_debugStrParams($stmt));
-            header("location: user.php");
+            header("location: perms.php");
             exit;
         } else {
         require_once("templates/header.php");
@@ -109,7 +109,7 @@ if(isset($_POST['action'])) {
             <h1>Einstellungen</h1>
 
             <div>
-                    <form action="user.php" method="post">
+                    <form action="perms.php" method="post">
                         <label for="inputVorname">Vorname</label>
                         <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
                         <label for="inputNachname">Nachname</label>
@@ -147,17 +147,10 @@ if(isset($_POST['action'])) {
         } 
     }
     if ($_POST['action'] == 'cancel') {
-        header("location: user.php");
+        header("location: perms.php");
         exit;
     }
 }
-
-// SELECT * ,(SELECT img From user1_images WHERE user1_images.user1_id=users.id ORDER BY id LIMIT 1) as image FROM users_types, users where users.user1_type_id = users_types.id and users_types.type = 'Test' ORDER BY users.name DESC;
-// Select users ordered by the date added
-$stmt = $pdo->prepare('desc permission_group');
-$stmt->execute();
-$permissiontypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->debugDumpParams();
 
 $stmt = $pdo->prepare('SELECT * FROM permission_group');
 $stmt->execute();
@@ -176,11 +169,33 @@ require_once("templates/header.php");
                     <thead>
                         <tr>
                             <div class="bg-black rounded">
-                                <?php foreach ($permissiontypes as $permissiontype) {?>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase"><?=$permission['Field']?></div>
+                                    <div class="p-2 px-3 text-uppercase">#</div>
                                 </th>
-                                <?php }?>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Name</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Show User</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Modify User</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Modify User Permission</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Delete User</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Create Product</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Modify Product</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Delete Product</div>
+                                </th>
                             </div>
                         </tr>
                     </thead>
@@ -191,23 +206,33 @@ require_once("templates/header.php");
                                     <strong><?=$user1['id']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['vorname']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['nachname']?></strong>
-                                </td>
-                                <td class="border-0 align-middle bl-100 text-center">
-                                    <strong><a href="mailto:<?=$user1['email']?>"><?=$user1['email']?></a></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['name']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['created_at']?></strong>
+                                    <strong><?=$user1['showUser']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['modifyUser']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['modifyUserPerms']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['deleteUser']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['createProduct']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['modifyProduct']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['deleteProduct']?></strong>
+                                </td>
                                 </td>
                                 <td class="border-0 align-middle actions">
                                 <?php if ($user['modifyUser'] == 1 or $user['modifyUser'] == 1) {?>
-                                        <form action="user.php" method="post" class="">
+                                        <form action="perms.php" method="post" class="">
                                             <?php if ($user['modifyUser'] == 1) {?>
                                             <div class="px-1 py-1">
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
