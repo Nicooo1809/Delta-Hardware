@@ -8,7 +8,7 @@ include("templates/header.php");
 $user = check_user();
 ?>
 
-<div class="container minheight100 py-4 px-3">
+<div class="container minheight100 py-3 px-3">
 	<div class="row no-gutter">
 		<div class="card bg-dark mx-auto">
 			<div class="card-body text-center">
@@ -17,7 +17,7 @@ $user = check_user();
 					Hallo <?=$user['vorname']?>,<br>
 					Herzlich Willkommen im internen Bereich!<br>
 				</span>
-				<button type="button" href="logout.php" class="btn btn-outline-primary my-2">Abmelden</button>
+				<button type="button" href="logout.php" class="btn btn-outline-primary my-3">Abmelden</button>
 			</div>
 		</div>
 	</div>
