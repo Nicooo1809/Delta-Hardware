@@ -186,7 +186,7 @@ foreach ($products as $product) {
                                     <strong><?=$product['quantity']?></strong>
                                 </td>
                                 <td class="border-0 align-middle actions">
-                                    <form action="cart.php me-2" method="post" class="row">
+                                    <form action="cart.php" method="post" class="row me-2">
                                         <div class="col px-3 input-group">
                                             <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                             <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
