@@ -11,7 +11,7 @@ $user = check_user();
 <div class="container minheight100 py-4 px-3">
 	<div class="row no-gutter">
 		<div class="card bg-dark mx-auto">
-			<div class="card-body">
+			<div class="card-body text-center">
 				<h1 class="card-title name">Herzlich Willkommen!</h1>
 				<span class="card-text">
 					Hallo <?php echo htmlentities($user['vorname']); ?>,<br>
