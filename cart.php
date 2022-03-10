@@ -77,7 +77,7 @@ if(isset($_POST['action'])) {
                 require_once("templates/header.php");
                 ?>
                 <div class="minheight100">
-                    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="false">
                         <div class="modal-dialog bg-dark">
                             <div class="modal-content bg-dark">
                                 <div class="modal-header bg-dark">
