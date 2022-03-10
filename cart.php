@@ -202,6 +202,7 @@ foreach ($products as $product) {
                                     <td class="border-0 align-middle actions">
                                         <form action="cart.php" method="post" class="row me-2">
                                             <div class="col px-3 input-group">
+                                                <span class="input-group-text">Menge:</span>
                                                 <input class="form-control" type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                                 <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
                                                 <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
