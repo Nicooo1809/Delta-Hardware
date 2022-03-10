@@ -110,159 +110,57 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
-        $save = $_POST['save'];
-        error_log('1');
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
         $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
         $stmt->execute();
         $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if(isset($_GET['save'])) {
-            error_log('2');
-            if($save == 'personal_data') {
-                $vorname = trim($_POST['vorname']);
-                $nachname = trim($_POST['nachname']);
-                error_log('3');
-                if($vorname == "" || $nachname == "") {
-                    error_log('4');
-                    error( "Bitte Vor- und Nachname ausfüllen.");
-                } else {
-                    error_log('5');
-                    $statement = $pdo->prepare("UPDATE users SET vorname = :vorname, nachname = :nachname, updated_at=NOW() WHERE id = :userid");
-                    $result = $statement->execute(array('vorname' => $vorname, 'nachname'=> $nachname, 'userid' => $_POST['userid'] ));
-                    header("location: user.php");
-                    exit;
-                }
-            } else if($save == 'email') {
-                $passwort = $_POST['passwort'];
-                $email = trim($_POST['email']);
-                $email2 = trim($_POST['email2']);
-                
-                if($email != $email2) {
-                    error("Die eingegebenen E-Mail-Adressen stimmten nicht überein.");
-                } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    error("Bitte eine gültige E-Mail-Adresse eingeben.");
-                } else if(!password_verify($passwort, $user1[0]['passwort'])) {
-                    error("Bitte korrektes Passwort eingeben.");
-                } else {
-                    $statement = $pdo->prepare("UPDATE users SET email = :email WHERE id = :userid");
-                    $result = $statement->execute(array('email' => $email, 'userid' => $_POST['userid'] ));
-                    $user1[0]['email'] = $email;
-                    header("location: user.php");
-                    exit;
-                }
-                
-            } else if($save == 'passwort') {
-                $passwortAlt = $_POST['passwortAlt'];
-                $passwortNeu = trim($_POST['passwortNeu']);
-                $passwortNeu2 = trim($_POST['passwortNeu2']);
-                
-                if($passwortNeu != $passwortNeu2) {
-                    error("Die eingegebenen Passwörter stimmten nicht überein.");
-                } else if($passwortNeu == "") {
-                    error("Das Passwort darf nicht leer sein.");
-                } else if(!password_verify($passwortAlt, $user1[0]['passwort'])) {
-                    error("Bitte korrektes Passwort eingeben.");
-                } else {
-                    $passwort_hash = password_hash($passwortNeu, PASSWORD_DEFAULT);
-                        
-                    $statement = $pdo->prepare("UPDATE users SET passwort = :passwort WHERE id = :userid");
-                    $result = $statement->execute(array('passwort' => $passwort_hash, 'userid' => $_POST['userid'] ));
-                    header("location: user.php");
-                    exit;
-                }
-                
+        
+        $stmt = $pdo->prepare('SELECT * FROM permission_group');
+        $stmt->execute();
+        $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email']) and !empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
+            if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
+                $stmt = $pdo->prepare("UPDATE users SET email = ?, passwort = ?, vorname = ?, nachname = ?, updated_at = now(), permission_group = ? WHERE users.id = ?");
+                $stmt->bindValue(1, $_POST['email']);
+                $stmt->bindValue(2, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
+                $stmt->bindValue(3, $_POST['vorname']);
+                $stmt->bindValue(4, $_POST['nachname']);
+                $stmt->bindValue(5, $_POST['permission_group'], PDO::PARAM_INT);
+                $stmt->bindValue(6, $_POST['userid'], PDO::PARAM_INT);
+                $stmt->execute();
+                header("location: user.php");
+                exit;
             }
         }
-        include("templates/header.php");
+        require_once("templates/header.php");
         ?>
-
-        <div class="text-white minheight100 mx-3 my-3">
+        <div class="minheight100 mx-3 my-3">
             <h1>Einstellungen</h1>
 
             <div>
-                <!-- Persönliche Daten-->
-                <h2 onclick="toggleData(data)">Persönliche Daten</h2>
-                <script>
-                    function toggleData() {
-                        var x = document.getElementById("data");
-                        if (x.style.display === "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
-                    }
-                </script>
-                <div id="data" style="display: none;">
-                    <br>
                     <form action="user.php" method="post">
                         <label for="inputVorname">Vorname</label>
-                        <input id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user1[0]['vorname']); ?>" required>
-                        <input type="number" value="personal_data" name="save" style="display: none;" required>
-
+                        <input id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
                         <label for="inputNachname">Nachname</label>
-                        <input id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user1[0]['nachname']); ?>" required>
-
-                    <button type="submit" class="btn btn-outline-primary">Speichern</button>
-                    </form>
-                </div>
-
-                <!-- <h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2> -->
-                <h2 onclick="toggleEmail()">E-Mail-Adresse</h2>
-                <script>
-                    function toggleEmail() {
-                        var x = document.getElementById("email");
-                        if (x.style.display === "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
-                    }
-                </script>
-                <!-- Änderung der E-Mail-Adresse -->
-                <div id="email" style="display: none;">
-                    <br>
-                    <p>Zum Änderen deiner E-Mail-Adresse gib bitte dein aktuelles Passwort sowie die neue E-Mail-Adresse ein.</p>
-                    <form action="user.php" method="post">
-                        <label for="inputPasswort">Passwort</label>
-                        <input id="inputPasswort" name="passwort" type="password" required>
-                        <input type="number" value="email" name="save" style="display: none;" required>
-
+                        <input id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
                         <label for="inputEmail">E-Mail</label>
-                    <input id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user1[0]['email']); ?>" required>
-
-                        <label for="inputEmail2">E-Mail (wiederholen)</label>
-                    <input id="inputEmail2" name="email2" type="email"  required>
-
-                    <button type="submit" class="btn btn-outline-primary">Speichern</button>
-                    </form>
-                </div>
-
-                <h2 onclick="togglePassword()">Passworts</h2>
-                <script>
-                    function togglePassword() {
-                        var x = document.getElementById("passwort");
-                        if (x.style.display === "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
-                    }
-                </script>
-                <!-- Änderung des Passworts -->
-                <div id="passwort" style="display: none;">
-                    <br>
-                    <p>Zum Änderen deines Passworts gib bitte dein aktuelles Passwort sowie das neue Passwort ein.</p>
-                    <form action="user.php" method="post">
-                        <label for="inputPasswort">Altes Passwort</label>
-                        <input id="inputPasswort" name="passwortAlt" type="password" required>
-                        <input type="number" value="passwort" name="save" style="display: none;" required>
+                        <input id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
                         <label for="inputPasswortNeu">Neues Passwort</label>
                         <input id="inputPasswortNeu" name="passwortNeu" type="password" required>
-
                         <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
                         <input id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
-
-                    <button type="submit" class="btn btn-outline-primary">Speichern</button>
+                        <label for="permissions">Permissions</label>
+                            <select id="permissions" name="permissions">
+                                <?php foreach ($permissions as $permission) {
+                                    if ($permission['id'] == $user1[0]['nachname']) {
+                                        print('<option value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
+                                    } else {
+                                        print('<option value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
+                                    }
+                                }?>
+                            </select>
+                        <button type="submit" class="btn btn-outline-primary">Speichern</button>
 
                     </form>
                 </div>
