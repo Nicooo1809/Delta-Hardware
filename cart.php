@@ -88,8 +88,8 @@ if(isset($_POST['action'])) {
                                             <form action="cart.php" method="post">
                                                 <input type="number" value="<?=$_POST['listid']?>" name="listid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
-                                                <button class="btn btn-outline-primary mx-3" type="submit" name="confirm" value="yes">Yes</button>
-                                                <button class="btn btn-outline-primary mx-3" type="submit" name="confirm" value="no">No</button>
+                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="Ja">Yes</button>
+                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="Nein">No</button>
                                             </form>
                                         </p>
                                     </div>
