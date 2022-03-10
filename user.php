@@ -62,6 +62,12 @@ if(isset($_POST['action'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
                     // User clicked the "Yes" button, delete record
+                    $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
+                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt->execute();
+                    $stmt = $pdo->prepare('DELETE FROM orders WHERE kunden_id = ?');
+                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt->execute();
                     $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
                     $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
                     $stmt->execute();
