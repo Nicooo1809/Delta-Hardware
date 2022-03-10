@@ -254,7 +254,7 @@ require_once("templates/header.php");
                             <?php } else {?>
                             <tr>
                                 <td class="border-0 align-middle">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['id']==1 ? 'selected':'')?> disabled></strong>
+                                    <strong><?=$user1['id']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['name']?></strong>
@@ -278,7 +278,7 @@ require_once("templates/header.php");
                                     <strong><?=$user1['modifyProduct']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['deleteProduct']?></strong>
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['deleteProduct']==1 ? 'selected':'')?> disabled></strong>
                                 </td>
                             </tr>
                             <?php }?>
