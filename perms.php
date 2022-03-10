@@ -203,7 +203,7 @@ require_once("templates/header.php");
                     </thead>
                     <tbody>
                         <?php foreach ($permissions as $user1): ?>
-                            <?php if ($user['modifyUserPerms'] != 1) {?>
+                            <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <tr>
                                     <form action="perms.php" method="post" class="">
                                         <td class="border-0 align-middle">
@@ -213,22 +213,22 @@ require_once("templates/header.php");
                                             <strong><?=$user1['name']?></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><?=$user1['showUser']?></strong>
+                                            <strong><input type="checkbox" class="form-check-input" name="showUser" <?=($user1['showUser']==1 ? 'checked':'')?> disabled></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><?=$user1['modifyUser']?></strong>
+                                            <strong><input type="checkbox" class="form-check-input" name="modifyUser" <?=($user1['modifyUser']==1 ? 'checked':'')?> disabled></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><?=$user1['modifyUserPerms']?></strong>
+                                            <strong><input type="checkbox" class="form-check-input" name="modifyUserPerms" <?=($user1['modifyUserPerms']==1 ? 'checked':'')?> disabled></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><?=$user1['deleteUser']?></strong>
+                                            <strong><input type="checkbox" class="form-check-input" name="deleteUser" <?=($user1['deleteUser']==1 ? 'checked':'')?> disabled></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><?=$user1['createProduct']?></strong>
+                                            <strong><input type="checkbox" class="form-check-input" name="createProduct" <?=($user1['createProduct']==1 ? 'checked':'')?> disabled></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><?=$user1['modifyProduct']?></strong>
+                                            <strong><input type="checkbox" class="form-check-input" name="modifyProduct" <?=($user1['modifyProduct']==1 ? 'checked':'')?> disabled></strong>
                                         </td>
                                         
                                         <td class="border-0 align-middle actions">
