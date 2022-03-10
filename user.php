@@ -155,9 +155,9 @@ if(isset($_POST['action'])) {
                         <label for="inputEmail">E-Mail</label>
                         <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
                         <label for="inputPasswortNeu">Neues Passwort</label>
-                        <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password" required>
+                        <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
                         <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
-                        <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
+                        <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
                         <label for="permissions">Permissions</label>
                             <select class="form-select" id="permissions" name="permissions">
                                 <?php foreach ($permissions as $permission) {
