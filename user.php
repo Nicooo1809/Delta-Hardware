@@ -128,7 +128,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(2, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
                 $stmt->bindValue(3, $_POST['vorname']);
                 $stmt->bindValue(4, $_POST['nachname']);
-                $stmt->bindValue(5, $_POST['permission_group'], PDO::PARAM_INT);
+                $stmt->bindValue(5, $_POST['permissions'], PDO::PARAM_INT);
                 $stmt->bindValue(6, $_POST['userid'], PDO::PARAM_INT);
                 $stmt->execute();
                 error_log(pdo_debugStrParams($stmt));
