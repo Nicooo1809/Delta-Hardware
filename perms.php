@@ -1,7 +1,7 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-#error_log(print_r($user,true));
+error_log(print_r($user,true));
 if ($user['showUser'] != 1) {
     error('Permission denied!');
 }
@@ -234,7 +234,7 @@ require_once("templates/header.php");
                                         <td class="border-0 align-middle actions">
                                             <div class="px-1 py-1">
                                                 <input type="number" value="<?=$perms['id']?>" name="permsid" style="display: none;" required>
-                                                <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
+                                                <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speicher</button>
                                             </div>
                                             <div class="px-1 py-1">
                                                 <input type="number" value="<?=$perms['id']?>" name="permsid" style="display: none;" required>
