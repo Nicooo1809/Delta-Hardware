@@ -193,9 +193,11 @@ require_once("templates/header.php");
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Modify Product</div>
                                 </th>
+                                <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Modify Product</div>
                                 </th>
+                                <?php }?>
                             </div>
                         </tr>
                     </thead>
@@ -203,53 +205,44 @@ require_once("templates/header.php");
                         <?php foreach ($permissions as $user1): ?>
                             <?php if ($user['modifyUserPerms'] != 1) {?>
                                 <tr>
-                                <td class="border-0 align-middle">
-                                    <strong><?=$user1['id']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['name']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['showUser']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['modifyUser']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['modifyUserPerms']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['deleteUser']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['createProduct']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['modifyProduct']?></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['deleteProduct']?></strong>
-                                </td>
-                                
-                                <td class="border-0 align-middle actions">
-                                <?php if ($user['modifyUser'] == 1 or $user['modifyUser'] == 1) {?>
-                                        <form action="perms.php" method="post" class="">
-                                            <?php if ($user['modifyUser'] == 1) {?>
+                                    <form action="perms.php" method="post" class="">
+                                        <td class="border-0 align-middle">
+                                            <strong><?=$user1['id']?></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><?=$user1['name']?></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><?=$user1['showUser']?></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><?=$user1['modifyUser']?></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><?=$user1['modifyUserPerms']?></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><?=$user1['deleteUser']?></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><?=$user1['createProduct']?></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><?=$user1['modifyProduct']?></strong>
+                                        </td>
+                                        
+                                        <td class="border-0 align-middle actions">
                                             <div class="px-1 py-1">
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                                 <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                             </div>
-                                            <?php }?>
-                                            <?php if ($user['deleteUser'] == 1) {?>
                                             <div class="px-1 py-1">
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                                 <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
-                                            <?php }?>
                                             </div>
-                                        </form>
-                                <?php }?>
-                                </td>
-                            </tr>
+                                        </td>
+                                    </form>
+                                </tr>
 
                             <?php } else {?>
                             <tr>
@@ -260,25 +253,22 @@ require_once("templates/header.php");
                                     <strong><?=$user1['name']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['showUser']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" name="showUser" <?=($user1['showUser']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyUser']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" name="modifyUser" <?=($user1['modifyUser']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyUserPerms']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" name="modifyUserPerms" <?=($user1['modifyUserPerms']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['deleteUser']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" name="deleteUser" <?=($user1['deleteUser']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['createProduct']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" name="createProduct" <?=($user1['createProduct']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyProduct']==1 ? 'checked':'')?> disabled></strong>
-                                </td>
-                                <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['modifyProduct']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" name="modifyProduct" <?=($user1['modifyProduct']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                             </tr>
                             <?php }?>
