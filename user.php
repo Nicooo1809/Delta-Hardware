@@ -225,13 +225,13 @@ require_once("templates/header.php");
                                     <div class="input-group">
                                         <form action="user.php" method="post" class="row me-2">
                                             <?php if ($user['modifyUser'] == 1) {?>
-                                            <div class="col">
+                                            <div>
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                                 <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                             </div>
                                             <?php }?>
                                             <?php if ($user['deleteUser'] == 1) {?>
-                                            <div class="col ">
+                                            <div>
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                                 <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                             </div>
