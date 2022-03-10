@@ -154,7 +154,7 @@ if(isset($_POST['action'])) {
                         <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
                         <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
                         <label for="permissions">Permissions</label>
-                            <select class="form-control" id="permissions" name="permissions">
+                            <select class="form-select" id="permissions" name="permissions">
                                 <?php foreach ($permissions as $permission) {
                                     if ($permission['id'] == $user1[0]['permission_group']) {
                                         print('<option value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
