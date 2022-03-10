@@ -220,7 +220,7 @@ require_once("templates/header.php");
                                 <td class="border-0 align-middle actions">
                                 <?php if ($user['modifyUser'] == 1 or $user['modifyUser'] == 1) {?>
                                     <div class="input-group">
-                                        <form action="user.php" method="post" class="row me-2">
+                                        <form action="user.php" method="post" class="">
                                             <?php if ($user['modifyUser'] == 1) {?>
                                             <div>
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
