@@ -15,7 +15,7 @@
 
 
 <?php
-$vernum = "0.0.6";
+$vernum = "0.0.7";
 # Like this, cause we want the Date the current Version was developed, not the current dates
 $verdate ="10.03.2022";
 #$verdate = date("d.m.Y");
