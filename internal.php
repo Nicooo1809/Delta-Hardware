@@ -8,41 +8,22 @@ include("templates/header.php");
 $user = check_user();
 ?>
 
-<div class="container-fluid minheight100">
+<div class="container minheight100 py-4 px-3">
+	<div class="row no-gutter">
+		<div class="card bg-dark mx-auto">
+			<div class="card-body">
+				<h1 class="card-title name">Herzlich Willkommen!</h1>
+				<span class="card-text">
+					Hallo <?php echo htmlentities($user['vorname']); ?>,<br>
+					Herzlich Willkommen im internen Bereich!<br>
+				</span>
+				<button type="button" href="logout.php" class="btn btn-outline-primary">Abmelden</button>
+			</div>
+		</div>
+	</div>
+	<div>
 
-<h1>Herzlich Willkommen!</h1>
-
-Hallo <?php echo htmlentities($user['vorname']); ?>,<br>
-Herzlich Willkommen im internen Bereich!<br><br>
-
-<a href="logout.php">Logout</a>
-
-<div>
- 
-<table>
-<tr>
-	<th>#</th>
-	<th>Vorname</th>
-	<th>Nachname</th>
-	<th>E-Mail</th>
-</tr>
-<?php 
-$statement = $pdo->prepare("SELECT * FROM users ORDER BY id");
-$result = $statement->execute();
-$count = 1;
-while($row = $statement->fetch()) {
-	echo "<tr>";
-	echo "<td>".$count++."</td>";
-	echo "<td>".$row['vorname']."</td>";
-	echo "<td>".$row['nachname']."</td>";
-	echo '<td><a href="mailto:'.$row['email'].'">'.$row['email'].'</a></td>';
-	echo "</tr>";
-}
-?>
-</table>
-</div>
-
-
+	</div>
 </div>
 <?php 
 include_once("templates/footer.php")
