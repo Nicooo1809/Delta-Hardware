@@ -110,7 +110,7 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
-        $save = $_GET['save'];
+        $save = $_POST['save'];
         error_log('1');
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
         $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
@@ -197,6 +197,7 @@ if(isset($_POST['action'])) {
                     <form action="?save=personal_data" method="post">
                         <label for="inputVorname">Vorname</label>
                         <input id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user1[0]['vorname']); ?>" required>
+                        <input type="number" value="personal_data" name="save" style="display: none;" required>
 
                         <label for="inputNachname">Nachname</label>
                         <input id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user1[0]['nachname']); ?>" required>
@@ -224,6 +225,7 @@ if(isset($_POST['action'])) {
                     <form action="?save=email" method="post">
                         <label for="inputPasswort">Passwort</label>
                         <input id="inputPasswort" name="passwort" type="password" required>
+                        <input type="number" value="email" name="save" style="display: none;" required>
 
                         <label for="inputEmail">E-Mail</label>
                     <input id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user1[0]['email']); ?>" required>
@@ -253,7 +255,7 @@ if(isset($_POST['action'])) {
                     <form action="?save=passwort" method="post">
                         <label for="inputPasswort">Altes Passwort</label>
                         <input id="inputPasswort" name="passwortAlt" type="password" required>
-
+                        <input type="number" value="passwort" name="save" style="display: none;" required>
                         <label for="inputPasswortNeu">Neues Passwort</label>
                         <input id="inputPasswortNeu" name="passwortNeu" type="password" required>
 
