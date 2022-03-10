@@ -27,7 +27,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
                 $stmt->bindValue(2, $user1[0]['id'], PDO::PARAM_INT);
                 $stmt->execute();
-                header("location: cart.php");
+                header("location: user.php");
                 exit;
             } else {
                 $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
@@ -48,7 +48,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(2, $_POST['user1id']);
                 $stmt->bindValue(3, $quantity, PDO::PARAM_INT);
                 $stmt->execute();
-                header("location: cart.php");
+                header("location: user.php");
                 exit;
             }
             
@@ -62,15 +62,14 @@ if(isset($_POST['action'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
                     // User clicked the "Yes" button, delete record
-                    $stmt = $pdo->prepare('DELETE FROM user1_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
+                    $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
                     $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
                     $stmt->execute();
-                    header('Location: cart.php');
+                    header('Location: user.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
-                    header('Location: cart.php');
+                    header('Location: user.php');
                     exit;
                 }
             } else {
@@ -84,7 +83,7 @@ if(isset($_POST['action'])) {
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <p class="text-center">
                                             <div>
-                                            <form action="cart.php" method="post">
+                                            <form action="user.php" method="post">
                                                 <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
@@ -123,7 +122,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
-            header('Location: cart.php');
+            header('Location: user.php');
             exit;
         } else {
             error('Some informations are missing!');
@@ -191,7 +190,7 @@ require_once("templates/header.php");
                                     <strong><?=$user1['created_at']?></strong>
                                 </td>
                                 <td class="border-0 align-middle actions">
-                                    <form action="cart.php" method="post" class="row me-2">
+                                    <form action="user.php" method="post" class="row me-2">
                                         <div class="col px-3">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
