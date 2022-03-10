@@ -1,63 +1,14 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-error_log(print_r($_POST, true));
+if ($user['showUser'] == 0) {
+    error('Permission denied!');
+}
 if(isset($_POST['action'])) {
-    if($_POST['action'] == 'add') {
-        if(isset($_POST['userid']) and isset($_POST['quantity']) and !empty($_POST['userid']) and !empty($_POST['quantity'])) {
-
-            $stmt = $pdo->prepare('SELECT *, users.quantity as maxquantity FROM users, user1_list where user1_list.user1_id = users.id and user1_id = ? and users.id in (SELECT user1_id FROM user1_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and user1_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
-            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-            $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
-            $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
-            $stmt->execute();
-            $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            #error_log(print_r($user1, true));
-
-            if (isset($user1[0])) {
-                if ($_POST['quantity'] + $user1[0]['quantity'] > $user1[0]['maxquantity']) {
-                    $quantity = $user1[0]['maxquantity'];
-                } else {
-                    $quantity = $_POST['quantity'] + $user1[0]['quantity'];
-                }
-                if ($quantity < 1) {
-                    $quantity = 1;
-                }
-                $stmt = $pdo->prepare('UPDATE user1_list SET quantity = ? WHERE id = ?');
-                $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
-                $stmt->bindValue(2, $user1[0]['id'], PDO::PARAM_INT);
-                $stmt->execute();
-                header("location: user.php");
-                exit;
-            } else {
-                $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
-                $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                $stmt->execute();
-                $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                #print_r($user1);
-                if ($_POST['quantity'] > $user1[0]['quantity']) {
-                    $quantity = $user1[0]['quantity'];
-                } else {
-                    $quantity = $_POST['quantity'];
-                }
-                if ($quantity < 1) {
-                    $quantity = 1;
-                }
-                $stmt = $pdo->prepare('INSERT INTO user1_list (list_id, user1_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
-                $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
-                $stmt->bindValue(2, $_POST['userid']);
-                $stmt->bindValue(3, $quantity, PDO::PARAM_INT);
-                $stmt->execute();
-                header("location: user.php");
-                exit;
-            }
-            
-            
-        } else {
-            error('Some informations are missing!');
-        }
-    }
     if($_POST['action'] == 'del') {
+        if ($user['deleteUser'] == 0) {
+            error('Permission denied!');
+        }
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
@@ -110,6 +61,9 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
+        if ($user['modifyUser'] == 0) {
+            error('Permission denied!');
+        }
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
         $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
         $stmt->execute();
