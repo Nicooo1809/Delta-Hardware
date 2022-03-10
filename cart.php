@@ -239,13 +239,13 @@ foreach ($products as $product) {
                                 Menge: <?=$product['quantity']?>
                             </span>
                             <form action="cart.php" method="post" class="py-2 me-2">
-                                <div class="row mx-auto px-1 py-2 input-group">
+                                <div class="mx-auto pb-3 input-group">
                                     <span class="input-group-text">Menge:</span>
                                     <input class="form-control" type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                     <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
                                     <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                 </div>
-                                <div class="row my-auto px-1 py-2" style="width: 200px;">
+                                <div class="row mx-auto" style="width: 200px;">
                                     <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                     <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                 </div>
