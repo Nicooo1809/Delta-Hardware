@@ -155,7 +155,7 @@ foreach ($products as $product) {
     <div class="row">
         <div class="py-3 px-3 bg-dark rounded">
             <h1>Warenkorb</h1>
-            <p><?php print($total_products); ?> Produkt(e)</p>
+            <p><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -217,7 +217,7 @@ foreach ($products as $product) {
                     </tbody>
                 </table>
             </div>         
-            <p class="">Summe: <?=$summprice?></p>
+            <strong>Summe: <?=$summprice?></strong>
         </div>
     </div>
 </div> 
