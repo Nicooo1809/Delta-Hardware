@@ -14,10 +14,10 @@ $user = check_user();
 			<div class="card-body text-center">
 				<h1 class="card-title name">Herzlich Willkommen!</h1>
 				<span class="card-text">
-					Hallo <?php echo htmlentities($user['vorname']); ?>,<br>
+					Hallo <?=$user['vorname']?>,<br>
 					Herzlich Willkommen im internen Bereich!<br>
 				</span>
-				<button type="button" href="logout.php" class="btn btn-outline-primary">Abmelden</button>
+				<button type="button" href="logout.php" class="py-2 btn btn-outline-primary">Abmelden</button>
 			</div>
 		</div>
 	</div>
