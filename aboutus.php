@@ -2,37 +2,22 @@
 require_once("templates/header.php")
 ?>
 
-<?php
-if(!isMobile()):
-?>
-
-<!-- Desktop Devices -->
-<div class="mx-auto my-5 py-3 px-5 text-center rounded bg-dark" style="width: 55%;">
-    <div class="text-white">
-        <h1>Wer sind wir?</h1>
-        <p>
-            Wir sind Schüler*innen der <a href="https://its-stuttgart.de/">it.schule</a> Stuttgart.<br>
-            Genau genommen sind wir die Projektgruppe Delta, welche an der erstellung eines Hardware Webshops arbeitet. <br>
-            Dieser Webshop wird das Produkt unserer BfK-S Projektarbeit in der Klasse E2FS3BT sein.
-        </p>
+<div class="container-fluid minheight100 py-4 px-3">
+    <div class="row no-gutter">
+        <div class="col">
+            <div class="card bg-dark mx-auto" style="width: <?php if(!isMobile()) print('75%'); else print('95%');?>;">
+                <div class="card-body">
+                    <h1 class="card-title mb-2 text-center">Wer sind wir?</h1>
+                    <p class="card-text text-center">
+                        Wir sind 5 Schüler*innen der <a href="https://its-stuttgart.de/">it.schule</a> Stuttgart.<br>
+                        Genau genommen sind wir die Projektgruppe Delta, welche an der erstellung eines Hardware Webshops arbeitet. <br>
+                        Dieser Webshop wird das Produkt unserer BfK-S Projektarbeit in der Klasse E2FS3BT sein.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-<!-- Mobile Devices -->
-<?php else:?>
-    <div class="my-3 mx-3 py-2 px-2 text-center rounded bg-dark">
-    <div class="text-white">
-        <h1>Wer sind wir?</h1>
-        <p>
-            Wir sind Schüler*innen der<br><a href="https://its-stuttgart.de/">it.schule</a> Stuttgart.<br>
-            Genau genommen sind wir die Projektgruppe Delta, welche an der erstellung eines Hardware Webshops arbeitet. <br>
-            Dieser Webshop wird das Produkt unserer BfK-S Projektarbeit in der Klasse E2FS3BT sein.
-        </p>
-    </div>
-</div>
-<?php endif;?>
-
-
 <?php
 include_once("templates/footer.php")
 ?>

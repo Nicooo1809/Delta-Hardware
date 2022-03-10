@@ -1,5 +1,6 @@
 <?php
 session_start();
+chdir('..');
 require_once("php/mysql.php");
 require_once("php/functions.php");
 
@@ -69,7 +70,7 @@ if(isset($_GET['save'])) {
 }
 ?>
 
-<div class="text-white mx-3 my-3">
+<div class="text-white minheight100 mx-3 my-3">
 	<h1>Einstellungen</h1>
 	<?php 
 	if(isset($success_msg) && !empty($success_msg)) {
@@ -99,10 +100,10 @@ if(isset($_GET['save'])) {
 			<br>
 			<form action="?save=personal_data" method="post">
 				<label for="inputVorname">Vorname</label>
-				<input id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user['vorname']); ?>" required>
+				<input class="form-control" id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user['vorname']); ?>" required>
 
 				<label for="inputNachname">Nachname</label>
-				<input id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user['nachname']); ?>" required>
+				<input class="form-control" id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user['nachname']); ?>" required>
 
 			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 			</form>
@@ -126,15 +127,15 @@ if(isset($_GET['save'])) {
 			<p>Zum Änderen deiner E-Mail-Adresse gib bitte dein aktuelles Passwort sowie die neue E-Mail-Adresse ein.</p>
 			<form action="?save=email" method="post">
 				<label for="inputPasswort">Passwort</label>
-				<input id="inputPasswort" name="passwort" type="password" required>
+				<input class="form-control" id="inputPasswort" name="passwort" type="password" required>
 
 				<label for="inputEmail">E-Mail</label>
-			<input id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user['email']); ?>" required>
+				<input class="form-control" id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user['email']); ?>" required>
 
 				<label for="inputEmail2">E-Mail (wiederholen)</label>
-			<input id="inputEmail2" name="email2" type="email"  required>
+				<input class="form-control" id="inputEmail2" name="email2" type="email"  required>
 
-			<button type="submit" class="btn btn-outline-primary">Speichern</button>
+				<button type="submit" class="btn btn-outline-primary">Speichern</button>
 			</form>
 		</div>
 
@@ -155,13 +156,13 @@ if(isset($_GET['save'])) {
 			<p>Zum Änderen deines Passworts gib bitte dein aktuelles Passwort sowie das neue Passwort ein.</p>
 			<form action="?save=passwort" method="post">
 				<label for="inputPasswort">Altes Passwort</label>
-				<input id="inputPasswort" name="passwortAlt" type="password" required>
+				<input class="form-control" id="inputPasswort" name="passwortAlt" type="password" required>
 
 				<label for="inputPasswortNeu">Neues Passwort</label>
-				<input id="inputPasswortNeu" name="passwortNeu" type="password" required>
+				<input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password" required>
 
 				<label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
-				<input id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
+				<input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
 
 			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 

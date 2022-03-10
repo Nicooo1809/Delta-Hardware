@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
 * {
+    color: #ffffff;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
     font-family: "Montserrat", sans-serif;
 }
-
 
 html, body {
     /*background-color: rgb(66, 66, 66); */
@@ -19,8 +19,7 @@ html, body {
 header {
     margin-bottom: 0 !important;
 }
-
-
+/*
 .bg-video {
     position: absolute;
     overflow: visible;
@@ -30,9 +29,7 @@ header {
     visibility: visible;
     size: 100%;
 }
-
-
-
+*/
 li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
@@ -41,12 +38,41 @@ li, a, button {
     text-decoration: none !important;
 }
 
+.bl-80 {
+    max-width:80px;
+    word-wrap:break-word;
+}
 
+.bl-100 {
+    max-width:100px;
+    word-wrap:break-word;
+}
+
+
+
+span, div, i {
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.header-header {
+    min-height: 8vh;
+}
+
+.minheight100 {
+    min-height: 86vh;
+}
+
+.footer-footer {
+    min-height: 6vh;
+}
 
 .nav-link {
     font-size: 1.3rem;
 }
-
 
 .dropdown-menu {
     background-color: #212529 !important;
@@ -66,7 +92,6 @@ li, a, button {
     color: #ffffff;
     transition: all 0.5s ease;
 }
-
 
 .fa-user:hover, .fa-cart-shopping:hover, .fa-circle-info:hover {
     color: #0d6efd;
@@ -92,15 +117,67 @@ li, a, button {
     background-color: #2d3238 !important;
 }
 
-
-.login-login {
-    min-height: 93vh;
+.custom-dark2 {
+    background-color: #3e444d !important;
 }
 
 .prodcard{
     height: 100% !important; 
+}
+
+
+.modal-header {
+    /* border-bottom: 1px solid #32373d !important; */
+    border-bottom: 0px !important;
+}
+
+.modal-footer {
+    /* border-top: 1px solid #32373d !important; */
+    border-top: 0px !important;
+}
+
+hr {
+    border: 0 !important;
+    border-top: 1px solid #2c3035 !important;
+    width: 90% !important;
+    margin: auto !important;
+    opacity: .25 !important;
+}
+
+
+.cookie-p-text {
+    margin-bottom: 0 !important;
+}
+
+
+.impressum-breite{
+    width: 75%;
+}
+
+.hr-light {
+    border-top: 3px solid #fff;
+    width: 80px;
+}
+
+
+
+/* INDEX.PHP */
+
+
+
+.bg { 
+    /* The image used */
+    background-image: url("/media/bg-img.jpg");
+    height: 70%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
-.amount {
-    color: #ffffff !important;
+.minimum-vh {
+min-height: 92vh !important;
+}
+
+.carousel-vh {
+    max-height: 92vh !important;
 }

@@ -14,7 +14,8 @@ function check_user($redirect = TRUE) {
 		$statement = $pdo->prepare("SELECT * FROM securitytokens WHERE identifier = ?");
 		$result = $statement->execute(array($identifier));
 		$securitytoken_row = $statement->fetch();
-	
+		#error_log(pdo_debugStrParams($statement));
+		#error_log(print_r($securitytoken_row));
 		if(sha1($securitytoken) !== $securitytoken_row['securitytoken']) {
 			//error('');
 			//Vermutlich wurde der Security Token gestohlen
@@ -42,9 +43,11 @@ function check_user($redirect = TRUE) {
 			return FALSE;
 		}
 	} else {
-		$statement = $pdo->prepare("SELECT * FROM users WHERE id = :id");
-		$result = $statement->execute(array('id' => $_SESSION['userid']));
-		$user = $statement->fetch();
+		$stmt = $pdo->prepare("SELECT * FROM permission_group, users WHERE users.permission_group = permission_group.id and users.id = ?");
+		$stmt->bindValue(1, $_SESSION['userid'], PDO::PARAM_INT);
+		$stmt->execute();
+		$user = $stmt->fetch();
+	    #error_log(pdo_debugStrParams($stmt));
 		return $user;
 	}
 }
@@ -61,3 +64,11 @@ function error($error_msg) {
 function isMobile () {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
+
+function pdo_debugStrParams($stmt) {
+	ob_start();
+	$stmt->debugDumpParams();
+	$r = ob_get_contents();
+	ob_end_clean();
+	return $r;
+  }

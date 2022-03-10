@@ -69,7 +69,7 @@ if(isset($_GET['register'])) {
 		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
 		$result = $stmt->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
 		if ($result) {
-			$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `delivered`) VALUES ((select id from users where email = ?), '0', '0')");
+			$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES ((select id from users where email = ?), '0', '0')");
 			$stmt->bindValue(1, $email);
 			$result = $stmt->execute();
 		}
@@ -77,7 +77,7 @@ if(isset($_GET['register'])) {
 		if($result) {
 			$showFormular = false;
 			?>
-			<div class="container">
+			<div class="container minheight100">
 				<div class="row">
 					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
 						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH<i class="fa-solid fa-check"></i></h1>
@@ -94,7 +94,7 @@ if(isset($_GET['register'])) {
 		} else {
 			$showFormular = false;
 			?>
-			<div class="container">
+			<div class="container minheight100">
 				<div class="row">
 					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
 						<h1 class="text-danger">Oops, das hat nicht geklappt!<br><i class="fa-solid fa-x"></i></h1>
@@ -118,7 +118,7 @@ if(isset($_GET['register'])) {
 if($showFormular) {
 ?>
 
-<div class="container-fluid">
+<div class="container-fluid minheight100">
 	<div class="row no-gutter">
 		<div class="bg-custom-dark">
 			<div class="register-register d-flex align-items-center py-5">
@@ -143,7 +143,7 @@ if($showFormular) {
 									<input placeholder="Max" type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-group mb-3">
-									<label for="inputNachname" class="custom-control-label text-white">Vorname:</label>
+									<label for="inputNachname" class="custom-control-label text-white">Nachname:</label>
 									<input placeholder="Mustermann" type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-group mb-3">

@@ -24,7 +24,7 @@ check_user(FALSE);
 
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar header-header navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/index"><img src="/favicon.svg" style="width:2.5rem;"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,12 +131,12 @@ check_user(FALSE);
                 </li>
             </ul> 
 
-            <form class="d-flex" action="products.php">
+            <form class="d-flex" action="/products.php">
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search">
                 <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
             </form>
             <?php if(isset($_SESSION['userid'])): ?>
-            <a class="icon-navbar-a" href="cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
+            <a class="icon-navbar-a" href="/cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(!isset($_SESSION['userid'])): ?>
                 <a class="icon-navbar-a" href="<?php if(isset($_SESSION['userid'])) {print("settings");} else {print("login");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(isset($_SESSION['userid'])): ?>
@@ -144,9 +144,9 @@ check_user(FALSE);
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item " href="internal.php">Intern</a></li>
-                    <li><a class="dropdown-item" href="settings.php">Einstellungen</a></li>
-                    <li><a class="dropdown-item" href="logout.php">Abmelden</a></li>
+                    <li><a class="dropdown-item " href="/internal.php">Intern</a></li>
+                    <li><a class="dropdown-item" href="/settings/index.php">Einstellungen</a></li>
+                    <li><a class="dropdown-item" href="/logout.php">Abmelden</a></li>
                 </ul>
             </li>
             </ul>
@@ -157,8 +157,3 @@ check_user(FALSE);
         </div>
     </div>
 </nav>
-
-<!--
-</body>
-</html>
--->
