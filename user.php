@@ -176,7 +176,7 @@ require_once("templates/header.php");
                         <?php foreach ($users as $user1): ?>
                             <tr>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$user1['id']?>&euro;</strong>
+                                    <strong><?=$user1['id']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['vorname']?></strong>
