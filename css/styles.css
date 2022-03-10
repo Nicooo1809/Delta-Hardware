@@ -38,6 +38,10 @@ li, a, button {
     text-decoration: none !important;
 }
 
+span, div, i {
+    color: #ffffff;
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
