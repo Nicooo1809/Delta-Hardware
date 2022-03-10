@@ -177,7 +177,7 @@ foreach ($products as $product) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 0; foreach ($products as $product): ?>
+                        <?php foreach ($products as $product): ?>
                             <tr>
                                 <th scope="row" class="border-0">
                                     <div class="p-2">
