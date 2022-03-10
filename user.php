@@ -218,7 +218,7 @@ require_once("templates/header.php");
                                     <strong><?=$user1['created_at']?></strong>
                                 </td>
                                 <td class="border-0 align-middle actions">
-                                <?php if ($user['modifyUser'] == 1 or $user['modifyUser'] == 1) {?>
+                                <?php if ($user['modifyUser'] == 1 or $user['deleteUser'] == 1) {?>
                                         <form action="user.php" method="post" class="">
                                             <?php if ($user['modifyUser'] == 1) {?>
                                             <div class="px-1 py-1">

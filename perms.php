@@ -201,7 +201,8 @@ require_once("templates/header.php");
                     </thead>
                     <tbody>
                         <?php foreach ($permissions as $user1): ?>
-                            <tr>
+                            <?php if ($user['modifyUserPerms'] != 1) {?>
+                                <tr>
                                 <td class="border-0 align-middle">
                                     <strong><?=$user1['id']?></strong>
                                 </td>
@@ -229,7 +230,7 @@ require_once("templates/header.php");
                                 <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['deleteProduct']?></strong>
                                 </td>
-                                </td>
+                                
                                 <td class="border-0 align-middle actions">
                                 <?php if ($user['modifyUser'] == 1 or $user['modifyUser'] == 1) {?>
                                         <form action="perms.php" method="post" class="">
@@ -246,9 +247,41 @@ require_once("templates/header.php");
                                             <?php }?>
                                             </div>
                                         </form>
-                                    <?php }?>
+                                <?php }?>
                                 </td>
                             </tr>
+
+                            <?php } else {?>
+                            <tr>
+                                <td class="border-0 align-middle">
+                                    <strong><input type="checkbox" class="form-check-input" <?=($user1['id']==1 ? 'selected':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['name']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['showUser']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['modifyUser']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['modifyUserPerms']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['deleteUser']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['createProduct']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['modifyProduct']?></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><?=$user1['deleteProduct']?></strong>
+                                </td>
+                            </tr>
+                            <?php }?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

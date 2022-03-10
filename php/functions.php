@@ -71,4 +71,4 @@ function pdo_debugStrParams($stmt) {
 	$r = ob_get_contents();
 	ob_end_clean();
 	return $r;
-  }
+}
