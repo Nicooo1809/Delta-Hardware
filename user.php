@@ -113,6 +113,7 @@ if(isset($_POST['action'])) {
                         <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
                         <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
                         <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
+                        <?php if ($user['modifyUserPerms'] == 1) {?>
                         <label for="permissions">Permissions</label>
                             <select class="form-select" id="permissions" name="permissions">
                                 <?php foreach ($permissions as $permission) {
@@ -123,6 +124,7 @@ if(isset($_POST['action'])) {
                                     }
                                 }?>
                             </select>
+                        <?php }?>
                         <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
                         <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                         <button type="submit" name="action" value="cancel" class="btn btn-outline-primary">Abrechen</button>
