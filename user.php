@@ -194,7 +194,7 @@ if(isset($_POST['action'])) {
                 </script>
                 <div id="data" style="display: none;">
                     <br>
-                    <form action="?save=personal_data" method="post">
+                    <form action="user.php" method="post">
                         <label for="inputVorname">Vorname</label>
                         <input id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user1[0]['vorname']); ?>" required>
                         <input type="number" value="personal_data" name="save" style="display: none;" required>
@@ -222,7 +222,7 @@ if(isset($_POST['action'])) {
                 <div id="email" style="display: none;">
                     <br>
                     <p>Zum Änderen deiner E-Mail-Adresse gib bitte dein aktuelles Passwort sowie die neue E-Mail-Adresse ein.</p>
-                    <form action="?save=email" method="post">
+                    <form action="user.php" method="post">
                         <label for="inputPasswort">Passwort</label>
                         <input id="inputPasswort" name="passwort" type="password" required>
                         <input type="number" value="email" name="save" style="display: none;" required>
@@ -252,7 +252,7 @@ if(isset($_POST['action'])) {
                 <div id="passwort" style="display: none;">
                     <br>
                     <p>Zum Änderen deines Passworts gib bitte dein aktuelles Passwort sowie das neue Passwort ein.</p>
-                    <form action="?save=passwort" method="post">
+                    <form action="user.php" method="post">
                         <label for="inputPasswort">Altes Passwort</label>
                         <input id="inputPasswort" name="passwortAlt" type="password" required>
                         <input type="number" value="passwort" name="save" style="display: none;" required>
