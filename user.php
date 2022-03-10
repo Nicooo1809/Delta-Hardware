@@ -219,8 +219,8 @@ require_once("templates/header.php");
                                 </td>
                                 <td class="border-0 align-middle actions">
                                 <?php if ($user['modifyUser'] == 1 or $user['modifyUser'] == 1) {?>
-                                    <div class="input-group">
                                         <form action="user.php" method="post" class="">
+                                            <div class="row input-group">
                                             <?php if ($user['modifyUser'] == 1) {?>
                                             <div>
                                                 <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
@@ -233,8 +233,8 @@ require_once("templates/header.php");
                                                 <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                             </div>
                                             <?php }?>
+                                            </div>
                                         </form>
-                                    </div>
                                     <?php }?>
                                 </td>
                             </tr>
