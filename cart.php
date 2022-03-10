@@ -77,7 +77,7 @@ if(isset($_POST['action'])) {
                 require_once("templates/header.php");
                 ?>
                 <div class="minheight100">
-                    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="false">
+                    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
                         <div class="modal-dialog bg-dark">
                             <div class="modal-content bg-dark">
                                 <div class="modal-header bg-dark">
@@ -221,7 +221,7 @@ foreach ($products as $product) {
                                         </div>
                                         <div class="col-3 px-3">
                                             <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                            <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
+                                            <button type="submit" name="action" value="del" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#cartModal">Löschen</button>
                                         </div>
                                     </form>
                                 </td>
