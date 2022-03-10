@@ -76,7 +76,6 @@ if(isset($_POST['action'])) {
             } else {
                 require_once("templates/header.php");
                 ?>
-                <div class="">
                     <div class="container-fluid">
                         <div class="row no-gutter">
                             <div class="minheight100 col py-4 px-3">
@@ -88,8 +87,8 @@ if(isset($_POST['action'])) {
                                             <form action="cart.php" method="post">
                                                 <input type="number" value="<?=$_POST['listid']?>" name="listid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="Ja">Yes</button>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="Nein">No</button>
+                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
+                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="no">Nein</button>
                                             </form>
                                         </p>
                                     </div>
@@ -97,7 +96,6 @@ if(isset($_POST['action'])) {
                             </div>
                         </div>
                     </div>
-                </div>
                 <?php
                 require_once("templates/footer.php");
                 exit;
