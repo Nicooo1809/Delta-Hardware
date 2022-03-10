@@ -123,15 +123,20 @@ if(isset($_POST['action'])) {
             error_log('2');
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
                 error_log('3');
-                $stmt = $pdo->prepare("UPDATE users SET email = ?, passwort = ?, vorname = ?, nachname = ?, updated_at = now(), permission_group = ? WHERE users.id = ?");
+                $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now(), permission_group = ? WHERE users.id = ?");
                 $stmt->bindValue(1, $_POST['email']);
-                $stmt->bindValue(2, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
-                $stmt->bindValue(3, $_POST['vorname']);
-                $stmt->bindValue(4, $_POST['nachname']);
-                $stmt->bindValue(5, $_POST['permissions'], PDO::PARAM_INT);
-                $stmt->bindValue(6, $_POST['userid'], PDO::PARAM_INT);
+                $stmt->bindValue(2, $_POST['vorname']);
+                $stmt->bindValue(3, $_POST['nachname']);
+                $stmt->bindValue(4, $_POST['permissions'], PDO::PARAM_INT);
+                $stmt->bindValue(5, $_POST['userid'], PDO::PARAM_INT);
                 $stmt->execute();
-                error_log(pdo_debugStrParams($stmt));
+                if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
+                    $stmt = $pdo->prepare("UPDATE users SET passwort = ?, updated_at = now() WHERE users.id = ?");
+                    $stmt->bindValue(1, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
+                    $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt->execute();
+                }
+                #error_log(pdo_debugStrParams($stmt));
                 header("location: user.php");
                 exit;
             }
