@@ -7,7 +7,7 @@ if ($user['showUser'] != 1) {
 }
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'del') {
-        if ($user['deleteUser'] == 0) {
+        if ($user['deleteUser'] != 1) {
             error('Permission denied!');
         }
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
@@ -62,7 +62,7 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
-        if ($user['modifyUser'] == 0) {
+        if ($user['modifyUser'] != 1) {
             error('Permission denied!');
         }
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
