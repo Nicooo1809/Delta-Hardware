@@ -76,10 +76,10 @@ if(isset($_POST['action'])) {
             } else {
                 require_once("templates/header.php");
                 ?>
-                <div class="minheight100">
+                <div class="">
                     <div class="container-fluid py-4 px-3">
                         <div class="row no-gutter">
-                            <div class="col">
+                            <div class="minheight100 col">
                                 <div class="card bg-dark text-center mx-auto" style="width: 75%;">
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
