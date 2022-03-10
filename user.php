@@ -88,6 +88,8 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $stmt->execute();
                 }
+            } else {
+                error('Password not equal!');
             }
             if ($user['modifyUserPerms'] == 1) {
                 if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
