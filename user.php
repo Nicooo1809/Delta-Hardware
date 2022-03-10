@@ -2,7 +2,7 @@
 require_once("php/functions.php");
 $user = check_user();
 error_log(print_r($user,true));
-if ($user['showUser'] == 0) {
+if ($user['showUser'] != 1) {
     error('Permission denied!');
 }
 if(isset($_POST['action'])) {
