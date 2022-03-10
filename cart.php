@@ -226,8 +226,8 @@ foreach ($products as $product) {
         <div class="row row-cols-1 row-cols-md-1 g-4">
             <?php foreach ($products as $product): ?>
                 <div class="col">
-                    <div class="card text-center mx-auto bg-dark">
-                        <div class="card-body text-white">
+                    <div class="card mx-auto bg-dark">
+                        <div class="card-body">
                             <?php if (empty($product['image'])) {
                                 print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             } else {
@@ -238,14 +238,14 @@ foreach ($products as $product) {
                                 Preis: &euro;<?=$product['price']?><br>
                                 Menge: <?=$product['quantity']?>
                             </span>
-                            <form action="cart.php" method="post" class="text-center py-2 row me-2">
-                                <div class="col-8 px-1 py-2 input-group">
-                                    <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                            <form action="cart.php" method="post" class="py-2 row me-2">
+                                <div class="col mx-auto px-1 py-2 input-group">
                                     <span class="input-group-text">Menge:</span>
+                                    <input class="form-control" type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                     <input class="form-control" type="number" value="<?=$product['quantity']?>" min="1" max="<?=$product['maxquantity']?>" class="form-control form-control-sm" name="quantity" required>
                                     <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                 </div>
-                                <div class="col-4 px-1 py-2">
+                                <div class="col my-auto px-1 py-2">
                                     <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
                                     <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                 </div>
