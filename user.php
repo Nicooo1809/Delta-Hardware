@@ -129,6 +129,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(5, $_POST['permission_group'], PDO::PARAM_INT);
                 $stmt->bindValue(6, $_POST['userid'], PDO::PARAM_INT);
                 $stmt->execute();
+                error_log(pdo_debugStrParams($stmt));
                 header("location: user.php");
                 exit;
             }
