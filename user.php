@@ -170,6 +170,7 @@ if(isset($_POST['action'])) {
                             </select>
                         <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
                         <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                        <button type="submit" name="action" value="cancel" class="btn btn-outline-primary">Abrechen</button>
                     </form>
                 </div>
             </div>
@@ -178,6 +179,10 @@ if(isset($_POST['action'])) {
         include_once("templates/footer.php");
         exit;
         } 
+    }
+    if ($_POST['action'] == 'cancel') {
+        header("location: user.php");
+        exit;
     }
 }
 
