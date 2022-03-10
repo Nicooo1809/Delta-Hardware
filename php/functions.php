@@ -47,7 +47,7 @@ function check_user($redirect = TRUE) {
 		$stmt->bindValue(1, $_SESSION['userid'], PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetch();
-	    error_log(pdo_debugStrParams($stmt));
+	    #error_log(pdo_debugStrParams($stmt));
 		return $user;
 	}
 }
