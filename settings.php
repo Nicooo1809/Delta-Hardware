@@ -1,4 +1,5 @@
 <?php
+#require_once("php/mysql.php");
 require_once("php/functions.php");
 
 //Überprüfe, dass der User eingeloggt ist
@@ -64,8 +65,10 @@ if(isset($_GET['save'])) {
 		}
 		
 	} else if ($save == 'style') {
+		error_log("0");
 		switch_style();
-		print_r(check_dark());
+		error_log("1");
+		error_log(check_dark());
 	}
 }
 ?>
