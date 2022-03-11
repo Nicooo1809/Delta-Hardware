@@ -1,41 +1,33 @@
 <?php
-// (A) CONNECT TO DATABASE - CHANGE SETTINGS TO YOUR OWN!
-$dbHost = "localhost";
-$dbName = "shop";
-$dbChar = "utf8";
-$dbUser = "shopuser";
-$dbPass = "";
-try {
-  $pdo = new PDO(
-    "mysql:host=$dbHost;dbname=$dbName;charset=$dbChar",
-    $dbUser, $dbPass, [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]
-  );
-} catch (Exception $ex) { exit($ex->getMessage()); }
-
-// (B) DRILL DOWN GET MENU ITEMS
-// ARRANGE BY [PARENT ID] => [MENU ITEMS]
-$items = [];
-while (true) {
-  // (B1) SQL QUERY
-  $sql = "SELECT * FROM `menu_items` WHERE `parent_id` ";
-  if (!isset($next)) { $sql .= "IS NULL"; }
-  else { $sql .= "IN ($next)"; }
-
-  // (B2) FETCH MENU ITEMS
-  $next = "";
-  $parent = "";
-  $stmt = $pdo->prepare($sql);
+require_once('php/functions.php');
+$stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = 0");
+#$stmt->bindValue(1, $_SESSION['userid'], PDO::PARAM_INT);
+$stmt->execute();
+$roottypes = $stmt->fetch();
+foreach ($roottypes as $roottype) {
+  $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = ?");
+  $stmt->bindValue(1, $roottype['parentId'], PDO::PARAM_INT);
   $stmt->execute();
-  while (($i = $stmt->fetch()) !== false) {
-    $parent = $i["parent_id"]=="" ? 0 : $i["parent_id"] ;
-    if (!isset($items[$parent])) { $items[$parent] = []; }
-    $items[$parent][$i["item_id"]] = $i;
-    $next .= $i["item_id"] . ",";
+  $subtypes = $stmt->fetch();
+  if (isset($subtypes['0'])) {
+  ?>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Hardware
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+  <?php
   }
-  if ($next == "") { break; }
-  else { $next = substr($next, 0, -1); }
+  foreach ($subtypes as $subtype) {
+  ?>
+        <li><a class="dropdown-item" href="products.php?type=">Arbeitsspeicher</a></li>
+  <?php
+  }
+  if (isset($subtypes['0'])) {
+  ?>
+      </ul>
+    </li>
+  <?php
+  }
 }
-error_log(print_r($items, true));
+?>
