@@ -169,12 +169,12 @@ include_once("templates/header.php");
 		</div>
 		<div>
 			<div class="row">
-				<div class="col-auto bg-dark py-2 px-2 align-middle text-center rounded">
+				<div class="col-auto bg-dark mx-2 py-2 px-2 align-middle text-center rounded">
 					<form action="?save=style=light" method="post">
 						<button type="submit" class="btn btn-outline-light">Light</button>
 					</form>
 				</div>
-				<div class="col-auto bg-light py-2 px-2 align-middle text-center rounded">
+				<div class="col-auto bg-light mx-2 py-2 px-2 align-middle text-center rounded">
 					<form action="?save=style=dark" method="post">
 						<button type="submit" class="btn btn-outline-dark">Dark</button>
 					</form>
