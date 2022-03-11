@@ -38,17 +38,10 @@ li, a, button {
     text-decoration: none !important;
 }
 
-.bl-80 {
-    max-width:80px;
+.bl-400 {
+    max-width:400px;
     word-wrap:break-word;
 }
-
-.bl-100 {
-    max-width:100px;
-    word-wrap:break-word;
-}
-
-
 
 span, div, i {
     color: #ffffff;
