@@ -2,7 +2,7 @@
 require_once('php/functions.php');
 $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = 0");
 $stmt->execute();
-$stmt->debugDumpParams();
+error_log(pdo_debugStrParams($stmt));
 $roottypes = $stmt->fetch(PDO::FETCH_ASSOC);
 error_log(print_r($roottypes, true));
 foreach ($roottypes as $roottype) {
