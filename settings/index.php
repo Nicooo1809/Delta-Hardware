@@ -66,6 +66,8 @@ if(isset($_GET['save'])) {
 			$success_msg = "Passwort erfolgreich gespeichert.";
 		}
 		
+	} else if ($save == 'style') {
+		switch_style();
 	}
 }
 ?>
@@ -166,6 +168,14 @@ if(isset($_GET['save'])) {
 
 			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 
+			</form>
+		</div>
+		<div>
+			<form>
+				<div class="form-check form-switch">
+					<input class="form-check-input" action="?save=passwort" method="post" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+					<label class="form-check-label" for="flexSwitchCheckDefault">Toggle light mode</label>
+				</div>
 			</form>
 		</div>
 	</div>

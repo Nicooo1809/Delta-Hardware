@@ -72,3 +72,35 @@ function pdo_debugStrParams($stmt) {
 	ob_end_clean();
 	return $r;
 }
+
+function switch_style () {
+	if(isset($_COOKIE['darkmode'])) {
+		if ($_COOKIE['darkmode'] == true) {
+			setcookie('darkmode', false, time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
+		} else {
+			setcookie('darkmode', true, time() + (3600*24*365), "/"); // 1 Jahr gültig
+		}
+	} else {
+		setcookie('darkmode', true, time() + (3600*24*365), "/"); // 1 Jahr gültig
+	}
+}
+
+function set_darkmode () {
+	setcookie('darkmode', true, time() + (3600*24*365), "/"); // 1 Jahr gültig
+}
+
+function remove_darkmode () {
+	setcookie('darkmode', false, time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
+}
+
+function check_dark() {
+	if(isset($_COOKIE['darkmode'])) {
+		if ($_COOKIE['darkmode'] == true) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
