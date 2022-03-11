@@ -161,16 +161,12 @@ hr {
 .bg { 
     /* The image used */
     background-image: url("/media/bg-img.jpg");
-    height: 50%; 
+    height: 70%; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
 .minimum-vh {
-min-height: 50vh !important;
-}
-
-.carousel-vh {
-    max-height: 92vh !important;
+    min-height: 65vh !important;
 }
