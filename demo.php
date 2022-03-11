@@ -15,12 +15,13 @@
     foreach ($items[0] as $id=>$i) {
       // (C1) WITH SUB-ITEMS
       if (isset($items[$id])) { ?>
-      <div class="ddgrp">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Audio
+    </a>
         <div><?=$i["item_text"]?></div>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"><?php
           foreach ($items[$id] as $cid=>$c) { drawlink($c); }
         ?></ul>
-      </div>
 
       <?php
       // (C2) SINGLE MENU ITEM
