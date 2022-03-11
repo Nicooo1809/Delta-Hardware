@@ -171,7 +171,7 @@ if(isset($_GET['save'])) {
 			</form>
 		</div>
 		<div>
-			<form action="?save=passwort" method="post">
+			<form action="?save=style" method="post">
 				<div class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
 					<label class="form-check-label" for="flexSwitchCheckDefault">Toggle light mode</label>
