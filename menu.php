@@ -1,14 +1,13 @@
 <?php
 require_once('php/functions.php');
 $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = 0");
-#$stmt->bindValue(1, $_SESSION['userid'], PDO::PARAM_INT);
 $stmt->execute();
-$roottypes = $stmt->fetch();
+$roottypes = $stmt->fetch(PDO::FETCH_ASSOC);
 foreach ($roottypes as $roottype) {
   $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = ?");
   $stmt->bindValue(1, $roottype['parent_id'], PDO::PARAM_INT);
   $stmt->execute();
-  $subtypes = $stmt->fetch();
+  $subtypes = $stmt->fetch(PDO::FETCH_ASSOC);
   if (isset($subtypes['0'])) {
   ?>
     <li class="nav-item dropdown">
