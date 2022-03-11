@@ -4,13 +4,13 @@ require_once("templates/header.php");
 $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = 0");
 $stmt->execute();
 #error_log(pdo_debugStrParams($stmt));
-$roottypes = $stmt->fetch(PDO::FETCH_ASSOC);
+$roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 error_log(print_r($roottypes, true));
 foreach ($roottypes as $roottype) {
   $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = ?");
   $stmt->bindValue(1, $roottype['parent_id'], PDO::PARAM_INT);
   $stmt->execute();
-  $subtypes = $stmt->fetch(PDO::FETCH_ASSOC);
+  $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
   if (isset($subtypes)) {
   #error_log('1');
   ?>
