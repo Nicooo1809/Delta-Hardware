@@ -171,7 +171,7 @@ require_once("templates/header.php");
             <h1>Benutzerverwaltung</h1>
             <p><?php print($total_users); ?> Benutzer</p>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table align-middle table-borderless table-hover">
                     <thead>
                         <tr>
                             <div class="bg-black rounded">
@@ -193,42 +193,42 @@ require_once("templates/header.php");
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Erstellt</div>
                                 </th>
-                                <th scope="col" class="border-0"></th>
+                                <th scope="col" class="border-0" style="width: 15%"></th>
                             </div>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($users as $user1): ?>
                             <tr>
-                                <td class="border-0 align-middle text-center">
+                                <td class="border-0 text-center">
                                     <strong><?=$user1['id']?></strong>
                                 </td>
-                                <td class="border-0 align-middle text-center">
+                                <td class="border-0 text-center">
                                     <strong><?=$user1['vorname']?></strong>
                                 </td>
-                                <td class="border-0 align-middle text-center">
+                                <td class="border-0 text-center">
                                     <strong><?=$user1['nachname']?></strong>
                                 </td>
-                                <td class="border-0 align-middle bl-100 text-center">
+                                <td class="border-0 bl-100 text-center">
                                     <strong><a href="mailto:<?=$user1['email']?>"><?=$user1['email']?></a></strong>
                                 </td>
-                                <td class="border-0 align-middle text-center">
+                                <td class="border-0 text-center">
                                     <strong><?=$user1['name']?></strong>
                                 </td>
-                                <td class="border-0 align-middle text-center">
+                                <td class="border-0">
                                     <strong><?=$user1['created_at']?></strong>
                                 </td>
-                                <td class="border-0 align-middle actions text-center">
+                                <td class="border-0 actions text-center">
                                 <?php if ($user['modifyUser'] == 1 or $user['deleteUser'] == 1) {?>
-                                    <form action="user.php" method="post" class="row">
+                                    <form action="user.php" method="post" class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <?php if ($user['modifyUser'] == 1) {?>
-                                        <div class="col-auto px-1 py-1">
+                                        <div class="">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                         </div>
                                         <?php }?>
                                         <?php if ($user['deleteUser'] == 1) {?>
-                                        <div class="col-auto px-1 py-1">
+                                        <div class="">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                         </div>
