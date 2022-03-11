@@ -11,8 +11,10 @@ if(isset($_GET['style'])) {
 
 	if ($stylesel == 'light') {
 		style_light();
+		header("Refresh:0; url=settings.php");
 	} else if ($stylesel == 'dark') {
 		style_dark();
+		header("Refresh:0; url=settings.php");
 	}
 }
 
