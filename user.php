@@ -136,9 +136,9 @@ if(isset($_POST['action'])) {
                                 <select class="form-select" id="permissions" name="permissions">
                                     <?php foreach ($permissions as $permission) {
                                         if ($permission['id'] == $user1[0]['permission_group']) {
-                                            print('<option value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
+                                            print('<option class="text-dark" value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
                                         } else {
-                                            print('<option value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
+                                            print('<option class="text-dark" value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
                                         }
                                     }?>
                                 </select>
