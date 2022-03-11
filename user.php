@@ -175,7 +175,7 @@ require_once("templates/header.php");
                     <thead>
                         <tr>
                             <div class="bg-black rounded">
-                            <th scope="col" class="border-0">
+                            <th scope="col" class="border-0 text-center">
                                     <div class="p-2 px-3 text-uppercase">#</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
@@ -200,7 +200,7 @@ require_once("templates/header.php");
                     <tbody>
                         <?php foreach ($users as $user1): ?>
                             <tr>
-                                <td class="border-0 align-middle">
+                                <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['id']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
@@ -218,17 +218,17 @@ require_once("templates/header.php");
                                 <td class="border-0 align-middle text-center">
                                     <strong><?=$user1['created_at']?></strong>
                                 </td>
-                                <td class="border-0 align-middle actions">
+                                <td class="border-0 align-middle actions text-center">
                                 <?php if ($user['modifyUser'] == 1 or $user['deleteUser'] == 1) {?>
                                     <form action="user.php" method="post" class="row">
                                         <?php if ($user['modifyUser'] == 1) {?>
-                                        <div class="col-3 px-1 py-1">
+                                        <div class="col-auto px-1 py-1">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                         </div>
                                         <?php }?>
                                         <?php if ($user['deleteUser'] == 1) {?>
-                                        <div class="col-3 px-1 py-1">
+                                        <div class="col-auto px-1 py-1">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                         </div>
