@@ -6,8 +6,6 @@ require_once("php/functions.php");
 //Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
 $user = check_user();
 
-include_once("templates/header.php");
-
 if(isset($_GET['save'])) {
 	$save = $_GET['save'];
 	
@@ -79,9 +77,9 @@ if(isset($_GET['save'])) {
 		switch_style();
 		error_log("1");
 		error_log(check_dark());
-		exit;
 	}
 }
+include_once("templates/header.php");
 ?>
 
 <div class="text-white minheight100 mx-3 my-3">
