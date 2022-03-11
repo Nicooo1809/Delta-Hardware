@@ -162,7 +162,7 @@ hr {
     /* The image used */
     background-image: url("/media/bg-img.jpg");
     height: 70%; 
-    background-position: right;
+    background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
   }
