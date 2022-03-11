@@ -65,7 +65,17 @@ if(isset($_GET['save'])) {
 		}
 		
 	} else if ($save == 'style') {
-		error_log("0");
+		function switch_style () {
+			if(isset($_COOKIE['darkmode'])) {
+				if ($_COOKIE['darkmode'] == 'on') {
+					setcookie("darkmode",'off', time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
+				} else {
+					setcookie("darkmode",'on', time() + (3600*24*365)); // 1 Jahr gültig
+				}
+			} else {
+				setcookie("darkmode",'on', time() + (3600*24*365)); // 1 Jahr gültig
+			}
+		}
 		switch_style();
 		error_log("1");
 		error_log(check_dark());
