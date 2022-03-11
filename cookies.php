@@ -1,5 +1,7 @@
-<?php
+<?php 
+require_once("templates/header.php");
 ?>
+
 
 <div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-dark">
@@ -21,11 +23,12 @@
                 </div>
             </div>
             <div class="modal-footer text-white bg-dark fw-bold">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                <a href="/index"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück zur Startseite</button></a>
             </div>
         </div>
     </div>
 </div>
     
 <?php
+include_once("templates/footer.php")
 ?>
