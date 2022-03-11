@@ -67,8 +67,8 @@ if(isset($_GET['save'])) {
 		}
 		
 	} else if ($save == 'style') {
-		set_darkmode();
-		print_r("1");
+		switch_style();
+		print_r(check_dark());
 	}
 }
 ?>
