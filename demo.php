@@ -16,9 +16,8 @@
       // (C1) WITH SUB-ITEMS
       if (isset($items[$id])) { ?>
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Audio
+    <?=$i["item_text"]?>
     </a>
-        <div><?=$i["item_text"]?></div>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"><?php
           foreach ($items[$id] as $cid=>$c) { drawlink($c); }
         ?></ul>
