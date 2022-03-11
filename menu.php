@@ -20,6 +20,10 @@ foreach ($roottypes as $roottype) {
       </a>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
   <?php
+  } else {
+    ?>
+      <li class="nav-item"><?=$roottype['item_text']?></li>
+    <?php
   }
   foreach ($subtypes as $subtype) {
   ?>
