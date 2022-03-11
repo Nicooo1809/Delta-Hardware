@@ -154,7 +154,7 @@ if(isset($_POST['action'])) {
 
 // SELECT * ,(SELECT img From user1_images WHERE user1_images.user1_id=users.id ORDER BY id LIMIT 1) as image FROM users_types, users where users.user1_type_id = users_types.id and users_types.type = 'Test' ORDER BY users.name DESC;
 // Select users ordered by the date added
-$stmt = $pdo->prepare('SELECT * FROM users, permission_group where users.permission_group = permission_group.id ORDER BY users.id');
+$stmt = $pdo->prepare('SELECT * FROM permission_group, users where users.permission_group = permission_group.id ORDER BY users.id');
 $stmt->execute();
 // Get the total number of users
 $total_users = $stmt->rowCount();
