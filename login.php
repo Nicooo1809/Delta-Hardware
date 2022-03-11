@@ -59,12 +59,12 @@ include("templates/header.php");
 							<p class="text-muted mb-4">Schön, dass du wieder da bist!</p>
 							
 							<form class="needs-validation" action="login.php" method="post" novalidate>
-								<div class="form-floating has-validation mb-3">
+								<div class="form-floating mb-3">
 									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 shadow-sm ps-4 text-dark fw-bold" require>
 									<label for="inputEmail" class="text-dark fw-bold">E-Mail</label>
 									<div class="invalid-feedback">E-Mail-Adresse muss ausgefüllt sein</div>
 								</div>
-								<div class="form-floating has-validation mb-3">
+								<div class="form-floating mb-3">
                                     <input id="inputPassword" type="password" name="passwort" placeholder="Passwort" class="form-control border-0 shadow-sm ps-4 text-dark fw-bold" require>
 									<label for="inputPassword" class="text-dark fw-bold">Passwort</label>
 									<div class="invalid-feedback">Passwort muss ausgefüllt sein</div>
