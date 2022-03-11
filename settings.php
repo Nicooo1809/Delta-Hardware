@@ -79,6 +79,7 @@ if(isset($_GET['save'])) {
 		switch_style();
 		error_log("1");
 		error_log(check_dark());
+		exit;
 	}
 }
 ?>
