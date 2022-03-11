@@ -51,6 +51,7 @@ function check_user($redirect = TRUE) {
 		return $user;
 	}
 }
+
 /**
  * Outputs an error message and stops the further exectution of the script.
  */
@@ -76,31 +77,23 @@ function pdo_debugStrParams($stmt) {
 function switch_style () {
 	if(isset($_COOKIE['darkmode'])) {
 		if ($_COOKIE['darkmode'] == 'on') {
-			setcookie('darkmode','off', time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
+			setcookie("darkmode",'off', time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
 		} else {
-			setcookie('darkmode','on', time() + (3600*24*365), "/"); // 1 Jahr gültig
+			setcookie("darkmode",'on', time() + (3600*24*365)); // 1 Jahr gültig
 		}
 	} else {
-		setcookie('darkmode','on', time() + (3600*24*365), "/"); // 1 Jahr gültig
+		setcookie("darkmode",'on', time() + (3600*24*365)); // 1 Jahr gültig
 	}
-}
-
-function set_darkmode () {
-	setcookie('darkmode','on', time() + (3600*24*365), "/"); // 1 Jahr gültig
-}
-
-function remove_darkmode () {
-	setcookie('darkmode','off', time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
 }
 
 function check_dark() {
 	if(isset($_COOKIE['darkmode'])) {
-		if ($_COOKIE['darkmode'] == true) {
-			return true;
+		if ($_COOKIE['darkmode'] == 'on') {
+			return 'dark';
 		} else {
-			return false;
+			return 'light';
 		}
 	} else {
-		return false;
+		return 'light';
 	}
 }

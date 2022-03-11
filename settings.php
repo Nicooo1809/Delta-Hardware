@@ -1,14 +1,10 @@
 <?php
-session_start();
-chdir('..');
-require_once("php/mysql.php");
+#require_once("php/mysql.php");
 require_once("php/functions.php");
 
 //Überprüfe, dass der User eingeloggt ist
 //Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
 $user = check_user();
-
-include("templates/header.php");
 
 if(isset($_GET['save'])) {
 	$save = $_GET['save'];
@@ -67,10 +63,10 @@ if(isset($_GET['save'])) {
 		}
 		
 	} else if ($save == 'style') {
-		set_darkmode();
-		print_r("1");
+		switch_style();
 	}
 }
+include_once("templates/header.php");
 ?>
 
 <div class="text-white minheight100 mx-3 my-3">
@@ -172,13 +168,14 @@ if(isset($_GET['save'])) {
 			</form>
 		</div>
 		<div>
-			<form action="?save=style" method="post">
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-					<label class="form-check-label" for="flexSwitchCheckDefault">Toggle light mode</label>
-				</div>
-				<button type="submit" class="btn btn-outline-primary">Speichern</button>
-			</form>
+			<div class="row">
+				<form action="?save=style=light" method="post">
+					<button type="submit" class="btn btn-outline-light">Light</button>
+				</form>
+				<form action="?save=style=dark" method="post">
+					<button type="submit" class="btn btn-outline-dark">Dark</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
