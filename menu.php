@@ -16,14 +16,14 @@ foreach ($roottypes as $roottype) {
   ?>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <?=$roottype['item_test']?>
+      <?=$roottype['item_text']?>
       </a>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
   <?php
   }
   foreach ($subtypes as $subtype) {
   ?>
-        <li><a class="dropdown-item" href="products.php?type=<?=$subtype['item_test']?>"><?=$subtype['item_test']?></a></li>
+        <li><a class="dropdown-item" href="products.php?type=<?=$subtype['item_text']?>"><?=$subtype['item_text']?></a></li>
   <?php
   }
   if (isset($subtypes)) {
