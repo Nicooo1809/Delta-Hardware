@@ -58,7 +58,7 @@ include("templates/header.php");
 							?>
 							<p class="text-muted mb-4">Schön, dass du wieder da bist!</p>
 							
-							<form action="login.php" method="post">
+							<form action="login.php" method="post" class="form-floating">
 								<div class="form-group mb-3">
 									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
