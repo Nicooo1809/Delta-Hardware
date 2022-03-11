@@ -107,38 +107,48 @@ if(isset($_POST['action'])) {
         ?>
         <div class="minheight100 mx-3 my-3">
             <h1>Einstellungen</h1>
-
             <div>
-                    <form action="user.php" method="post">
-                        <label for="inputVorname">Vorname</label>
+                <form action="user.php" method="post">
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputVorname">Vorname</span>
                         <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
-                        <label for="inputNachname">Nachname</label>
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputNachname">Nachname</span>
                         <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
-                        <label for="inputEmail">E-Mail</label>
+                    </div>
+                    <div class="input-group py-2">    
+                        <span class="input-group-text" for="inputEmail">E-Mail</span>
                         <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
-                        <label for="inputPasswortNeu">Neues Passwort</label>
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputPasswortNeu">Neues Passwort</span>
                         <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
-                        <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputPasswortNeu2">Neues Passwort (wiederholen)</span>
                         <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
-                        <?php if ($user['modifyUserPerms'] == 1) {?>
-                        <label for="permissions">Permissions</label>
+                    </div>
+                    <?php if ($user['modifyUserPerms'] == 1) {?>
+                        <div class="input-group py-2">
+                            <span class="input-group-text" for="permissions">Permissions</span>
                             <select class="form-select" id="permissions" name="permissions">
                                 <?php foreach ($permissions as $permission) {
                                     if ($permission['id'] == $user1[0]['permission_group']) {
-                                        print('<option value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
+                                        print('<option class="text-dark" value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
                                     } else {
-                                        print('<option value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
+                                        print('<option class="text-dark" value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
                                     }
                                 }?>
                             </select>
-                        <?php }?>
-                        <div class="input-group">
-                            <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
-                            <input class="form-control" type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
-                            <button type="submit" name="action" value="cancel" class="btn btn-outline-primary">Abrechen</button>
                         </div>
-                    </form>
-                </div>
+                    <?php }?>
+                    <div class="input-group py-2">
+                        <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                        <input class="form-control" type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
+                        <button type="submit" name="action" value="cancel" class="btn btn-outline-primary">Abrechen</button>
+                    </div>
+                </form>
             </div>
         </div>
         <?php 
