@@ -193,6 +193,7 @@ require_once("templates/header.php");
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Erstellt</div>
                                 </th>
+                                <th scope="col" class="border-0"></th>
                             </div>
                         </tr>
                     </thead>
