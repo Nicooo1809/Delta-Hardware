@@ -144,7 +144,7 @@ if(isset($_POST['action'])) {
                         </div>
                     <?php }?>
                     <div class="input-group py-2">
-                        <button type="submit" name="action" value="mod" class="btn btn-outline-secondary">Speichern</button>
+                        <button type="submit" name="action" value="mod" class="btn btn-outline-success">Speichern</button>
                         <input class="form-control" type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
                         <button type="submit" name="action" value="cancel" class="btn btn-outline-danger">Abrechen</button>
                     </div>
