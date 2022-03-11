@@ -75,11 +75,11 @@ function pdo_debugStrParams($stmt) {
 }
 
 function style_dark () {
-	setcookie("style",'dark', time() + (3600*24*365)); // 1 Jahr gültig
+	setcookie("style",'dark',time() + (3600*24*365)); // 1 Jahr gültig
 }
 
 function style_light () {
-	setcookie("style",'light', time() - 3600);
+	setcookie("style",'light',time() + (3600*24*365));
 }
 
 function check_style() {
