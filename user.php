@@ -144,9 +144,9 @@ if(isset($_POST['action'])) {
                         </div>
                     <?php }?>
                     <div class="input-group py-2">
-                        <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                        <button type="submit" name="action" value="mod" class="btn btn-outline-secondary">Speichern</button>
                         <input class="form-control" type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
-                        <button type="submit" name="action" value="cancel" class="btn btn-outline-primary">Abrechen</button>
+                        <button type="submit" name="action" value="cancel" class="btn btn-outline-danger">Abrechen</button>
                     </div>
                 </form>
             </div>
@@ -240,7 +240,7 @@ require_once("templates/header.php");
                                         <?php if ($user['deleteUser'] == 1) {?>
                                         <div class="">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
-                                            <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
+                                            <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button>
                                         </div>
                                         <?php }?>
                                     </form>
