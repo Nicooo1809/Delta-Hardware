@@ -20,7 +20,7 @@ check_user(FALSE);
     <link rel="stylesheet" href="/css/cookiebanner.css">
     <script> 
     $(function(){
-        $("#cookieModal").load("/cookies.php"); 
+        $("#ModalTest").load("/cookies.php"); 
     });
 </script> 
     <title>Delta-Hardware</title>
