@@ -63,12 +63,6 @@ check_user(FALSE);
                         Monitore
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item " href="#">Ultrawide</a></li>
-                        <li><a class="dropdown-item" href="#">WQHD</a></li>
-                        <li><a class="dropdown-item" href="#">4K</a></li>
-                        <li><a class="dropdown-item" href="#">Curved</a></li>
-                        <li><a class="dropdown-item" href="#">Gaming</a></li>
-                        <li><a class="dropdown-item" href="#">Touchscreen</a></li>
                         <li><a class="dropdown-item" href="#">24 Zoll</a></li>
                         <li><a class="dropdown-item" href="#">27 Zoll</a></li>
                         <li><a class="dropdown-item" href="#">32 Zoll</a></li>
@@ -94,6 +88,7 @@ check_user(FALSE);
                         <li><a class="dropdown-item" href="#">Joystick</a></li>
                         <li><a class="dropdown-item" href="#">Lenkräder</a></li>
                         <li><a class="dropdown-item" href="#">Controller</a></li>
+                        <li><a class="dropdown-item" href="#">USB-Hubs</a></li>
                     </ul>
                 </li>
 
@@ -107,9 +102,7 @@ check_user(FALSE);
                         <li><a class="dropdown-item " href="#">Access-Points</a></li>
                         <li><a class="dropdown-item" href="#">Bluetooth Adapter</a></li>
                         <li><a class="dropdown-item" href="#">Netzwerkswitches</a></li>
-                        <li><a class="dropdown-item" href="#">Gaming-Tastaturen</a></li>
                         <li><a class="dropdown-item" href="#">Router</a></li>
-                        <li><a class="dropdown-item" href="#">USB-Hubs</a></li>
                         <li><a class="dropdown-item" href="#">WLAN Repeater</a></li>
                     </ul>
                 </li>
