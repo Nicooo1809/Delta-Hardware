@@ -138,23 +138,23 @@ if($showFormular) {
 
 							<form action="?register=1" method="post">
 
-								<div class="form-group mb-3">
+							<div class="form-floating mb-3">
 									<label for="inputVorname" class="custom-control-label text-white">Vorname:</label>
 									<input placeholder="Max" type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
-								<div class="form-group mb-3">
+								<div class="form-floating mb-3">
 									<label for="inputNachname" class="custom-control-label text-white">Nachname:</label>
 									<input placeholder="Mustermann" type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
-								<div class="form-group mb-3">
+								<div class="form-floating mb-3">
 									<label for="inputEmail" class="custom-control-label text-white">E-Mail:</label>
 									<input placeholder="max@mustermann.de" type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
-								<div class="form-group mb-3">
+								<div class="form-floating mb-3">
 									<label for="inputPasswort" class="custom-control-label text-white">Dein Passwort:</label>
 									<input placeholder="Passwort" type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
-								<div class="form-group mb-3">
+								<div class="form-floating mb-3">
 									<label for="inputPasswort2" class="custom-control-label text-white">Passwort wiederholen:</label>
 									<input placeholder="Passwort wiederholen" type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
 								</div>
