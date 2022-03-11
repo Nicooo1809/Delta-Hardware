@@ -169,8 +169,11 @@ include_once("templates/header.php");
 		</div>
 		<div>
 			<div class="row">
-				<button type="submit" action="?save=style=light" method="post" class="btn btn-outline-light">Light</button>
-				<button type="submit" action="?save=style=dark" method="post" class="btn btn-outline-dark">Dark</button>
+				<form action="?save=style=light" method="post">
+				<button type="submit" class="btn btn-outline-light">Light</button>
+				<form action="?save=style=dark" method="post">
+				<button type="submit" class="btn btn-outline-dark">Dark</button>
+				</form>
 			</div>
 		</div>
 	</div>
