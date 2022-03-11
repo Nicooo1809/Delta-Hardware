@@ -160,7 +160,7 @@ $stmt->execute();
 $total_users = $stmt->rowCount();
 // Fetch the users from the database and return the result as an Array
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($users);
+print_r($users);
 #$stmt->debugDumpParams();
 require_once("templates/header.php");
 ?>
