@@ -31,18 +31,3 @@
 <?php
 require_once("templates/footer.php");
 ?>
-
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Audio
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item " href="#">Headsets</a></li>
-        <li><a class="dropdown-item" href="#">Kopfhörer</a></li>
-        <li><a class="dropdown-item" href="#">Mikrofone</a></li>
-        <li><a class="dropdown-item" href="#">Lautsprecher</a></li>
-        <li><a class="dropdown-item" href="#">Soundbar</a></li>
-        <li><a class="dropdown-item" href="#">Soundkarten</a></li>
-    </ul>
-</li>
-
