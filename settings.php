@@ -168,13 +168,10 @@ include_once("templates/header.php");
 			</form>
 		</div>
 		<div>
-			<form>
-				<div class="form-check form-switch">
-					<input class="form-check-input" action="?save=style" method="post" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-					<label class="form-check-label" for="flexSwitchCheckDefault">Toggle light mode</label>
-				</div>
-				<button type="submit" class="btn btn-outline-primary">Speichern</button>
-			</form>
+			<div class="row">
+				<button type="submit" action="?save=style=light" method="post" class="btn btn-outline-light">Light</button>
+				<button type="submit" action="?save=style=dark" method="post" class="btn btn-outline-dark">Dark</button>
+			</div>
 		</div>
 	</div>
 </div>
