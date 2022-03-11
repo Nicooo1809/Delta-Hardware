@@ -120,7 +120,7 @@ if($showFormular) {
 
 <div class="container-fluid minheight100">
 	<div class="row no-gutter">
-		<div class="cbg">
+		<div class="ctext">
 			<div class="register-register d-flex align-items-center py-5">
 				<div class="container">
 					<div class="row">

@@ -13,14 +13,14 @@ require_once("templates/header.php");
             <hr>
             <div class="modal-body ctext cbg fw-normal">
                 <div class="px-2">
-                    <h4 class="fw-bold">Wir verwenden Cookies um folgende Funktion bereitzustellen:</h4>
+                    <h4 class="fw-bold ctext">Wir verwenden Cookies um folgende Funktion bereitzustellen:</h4>
                     <br>
-                    <p class="fs-5 cookie-p-text">- Speichern der PHP-Session</p>
-                    <p class="fs-5 cookie-p-text">- Angemeldet bleiben</p>
-                    <p class="fs-5 cookie-p-text">- Speichern der Style-Einstellung</p>
-                    <p class="fs-5 cookie-p-text mb-1">- Speichern der Cookie-Einstellung</p>
+                    <p class="fs-5 ctext cookie-p-text">- Speichern der PHP-Session</p>
+                    <p class="fs-5 ctext cookie-p-text">- Angemeldet bleiben</p>
+                    <p class="fs-5 ctext cookie-p-text">- Speichern der Style-Einstellung</p>
+                    <p class="fs-5 ctext cookie-p-text mb-1">- Speichern der Cookie-Einstellung</p>
                     <br>
-                    <p class="fw-light fs-6 cookie-p-text">Ihre Cookie-Einstellung wird gespeichert.</p>
+                    <p class="fw-light fs-6 cookie-p-text ctext">Ihre Cookie-Einstellung wird gespeichert.</p>
                 </div>
             </div>
             <div class="modal-footer ctext cbg fw-bold">

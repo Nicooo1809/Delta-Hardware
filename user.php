@@ -175,15 +175,15 @@ require_once("templates/header.php");
 
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
-        <div class="py-3 px-3 cbg rounded">
+        <div class="py-3 px-3 cbg ctext rounded">
             <h1>Benutzerverwaltung</h1>
             <p><?php print($total_users); ?> Benutzer</p>
             <div class="table-responsive">
                 <table class="table align-middle table-borderless table-hover">
                     <thead>
                         <tr>
-                            <div class="cbg rounded">
-                            <th scope="col" class="border-0 text-center">
+                            <div class="cbg ctext rounded">
+                                <th scope="col" class="border-0 text-center">
                                     <div class="p-2 px-3 text-uppercase">#</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">

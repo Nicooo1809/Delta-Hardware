@@ -153,14 +153,14 @@ foreach ($products as $product) {
 <?php if (!isMobile()): ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row">
-            <div class="py-3 px-3 cbg rounded">
+            <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Warenkorb</h1>
                 <p><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <div class="cbg rounded">
+                                <div class="ctext rounded">
                                     <th scope="col" class="border-0">
                                         <div class="p-2 px-3 text-uppercase">Produkt</div>
                                     </th>

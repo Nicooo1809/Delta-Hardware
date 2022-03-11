@@ -45,7 +45,7 @@ include("templates/header.php");
 ?>
 <div class="container-fluid">
 	<div class="row no-gutter">
-		<div class="cbg">
+		<div class="ctext">
 			<div class="minheight100 d-flex align-items-center py-5">
 				<div class="container">
 					<div class="row">

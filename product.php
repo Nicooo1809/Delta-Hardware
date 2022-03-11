@@ -95,10 +95,10 @@ require("templates/header.php");
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <div>
-                        <h1 class=""><?=$product[0]['name']?></h1>
-                        <span class=" col">Preis: &euro;<?=$product[0]['price']?></span> 
+                        <h1 class="ctext"><?=$product[0]['name']?></h1>
+                        <span class="ctext col">Preis: &euro;<?=$product[0]['price']?></span> 
                         <?php if ($product[0]['rrp'] > 0): ?>
-                            <span class=" col">UVP &euro;<?=$product[0]['rrp']?></span>
+                            <span class="ctext col">UVP &euro;<?=$product[0]['rrp']?></span>
                         <?php endif; ?>
                         <?php if ($product[0]['visible'] == 0):?>
                             <h2 class="text-danger my-2">Das Produkt aktuell nicht bestellbar!</h2>
@@ -127,7 +127,7 @@ require("templates/header.php");
                     </div>
                 </div>
                 <div class="row">
-                <p class=""><?=$product[0]['desc']?></p>
+                <p class="ctext"><?=$product[0]['desc']?></p>
                 </div>
                 <?php endif; ?>
             </div>

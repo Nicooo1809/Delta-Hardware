@@ -25,13 +25,13 @@ if(!isMobile()):
 ?>
     <footer class="container-fluid footer-footer sticky-bottom footer py-3 cbg">
         <div class="row">
-            <div class="col">
+            <div class="col ctext">
                 Delta-Hardware
             </div>
             <div class="col text-center">
                 <a href="/aboutus.php" class="ctext">Über uns</a>
             </div>
-            <div class="col text-end">
+            <div class="col text-end ctext">
                 Version <?=$vernum?> 
                 <div class="vr mx-1"></div>
                  <?=$verdate?>
@@ -45,7 +45,7 @@ if(!isMobile()):
             <div class="col py-1 text-center">
                 <a href="aboutus.php" class="ctext">Über uns</a>
             </div>
-            <div class="col py-1 text-center">
+            <div class="ctext col py-1 text-center">
                 Version <?=$vernum?> - <?=$verdate?>
             </div>
         </div>
