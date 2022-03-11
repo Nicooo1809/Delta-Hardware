@@ -61,10 +61,10 @@ require_once("templates/header.php");
                                     print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                                 }?>
                                 <h4 class="card-title name"><?=$product['name']?></h4>
-                                <p class="card-text price">Preis: 
+                                <p class="card-text ctext price">Preis: 
                                     &euro;<?=$product['price']?>
                                     <?php if ($product['rrp'] > 0): ?>
-                                    <span class="rrp"><br>UVP: &euro;<?=$product['rrp']?></span>
+                                    <span class="rrp ctext"><br>UVP: &euro;<?=$product['rrp']?></span>
                                     <?php endif; ?>
                                 </p>
                             </div>
