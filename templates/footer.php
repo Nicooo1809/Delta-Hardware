@@ -5,9 +5,11 @@ include_once("/cookies.php")
 <div class="alert text-center cookiealert" role="alert">
     <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten.
 
-    <button type="button" id="ModalTest" class="btn btn-outline-primary btn-sm ms-3 me-3" data-bs-toggle="modal" data-bs-target="#cookieModal">
+    <a href="/cookies.php">
+    <button type="button" class="btn btn-outline-primary btn-sm ms-3 me-3" data-bs-toggle="modal" data-bs-target="#cookieModal">
         Mehr erfahren
     </button>
+    </a>
 
     <div class="vr"></div>
     <button type="button" class="btn btn-primary btn-sm acceptcookies ms-3">

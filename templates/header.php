@@ -18,11 +18,6 @@ check_user(FALSE);
     <script src="https://kit.fontawesome.com/3386a0b16e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/cookiebanner.css">
-    <script> 
-    $(function(){
-        $("#ModalTest").load("/cookies.php"); 
-    });
-</script> 
     <title>Delta-Hardware</title>
 </head>
 <body>
