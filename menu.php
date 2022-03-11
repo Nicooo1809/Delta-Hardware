@@ -38,4 +38,4 @@ while (true) {
   if ($next == "") { break; }
   else { $next = substr($next, 0, -1); }
 }
-print_r($items, true);
+error_log(print_r($items, true));
