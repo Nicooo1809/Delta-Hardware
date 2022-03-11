@@ -6,7 +6,7 @@ $stmt->execute();
 $roottypes = $stmt->fetch();
 foreach ($roottypes as $roottype) {
   $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = ?");
-  $stmt->bindValue(1, $roottype['parentId'], PDO::PARAM_INT);
+  $stmt->bindValue(1, $roottype['parent_id'], PDO::PARAM_INT);
   $stmt->execute();
   $subtypes = $stmt->fetch();
   if (isset($subtypes['0'])) {
