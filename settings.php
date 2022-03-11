@@ -6,7 +6,7 @@ require_once("php/functions.php");
 //Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
 $user = check_user();
 
-include("templates/header.php");
+include_once("templates/header.php");
 
 if(isset($_GET['save'])) {
 	$save = $_GET['save'];
