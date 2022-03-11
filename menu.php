@@ -16,7 +16,7 @@ foreach ($roottypes as $roottype) {
   ?>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Hardware
+      <?=$roottype['item_test']?>
       </a>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
   <?php
