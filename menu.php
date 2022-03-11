@@ -26,7 +26,7 @@ foreach ($roottypes as $roottype) {
         <li><a class="dropdown-item" href="products.php?type="><?=$subtype['item_test']?></a></li>
   <?php
   }
-  if (isset($subtypes['0'])) {
+  if (isset($subtypes)) {
   ?>
       </ul>
     </li>
