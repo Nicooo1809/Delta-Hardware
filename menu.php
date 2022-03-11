@@ -1,5 +1,6 @@
 <?php
 require_once('php/functions.php');
+require_once("templates/header.php");
 $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = 0");
 $stmt->execute();
 error_log(pdo_debugStrParams($stmt));
@@ -31,4 +32,5 @@ foreach ($roottypes as $roottype) {
   <?php
   }
 }
+include_once("templates/footer.php")
 ?>
