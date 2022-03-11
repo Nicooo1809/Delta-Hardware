@@ -16,3 +16,10 @@ html, body {
 	margin: 0;
 }
 
+.cbg {
+    background-color: #adb5bd;
+}
+
+.ctext {
+    color: #212529;
+}

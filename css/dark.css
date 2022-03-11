@@ -9,9 +9,6 @@
     font-family: "Montserrat", sans-serif;
 }
 
-
-
-
 html, body {
     /*background-color: rgb(66, 66, 66); */
     background-color: #2d3238 !important;
@@ -19,3 +16,10 @@ html, body {
 	margin: 0;
 }
 
+.cbg {
+    background-color: #212529;
+}
+
+.ctext {
+    color: #ffffff;
+}
