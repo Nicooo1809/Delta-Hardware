@@ -60,11 +60,11 @@ include("templates/header.php");
 							
 							<form action="login.php" method="post">
 								<div class="form-floating mb-3">
-									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 shadow-sm ps-4 text-dark fw-bold" required>
+									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 ps-4 text-dark fw-bold" required>
 									<label for="inputEmail" class="text-dark fw-bold">E-Mail</label>
 								</div>
 								<div class="form-floating mb-3">
-                                    <input id="inputPassword" type="password" name="passwort" placeholder="Passwort" class="form-control border-0 shadow-sm ps-4 text-dark fw-bold" required>
+                                    <input id="inputPassword" type="password" name="passwort" placeholder="Passwort" class="form-control border-0 ps-4 text-dark fw-bold" required>
 									<label for="inputPassword" class="text-dark fw-bold">Passwort</label>
 								</div>
 

@@ -139,23 +139,23 @@ if($showFormular) {
 							<form action="?register=1" method="post">
 
 							<div class="form-floating mb-3">
-									<label for="inputVorname" class="custom-control-label text-dark">Vorname</label>
+									<label for="inputVorname" class="text-dark fw-bold">Vorname</label>
 									<input placeholder="Max" type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" class="form-control border-0 px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-floating mb-3">
-									<label for="inputNachname" class="custom-control-label text-dark">Nachname</label>
+									<label for="inputNachname" class="text-dark fw-bold">Nachname</label>
 									<input placeholder="Mustermann" type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" class="form-control border-0 px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-floating mb-3">
-									<label for="inputEmail" class="custom-control-label text-dark">E-Mail</label>
+									<label for="inputEmail" class="text-dark fw-bold">E-Mail</label>
 									<input placeholder="max@mustermann.de" type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" class="form-control border-0 px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-floating mb-3">
-									<label for="inputPasswort" class="custom-control-label text-dark">Dein Passwort</label>
+									<label for="inputPasswort" class="text-dark fw-bold">Dein Passwort</label>
 									<input placeholder="Passwort" type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" class="form-control border-0 px-4 text-dark fw-bold" required>
 								</div>
 								<div class="form-floating mb-3">
-									<label for="inputPasswort2" class="custom-control-label text-dark">Passwort wiederholen</label>
+									<label for="inputPasswort2" class="text-dark fw-bold">Passwort wiederholen</label>
 									<input placeholder="Passwort wiederholen" type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" class="form-control border-0 px-4 text-dark fw-bold" required>
 								</div>
 
