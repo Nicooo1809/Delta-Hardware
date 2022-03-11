@@ -63,20 +63,7 @@ if(isset($_GET['save'])) {
 		}
 		
 	} else if ($save == 'style') {
-		function switch_style () {
-			if(isset($_COOKIE['darkmode'])) {
-				if ($_COOKIE['darkmode'] == 'on') {
-					setcookie("darkmode",'off', time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
-				} else {
-					setcookie("darkmode",'on', time() + (3600*24*365)); // 1 Jahr gültig
-				}
-			} else {
-				setcookie("darkmode",'on', time() + (3600*24*365)); // 1 Jahr gültig
-			}
-		}
 		switch_style();
-		error_log("1");
-		error_log(check_dark());
 	}
 }
 include_once("templates/header.php");
@@ -181,9 +168,9 @@ include_once("templates/header.php");
 			</form>
 		</div>
 		<div>
-			<form action="?save=style" method="post">
+			<form>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+					<input class="form-check-input" action="?save=style" method="post" type="checkbox" role="switch" id="flexSwitchCheckDefault">
 					<label class="form-check-label" for="flexSwitchCheckDefault">Toggle light mode</label>
 				</div>
 				<button type="submit" class="btn btn-outline-primary">Speichern</button>

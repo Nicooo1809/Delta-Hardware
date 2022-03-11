@@ -74,12 +74,16 @@ function pdo_debugStrParams($stmt) {
 	return $r;
 }
 
-function set_darkmode () {
-	setcookie("darkmode",'on',time()+(3600*24*365)); // 1 Jahr gültig
-}
-
-function remove_darkmode () {
-	setcookie('darkmode','off', time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
+function switch_style () {
+	if(isset($_COOKIE['darkmode'])) {
+		if ($_COOKIE['darkmode'] == 'on') {
+			setcookie("darkmode",'off', time() - 3600); // Setzt die Gültigkeit vom Cookie auf -60 Minuten (somit wird dieser gelöscht)
+		} else {
+			setcookie("darkmode",'on', time() + (3600*24*365)); // 1 Jahr gültig
+		}
+	} else {
+		setcookie("darkmode",'on', time() + (3600*24*365)); // 1 Jahr gültig
+	}
 }
 
 function check_dark() {
