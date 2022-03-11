@@ -36,7 +36,7 @@ if(isset($_POST['action'])) {
                     <div class="container-fluid">
                         <div class="row no-gutter">
                             <div class="minheight100 col py-4 px-3">
-                                <div class="card bg-dark text-center mx-auto" style="width: 75%;">
+                                <div class="card cbg text-center mx-auto" style="width: 75%;">
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <p class="text-center">
@@ -175,14 +175,14 @@ require_once("templates/header.php");
 
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
-        <div class="py-3 px-3 bg-dark rounded">
+        <div class="py-3 px-3 cbg rounded">
             <h1>Benutzerverwaltung</h1>
             <p><?php print($total_users); ?> Benutzer</p>
             <div class="table-responsive">
                 <table class="table align-middle table-borderless table-hover">
                     <thead>
                         <tr>
-                            <div class="bg-black rounded">
+                            <div class="cbg rounded">
                             <th scope="col" class="border-0 text-center">
                                     <div class="p-2 px-3 text-uppercase">#</div>
                                 </th>

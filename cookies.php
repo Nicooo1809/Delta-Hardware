@@ -4,14 +4,14 @@ require_once("templates/header.php");
 
 
 <div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
-    <div class="modal-dialog bg-dark">
-        <div class="modal-content bg-dark">
-            <div class="modal-header bg-dark">
-                <h4 class="modal-title text-white fw-bold" id="cookieModalLabel">Mhhh Lecker &#x1F36A;!</h4>
+    <div class="modal-dialog cbg">
+        <div class="modal-content cbg">
+            <div class="modal-header cbg">
+                <h4 class="modal-title ctext fw-bold" id="cookieModalLabel">Mhhh Lecker &#x1F36A;!</h4>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <hr>
-            <div class="modal-body text-white bg-dark fw-normal">
+            <div class="modal-body ctext cbg fw-normal">
                 <div class="px-2">
                     <h4 class="fw-bold">Wir verwenden Cookies um folgende Funktion bereitzustellen:</h4>
                     <br>
@@ -23,7 +23,7 @@ require_once("templates/header.php");
                     <p class="fw-light fs-6 cookie-p-text">Ihre Cookie-Einstellung wird gespeichert.</p>
                 </div>
             </div>
-            <div class="modal-footer text-white bg-dark fw-bold">
+            <div class="modal-footer ctext cbg fw-bold">
                 <a href="/index"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück zur Startseite</button></a>
             </div>
         </div>

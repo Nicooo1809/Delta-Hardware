@@ -90,6 +90,6 @@ function check_style() {
 			return 'light';
 		}
 	} else {
-		return 'light';
+		return 'dark';
 	}
 }

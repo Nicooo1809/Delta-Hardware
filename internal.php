@@ -10,7 +10,7 @@ $user = check_user();
 
 <div class="container minheight100 py-3 px-3">
 	<div class="row no-gutter">
-		<div class="card bg-dark mx-auto">
+		<div class="card cbg mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title name">Herzlich Willkommen!</h1>
 				<span class="card-text">

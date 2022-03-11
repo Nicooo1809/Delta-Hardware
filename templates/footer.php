@@ -23,13 +23,13 @@ $verdate ="12.03.2022";
 #$verdate = date("d.m.Y");
 if(!isMobile()):
 ?>
-    <footer class="container-fluid footer-footer sticky-bottom footer py-3 bg-dark">
+    <footer class="container-fluid footer-footer sticky-bottom footer py-3 cbg">
         <div class="row">
             <div class="col">
                 Delta-Hardware
             </div>
             <div class="col text-center">
-                <a href="/aboutus.php" class="text-white">Über uns</a>
+                <a href="/aboutus.php" class="ctext">Über uns</a>
             </div>
             <div class="col text-end">
                 Version <?=$vernum?> 
@@ -40,10 +40,10 @@ if(!isMobile()):
     </footer>
 
 <?php else:?>
-    <footer class="container-fluid footer-footer sticky-bottom footer py-1 bg-dark">
-        <div class="text-white">
+    <footer class="container-fluid footer-footer sticky-bottom footer py-1 cbg">
+        <div class="ctext">
             <div class="col py-1 text-center">
-                <a href="aboutus.php" class="text-white">Über uns</a>
+                <a href="aboutus.php" class="ctext">Über uns</a>
             </div>
             <div class="col py-1 text-center">
                 Version <?=$vernum?> - <?=$verdate?>

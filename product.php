@@ -33,7 +33,7 @@ require("templates/header.php");
 ?>
 <div class="container-fluid minheight100 px-3 py-3 row row-cols-1 row-cols-md-2 gx-0 product content-wrapper">
     <div class="col">
-        <div class="card bg-dark py-2 px-2 mx-2">
+        <div class="card cbg py-2 px-2 mx-2">
             <div class="card-body px-3 py-3">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <?php if($images == null):?>
@@ -91,7 +91,7 @@ require("templates/header.php");
         </div>
     </div>
     <div class="col">
-        <div class="card bg-dark py-2 px-2 mx-2">
+        <div class="card cbg py-2 px-2 mx-2">
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <div>

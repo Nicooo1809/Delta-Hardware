@@ -79,9 +79,9 @@ if(isset($_GET['register'])) {
 			?>
 			<div class="container minheight100">
 				<div class="row">
-					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
+					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded cbg">
 						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH<i class="fa-solid fa-check"></i></h1>
-						<p class="text-white">
+						<p class="ctext">
 						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login">hier</a>.
 						</p>
 					</div>
@@ -96,9 +96,9 @@ if(isset($_GET['register'])) {
 			?>
 			<div class="container minheight100">
 				<div class="row">
-					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
+					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded cbg">
 						<h1 class="text-danger">Oops, das hat nicht geklappt!<br><i class="fa-solid fa-x"></i></h1>
-						<p class="text-white">
+						<p class="ctext">
 						Beim Abspeichern ist leider ein Fehler aufgetreten, bitte versuche es später erneut.
 						Du wirst automatisch in 5 Sekunden zurückgeleitet, solltest du nicht weitergeleitet werden klicke <a href="register">hier</a>.
 						</p>
@@ -120,21 +120,21 @@ if($showFormular) {
 
 <div class="container-fluid minheight100">
 	<div class="row no-gutter">
-		<div class="bg-custom-dark">
+		<div class="cbg">
 			<div class="register-register d-flex align-items-center py-5">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-10 col-xl-7 mx-auto">
 
 
-							<h3 class="display-4 text-white">Registrierung</h3>
+							<h3 class="display-4 ctext">Registrierung</h3>
 
 							<?php 
 							if(isset($error_msg) && !empty($error_msg)) {
 								echo $error_msg;
 							}
 							?>
-							<p class="text-white mb-4">Herzlich Willkommen!</p>
+							<p class="ctext mb-4">Herzlich Willkommen!</p>
 
 							<form action="?register=1" method="post">
 								<div class="form-floating mb-3">
@@ -160,11 +160,11 @@ if($showFormular) {
 
 								<div class="custom-control custom-checkbox mb-3">
 									<input type="checkbox" id="customCheck1" name="dsgvo" value="gelesen" class="custom-control-input" required> 
-									<label for="customCheck1" class="custom-control-label text-white">Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.</label>
+									<label for="customCheck1" class="custom-control-label ctext">Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.</label>
 								</div>
 								<div class="custom-control custom-checkbox mb-3">
 									<input type="checkbox" id="customCheck2" name="agb" value="gelesen" class="custom-control-input" required> 
-									<label for="customCheck2" class="custom-control-label text-white"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.</label>		
+									<label for="customCheck2" class="custom-control-label ctext"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.</label>		
 								</div>
 								<button type="submit" class="btn btn-outline-primary btn-block text-uppercase mb-2 shadow-sm">Registrieren</button>
 							</form>

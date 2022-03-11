@@ -32,7 +32,7 @@ header("Pragma: no-cache");
 
 
 
-<nav class="navbar header-header navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar header-header navbar-expand-lg navbar-dark cbg">
     <div class="container-fluid">
         <a class="navbar-brand" href="/index"><img src="/favicon.svg" style="width:2.5rem;"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

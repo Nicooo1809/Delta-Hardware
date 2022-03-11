@@ -79,7 +79,7 @@ if(isset($_POST['action'])) {
                     <div class="container-fluid">
                         <div class="row no-gutter">
                             <div class="minheight100 col py-4 px-3">
-                                <div class="card bg-dark text-center mx-auto" style="width: 75%;">
+                                <div class="card cbg text-center mx-auto" style="width: 75%;">
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <p class="text-center">
@@ -153,14 +153,14 @@ foreach ($products as $product) {
 <?php if (!isMobile()): ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row">
-            <div class="py-3 px-3 bg-dark rounded">
+            <div class="py-3 px-3 cbg rounded">
                 <h1>Warenkorb</h1>
                 <p><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <div class="bg-black rounded">
+                                <div class="cbg rounded">
                                     <th scope="col" class="border-0">
                                         <div class="p-2 px-3 text-uppercase">Produkt</div>
                                     </th>
@@ -188,7 +188,7 @@ foreach ($products as $product) {
                                             }?>
                                             <div class="ms-3 d-inline-block align-middle">
                                                 <h5 class="mb-0"> 
-                                                    <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
+                                                    <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle"><?=$product['name']?></a>
                                                 </h5>
                                             </div>
                                         </div>
@@ -226,7 +226,7 @@ foreach ($products as $product) {
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row row-cols-1 row-cols-md-1 g-3">
             <div class="col">
-                <div class="card mx-auto bg-dark">
+                <div class="card mx-auto cbg">
                     <div class="card-body">
                         <h2 class="card-title name">Warenkorb</h2>
                         <p class="card-text"><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
@@ -235,7 +235,7 @@ foreach ($products as $product) {
             </div>
             <?php foreach ($products as $product): ?>
                 <div class="col">
-                    <div class="card mx-auto bg-dark">
+                    <div class="card mx-auto cbg">
                         <div class="card-body">
                             <?php if (empty($product['image'])) {
                                 print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
@@ -264,7 +264,7 @@ foreach ($products as $product) {
                 </div>
             <?php endforeach; ?>
             <div class="col">
-                <div class="card mx-auto bg-dark">
+                <div class="card mx-auto cbg">
                     <div class="card-body">
                         <h2 class="card-title name">Summe:</h2>
                         <strong class="card-text"><?=$summprice?>&euro;</strong>
