@@ -38,7 +38,4 @@ while (true) {
   if ($next == "") { break; }
   else { $next = substr($next, 0, -1); }
 }
-
-// (C) CLOSE DATABASE CONNECTION
-$stmt = null;
-$pdo = null;
+print_r($items);
