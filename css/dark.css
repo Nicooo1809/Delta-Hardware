@@ -17,9 +17,9 @@ html, body {
 }
 
 .cbg {
-    background-color: #212529;
+    background-color: #212529 !important;
 }
 
 .ctext {
-    color: #ffffff;
+    color: #ffffff !important;
 }
