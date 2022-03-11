@@ -11,7 +11,8 @@ foreach ($roottypes as $roottype) {
   $stmt->bindValue(1, $roottype['parent_id'], PDO::PARAM_INT);
   $stmt->execute();
   $subtypes = $stmt->fetch(PDO::FETCH_ASSOC);
-  if (isset($subtypes['0'])) {
+  if (isset($subtypes)) {
+  error_log('1');
   ?>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -22,7 +23,7 @@ foreach ($roottypes as $roottype) {
   }
   foreach ($subtypes as $subtype) {
   ?>
-        <li><a class="dropdown-item" href="products.php?type=">Arbeitsspeicher</a></li>
+        <li><a class="dropdown-item" href="products.php?type="><?=$subtype['item_test']?></a></li>
   <?php
   }
   if (isset($subtypes['0'])) {
