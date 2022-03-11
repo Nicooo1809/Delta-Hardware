@@ -209,7 +209,7 @@ require_once("templates/header.php");
                                 <td class="border-0 text-center">
                                     <strong><?=$user1['nachname']?></strong>
                                 </td>
-                                <td class="border-0 text-center" style="max-width: 30%;">
+                                <td class="border-0 bl-100 text-center"">
                                     <strong><a href="mailto:<?=$user1['email']?>"><?=$user1['email']?></a></strong>
                                 </td>
                                 <td class="border-0 text-center">
