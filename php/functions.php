@@ -97,11 +97,11 @@ function remove_darkmode () {
 function check_dark() {
 	if(isset($_COOKIE['darkmode'])) {
 		if ($_COOKIE['darkmode'] == 'on') {
-			return true;
+			return 'dark';
 		} else {
-			return false;
+			return 'light';
 		}
 	} else {
-		return false;
+		return 'light';
 	}
 }
