@@ -23,7 +23,7 @@ foreach ($roottypes as $roottype) {
   }
   foreach ($subtypes as $subtype) {
   ?>
-        <li><a class="dropdown-item" href="products.php?type="><?=$subtype['item_test']?></a></li>
+        <li><a class="dropdown-item" href="products.php?type=<?=$subtype['item_test']?>"><?=$subtype['item_test']?></a></li>
   <?php
   }
   if (isset($subtypes)) {
