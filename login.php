@@ -58,7 +58,7 @@ include("templates/header.php");
 							?>
 							<p class="text-muted mb-4">Schön, dass du wieder da bist!</p>
 							
-							<form class="needs-validation" action="login.php" method="post" novalidate>
+							<form class="needs-validation" action="login.php" method="post">
 								<div class="form-floating has-validation mb-3">
 									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 shadow-sm ps-4 text-dark fw-bold" required>
 									<label for="inputEmail" class="text-dark fw-bold">E-Mail</label>
