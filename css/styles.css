@@ -126,13 +126,15 @@ header {
     transition: 0.5s;
     /* background-color: #000000; */
     background-image: url("/images/light.png");
+    background-size: 24px;
 }
 
 .styleswitcher:checked + .styleswitcherlabel:after {
     left: calc(100% - 3px);
     transform: translateX(-100%);
-    background-image: url("/images/dark.png");
     /* background-color: #ffffff; */
+    background-image: url("/images/dark.png");
+    background-size: 24px;
 }
 
 .styleswitcher:checked + .styleswitcherlabel {
