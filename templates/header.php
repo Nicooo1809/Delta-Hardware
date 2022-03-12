@@ -32,7 +32,7 @@ header("Pragma: no-cache");
 
 
 
-<nav class="navbar header-header navbar-expand-lg navbar-dark cbg">
+<nav class="navbar header-header navbar-expand-lg navbar-dark cbg ctext">
     <div class="container-fluid">
         <a class="navbar-brand" href="/index"><img src="/favicon.svg" style="width:2.5rem;"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@ header("Pragma: no-cache");
 
                 <!--Hardware Komponenten Dropdown-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Hardware
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -67,7 +67,7 @@ header("Pragma: no-cache");
 
                 <!--Monitore Komponenten Dropdown-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Monitore
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -84,7 +84,7 @@ header("Pragma: no-cache");
 
                 <!--Eingabegeräte Komponenten Dropdown-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Peripherie
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -103,7 +103,7 @@ header("Pragma: no-cache");
 
                 <!--Netzwerktechnik Komponenten Dropdown-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Netzwerktechnik
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -118,7 +118,7 @@ header("Pragma: no-cache");
 
                 <!--Audio Komponenten Dropdown-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Audio
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
