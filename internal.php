@@ -10,7 +10,7 @@ $user = check_user();
 
 <div class="container minheight100 py-3 px-3">
 	<div class="row no-gutter">
-		<div class="card cbg ctext py-3 mx-auto">
+		<div class="card cbg ctext my-3 mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title name">Herzlich Willkommen!</h1>
 				<span class="card-text">
@@ -21,7 +21,7 @@ $user = check_user();
 			</div>
 		</div>
 		<?php if ($user['showUser'] == 1 and $user['showUserPerms'] == 1) { ?>
-		<div class="card cbg ctext py-3 mx-auto">
+		<div class="card cbg ctext my-3 mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title">Adminbereich</h1>
 				<div class="card-text">
