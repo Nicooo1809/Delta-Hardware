@@ -56,7 +56,7 @@ header("Pragma: no-cache");
                     #error_log('1');
                     ?>
                         <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <?=$roottype['type']?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
