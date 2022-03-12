@@ -20,6 +20,22 @@ $user = check_user();
 				<button type="button" href="logout.php" class="btn btn-outline-primary my-3">Abmelden</button>
 			</div>
 		</div>
+		<div class="card cbg ctext mx-auto">
+			<div class="card-body text-center">
+				<h1 class="card-title">Adminbereich</h1>
+				<div class="card-text">
+					<?php
+						if ($user['showUser'] == 1) {
+							print('<a href="/user.php"><button class="btn btn-outline-primary mx-2" type="submit">Benutzer</button></a>');
+						
+						} 
+						if ($user['showUserPerms'] == 1) {
+							print('<button class="btn btn-outline-primary mx-2" type="submit"><a href="/perms.php">Berechtigungen</a></button>');
+						}
+					?>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div>
 
