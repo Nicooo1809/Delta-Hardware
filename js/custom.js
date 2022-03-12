@@ -4,6 +4,10 @@ function toggleStyle() {
   } else {
     setCookie("style", "dark", 36500);
   }
+  setStyle();
+}
+
+function setStyle() {
   if (getCookie("style") == "dark") {
     //document.getElementById("theme_css").remove()
     var fileref = document.createElement("link");
