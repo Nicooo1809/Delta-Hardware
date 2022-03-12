@@ -122,8 +122,8 @@ header {
     background-color: #0d6efd;
     position: absolute;
     border-radius: 7px;
-    top: 1.5px;
-    left: 1.5px;
+    top: 2.5px;
+    left: 2.5px;
     transition: 0.5s;
 }
 
