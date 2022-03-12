@@ -2,26 +2,7 @@
 require_once("templates/header.php");
 ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <main>
-
-
     <div class="view bg">
         <div class="mask rgba-black-light align-items-center">
             <div class="container">
@@ -35,13 +16,7 @@ require_once("templates/header.php");
             </div>
         </div>
     </div>
-
-
-
-    
 </main>
-
-
 
 <?php
 include_once("templates/footer.php")

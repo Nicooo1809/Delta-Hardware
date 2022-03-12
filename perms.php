@@ -52,7 +52,6 @@ if(isset($_POST['action'])) {
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <h2 class="card-title mb-2 text-center">Alle Benutzer in dieser Gruppe werden in Default verschoben!</h2>
                                         <p class="text-center">
-                                            <div>
                                             <form action="perms.php" method="post">
                                                 <input type="number" value="<?=$_POST['permsid']?>" name="permsid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>

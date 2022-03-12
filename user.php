@@ -40,7 +40,6 @@ if(isset($_POST['action'])) {
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <p class="text-center">
-                                            <div>
                                             <form action="user.php" method="post">
                                                 <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
