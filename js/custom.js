@@ -11,6 +11,7 @@ function toggleStyle() {
 
 function setStyle() {
   if (getCookie("style") == "dark") {
+    document.getElementById('style_switch').checked = true;
     setCookie("style", "dark", 365);
     //document.getElementById("theme_css").remove()
     var fileref = document.createElement("link");
