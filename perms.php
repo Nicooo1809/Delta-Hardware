@@ -38,6 +38,7 @@ if(isset($_POST['action'])) {
                                 <div class="card cbg text-center mx-auto" style="width: 75%;">
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
+                                        <h2 class="card-title mb-2 text-center">Alle Benutzer in dieser Gruppe werden in Default verschoben!</h2>
                                         <p class="text-center">
                                             <div>
                                             <form action="perms.php" method="post">
@@ -95,7 +96,7 @@ require_once("templates/header.php");
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
-            <h1>Benutzerverwaltung</h1>
+            <h1>Rechteverwaltung</h1>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
