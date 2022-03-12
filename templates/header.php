@@ -80,7 +80,7 @@ header("Pragma: no-cache");
                     }
                 ?>
 
-                <!--Hardware Komponenten Dropdown-->
+                <!--
                 <li class="nav-item dropdown">
                     <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Hardware
@@ -103,7 +103,6 @@ header("Pragma: no-cache");
                 </li>
 
 
-                <!--Monitore Komponenten Dropdown-->
                 <li class="nav-item dropdown">
                     <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Monitore
@@ -120,7 +119,6 @@ header("Pragma: no-cache");
                 </li>
 
 
-                <!--Eingabegeräte Komponenten Dropdown-->
                 <li class="nav-item dropdown">
                     <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Peripherie
@@ -139,7 +137,6 @@ header("Pragma: no-cache");
                 </li>
 
 
-                <!--Netzwerktechnik Komponenten Dropdown-->
                 <li class="nav-item dropdown">
                     <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Netzwerktechnik
@@ -154,7 +151,6 @@ header("Pragma: no-cache");
                 </li>
 
 
-                <!--Audio Komponenten Dropdown-->
                 <li class="nav-item dropdown">
                     <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Audio
@@ -168,6 +164,7 @@ header("Pragma: no-cache");
                         <li><a class="dropdown-item" href="#">Soundkarten</a></li>
                     </ul>
                 </li>
+                -->
             </ul> 
 
             <form class="d-flex" action="/products.php">
