@@ -10,7 +10,7 @@ $user = check_user();
 
 <div class="container minheight100 py-3 px-3">
 	<div class="row no-gutter">
-		<div class="card cbg ctext mx-auto">
+		<div class="card cbg ctext py-3 mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title name">Herzlich Willkommen!</h1>
 				<span class="card-text">
@@ -20,7 +20,7 @@ $user = check_user();
 				<button type="button" href="logout.php" class="btn btn-outline-primary my-3">Abmelden</button>
 			</div>
 		</div>
-		<div class="card cbg ctext mx-auto">
+		<div class="card cbg ctext py-3 mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title">Adminbereich</h1>
 				<div class="card-text">
@@ -30,7 +30,7 @@ $user = check_user();
 						
 						} 
 						if ($user['showUserPerms'] == 1) {
-							print('<button class="btn btn-outline-primary mx-2" type="submit"><a href="/perms.php">Berechtigungen</a></button>');
+							print('<a href="/perms.php"><button class="btn btn-outline-primary mx-2" type="submit">Berechtigungen</button></a>');
 						}
 					?>
 				</div>
