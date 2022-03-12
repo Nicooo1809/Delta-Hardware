@@ -184,22 +184,22 @@ require_once("templates/header.php");
                         <tr>
                             <div class="cbg ctext rounded">
                                 <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase">#</div>
+                                    <div class="p-2 px-3 text-uppercase ctext">#</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase">Vorname</div>
+                                    <div class="p-2 px-3 text-uppercase ctext">Vorname</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase">Nachname</div>
+                                    <div class="p-2 px-3 text-uppercase ctext">Nachname</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase">E-Mail</div>
+                                    <div class="p-2 px-3 text-uppercase ctext">E-Mail</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase">Rechte</div>
+                                    <div class="p-2 px-3 text-uppercase ctext">Rechte</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Erstellt</div>
+                                    <div class="p-2 px-3 text-uppercase ctext">Erstellt</div>
                                 </th>
                                 <th scope="col" class="border-0" style="width: 15%"></th>
                             </div>

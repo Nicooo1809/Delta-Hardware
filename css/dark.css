@@ -16,6 +16,14 @@ html, body {
 	margin: 0;
 }
 
+li, a, button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
+    font-size: 18px !important;
+    color: #ffffff;
+    text-decoration: none !important;
+}
+
 .cbg {
     background-color: #212529 !important;
 }

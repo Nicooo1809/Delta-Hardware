@@ -12,13 +12,6 @@ header {
     size: 100%;
 }
 */
-li, a, button {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 200;
-    font-size: 18px !important;
-    color: #ffffff;
-    text-decoration: none !important;
-}
 
 .bl-400 {
     max-width:400px;

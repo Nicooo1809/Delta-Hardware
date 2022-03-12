@@ -162,13 +162,13 @@ foreach ($products as $product) {
                             <tr>
                                 <div class="ctext rounded">
                                     <th scope="col" class="border-0">
-                                        <div class="p-2 px-3 text-uppercase">Produkt</div>
+                                        <div class="p-2 px-3 text-uppercase ctext">Produkt</div>
                                     </th>
                                     <th scope="col" class="border-0 text-center">
-                                        <div class="p-2 px-3 text-uppercase">Preis</div>
+                                        <div class="p-2 px-3 text-uppercase ctext">Preis</div>
                                     </th>
                                     <th scope="col" class="border-0 text-center">
-                                        <div class="p-2 px-3 text-uppercase">Menge</div>
+                                        <div class="p-2 px-3 text-uppercase ctext">Menge</div>
                                     </th>
                                     <th scope="col" class="border-0">
                                         <div class="p-2 px-3 text-uppercase"></div>
@@ -193,10 +193,10 @@ foreach ($products as $product) {
                                             </div>
                                         </div>
                                     </th>
-                                    <td class="border-0 align-middle text-center">
+                                    <td class="border-0 align-middle text-center ctext">
                                         <span><?=$product['price']?>&euro;</span>
                                     </td>
-                                    <td class="border-0 align-middle text-center">
+                                    <td class="border-0 align-middle text-center ctext">
                                         <span><?=$product['quantity']?></span>
                                     </td>
                                     <td class="border-0 align-middle actions">
