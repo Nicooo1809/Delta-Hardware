@@ -31,7 +31,7 @@ if(!isMobile()):
             <div class="col text-center">
                 <a href="/aboutus.php" class="ctext">Über uns</a>
             </div>
-            <div class="col-3 text-end ctext">
+            <div class="col justify-content-end align-items-center text-end ctext">
                 <input class="styleswitcher" type="checkbox" name="switch" id="switch">
                 <label class="styleswitcherlabel" for="switch"></label>
                 Version <?=$vernum?> 
