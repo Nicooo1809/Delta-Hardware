@@ -24,11 +24,11 @@ require_once("templates/header.php");
                         <h1 class="card-title mb-2 text-center">Adminbereich</h1>
                         <?php
                             if ($user['showUser'] == 1) {
-                                print('<a href="user.php">Benutzer</a>');
+                                print('<button class="btn btn-outline-primary mx-2" type="button" href="user.php">Benutzer</button>');
                             
                             } 
                             if ($user['showUserPerms'] == 1) {
-                                print('<a href="perms.php">Berechtigungen</a>');
+                                print('<button class="btn btn-outline-primary mx-2" type="button" href="perms.php">Berechtigungen</button>');
                             }
                         ?>
                     </div>
