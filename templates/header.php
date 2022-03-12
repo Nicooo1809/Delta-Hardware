@@ -40,7 +40,45 @@ header("Pragma: no-cache");
     </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+                <!--Dynamic from Database-->
+                <?php
+                    $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = 0");
+                    $stmt->execute();
+                    #error_log(pdo_debugStrParams($stmt));
+                    $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    error_log(print_r($roottypes, true));
+                    foreach ($roottypes as $roottype) {
+                    $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = ?");
+                    $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
+                    $stmt->execute();
+                    $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    if (isset($subtypes[0])) {
+                    #error_log('1');
+                    ?>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?=$roottype['type']?>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <?php
+                    } else {
+                        ?>
+                        <li class="nav-item"><?=$roottype['type']?></li>
+                        <?php
+                    }
+                    foreach ($subtypes as $subtype) {
+                    ?>
+                            <li><a class="dropdown-item" href="products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?></a></li>
+                    <?php
+                    }
+                    if (isset($subtypes[0])) {
+                    ?>
+                        </ul>
+                        </li>
+                    <?php
+                    }
+                    }
+                ?>
 
                 <!--Hardware Komponenten Dropdown-->
                 <li class="nav-item dropdown">
