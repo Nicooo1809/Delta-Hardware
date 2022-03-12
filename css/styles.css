@@ -18,10 +18,6 @@ header {
     word-wrap:break-word;
 }
 
-span, div, i {
-    color: #ffffff;
-}
-
 ::-webkit-scrollbar {
     display: none;
 }

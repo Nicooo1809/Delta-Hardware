@@ -24,6 +24,10 @@ li, a, button {
     text-decoration: none !important;
 }
 
+span, div, i {
+    color: #212529;
+}
+
 .cbg {
     background-color: #dee2e6 !important;
 }
