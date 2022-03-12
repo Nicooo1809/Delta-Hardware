@@ -168,7 +168,7 @@ header("Pragma: no-cache");
             </ul> 
 
             <form class="d-flex" action="/products.php">
-                <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search">
+                <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search" required>
                 <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
             </form>
             <?php if(isset($_SESSION['userid'])): ?>
