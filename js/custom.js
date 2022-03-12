@@ -1,23 +1,8 @@
-function toggle (elements, specifiedDisplay) {
-    var element, index;
-  
-    elements = elements.length ? elements : [elements];
-    for (index = 0; index < elements.length; index++) {
-      element = elements[index];
-  
-      if (isElementHidden(element)) {
-        element.style.display = '';
-  
-        // If the element is still hidden after removing the inline display
-        if (isElementHidden(element)) {
-          element.style.display = specifiedDisplay || 'block';
-        }
-      } else {
-        element.style.display = 'none';
-      }
-    }
-    function isElementHidden (element) {
-      return window.getComputedStyle(element, null).getPropertyValue('display') === 'none';
-    }
-  }
-  
+function loadFile(path) {
+    var fileref = document.createElement("link");
+    fileref.setAttribute("rel", "stylesheet");
+    fileref.setAttribute("type", "text/css");
+    fileref.setAttribute("href", path);
+    fileref.setAttribute("id", "theme");
+    document.getElementsByTagName("head")[0].appendChild(fileref);
+}
