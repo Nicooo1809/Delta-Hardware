@@ -1,8 +1,8 @@
 function toggleStyle() {
-  if (this.checked == true) {
-    setCookie("style", "dark", 36500);
-  } else {
+  if (getCookie("style") == "dark") {
     setCookie("style", "light", 36500);
+  } else {
+    setCookie("style", "dark", 36500);
   }
   if (getCookie("style") == "dark") {
     //document.getElementById("theme_css").remove()
