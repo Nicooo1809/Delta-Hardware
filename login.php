@@ -49,7 +49,7 @@ include("templates/header.php");
 			<div class="minheight100 d-flex align-items-center py-5">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-10 col-xl-7 mx-auto">
+						<div class="col-lg-10 col-xl-7 mx-auto cbg">
 							<h3 class="display-4 ">Anmelden</h3>
 							<?php 
 							if(isset($error_msg) && !empty($error_msg)) {

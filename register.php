@@ -124,7 +124,7 @@ if($showFormular) {
 			<div class="register-register d-flex align-items-center py-5">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-10 col-xl-7 mx-auto">
+						<div class="col-lg-10 col-xl-7 mx-auto cbg">
 
 
 							<h3 class="display-4 ctext">Registrierung</h3>
