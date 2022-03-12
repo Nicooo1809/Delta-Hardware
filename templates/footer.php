@@ -32,8 +32,8 @@ if(!isMobile()):
                 <a href="/aboutus.php" class="ctext">Über uns</a>
             </div>
             <div class="col d-flex justify-content-end align-items-center text-end ctext">
-                <input class="styleswitcher" type="checkbox" name="switch" id="switch" <?php if (check_style() == "dark") {print("checked");}?>>
-                <label class="styleswitcherlabel" for="switch"></label>
+                <input onchange="switch_style()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
+                <label class="styleswitcherlabel" for="style_switch"></label>
                 <div class="ps-3 text-end ctext">
                     Version <?=$vernum?> 
                     <div class="vr mx-1"></div>

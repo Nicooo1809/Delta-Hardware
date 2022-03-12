@@ -84,6 +84,18 @@ function style_light () {
 	setcookie("style",'light',time() + (3600*24*365));
 }
 
+function switch_style() {
+	if(isset($_COOKIE['style'])) {
+		if ($_COOKIE['style'] == 'dark') {
+			setcookie("style",'light',time() + (3600*24*365));
+		} else if ($_COOKIE['style'] == 'light') {
+			setcookie("style",'dark',time() + (3600*24*365));
+		}
+	} else {
+		setcookie("style",'dark',time() + (3600*24*365));
+	}
+}
+
 function check_style() {
 	if(isset($_COOKIE['style'])) {
 		if ($_COOKIE['style'] == 'dark') {
