@@ -1,13 +1,13 @@
 <?php
 require_once('php/functions.php');
 require_once("templates/header.php");
-$stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = 0");
+$stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = 0");
 $stmt->execute();
 #error_log(pdo_debugStrParams($stmt));
 $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 error_log(print_r($roottypes, true));
 foreach ($roottypes as $roottype) {
-  $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE parent_id = ?");
+  $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = ?");
   $stmt->bindValue(1, $roottype['item_id'], PDO::PARAM_INT);
   $stmt->execute();
   $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,12 +22,12 @@ foreach ($roottypes as $roottype) {
   <?php
   } else {
     ?>
-      <li class="nav-item"><?=$roottype['item_text']?></li>
+      <li class="nav-item"><?=$roottype['type']?></li>
     <?php
   }
   foreach ($subtypes as $subtype) {
   ?>
-        <li><a class="dropdown-item" href="products.php?type=<?=$subtype['item_text']?>"><?=$subtype['item_text']?></a></li>
+        <li><a class="dropdown-item" href="products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?></a></li>
   <?php
   }
   if (isset($subtypes[0])) {
