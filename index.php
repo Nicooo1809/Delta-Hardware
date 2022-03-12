@@ -10,7 +10,7 @@ require_once("templates/header.php");
                     <div class="col-md-12 mt-1 text-white text-start">
                         <h1 class="h1-reponsive text-white text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong class="text-white">Die Neue RTX-Reihe</strong></h1>   
                         <hr class="hr-light my-3">
-                        <h5 class="text-uppercase mb-4 text-white"><strong class="text-white">Jetzt kaufen!</strong></h5>
+                        <h5 class="text-uppercase mb-4 text-white"><strong href="products.php?search=rtx" class="text-white">Jetzt kaufen!</strong></h5>
                     </div>
                 </div>
             </div>

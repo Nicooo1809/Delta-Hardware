@@ -1,10 +1,7 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-if ($user['showUser'] != 1) {
-    error('Permission denied!');
-}
-if ($user['showUserPerms'] != 1) {
+if ($user['showUser'] != 1 and $user['showUserPerms'] != 1) {
     error('Permission denied!');
 }
 if (isset($get['site'])) {
@@ -18,7 +15,6 @@ if (isset($get['site'])) {
 }
 require_once("templates/header.php");
 ?>
-
 <main>
     <div class="container-fluid">
         <div class="row no-gutter">
@@ -26,15 +22,21 @@ require_once("templates/header.php");
                 <div class="card cbg text-center mx-auto" style="width: 75%;">
                     <div class="card-body">
                         <h1 class="card-title mb-2 text-center">Adminbereich</h1>
-                        <a href="admin.php?site=user">Benutzer</a>
-                        <a href="admin.php?site=permission">Berechtigungen</a>
+                        <?php
+                            if ($user['showUser'] == 1) {
+                                print('<a href="user.php">Benutzer</a>');
+                            
+                            } 
+                            if ($user['showUserPerms'] == 1) {
+                                print('<a href="perms.php">Berechtigungen</a>');
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
-
 <?php
 include_once("templates/footer.php")
 ?>
