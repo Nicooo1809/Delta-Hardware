@@ -76,7 +76,7 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(7, $_POST['permsid'], PDO::PARAM_INT);
         $stmt->execute();
 
-        #error_log(pdo_debugStrParams($stmt));
+        error_log(pdo_debugStrParams($stmt));
         header("location: perms.php");
         exit;
     }
