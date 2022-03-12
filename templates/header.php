@@ -70,7 +70,11 @@ header("Pragma: no-cache");
                     }
                     foreach ($subtypes as $subtype) {
                     ?>
+                        <?php if ($subtype['type'] == "line"):?>
+                            <li><hr class="dropdown-divider"></li>
+                        <?php else:?>
                             <li><a class="dropdown-item" href="products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?></a></li>
+                        <?php endif; ?>
                     <?php
                     }
                     if (isset($subtypes[0])) {
