@@ -57,6 +57,7 @@ function check_user($redirect = TRUE) {
  * Outputs an error message and stops the further exectution of the script.
  */
 function error($error_msg) {
+	global $pdo;
 	include_once("templates/header.php");
 	include_once("templates/error.php");
 	include_once("templates/footer.php");
