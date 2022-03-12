@@ -1,7 +1,7 @@
 <?php
 require_once("php/functions.php");
 $user = check_user();
-if ($user['showUser'] != 1 or $user['showUserPerms'] != 1) {
+if ($user['showUser'] != 1 and $user['showUserPerms'] != 1) {
     error('Permission denied!');
 }
 if (isset($get['site'])) {
