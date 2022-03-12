@@ -6,6 +6,19 @@ if ($user['showUserPerms'] != 1) {
     error('Permission denied!');
 }
 if(isset($_POST['action'])) {
+    if($_POST['action'] == 'add') {
+        if ($user['modifyUserPerms'] != 1) {
+            error('Permission denied!');
+        }
+        if (isset($_POST['permsname'])) {
+            $stmt = $pdo->prepare('INSERT INTO permission_group (name) VALUES (?)');
+            $stmt->bindValue(1, $_POST['permsname']);
+            $stmt->execute();
+        } else {
+            error('Some informations are missing!');
+        }
+    }
+
     if($_POST['action'] == 'del') {
         if ($user['modifyUserPerms'] != 1) {
             error('Permission denied!');
@@ -93,11 +106,14 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
 require_once("templates/header.php");
 ?>
-
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
             <h1>Rechteverwaltung</h1>
+            <form action="perms.php" method="post" class="">
+                <input type="text" name="permsname" required>
+                <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+            </form>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
