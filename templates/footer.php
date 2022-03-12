@@ -58,3 +58,6 @@ if(!isMobile()):
 
 </body>
 </html>
+<script>
+setStyle();
+</script>
