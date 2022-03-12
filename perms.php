@@ -169,9 +169,11 @@ require_once("templates/header.php");
                                                 <input type="number" value="<?=$perms['id']?>" name="permsid" style="display: none;" required>
                                                 <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speicher</button>
                                             </div>
+                                            <?php if ($perms['id'] != 1){?>
                                             <div class="px-1 py-1">
                                                 <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                             </div>
+                                            <?php }?>
                                         </td>
                                     </form>
                                 </tr>
