@@ -32,9 +32,9 @@ if(!isMobile()):
                 <a href="/aboutus.php" class="ctext">Über uns</a>
             </div>
             <div class="col d-flex justify-content-end align-items-center text-end ctext">
-                <input class="styleswitcher" type="checkbox" name="switch" id="switch">
+                <input class="styleswitcher" type="checkbox" name="switch" id="switch" <?php if (check_style() == "dark") {print("checked");}?>>
                 <label class="styleswitcherlabel" for="switch"></label>
-                <div class="ps-2 text-end ctext">
+                <div class="ps-3 text-end ctext">
                     Version <?=$vernum?> 
                     <div class="vr mx-1"></div>
                     <?=$verdate?>
