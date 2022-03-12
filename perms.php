@@ -115,10 +115,13 @@ require_once("templates/header.php");
                                     <div class="p-2 px-3 text-uppercase">Modify User</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify User Permission</div>
+                                    <div class="p-2 px-3 text-uppercase">Delete User</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Delete User</div>
+                                    <div class="p-2 px-3 text-uppercase">Show User Permission</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Modify User Permission</div>
                                 </th>
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Create Product</div>
@@ -152,10 +155,13 @@ require_once("templates/header.php");
                                             <strong><input type="checkbox" class="form-check-input" name="modifyUser" <?=($perms['modifyUser']==1 ? 'checked':'')?>></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><input type="checkbox" class="form-check-input" name="modifyUserPerms" <?=($perms['modifyUserPerms']==1 ? 'checked':'')?>></strong>
+                                            <strong><input type="checkbox" class="form-check-input" name="deleteUser" <?=($perms['deleteUser']==1 ? 'checked':'')?>></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><input type="checkbox" class="form-check-input" name="deleteUser" <?=($perms['deleteUser']==1 ? 'checked':'')?>></strong>
+                                            <strong><input type="checkbox" class="form-check-input" name="showUserPerms" <?=($perms['showUserPerms']==1 ? 'checked':'')?>></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><input type="checkbox" class="form-check-input" name="modifyUserPerms" <?=($perms['modifyUserPerms']==1 ? 'checked':'')?>></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
                                             <strong><input type="checkbox" class="form-check-input" name="createProduct" <?=($perms['createProduct']==1 ? 'checked':'')?>></strong>
@@ -193,10 +199,13 @@ require_once("templates/header.php");
                                     <strong><input type="checkbox" class="form-check-input" name="modifyUser" <?=($perms['modifyUser']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" name="modifyUserPerms" <?=($perms['modifyUserPerms']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" name="deleteUser" <?=($perms['deleteUser']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" name="deleteUser" <?=($perms['deleteUser']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><input type="checkbox" class="form-check-input" name="showUserPerms" <?=($perms['showUserPerms']==1 ? 'checked':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><input type="checkbox" class="form-check-input" name="modifyUserPerms" <?=($perms['modifyUserPerms']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><input type="checkbox" class="form-check-input" name="createProduct" <?=($perms['createProduct']==1 ? 'checked':'')?> disabled></strong>
