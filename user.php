@@ -1,6 +1,8 @@
 <?php
 require_once("php/functions.php");
+print($pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS));
 $user = check_user();
+print($pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS));
 #error_log(print_r($user,true));
 if ($user['showUser'] != 1) {
     error('Permission denied!');
