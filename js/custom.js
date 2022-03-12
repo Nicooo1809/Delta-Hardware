@@ -1,14 +1,15 @@
 function toggleStyle() {
   if (getCookie("style") == "dark") {
-    setCookie("style", "light", 36500);
+    setCookie("style", "light", 365);
   } else {
-    setCookie("style", "dark", 36500);
+    setCookie("style", "dark", 365);
   }
   setStyle();
 }
 
 function setStyle() {
   if (getCookie("style") == "dark") {
+    setCookie("style", "dark", 365);
     //document.getElementById("theme_css").remove()
     var fileref = document.createElement("link");
     fileref.setAttribute("rel", "stylesheet");
@@ -17,6 +18,7 @@ function setStyle() {
     //fileref.setAttribute("id", "theme_css");
     document.getElementsByTagName("head")[0].appendChild(fileref);
   } else {
+    setCookie("style", "light", 365);
     //document.getElementById("theme_css").remove()
     var fileref = document.createElement("link");
     fileref.setAttribute("rel", "stylesheet");
