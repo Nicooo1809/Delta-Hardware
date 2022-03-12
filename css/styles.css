@@ -121,6 +121,7 @@ header {
     height: 24px;
     position: absolute;
     border-radius: 5px;
+    border-color: #dee2e6;
     top: 3px;
     left: 5px;
     transition: 0.5s;
