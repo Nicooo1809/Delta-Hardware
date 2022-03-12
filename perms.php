@@ -55,7 +55,7 @@ if(isset($_POST['action'])) {
                                         <p class="text-center">
                                             <div>
                                             <form action="perms.php" method="post">
-                                                <input type="number" value="<?=$_POST['permsid']?>" name="userid" style="display: none;" required>
+                                                <input type="number" value="<?=$_POST['permsid']?>" name="permsid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="no">Nein</button>
