@@ -10,19 +10,18 @@ if(isset($_POST['action'])) {
         if ($user['deleteUser'] != 1) {
             error('Permission denied!');
         }
-        if(isset($_POST['userid']) and !empty($_POST['userid'])) {
+        if(isset($_POST['permsid']) and !empty($_POST['permsid'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
                     // User clicked the "Yes" button, delete record
-                    $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
+                    $stmt->bindValue(1, 1, PDO::PARAM_INT);
+                    $stmt->bindValue(2, $_POST['permsid'], PDO::PARAM_INT);
                     $stmt->execute();
-                    $stmt = $pdo->prepare('DELETE FROM orders WHERE kunden_id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
+                    $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
                     $stmt->execute();
-                    $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
+
                     header('Location: perms.php');
                     exit;
                 } else {
@@ -42,7 +41,7 @@ if(isset($_POST['action'])) {
                                         <p class="text-center">
                                             <div>
                                             <form action="perms.php" method="post">
-                                                <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
+                                                <input type="number" value="<?=$_POST['permsid']?>" name="userid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="no">Nein</button>
