@@ -32,21 +32,8 @@ if(!isMobile()):
                 <a href="/aboutus.php" class="ctext">Über uns</a>
             </div>
             <div class="col d-flex justify-content-end align-items-center text-end ctext">
-                <input onchange="switch_style()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
+                <input onchange="toggleStyle()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
                 <label class="styleswitcherlabel" for="style_switch"></label>
-                <script>
-                    function switch_style() {
-                        if(isset($_COOKIE['style'])) {
-                            if ($_COOKIE['style'] == 'dark') {
-                                setcookie("style",'light',time() + (3600*24*365));
-                            } else if ($_COOKIE['style'] == 'light') {
-                                setcookie("style",'dark',time() + (3600*24*365));
-                            }
-                        } else {
-                            setcookie("style",'dark',time() + (3600*24*365));
-                        }
-                    }
-                </script>
                 <div class="ps-3 text-end ctext">
                     Version <?=$vernum?> 
                     <div class="vr mx-1"></div>
