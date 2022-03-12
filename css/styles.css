@@ -108,7 +108,7 @@ header {
     width: 80px;
     height: 30px;
     background-color: #ffffff;
-    border-radius: 10px;
+    border-radius: 5px;
     position: relative;
     cursor: pointer;
     transition: 0.5s;
@@ -120,19 +120,19 @@ header {
     width: 24px;
     height: 24px;
     position: absolute;
-    border-radius: 7px;
+    border-radius: 5px;
     top: 3px;
     left: 3px;
     transition: 0.5s;
-    background-color: #000000;
-    /* background-image: url("/images/light.png"); */
+    /* background-color: #000000; */
+    background-image: url("/images/light.png");
 }
 
 .styleswitcher:checked + .styleswitcherlabel:after {
-    left: calc(100% - 1px);
+    left: calc(100% - 3px);
     transform: translateX(-100%);
-    /* background-image: url("/images/dark.png"); */
-    background-color: #ffffff;
+    background-image: url("/images/dark.png");
+    /* background-color: #ffffff; */
 }
 
 .styleswitcher:checked + .styleswitcherlabel {
