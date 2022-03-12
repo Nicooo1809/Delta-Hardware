@@ -62,89 +62,23 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
-        if ($user['modifyUser'] != 1) {
+        if ($user['modifyUserPerms'] != 1) {
             error('Permission denied!');
         }
-        $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
-        $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-        $stmt->execute();
-        $perms = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        $stmt = $pdo->prepare('SELECT * FROM permission_group');
-        $stmt->execute();
-        $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
-            $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE users.id = ?");
-            $stmt->bindValue(1, $_POST['email']);
-            $stmt->bindValue(2, $_POST['vorname']);
-            $stmt->bindValue(3, $_POST['nachname']);
-            $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
-            $stmt->execute();
-            error_log(pdo_debugStrParams($stmt));
-            if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
-                if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
-                    $stmt = $pdo->prepare("UPDATE users SET passwort = ?, updated_at = now() WHERE users.id = ?");
-                    $stmt->bindValue(1, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
-                    $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                }
-            } else {
-                error('Password not equal!');
-            }
-            if ($user['modifyUserPerms'] == 1) {
-                if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
-                    $stmt = $pdo->prepare("UPDATE users SET permission_group = ?, updated_at = now() WHERE users.id = ?");
-                    $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
-                    $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                }
-            }
-            #error_log(pdo_debugStrParams($stmt));
-            header("location: perms.php");
-            exit;
-        } else {
-        require_once("templates/header.php");
-        ?>
-        <div class="minheight100 mx-3 my-3">
-            <h1>Einstellungen</h1>
 
-            <div>
-                    <form action="perms.php" method="post">
-                        <label for="inputVorname">Vorname</label>
-                        <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$perms[0]['vorname']?>" required>
-                        <label for="inputNachname">Nachname</label>
-                        <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$perms[0]['nachname']?>" required>
-                        <label for="inputEmail">E-Mail</label>
-                        <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$perms[0]['email']?>" required>
-                        <label for="inputPasswortNeu">Neues Passwort</label>
-                        <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
-                        <label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
-                        <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
-                        <?php if ($user['modifyUserPerms'] == 1) {?>
-                        <label for="permissions">Permissions</label>
-                            <select class="form-select" id="permissions" name="permissions">
-                                <?php foreach ($permissions as $permission) {
-                                    if ($permission['id'] == $perms[0]['permission_group']) {
-                                        print('<option value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
-                                    } else {
-                                        print('<option value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
-                                    }
-                                }?>
-                            </select>
-                        <?php }?>
-                        <div class="input-group">
-                            <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
-                            <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
-                            <button type="submit" name="action" value="cancel" class="btn btn-outline-primary">Abrechen</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php 
-        include_once("templates/footer.php");
+        $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, modifyUserPerms = ?, deleteUser = ?, createProduct = ?, modifyProduct = ?, WHERE permission_group.id = ?");
+        $stmt->bindValue(1, (isset($_POST['showUser']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(2, (isset($_POST['modifyUser']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(3, (isset($_POST['modifyUserPerms']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(4, (isset($_POST['deleteUser']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(5, (isset($_POST['createProduct']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(6, (isset($_POST['modifyProduct']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(7, $_POST['permsid'], PDO::PARAM_INT);
+        $stmt->execute();
+
+        #error_log(pdo_debugStrParams($stmt));
+        header("location: perms.php");
         exit;
-        } 
     }
     if ($_POST['action'] == 'cancel') {
         header("location: perms.php");
@@ -237,7 +171,6 @@ require_once("templates/header.php");
                                                 <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speicher</button>
                                             </div>
                                             <div class="px-1 py-1">
-                                                <input type="number" value="<?=$perms['id']?>" name="permsid" style="display: none;" required>
                                                 <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                             </div>
                                         </td>
