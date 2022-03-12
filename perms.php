@@ -2,12 +2,12 @@
 require_once("php/functions.php");
 $user = check_user();
 error_log(print_r($_POST,true));
-if ($user['showUser'] != 1) {
+if ($user['showUserPerms'] != 1) {
     error('Permission denied!');
 }
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'del') {
-        if ($user['deleteUser'] != 1) {
+        if ($user['modifyUserPerms'] != 1) {
             error('Permission denied!');
         }
         if(isset($_POST['permsid']) and !empty($_POST['permsid'])) {
