@@ -1,5 +1,5 @@
 function toggleStyle() {
-  if (this.checked) {
+  if (this.checked == true) {
     setCookie("style", "dark", 36500);
   } else {
     setCookie("style", "light", 36500);
