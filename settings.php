@@ -6,18 +6,6 @@ require_once("php/functions.php");
 //Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
 $user = check_user();
 
-if(isset($_GET['style'])) {
-	$stylesel = $_GET['style'];
-
-	if ($stylesel == 'light') {
-		style_light();
-		header("Refresh:0; url=settings.php");
-	} else if ($stylesel == 'dark') {
-		style_dark();
-		header("Refresh:0; url=settings.php");
-	}
-}
-
 if(isset($_GET['save'])) {
 	$save = $_GET['save'];
 	
@@ -175,20 +163,6 @@ include_once("templates/header.php");
 			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 
 			</form>
-		</div>
-		<div>
-			<div class="row">
-				<div class="col-auto bg-dark mx-2 py-2 px-2 align-middle text-center rounded">
-					<form action="?style=light" method="post">
-						<button type="submit" class="btn btn-outline-light">Light</button>
-					</form>
-				</div>
-				<div class="col-auto bg-light mx-2 py-2 px-2 align-middle text-center rounded">
-					<form action="?style=dark" method="post">
-						<button type="submit" class="btn btn-outline-dark">Dark</button>
-					</form>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
