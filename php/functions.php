@@ -1,5 +1,6 @@
 <?php
 require_once("php/mysql.php");
+print($pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS));
 /**
  * Checks that the user is logged in. 
  * @return Returns the row of the logged in user
