@@ -8,7 +8,7 @@ $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 error_log(print_r($roottypes, true));
 foreach ($roottypes as $roottype) {
   $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = ?");
-  $stmt->bindValue(1, $roottype['parent_id'], PDO::PARAM_INT);
+  $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
   $stmt->execute();
   $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
   if (isset($subtypes[0])) {
