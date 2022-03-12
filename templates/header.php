@@ -4,11 +4,6 @@ require_once("php/mysql.php");
 session_start();
 check_user(FALSE);
 # Disable Cache so Dark/Lite mode switch works without hard refresh - may find a better solution later on
-header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +14,7 @@ header("Pragma: no-cache");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet"  href="/css/<?php print(check_style());?>.css">
+    <link rel="stylesheet"  href="/css/<?php print(check_style());?>.css?v=<?php print(date("Y.m.d.H.i.s")); ?>">
     <link rel="icon" type="image/png" href="favicon.png" sizes="1024x1024" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
