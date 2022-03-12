@@ -28,6 +28,14 @@ span, div, i {
     color: #212529;
 }
 
+hr {
+    border: 0 !important;
+    border-top: 1px solid #212529 !important;
+    width: 90% !important;
+    margin: auto !important;
+    opacity: .25 !important;
+}
+
 .cbg {
     background-color: #dee2e6 !important;
 }

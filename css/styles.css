@@ -81,15 +81,6 @@ header {
     border-top: 0px !important;
 }
 
-hr {
-    border: 0 !important;
-    border-top: 1px solid #ffffff !important;
-    width: 90% !important;
-    margin: auto !important;
-    opacity: .25 !important;
-}
-
-
 .cookie-p-text {
     margin-bottom: 0 !important;
 }
