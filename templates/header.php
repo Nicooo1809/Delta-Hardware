@@ -3,10 +3,10 @@ require_once("php/functions.php");
 require_once("php/mysql.php");
 session_start();
 check_user(FALSE);
-# Disable Cache so Dark/Lite mode switch works without hard refresh - may find a better solution later on
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -25,8 +25,6 @@ check_user(FALSE);
 </head>
 <body>
 
-
-
 <nav class="navbar header-header navbar-expand-lg navbar-dark cbg ctext">
     <div class="container-fluid">
         <a class="navbar-brand" href="/index"><img src="/favicon.svg" style="width:2.5rem;"></a>
@@ -43,127 +41,41 @@ check_user(FALSE);
                     $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     #error_log(print_r($roottypes, true));
                     foreach ($roottypes as $roottype) {
-                    $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = ?");
-                    $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    if (isset($subtypes[0])) {
-                    #error_log('1');
-                    ?>
-                        <li class="nav-item dropdown">
-                        <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?=$roottype['type']?>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <?php
-                    } else {
+                        $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = ?");
+                        $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
+                        $stmt->execute();
+                        $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        if (isset($subtypes[0])) {
+                            #error_log('1');
+                            ?>
+                                <li class="nav-item dropdown">
+                                <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?=$roottype['type']?>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php 
+                        } else { 
+                            ?>
+                            <li class="nav-item"><?=$roottype['type']?></li>
+                            <?php
+                        }
+                        foreach ($subtypes as $subtype) {
                         ?>
-                        <li class="nav-item"><?=$roottype['type']?></li>
+                            <?php if ($subtype['type'] == "line"):?>
+                                <li><hr class="dropdown-divider"></li>
+                            <?php else:?>
+                                <li><a class="dropdown-item" href="products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?></a></li>
+                            <?php endif; ?>
                         <?php
-                    }
-                    foreach ($subtypes as $subtype) {
-                    ?>
-                        <?php if ($subtype['type'] == "line"):?>
-                            <li><hr class="dropdown-divider"></li>
-                        <?php else:?>
-                            <li><a class="dropdown-item" href="products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?></a></li>
-                        <?php endif; ?>
-                    <?php
-                    }
-                    if (isset($subtypes[0])) {
-                    ?>
-                        </ul>
-                        </li>
-                    <?php
-                    }
+                        }
+                        if (isset($subtypes[0])) {
+                        ?>
+                            </ul>
+                            </li>
+                        <?php
+                        }
                     }
                 ?>
-
-                <!--
-                <li class="nav-item dropdown">
-                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Hardware
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Arbeitsspeicher</a></li>
-                        <li><a class="dropdown-item" href="#">CPUs</a></li>
-                        <li><a class="dropdown-item" href="#">CPU Kühler</a></li>
-                        <li><a class="dropdown-item" href="#">Festplatten & SSDs</a></li>
-                        <li><a class="dropdown-item" href="#">Grafikkarten</a></li>
-                        <li><a class="dropdown-item" href="#">Laufwerke</a></li>
-                        <li><a class="dropdown-item" href="#">Mainboards</a></li>
-                        <li><a class="dropdown-item" href="#">Netzteile</a></li>
-                        <li><a class="dropdown-item" href="#">Gehäuse</a></li>
-                        <li><a class="dropdown-item" href="#">Kühlung</a></li>
-                        <li><a class="dropdown-item" href="#">Serverschrank</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">SONDERANGEBOT - RTX 3080ti</a></li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Monitore
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">24 Zoll</a></li>
-                        <li><a class="dropdown-item" href="#">27 Zoll</a></li>
-                        <li><a class="dropdown-item" href="#">32 Zoll</a></li>
-                        <li><a class="dropdown-item" href="#">34 Zoll</a></li>
-                        <li><a class="dropdown-item" href="#">49 Zoll</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Monitorzubehör</a></li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Peripherie
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item " href="#">Office-Mäuse</a></li>
-                        <li><a class="dropdown-item" href="#">Gaming-Mäuse</a></li>
-                        <li><a class="dropdown-item" href="#">Mauspads</a></li>
-                        <li><a class="dropdown-item" href="#">Office-Tastaturen</a></li>
-                        <li><a class="dropdown-item" href="#">Gaming-Tastaturen</a></li>
-                        <li><a class="dropdown-item" href="#">Joystick</a></li>
-                        <li><a class="dropdown-item" href="#">Lenkräder</a></li>
-                        <li><a class="dropdown-item" href="#">Controller</a></li>
-                        <li><a class="dropdown-item" href="#">USB-Hubs</a></li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Netzwerktechnik
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item " href="#">Access-Points</a></li>
-                        <li><a class="dropdown-item" href="#">Bluetooth Adapter</a></li>
-                        <li><a class="dropdown-item" href="#">Netzwerkswitches</a></li>
-                        <li><a class="dropdown-item" href="#">Router</a></li>
-                        <li><a class="dropdown-item" href="#">WLAN Repeater</a></li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Audio
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item " href="#">Headsets</a></li>
-                        <li><a class="dropdown-item" href="#">Kopfhörer</a></li>
-                        <li><a class="dropdown-item" href="#">Mikrofone</a></li>
-                        <li><a class="dropdown-item" href="#">Lautsprecher</a></li>
-                        <li><a class="dropdown-item" href="#">Soundbar</a></li>
-                        <li><a class="dropdown-item" href="#">Soundkarten</a></li>
-                    </ul>
-                </li>
-                -->
             </ul> 
 
             <form class="d-flex" action="/products.php">
