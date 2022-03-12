@@ -31,12 +31,14 @@ if(!isMobile()):
             <div class="col text-center">
                 <a href="/aboutus.php" class="ctext">Über uns</a>
             </div>
-            <div class="col justify-content-end align-items-center text-end ctext">
+            <div class="col d-flex justify-content-end align-items-center text-end ctext">
                 <input class="styleswitcher" type="checkbox" name="switch" id="switch">
                 <label class="styleswitcherlabel" for="switch"></label>
-                Version <?=$vernum?> 
-                <div class="vr mx-1"></div>
-                <?=$verdate?>
+                <div class="ps-2 text-end ctext">
+                    Version <?=$vernum?> 
+                    <div class="vr mx-1"></div>
+                    <?=$verdate?>
+                </div>
             </div>
         </div>
     </footer>
