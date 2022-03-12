@@ -1,7 +1,10 @@
 <?php
 require_once("php/functions.php");
 session_start();
+print($pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS));
+
 check_user(FALSE);
+print($pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS));
 
 # Disable Cache so Dark/Lite mode switch works without hard refresh - may find a better solution later on
 header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
