@@ -66,7 +66,7 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
 
-        $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, modifyUserPerms = ?, deleteUser = ?, createProduct = ?, modifyProduct = ?, WHERE permission_group.id = ?");
+        $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, modifyUserPerms = ?, deleteUser = ?, createProduct = ?, modifyProduct = ? WHERE permission_group.id = ?");
         $stmt->bindValue(1, (isset($_POST['showUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(2, (isset($_POST['modifyUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(3, (isset($_POST['modifyUserPerms']) ? "1" : "0"), PDO::PARAM_INT);
@@ -97,7 +97,6 @@ require_once("templates/header.php");
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
             <h1>Benutzerverwaltung</h1>
-            <p><?php print($total_users); ?> Benutzer</p>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
