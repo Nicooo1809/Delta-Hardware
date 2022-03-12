@@ -20,6 +20,7 @@ $user = check_user();
 				<button type="button" href="logout.php" class="btn btn-outline-primary my-3">Abmelden</button>
 			</div>
 		</div>
+		<?php if ($user['showUser'] == 1 and $user['showUserPerms'] == 1) { ?>
 		<div class="card cbg ctext py-3 mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title">Adminbereich</h1>
@@ -36,6 +37,7 @@ $user = check_user();
 				</div>
 			</div>
 		</div>
+		<?php } ?>
 	</div>
 	<div>
 
