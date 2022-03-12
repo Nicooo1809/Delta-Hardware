@@ -1,3 +1,5 @@
+setStyle();
+
 function toggleStyle() {
   if (getCookie("style") == "dark") {
     setCookie("style", "light", 365);
