@@ -92,6 +92,6 @@ function check_style() {
 			return 'light';
 		}
 	} else {
-		return 'dark';
+		return 'light';
 	}
 }

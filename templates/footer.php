@@ -32,9 +32,15 @@ if(!isMobile()):
                 <a href="/aboutus.php" class="ctext">Über uns</a>
             </div>
             <div class="col text-end ctext">
-                Version <?=$vernum?> 
-                <div class="vr mx-1"></div>
-                 <?=$verdate?>
+                <div>
+                    <input class="styleswitcher" type="checkbox" name="switch" id="switch">
+                    <label class="styleswitcherlabel" for="switch"></label>
+                </div>
+                <div class="text-end ctext">
+                    Version <?=$vernum?> 
+                    <div class="vr mx-1"></div>
+                    <?=$verdate?>
+                </div>
             </div>
         </div>
     </footer>
