@@ -97,13 +97,13 @@ header {
 
 /* Style Toggle */
 
-input {
+.styleswitcher {
     width: 0;
     height: 0;
     visibility: hidden;
 }
 
-label {
+.styleswitcherlabel {
     display: block;
     width: 50px;
     height: 15px;
@@ -115,7 +115,7 @@ label {
     box-shadow: 0 0 2px #41414150;
 }
 
-label::after {
+.styleswitcherlabel::after {
     content: "";
     width: 12px;
     height: 12px;
@@ -127,12 +127,12 @@ label::after {
     transition: 0.5s;
 }
 
-input:checked + label:after {
+.styleswitcher:checked + .styleswitcherlabel:after {
     left: calc(100% - 1px);
     transform: translateX(-100%);
 }
 
-input:checked + label {
+.styleswitcher:checked + .styleswitcherlabel {
     background-color: #000000;
 }
 
