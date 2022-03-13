@@ -109,8 +109,10 @@ require_once("templates/header.php");
         <div class="py-3 px-3 cbg rounded">
             <h1>Rechteverwaltung</h1>
             <form action="perms.php" method="post" class="">
-                <input type="text" name="permsname" required>
-                <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+                <div class="input-group">
+                    <input type="text" name="permsname" class="form-control" required>
+                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+                </div>
             </form>
             <div class="table-responsive">
                 <table class="table">
