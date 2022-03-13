@@ -112,7 +112,7 @@ header {
     position: relative;
     cursor: pointer;
     transition: 0.5s;
-    box-shadow: 0 0 2px #41414150;
+    box-shadow: 0 0 2px #212529;
 }
 
 .styleswitcherlabel::after {
