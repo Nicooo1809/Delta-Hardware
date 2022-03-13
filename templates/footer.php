@@ -50,11 +50,11 @@ if(!isMobile()):
                 <a href="aboutus.php" class="ctext">Über uns</a>
             </div>
             <div class="row">
-                <div class="ctext col-4 py-1 d-flex justify-content-start">
+                <div class="ctext col-4 py-1 pe-1 d-flex justify-content-start">
                     <input onchange="toggleStyle()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
                     <label class="styleswitcherlabel" for="style_switch"></label>
                 </div>
-                <div class="ctext col-8 text-end">
+                <div class="ctext col-8 pe-1 text-end">
                     Version <?=$vernum?>
                     <div class="vr mx-1"></div>
                     <?=$verdate?>
