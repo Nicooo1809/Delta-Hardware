@@ -104,7 +104,7 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
-        <div class="minheight100 mx-3 my-3">
+        <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>
                 <form action="user.php" method="post">
