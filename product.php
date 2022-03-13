@@ -96,9 +96,9 @@ require("templates/header.php");
                 <div class="row">
                     <div>
                         <h1 class="ctext"><?=$product[0]['name']?></h1>
-                        <span class="ctext col">Preis: &euro;<?=$product[0]['price']?></span> 
+                        <span class="ctext col">Preis: <?=$product[0]['price']?>&euro;</span> 
                         <?php if ($product[0]['rrp'] > 0): ?>
-                            <span class="ctext col">UVP &euro;<?=$product[0]['rrp']?></span>
+                            <span class="ctext col">UVP <?=$product[0]['rrp']?>&euro;</span>
                         <?php endif; ?>
                         <?php if ($product[0]['visible'] == 0):?>
                             <h2 class="text-danger my-2">Das Produkt aktuell nicht bestellbar!</h2>

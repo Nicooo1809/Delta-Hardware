@@ -62,9 +62,9 @@ require_once("templates/header.php");
                                 }?>
                                 <h4 class="card-title name"><?=$product['name']?></h4>
                                 <p class="card-text ctext price">Preis: 
-                                    &euro;<?=$product['price']?>
+                                    <?=$product['price']?>&euro;
                                     <?php if ($product['rrp'] > 0): ?>
-                                    <span class="rrp ctext"><br>UVP: &euro;<?=$product['rrp']?></span>
+                                    <span class="rrp ctext"><br>UVP:<?=$product['rrp']?> &euro;</span>
                                     <?php endif; ?>
                                 </p>
                             </div>
