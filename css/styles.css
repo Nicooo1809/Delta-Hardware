@@ -135,11 +135,11 @@ header {
     /* background-color: #ffffff; */
     background-image: url("/images/dark.png");
     background-size: 24px;
-    box-shadow: 0 0 2px #dee2e6;
 }
 
 .styleswitcher:checked + .styleswitcherlabel {
     background-color: #212529;
+    box-shadow: 0 0 2px #dee2e6;
 }
 
 
