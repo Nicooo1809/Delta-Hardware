@@ -50,7 +50,7 @@ if(!isMobile()):
                 <a href="aboutus.php" class="ctext">Über uns</a>
             </div>
             <div class="row">
-                <div class="ctext col-4 py-1 d-flex justify-content-start align-items-center">
+                <div class="ctext col-4 py-1 d-flex justify-content-start">
                     <input onchange="toggleStyle()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
                     <label class="styleswitcherlabel" for="style_switch"></label>
                 </div>
