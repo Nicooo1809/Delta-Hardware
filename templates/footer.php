@@ -49,8 +49,14 @@ if(!isMobile()):
             <div class="col py-1 text-center">
                 <a href="aboutus.php" class="ctext">Über uns</a>
             </div>
-            <div class="ctext col py-1 text-center">
+            <div class="ctext col py-1">
+                <div class="text-start">
+                    <input onchange="toggleStyle()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
+                    <label class="styleswitcherlabel" for="style_switch"></label>
+                </div>
+                <div class="text-end">
                 Version <?=$vernum?> - <?=$verdate?>
+                </div>
             </div>
         </div>
     </footer>
