@@ -127,7 +127,6 @@ header {
     /* background-color: #000000; */
     background-image: url("/images/light.png");
     background-size: 24px;
-    box-shadow: 0 0 2px #dee2e6;
 }
 
 .styleswitcher:checked + .styleswitcherlabel:after {
@@ -136,6 +135,7 @@ header {
     /* background-color: #ffffff; */
     background-image: url("/images/dark.png");
     background-size: 24px;
+    box-shadow: 0 0 2px #dee2e6;
 }
 
 .styleswitcher:checked + .styleswitcherlabel {
