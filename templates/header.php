@@ -2,6 +2,7 @@
 require_once("php/functions.php");
 require_once("php/mysql.php");
 error_log($_SESSION['userid']);
+error_log('8');
 session_start();
 error_log(print_r($_SESSION['userid'],true));
 error_log($user);
