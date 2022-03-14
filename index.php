@@ -48,7 +48,7 @@ require_once("templates/header.php");
                     <div class="container">
                         <div class="row">
 
-                            <div class="col-lg-4">
+                            <div class="col-md-4">
                                 <div class="card">
                                     <img src="https://mdbootstrap.com/img/new/standard/nature/181.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -62,7 +62,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 d-none d-lg-block">
+                            <div class="col-md-4 d-none d-lg-block">
                                 <div class="card">
                                     <img src="https://mdbootstrap.com/img/new/standard/nature/181.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -76,7 +76,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 d-none d-lg-block">
+                            <div class="col-md-4 d-none d-lg-block">
                                 <div class="card">
                                     <img src="https://mdbootstrap.com/img/new/standard/nature/181.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
