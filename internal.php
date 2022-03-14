@@ -4,11 +4,11 @@ require_once("php/functions.php");
 
 //Überprüfe, dass der User eingeloggt ist
 //Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
-error_log(print_r($user,true));
+#error_log(print_r($user,true));
 $user = check_user();
-error_log(print_r($user,true));
+#error_log(print_r($user,true));
 require_once("templates/header.php");
-error_log(print_r($user,true));
+#error_log(print_r($user,true));
 ?>
 
 <div class="container minheight100 py-3 px-3">
