@@ -12,8 +12,9 @@ require_once("templates/header.php");
                         <h1 class="h1-reponsive text-uppercase fw-bold mb-0 pt-md-5 pt-5 index-rtx-text">GEFORCE RTX 30-SERIE</h1>
                         <h3 class="h3-responsive text-white">DIE ULTIMATIVE WAHL</h3>
                         <hr class="hr-light my-3">
-                        <h4 class="text-uppercase mb-4 text-white me-5 pe-5">
-                            Die Grafikprozessoren der GeForce RTX™ 30-Serie liefern die ultimative Leistung für Gamer und Kreative.</h5>
+                        <h5 class="text-uppercase mb-4 text-white me-5 pe-5">
+                            Die Grafikprozessoren der GeForce RTX™ 30-Serie liefern die ultimative Leistung für Gamer und Kreative.
+                        </h5>
                     </div>
                 </div>
             </div>
