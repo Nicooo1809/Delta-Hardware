@@ -22,48 +22,42 @@ require_once("templates/header.php");
         <div class="carousel-inner">
             <div class="carousel-item active">
 
-                <div class="row">
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
+                <div class="col-sm">
+                One of three columns
+                </div>
+                <div class="col-sm">
+                One of three columns
+                </div>
+                <div class="col-sm">
+                One of three columns
                 </div>
 
             </div>
             <div class="carousel-item">
 
-                <div class="row">
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
+                <div class="col-sm">
+                One of three columns
+                </div>
+                <div class="col-sm">
+                One of three columns
+                </div>
+                <div class="col-sm">
+                One of three columns
                 </div>
 
             </div>
             <div class="carousel-item">
 
-                <div class="row">
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
-                    <div class="col-sm">
-                    One of three columns
-                    </div>
+                <div class="col-sm">
+                One of three columns
                 </div>
-                
+                <div class="col-sm">
+                One of three columns
+                </div>
+                <div class="col-sm">
+                One of three columns
+                </div>
+
             </div>
         </div>
         <a class="carousel-control-prev" href="#newproductcarousel" role="button" data-slide="prev">
