@@ -1,6 +1,7 @@
 <?php 
 require_once("templates/header.php");
 ?>
+<script src="/js/slider.js"></script>
 
 <main>
     <div class="view bg">
