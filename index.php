@@ -33,13 +33,37 @@ require_once("templates/header.php");
                     One of three columns
                     </div>
                 </div>
+
+            </div>
+            <div class="carousel-item">
+
+                <div class="row">
+                    <div class="col-sm">
+                    One of three columns
+                    </div>
+                    <div class="col-sm">
+                    One of three columns
+                    </div>
+                    <div class="col-sm">
+                    One of three columns
+                    </div>
+                </div>
+
+            </div>
+            <div class="carousel-item">
+
+                <div class="row">
+                    <div class="col-sm">
+                    One of three columns
+                    </div>
+                    <div class="col-sm">
+                    One of three columns
+                    </div>
+                    <div class="col-sm">
+                    One of three columns
+                    </div>
+                </div>
                 
-            </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
             </div>
         </div>
         <a class="carousel-control-prev" href="#newproductcarousel" role="button" data-slide="prev">
