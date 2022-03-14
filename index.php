@@ -18,7 +18,7 @@ require_once("templates/header.php");
     </div>
 
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="container my-3">
             <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
                 <!--
@@ -227,16 +227,16 @@ require_once("templates/header.php");
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev position-relative" href="#newproductcarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next position-relative" href="#newproductcarousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
         </div>
+        <a class="carousel-control-prev position-relative" href="#newproductcarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next position-relative" href="#newproductcarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </main>
 
