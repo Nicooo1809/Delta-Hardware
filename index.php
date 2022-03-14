@@ -18,7 +18,7 @@ require_once("templates/header.php");
     </div>
 
 
-    <div class="container my-4">
+    <div class="container my-3">
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <!--
             <div class="d-flex justify-content-center mb-4">
