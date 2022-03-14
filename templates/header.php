@@ -1,13 +1,12 @@
 <?php
 require_once("php/functions.php");
 require_once("php/mysql.php");
-#error_log(print_r($_SESSION['userid'],true));
 error_log($_SESSION['userid']);
 session_start();
-#error_log(print_r($_SESSION['userid'],true));
-error_log($_SESSION['userid']);
+error_log(print_r($_SESSION['userid'],true));
+error_log($user);
 $user = check_user(FALSE);
-#error_log(print_r($_SESSION['userid'],true));
+error_log(print_r($user,true));
 error_log($_SESSION['userid']);
 
 ?>
