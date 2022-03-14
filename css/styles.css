@@ -1,17 +1,9 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 header {
     margin-bottom: 0 !important;
 }
-/*
-.bg-video {
-    position: absolute;
-    overflow: visible;
-    object-fit: cover;
-    width: 100%;
-    height: 95%;
-    visibility: visible;
-    size: 100%;
-}
-*/
 
 .bl-400 {
     max-width:400px;
@@ -168,5 +160,5 @@ header {
 
 .index-rtx-text {
     color: #76B900;
-    font-family: Helvetica;
+    font-family: "Bebas Neue";
 }
