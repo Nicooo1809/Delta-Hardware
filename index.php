@@ -37,6 +37,14 @@ require_once("templates/header.php");
 
 
                 <div class="carousel-inner py-4">
+                    <a class="carousel-control-prev position-relative" href="#newproductcarousel" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next position-relative" href="#newproductcarousel" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
@@ -229,14 +237,6 @@ require_once("templates/header.php");
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev position-relative" href="#newproductcarousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next position-relative" href="#newproductcarousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
 </main>
 
