@@ -16,9 +16,8 @@ require_once("templates/header.php");
             </div>
         </div>
     </div>
-
-
-    <div id="newproductcarousel" class="carousel slide" data-ride="carousel">
+</main>
+<div id="newproductcarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
 
@@ -69,10 +68,6 @@ require_once("templates/header.php");
             <span class="sr-only">Next</span>
         </a>
     </div>
-
-
-</main>
-
 
 
 
