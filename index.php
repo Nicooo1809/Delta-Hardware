@@ -62,7 +62,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col d-lg-block">
+                            <div class="col d-none d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -76,7 +76,21 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col d-lg-block ">
+                            <div class="col d-none d-lg-block ">
+                                <div class="card">
+                                    <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">
+                                            Some quick example text to build on the card title and
+                                            make up the bulk of the card's content.
+                                        </p>
+                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col d-none d-lg-block ">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -112,7 +126,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col d-lg-block">
+                            <div class="col d-none d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -126,7 +140,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col d-lg-block">
+                            <div class="col d-none d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -140,7 +154,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col d-lg-block">
+                            <div class="col d-none d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -175,7 +189,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col d-lg-block">
+                            <div class="col d-none d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -189,7 +203,21 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col d-lg-block">
+                            <div class="col d-none d-lg-block">
+                                <div class="card">
+                                    <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">
+                                            Some quick example text to build on the card title and
+                                            make up the bulk of the card's content.
+                                        </p>
+                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col d-none d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
