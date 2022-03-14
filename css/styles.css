@@ -165,3 +165,7 @@ header {
     height: 9vw !important;
     object-fit: cover !important;
 }
+
+.index-rtx-text {
+    color: #76B900;
+}
