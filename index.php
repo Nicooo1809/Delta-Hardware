@@ -17,217 +17,218 @@ require_once("templates/header.php");
         </div>
     </div>
 
-<section>
-    
-    <a class="carousel-control-prev" href="#newproductcarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#newproductcarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-    <div class="container my-3">
-        <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
-            <!--
-            <div class="d-flex justify-content-center mb-4">
 
-                <button class="carousel-control-prev position-relative" type="button" data-bs-target="#newproductcarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next position-relative" type="button" data-bs-target="#newproductcarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            -->
+    <div class="container-fluid">
+        <a class="carousel-control-prev" href="#newproductcarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#newproductcarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <div class="container my-3">
+            <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
+                <!--
+                <div class="d-flex justify-content-center mb-4">
+
+                    <button class="carousel-control-prev position-relative" type="button" data-bs-target="#newproductcarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next position-relative" type="button" data-bs-target="#newproductcarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                -->
 
 
-            <div class="carousel-inner py-4">
-                <div class="carousel-item active">
-                    <div class="container">
-                        <div class="row">
+                <div class="carousel-inner py-4">
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="row">
 
-                            <div class="col">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block ">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block ">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block ">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block ">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 
-                <div class="carousel-item">
-                    <div class="container">
-                        <div class="row">
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row">
 
-                            <div class="col">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="carousel-item">
-                    <div class="container">
-                        <div class="row">
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row">
 
-                            <div class="col">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col d-none d-lg-block">
-                                <div class="card">
-                                    <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">
-                                            Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.
-                                        </p>
-                                        <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                <div class="col d-none d-lg-block">
+                                    <div class="card">
+                                        <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.
+                                            </p>
+                                            <a href="#!" class="btn btn-primary">Mehr erfahren</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -237,7 +238,6 @@ require_once("templates/header.php");
             </div>
         </div>
     </div>
-</section>
 </main>
 
 
