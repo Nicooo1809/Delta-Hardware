@@ -183,7 +183,8 @@ require_once("templates/header.php");
                     </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#newproductcarousel" role="button" data-bs-slide="prev">
+        </div>
+        <a class="carousel-control-prev" href="#newproductcarousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
@@ -191,7 +192,6 @@ require_once("templates/header.php");
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
     </div>
 
 </main>
