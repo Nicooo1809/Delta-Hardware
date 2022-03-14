@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 header {
     margin-bottom: 0 !important;
@@ -160,5 +160,5 @@ header {
 
 .index-rtx-text {
     color: #76B900;
-    font-family: "Bebas Neue";
+    font-family: 'Saira Condensed', sans-serif;
 }
