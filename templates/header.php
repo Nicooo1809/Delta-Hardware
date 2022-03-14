@@ -4,7 +4,7 @@ require_once("php/mysql.php");
 error_log(print_r($user,true));
 session_start();
 error_log(print_r($user,true));
-check_user(FALSE);
+$user = check_user(FALSE);
 error_log(print_r($user,true));
 ?>
 
