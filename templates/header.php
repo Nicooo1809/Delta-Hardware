@@ -1,11 +1,11 @@
 <?php
 require_once("php/functions.php");
 require_once("php/mysql.php");
-error_log(print_r($user,true));
+error_log(print_r($_SESSION['userid'],true));
 session_start();
-error_log(print_r($user,true));
-$user = check_user(FALSE);
-error_log(print_r($user,true));
+error_log(print_r($_SESSION['userid'],true));
+check_user(FALSE);
+error_log(print_r($_SESSION['userid'],true));
 ?>
 
 <!DOCTYPE html>
