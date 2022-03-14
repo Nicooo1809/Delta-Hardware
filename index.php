@@ -9,9 +9,14 @@ require_once("templates/header.php");
             <div class="container">
                 <div class="d-flex flex-row minimum-vh justify-content-start align-items-center">
                     <div class="col-md-12 mt-1 text-white text-start">
-                        <h1 class="h1-reponsive text-white text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong class="text-white">Die Neue RTX-Reihe</strong></h1>   
+                        <h1 class="h1-reponsive text-white text-uppercase fw-bold mb-0 pt-md-5 pt-5">GEFORCE RTX 30-SERIE</h1>
+                        <h3 class="h3-responsive text-white">DIE ULTIMATIVE WAHL</h3>
                         <hr class="hr-light my-3">
-                        <h5 class="text-uppercase mb-4 text-white"><strong href="products.php?search=rtx" class="text-white">Jetzt kaufen!</strong></h5>
+                        <h5 class="text-uppercase mb-4 text-white">
+                            Die Grafikprozessoren der GeForce RTX™ 30-Serie liefern die ultimative Leistung für Gamer und Kreative. 
+                            Mit der Leistung von Ampere, der RTX-Architektur der 2. Generation von NVIDIA, 
+                            und mit neuen RT- sowie Tensor-Recheneinheiten, Streaming-Multiprozessoren für die realistischste 
+                            Raytracing-Grafik und neuesten KI-Funktionen.</h5>
                     </div>
                 </div>
             </div>
