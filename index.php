@@ -49,7 +49,7 @@ require_once("templates/header.php");
 
 
             <div class="carousel-inner py-4">
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-bs-interval="5000">
                     <div class="container">
                         <div class="row">
 
@@ -113,7 +113,7 @@ require_once("templates/header.php");
                 </div>
 
 
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="5000">
                     <div class="container">
                         <div class="row">
 
@@ -176,7 +176,7 @@ require_once("templates/header.php");
                     </div>
                 </div>
 
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="5000">
                     <div class="container">
                         <div class="row">
 
