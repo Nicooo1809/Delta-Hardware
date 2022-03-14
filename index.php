@@ -62,7 +62,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -76,7 +76,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col d-lg-block ">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -112,7 +112,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -126,7 +126,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -140,7 +140,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -175,7 +175,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -189,7 +189,7 @@ require_once("templates/header.php");
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col d-lg-block">
                                 <div class="card">
                                     <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
