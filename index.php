@@ -17,8 +17,17 @@ require_once("templates/header.php");
         </div>
     </div>
 
-
-    <div class="container my-3 ms-1 me-1">
+<section>
+    
+    <a class="carousel-control-prev" href="#newproductcarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#newproductcarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <div class="container my-3">
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <!--
             <div class="d-flex justify-content-center mb-4">
@@ -34,14 +43,6 @@ require_once("templates/header.php");
             </div>
             -->
 
-            <a class="carousel-control-prev" href="#newproductcarousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#newproductcarousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
 
             <div class="carousel-inner py-4">
                 <div class="carousel-item active">
@@ -236,7 +237,7 @@ require_once("templates/header.php");
             </div>
         </div>
     </div>
-
+</section>
 </main>
 
 
