@@ -20,6 +20,8 @@ require_once("templates/header.php");
 
 
     <div class="container my-3">
+
+            <!--
         <a class="carousel-control-prev position-relative" href="#newproductcarousel" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -28,6 +30,8 @@ require_once("templates/header.php");
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+            -->
+
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <!--
             <div class="d-flex justify-content-center mb-4">
