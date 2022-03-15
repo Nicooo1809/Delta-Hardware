@@ -28,7 +28,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			#error_log(pdo_debugStrParams($insert));
 		}
 
-		header("location: internal.php");
+		header("location: test.php");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
