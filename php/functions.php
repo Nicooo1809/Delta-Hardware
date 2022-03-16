@@ -7,12 +7,12 @@ require_once("php/mysql.php");
  */
 function check_user($redirect = TRUE) {
 	global $pdo;
-	
+	print('1');
 	if(!isset($_SESSION['userid']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
 		$identifier = $_COOKIE['identifier'];
 		$securitytoken = $_COOKIE['securitytoken'];
-		
-		print('| ' . $identifier . ' | ' . $securitytoken . ' |');
+		print('2');
+		#print('| ' . $identifier . ' | ' . $securitytoken . ' |');
 
 		$statement = $pdo->prepare("SELECT * FROM securitytokens WHERE identifier = ?");
 		$result = $statement->execute(array($identifier));
@@ -20,11 +20,13 @@ function check_user($redirect = TRUE) {
 		#error_log(pdo_debugStrParams($statement));
 		#error_log(print_r($securitytoken_row));
 		if(sha1($securitytoken) !== $securitytoken_row['securitytoken']) {
+			print('3');
 			//error('');
 			//Vermutlich wurde der Security Token gestohlen
 			//Hier ggf. eine Warnung o.ä. anzeigen
 			
 		} else { //Token war korrekt
+			print('4');
 			//Setze neuen Token
 			$neuer_securitytoken = md5(uniqid());
 			$insert = $pdo->prepare("UPDATE securitytokens SET securitytoken = :securitytoken WHERE identifier = :identifier");
