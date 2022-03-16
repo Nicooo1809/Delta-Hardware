@@ -6,14 +6,7 @@ session_start();
 #error_log(print_r($_SESSION['userid'],true));
 #error_log($user1);
 $user1 = check_user(FALSE);
-print_r($user1);
-if (empty($user1)) {
-    print('dfgsdgdfgsdf');
-}
-#$user = TRUE;
-if ($user1 == TRUE) {
-    print('dfgsdgdfgsdf12324254');
-}
+
 #error_log($_SESSION['userid']);
 ?>
 
