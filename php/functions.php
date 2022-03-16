@@ -37,11 +37,15 @@ function check_user($redirect = TRUE) {
 	print_r($_SESSION);
 
 	#error_log(print_r($_SESSION,true));
+	print('1');
 	if(!isset($_SESSION['userid'])) {
+		print('2');
 		if($redirect) {
+			print('3');
 			header("location: login.php");
 			exit();
 		} else {
+			print('4');
 			return FALSE;
 		}
 	} else {
