@@ -7,6 +7,7 @@ require_once("php/mysql.php");
  */
 function check_user($redirect = TRUE) {
 	global $pdo;
+	
 	print('1');
 	if(!isset($_SESSION['userid']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
 		$identifier = $_COOKIE['identifier'];
