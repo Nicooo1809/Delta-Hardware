@@ -1,14 +1,14 @@
 <?php
 require_once("php/functions.php");
 require_once("php/mysql.php");
-error_log($_SESSION['userid']);
-error_log('8');
+#error_log($_SESSION['userid']);
+#error_log('8');
 session_start();
-error_log(print_r($_SESSION['userid'],true));
-error_log($user);
-$user = check_user(FALSE);
-error_log(print_r($user,true));
-error_log($_SESSION['userid']);
+#error_log(print_r($_SESSION['userid'],true));
+#error_log($user1);
+$user1 = check_user(FALSE);
+#error_log(print_r($user1,true));
+#error_log($_SESSION['userid']);
 ?>
 
 <!DOCTYPE html>
@@ -89,11 +89,11 @@ error_log($_SESSION['userid']);
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search" required>
                 <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
             </form>
-            <?php if(isset($user['id'])): ?>
+            <?php if(isset($user1['id'])): ?>
             <a class="icon-navbar-a" href="/cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
-            <?php endif; if(!isset($user['id'])): ?>
-                <a class="icon-navbar-a" href="<?php if(isset($user['id'])) {print("settings");} else {print("login");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
-            <?php endif; if(isset($user['id'])): ?>
+            <?php endif; if(!isset($user1['id'])): ?>
+                <a class="icon-navbar-a" href="<?php if(isset($user1['id'])) {print("settings");} else {print("login");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+            <?php endif; if(isset($user1['id'])): ?>
             <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item dropdown">
                 <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
