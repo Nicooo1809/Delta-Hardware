@@ -7,7 +7,7 @@ session_start();
 #error_log(print_r($_SESSION['userid'],true));
 #error_log($user1);
 $user1 = check_user(FALSE);
-#error_log(print_r($user1,true));
+print_r($user1);
 #error_log($_SESSION['userid']);
 ?>
 
