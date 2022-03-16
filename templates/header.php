@@ -10,6 +10,7 @@ print_r($user1);
 if (empty($user1)) {
     print('dfgsdgdfgsdf');
 }
+$user = FALSE;
 if (!$user1) {
     print('dfgsdgdfgsdf12324254');
 }
