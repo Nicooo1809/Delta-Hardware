@@ -35,7 +35,7 @@ function check_user($redirect = TRUE) {
 		}
 	}
 	
-	
+	error_log(print_r($_SESSION,true));
 	if(!isset($_SESSION['userid'])) {
 		if($redirect) {
 			header("location: login.php");
