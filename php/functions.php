@@ -7,7 +7,7 @@ require_once("php/mysql.php");
  */
 function check_user($redirect = TRUE) {
 	global $pdo;
-	
+
 	print('1');
 	if(!isset($_SESSION['userid']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
 		$identifier = $_COOKIE['identifier'];
@@ -35,7 +35,7 @@ function check_user($redirect = TRUE) {
 			$insert->execute(array('securitytoken' => sha1($neuer_securitytoken), 'identifier' => $identifier));
 			setcookie("identifier",$identifier,time()+(3600*24*90)); //90 Tage Gültigkeit
 			setcookie("securitytoken",$neuer_securitytoken,time()+(3600*24*90)); //90 Tage Gültigkeit
-	
+			print(sha1($neuer_securitytoken));
 			//Logge den Benutzer ein
 			$_SESSION['userid'] = $securitytoken_row['user_id'];
 		}
