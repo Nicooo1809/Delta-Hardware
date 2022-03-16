@@ -12,6 +12,8 @@ function check_user($redirect = TRUE) {
 		$identifier = $_COOKIE['identifier'];
 		$securitytoken = $_COOKIE['securitytoken'];
 		
+		print('| ' . $identifier . ' | ' . $securitytoken . ' |');
+
 		$statement = $pdo->prepare("SELECT * FROM securitytokens WHERE identifier = ?");
 		$result = $statement->execute(array($identifier));
 		$securitytoken_row = $statement->fetch();
@@ -34,22 +36,21 @@ function check_user($redirect = TRUE) {
 			$_SESSION['userid'] = $securitytoken_row['user_id'];
 		}
 	}
-	print_r($_SESSION);
 
-	#error_log(print_r($_SESSION,true));
-	print('1');
+	#print_r($_SESSION);
+	#print('1');
 	if(!isset($_SESSION['userid'])) {
-		print('2');
+		#print('2');
 		if($redirect) {
-			print('3');
+			#print('3');
 			header("location: login.php");
 			exit();
 		} else {
-			print('4');
+			#print('4');
 			return FALSE;
 		}
 	} else {
-		print('5');
+		#print('5');
 		$stmt = $pdo->prepare("SELECT * FROM permission_group, users WHERE users.permission_group = permission_group.id and users.id = ?");
 		$stmt->bindValue(1, $_SESSION['userid'], PDO::PARAM_INT);
 		$stmt->execute();
