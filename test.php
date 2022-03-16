@@ -9,4 +9,5 @@ print_r($user);
 $user = check_user();
 print(3);
 print_r($user);
+print($test);
 ?>
