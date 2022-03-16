@@ -10,6 +10,9 @@ print_r($user1);
 if (empty($user1)) {
     print('dfgsdgdfgsdf');
 }
+if (!$user1) {
+    print('dfgsdgdfgsdf12324254');
+}
 #error_log($_SESSION['userid']);
 ?>
 
