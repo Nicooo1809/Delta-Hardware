@@ -11,7 +11,7 @@ if (empty($user1)) {
     print('dfgsdgdfgsdf');
 }
 #$user = TRUE;
-if ($user1 == FALSE) {
+if ($user1 == TRUE) {
     print('dfgsdgdfgsdf12324254');
 }
 #error_log($_SESSION['userid']);
