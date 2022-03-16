@@ -34,7 +34,7 @@ function check_user($redirect = TRUE) {
 			$_SESSION['userid'] = $securitytoken_row['user_id'];
 		}
 	}
-	
+	print_r($_SESSION);
 	error_log(print_r($_SESSION,true));
 	if(!isset($_SESSION['userid'])) {
 		if($redirect) {
