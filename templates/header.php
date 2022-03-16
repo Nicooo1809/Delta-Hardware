@@ -9,7 +9,6 @@ error_log($user);
 $user = check_user(FALSE);
 error_log(print_r($user,true));
 error_log($_SESSION['userid']);
-$test = 'dsfgdfgd';
 ?>
 
 <!DOCTYPE html>
