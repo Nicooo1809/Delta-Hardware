@@ -7,6 +7,9 @@ session_start();
 #error_log($user1);
 $user1 = check_user(FALSE);
 print_r($user1);
+if (empty($user1)) {
+    print('dfgsdgdfgsdf');
+}
 #error_log($_SESSION['userid']);
 ?>
 
