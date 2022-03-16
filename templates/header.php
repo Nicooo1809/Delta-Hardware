@@ -5,6 +5,7 @@ require_once("php/functions.php");
 session_start();
 #error_log(print_r($_SESSION['userid'],true));
 #error_log($user1);
+global $user1;
 $user1 = check_user(FALSE);
 
 #error_log($_SESSION['userid']);

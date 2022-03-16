@@ -2,7 +2,7 @@
 require_once("php/functions.php");
 $user = check_user();
 require_once("templates/header.php");
-global $user1;
+#global $user1;
 print_r($user1);
 ?>
 
