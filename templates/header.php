@@ -10,8 +10,8 @@ print_r($user1);
 if (empty($user1)) {
     print('dfgsdgdfgsdf');
 }
-$user = TRUE;
-if (!$user1) {
+#$user = TRUE;
+if ($user1 == FALSE) {
     print('dfgsdgdfgsdf12324254');
 }
 #error_log($_SESSION['userid']);
