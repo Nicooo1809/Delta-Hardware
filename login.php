@@ -41,7 +41,7 @@ $email_value = "";
 if(isset($_POST['email']))
 	$email_value = htmlentities($_POST['email']); 
 
-include("templates/header.php");
+require_once("templates/header.php");
 ?>
 <div class="container-fluid">
 	<div class="row no-gutter">
