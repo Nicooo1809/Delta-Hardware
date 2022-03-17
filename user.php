@@ -79,7 +79,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(3, $_POST['nachname']);
             $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
             $stmt->execute();
-            error_log(pdo_debugStrParams($stmt));
+            #error_log(pdo_debugStrParams($stmt));
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
                 if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
                     $stmt = $pdo->prepare("UPDATE users SET passwort = ?, updated_at = now() WHERE users.id = ?");
