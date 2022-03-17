@@ -110,3 +110,6 @@ $user1 = check_user(FALSE);
         </div>
     </div>
 </nav>
+<?php
+return $user1;
+?>
