@@ -1,30 +1,11 @@
 <?php 
-require_once("templates/header.php")
+require_once("templates/header.php");
 ?>
-
-<div class="container">
-    <div class="row no-gutter">
-        <div class="col cbg impressum-breite">
-            <h1>Impressum</h1>
-            <br>
-            <p>
-                Test
-            </p>
-        </div>
-    </div>
-
-</div>
+<div class="container-fluid minheight100">
 
 
 
 
-
-
-
-
-<?php 
-include("templates/footer.php")
+<?php
+include_once("templates/footer.php")
 ?>
-
-
-
