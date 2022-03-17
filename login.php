@@ -1,6 +1,6 @@
 <?php 
-require_once("php/mysql.php");
 require_once("php/functions.php");
+$user = require_once("templates/header.php");
 
 $error_msg = "";
 if(isset($_POST['email']) && isset($_POST['passwort'])) {
@@ -27,8 +27,8 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 			#error_log(pdo_debugStrParams($insert));
 		}
-
-		header("Location: test.php");
+		header("Location: " . $_SERVER['HTTP_REFERER']);
+		#header("Location: test.php");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
@@ -38,10 +38,9 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 
 
 $email_value = "";
-if(isset($_POST['email']))
+if(isset($_POST['email'])) {
 	$email_value = htmlentities($_POST['email']); 
-
-require_once("templates/header.php");
+}
 ?>
 <div class="container-fluid">
 	<div class="row no-gutter">

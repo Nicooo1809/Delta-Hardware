@@ -1,11 +1,13 @@
 <?php
 #require_once("php/mysql.php");
 require_once("php/functions.php");
-
+$user = require_once("templates/header.php");
 //Überprüfe, dass der User eingeloggt ist
 //Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
-$user = check_user();
-
+if (!isset($user['id'])) {
+    require_once("login.php");
+    exit;
+}
 if(isset($_GET['save'])) {
 	$save = $_GET['save'];
 	
@@ -63,7 +65,6 @@ if(isset($_GET['save'])) {
 		}
 	}
 }
-include_once("templates/header.php");
 ?>
 
 <div class="text-white minheight100 mx-3 my-3">

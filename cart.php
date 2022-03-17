@@ -1,7 +1,10 @@
 <?php
 require_once("php/functions.php");
-$user = check_user();
-
+$user = require_once("templates/header.php");
+if (!isset($user['id'])) {
+    require_once("login.php");
+    exit;
+}
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'add') {
         if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
@@ -144,7 +147,6 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
-require_once("templates/header.php");
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);

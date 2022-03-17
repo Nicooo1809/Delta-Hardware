@@ -1,6 +1,10 @@
 <?php
 require_once("php/functions.php");
-$user = check_user();
+$user = require_once("templates/header.php");
+if (!isset($user['id'])) {
+    require_once("login.php");
+    exit;
+}
 #error_log(print_r($user,true));
 if ($user['showUser'] != 1) {
     error('Permission denied!');
@@ -169,7 +173,6 @@ $total_users = $stmt->rowCount();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($users);
 #$stmt->debugDumpParams();
-require_once("templates/header.php");
 ?>
 
 <div class="container minheight100 users content-wrapper py-3 px-3">

@@ -1,6 +1,10 @@
 <?php
 require_once("php/functions.php");
-$user = check_user();
+$user = require_once("templates/header.php");
+if (!isset($user['id'])) {
+    require_once("login.php");
+    exit;
+}
 if ($user['showUserPerms'] != 1) {
     error('Permission denied!');
 }
@@ -42,7 +46,6 @@ if(isset($_POST['action'])) {
                     exit;
                 }
             } else {
-                require_once("templates/header.php");
                 ?>
                     <div class="container-fluid">
                         <div class="row no-gutter">
@@ -102,7 +105,6 @@ $stmt = $pdo->prepare('SELECT * FROM permission_group');
 $stmt->execute();
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
-require_once("templates/header.php");
 ?>
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
