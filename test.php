@@ -5,7 +5,7 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-print_r($user);
+print_r($_SERVER);
 ?>
 
 <?php
