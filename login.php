@@ -31,8 +31,11 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 			#error_log(pdo_debugStrParams($insert));
 		}
-		#header("Location: " . $_SERVER['HTTP_REFERER']);
-		header("Location: test.php");
+		if( strpos( $_SERVER['HTTP_REFERER'], "login" ) !== false) {
+			header("Location: test.php");
+		} else {
+			header("Location: " . $_SERVER['HTTP_REFERER']);
+		}
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
