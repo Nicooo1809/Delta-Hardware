@@ -37,12 +37,13 @@ if(isset($_POST['action'])) {
                     $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
                     $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
                     $stmt->execute();
-
-                    header('Location: perms.php');
+                    echo("<script>location.href='perms.php'</script>");
+                    #header('Location: perms.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
-                    header('Location: perms.php');
+                    echo("<script>location.href='perms.php'</script>");
+                    #header('Location: perms.php');
                     exit;
                 }
             } else {
@@ -92,11 +93,13 @@ if(isset($_POST['action'])) {
         $stmt->execute();
 
         #error_log(pdo_debugStrParams($stmt));
-        header("location: perms.php");
+        echo("<script>location.href='perms.php'</script>");
+        #header("location: perms.php");
         exit;
     }
     if ($_POST['action'] == 'cancel') {
-        header("location: perms.php");
+        echo("<script>location.href='perms.php'</script>");
+        #header("location: perms.php");
         exit;
     }
 }

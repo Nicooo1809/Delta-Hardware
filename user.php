@@ -27,11 +27,13 @@ if(isset($_POST['action'])) {
                     $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
                     $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
                     $stmt->execute();
-                    header('Location: user.php');
+                    echo("<script>location.href='user.php'</script>");
+                    #header('Location: user.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
-                    header('Location: user.php');
+                    echo("<script>location.href='user.php'</script>");
+                    #header('Location: user.php');
                     exit;
                 }
             } else {
@@ -103,7 +105,8 @@ if(isset($_POST['action'])) {
                 }
             }
             #error_log(pdo_debugStrParams($stmt));
-            header("location: user.php");
+            echo("<script>location.href='user.php'</script>");
+            #header("location: user.php");
             exit;
         } else {
         require_once("templates/header.php");
@@ -158,7 +161,8 @@ if(isset($_POST['action'])) {
         } 
     }
     if ($_POST['action'] == 'cancel') {
-        header("location: user.php");
+        echo("<script>location.href='user.php'</script>");
+        #header("location: user.php");
         exit;
     }
 }
