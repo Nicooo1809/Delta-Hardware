@@ -70,3 +70,8 @@ hr {
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+.cvr {
+    border-left: 2px solid #212529;
+    height: 100%;
+}

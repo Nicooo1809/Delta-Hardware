@@ -94,10 +94,8 @@ if(isset($_GET['save'])) {
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
-
-						<div class="vr mx-1"></div>
 						<!-- ToBeAdded Adresse/n -->
-						<div class="col-6">
+						<div class="cvr col-6">
 							<h3 class="ctext my-0">Adresse</h3>
 							<span class="ctext text-center">To be added</span>
 						</div>
@@ -131,9 +129,8 @@ if(isset($_GET['save'])) {
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
-						
 						<!-- Passwort -->
-						<div class="vr-light col-6">
+						<div class="cvr col-6">
 							<h3 class="ctext">Passwort</h3>
 							<form>
 								<div class="form-floating mb-2">
