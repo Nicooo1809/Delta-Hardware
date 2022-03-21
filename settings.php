@@ -81,7 +81,7 @@ if(isset($_GET['save'])) {
 					<div class="row justify-content-between">
 						<!-- Name -->
 						<div class="col-6">
-							<h3 class="ctext my-0">Name</h3>
+							<h3 class="ctext">Name</h3>
 							<form action="?save=personal_data" method="post">
 								<div class="form-floating mb-2">
 									<input class="form-control border-0 ps-4 text-dark" id="inputVorname" name="vorname" type="text" value="<?=$user['vorname']?>" required>
@@ -91,12 +91,13 @@ if(isset($_GET['save'])) {
 									<input class="form-control border-0 ps-4 text-dark" id="inputNachname" name="nachname" type="text" value="<?=$user['nachname']?>" required>
 									<label class="text-dark" for="inputNachname">Nachname</label>
 								</div>
-								<button class="btn btn-outline-primary mt-2" type="submit">Speichern</button>
+								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
 						<!-- ToBeAdded Adresse/n -->
 						<div class="col-6">
 							<h3 class="ctext my-0">Adresse</h3>
+							<span class="ctext text-center">To be added</span>
 						</div>
 					</div>
 				</div>
@@ -124,7 +125,7 @@ if(isset($_GET['save'])) {
 									<input class="form-control border-0 ps-4 text-dark" id="inputEmail2" name="email2" type="email" required>
 									<label class="text-dark" for="inputEmail2">E-Mail wiederholen</label>
 								</div>
-								<button class="btn btn-outline-primary mt-2" type="submit">Speichern</button>
+								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
 						<div class="col-6">
@@ -142,7 +143,7 @@ if(isset($_GET['save'])) {
 									<input class="form-control border-0 ps-4 text-dark" id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
 									<label class="text-dark" for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
 								</div>
-								<button class="btn btn-outline-primary mt-2" type="submit">Speichern</button>
+								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
 					</div>
