@@ -2,7 +2,7 @@
 require_once("templates/header.php");
 ?>
 <div class="container-fluid minheight100">
-    <div class="Four0Four-img">
+    <div class="container fof-img">
     </div>
 </div>
 <?php
