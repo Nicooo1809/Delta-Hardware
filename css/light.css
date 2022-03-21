@@ -75,3 +75,8 @@ hr {
     border-left: 2px solid #212529;
     height: 100%;
 }
+
+.cvl {
+    border-right: 2px solid #212529;
+    height: 100%;
+}

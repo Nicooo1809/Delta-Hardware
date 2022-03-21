@@ -80,7 +80,7 @@ if(isset($_GET['save'])) {
 				<div class="card-text">
 					<div class="row justify-content-between">
 						<!-- Name -->
-						<div class="col-6">
+						<div class="cvl col-6">
 							<h3 class="ctext">Name</h3>
 							<form action="?save=personal_data" method="post">
 								<div class="form-floating mb-2">
@@ -110,7 +110,7 @@ if(isset($_GET['save'])) {
 				<h1 class="card-title">Sicherheit</h1>
 				<div class="card-text">
 					<div class="row justify-content-between">
-						<div class="col-6">
+						<div class="cvl col-6">
 							<!-- E-Mail -->
 							<h3 class="ctext">E-Mail-Adresse</h3>
 							<form action="?save=email" method="post">
