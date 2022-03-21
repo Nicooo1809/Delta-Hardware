@@ -183,6 +183,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
             <h1>Benutzerverwaltung</h1>
+            <a href="register.php">Benutzer hinzufügen</a>
             <p><?php print($total_users); ?> Benutzer</p>
             <div class="table-responsive">
                 <table class="table align-middle table-borderless table-hover">
