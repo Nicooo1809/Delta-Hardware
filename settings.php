@@ -67,21 +67,11 @@ if(isset($_GET['save'])) {
 }
 ?>
 
-<div class="container minheight100 py-3 px-3">
+<div class="container minheight100 py-2 px-2">
 	<div class="row no-gutter">
 		<!-- will do somethinge else for error/success_msg later -->
 		<?php if(isset($success_msg) && !empty($success_msg)) {echo $success_msg;}?>
 		<?php if(isset($error_msg) && !empty($error_msg)) {echo $error_msg;}?>
-
-		<!-- Infocard -->
-		<div class="card cbg ctext my-2 mx-auto">
-			<div class="card-body text-center">
-				<h1 class="card-title">Einstellungen</h1>
-				<span class="card-text">
-					Hier kannst du alle deine Persönlichen Einstellungen anpassen.
-				</span>
-			</div>
-		</div>
 
 		<!-- Persönliche Daten Card -->
 		<div class="card cbg ctext my-2 mx-auto">
@@ -91,22 +81,22 @@ if(isset($_GET['save'])) {
 					<div class="row justify-content-between">
 						<!-- Name -->
 						<div class="col-6">
-						<h3 class="ctext">Name</h3>
+							<h3 class="ctext my-0">Name</h3>
 							<form action="?save=personal_data" method="post">
-								<div class="form-floating py-3">
+								<div class="form-floating mb-2">
 									<input class="form-control border-0 ps-4 text-dark" id="inputVorname" name="vorname" type="text" value="<?=$user['vorname']?>" required>
 									<label class="text-dark" for="inputVorname">Vorname</label>
 								</div>
-								<div class="form-floating py-3">
+								<div class="form-floating my-2">
 									<input class="form-control border-0 ps-4 text-dark" id="inputNachname" name="nachname" type="text" value="<?=$user['nachname']?>" required>
 									<label class="text-dark" for="inputNachname">Nachname</label>
 								</div>
-								<button type="submit py-3" class="btn btn-outline-primary">Speichern</button>
+								<button class="btn btn-outline-primary mt-2" type="submit">Speichern</button>
 							</form>
 						</div>
 						<!-- ToBeAdded Adresse/n -->
 						<div class="col-6">
-							<h3 class="ctext">Adresse</h3>
+							<h3 class="ctext my-0">Adresse</h3>
 						</div>
 					</div>
 				</div>
@@ -121,14 +111,38 @@ if(isset($_GET['save'])) {
 					<div class="row justify-content-between">
 						<div class="col-6">
 							<h3 class="ctext">E-Mail-Adresse</h3>
-							<form>
-
+							<form action="?save=email" method="post">
+								<div class="form-floating mb-2">
+									<input class="form-control border-0 ps-4 text-dark" id="inputPasswort" name="passwort" type="password" required>
+									<label class="text-dark" for="inputPasswort">Passwort</label>
+								</div>
+								<div class="form-floating my-2">
+									<input class="form-control border-0 ps-4 text-dark" id="inputEmail" name="email" type="email" value="<?=$user['email']?>" required>
+									<label class="text-dark" for="inputEmail">E-Mail</label>
+								</div>
+								<div class="form-floating my-2">
+									<input class="form-control border-0 ps-4 text-dark" id="inputEmail2" name="email2" type="email" required>
+									<label class="text-dark" for="inputEmail2">E-Mail wiederholen</label>
+								</div>
+								<button class="btn btn-outline-primary mt-2" type="submit">Speichern</button>
 							</form>
 						</div>
 						<div class="col-6">
-							<h3 class="ctext">Passworts</h3>
+							<h3 class="ctext">Passwort</h3>
 							<form>
-
+								<div class="form-floating mb-2">
+									<input class="form-control border-0 ps-4 text-dark" id="inputPasswort" name="passwortAlt" type="password" required>
+									<label class="text-dark" for="inputPasswort">Altes Passwort</label>
+								</div>
+								<div class="form-floating my-2">
+									<input class="form-control border-0 ps-4 text-dark" id="inputPasswortNeu" name="passwortNeu" type="password" required>
+									<label class="text-dark" for="inputPasswortNeu">Neues Passwort</label>
+								</div>
+								<div class="form-floating my-2">
+									<input class="form-control border-0 ps-4 text-dark" id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
+									<label class="text-dark" for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
+								</div>
+								<button class="btn btn-outline-primary mt-2" type="submit">Speichern</button>
 							</form>
 						</div>
 					</div>
@@ -138,66 +152,6 @@ if(isset($_GET['save'])) {
 	</div>
 </div>
 	
-	
-
-	<div>
-		<!-- 		
-		Persönliche Daten
-		<h2>Persönliche Daten</h2>
-		<div id="data" style="display: none;">
-			<br>
-			<form action="?save=personal_data" method="post">
-				<label for="inputVorname">Vorname</label>
-				<input class="form-control" id="inputVorname" name="vorname" type="text" value="<?php echo htmlentities($user['vorname']); ?>" required>
-
-				<label for="inputNachname">Nachname</label>
-				<input class="form-control" id="inputNachname" name="nachname" type="text" value="<?php echo htmlentities($user['nachname']); ?>" required>
-
-			<button type="submit" class="btn btn-outline-primary">Speichern</button>
-			</form>
-		</div>
-		-->
-		<!-- <h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2> -->
-		<h2>E-Mail-Adresse</h2>
-		<!-- Änderung der E-Mail-Adresse -->
-		<div id="email" style="display: none;">
-			<br>
-			<p>Zum Änderen deiner E-Mail-Adresse gib bitte dein aktuelles Passwort sowie die neue E-Mail-Adresse ein.</p>
-			<form action="?save=email" method="post">
-				<label for="inputPasswort">Passwort</label>
-				<input class="form-control" id="inputPasswort" name="passwort" type="password" required>
-
-				<label for="inputEmail">E-Mail</label>
-				<input class="form-control" id="inputEmail" name="email" type="email" value="<?php echo htmlentities($user['email']); ?>" required>
-
-				<label for="inputEmail2">E-Mail (wiederholen)</label>
-				<input class="form-control" id="inputEmail2" name="email2" type="email"  required>
-
-				<button type="submit" class="btn btn-outline-primary">Speichern</button>
-			</form>
-		</div>
-
-		<h2>Passworts</h2>
-		<!-- Änderung des Passworts -->
-		<div id="passwort" style="display: none;">
-			<br>
-			<p>Zum Änderen deines Passworts gib bitte dein aktuelles Passwort sowie das neue Passwort ein.</p>
-			<form action="?save=passwort" method="post">
-				<label for="inputPasswort">Altes Passwort</label>
-				<input class="form-control" id="inputPasswort" name="passwortAlt" type="password" required>
-
-				<label for="inputPasswortNeu">Neues Passwort</label>
-				<input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password" required>
-
-				<label for="inputPasswortNeu2">Neues Passwort (wiederholen)</label>
-				<input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password"  required>
-
-			<button type="submit" class="btn btn-outline-primary">Speichern</button>
-
-			</form>
-		</div>
-	</div>
-</div>
 <?php 
 include_once("templates/footer.php")
 ?>
