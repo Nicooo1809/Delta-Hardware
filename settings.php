@@ -89,6 +89,7 @@ if(isset($_GET['save'])) {
 				<h1 class="card-title">Persönliche Daten</h1>
 				<div class="card-text">
 					<div class="row justify-content-between">
+						<!-- Name -->
 						<div class="col-5">
 							<h3 class="ctext">Name</h3>
 							<form action="?save=personal_data" method="post">
@@ -102,6 +103,9 @@ if(isset($_GET['save'])) {
 								</div>
 								<button type="submit" class="btn btn-outline-primary">Speichern</button>
 							</form>
+						</div>
+						<!-- ToBeAdded Adresse/n -->
+						<div class="col-5">
 						</div>
 					</div>
 				</div>
