@@ -2,8 +2,7 @@
 require_once("templates/header.php");
 ?>
 <div class="container-fluid minheight100">
-    <div class="position-absolute top-50 start-50 translate-middle">
-        <img  class="img-fluid rounded">
+    <div class="Four0Four-img">
     </div>
 </div>
 <?php
