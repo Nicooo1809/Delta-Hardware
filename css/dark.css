@@ -59,10 +59,10 @@ hr {
 
 .navbar-icon {
     background-image: url('/favicon_dark.png');
-    height: 50px;
+    height: 70%;
     background-repeat: no-repeat;
     background-position: center;
-    display: block;
+    background-size: contain;
 }
 
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{

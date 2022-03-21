@@ -61,8 +61,8 @@ hr {
     background-image: url('/favicon_light.png');
     background-repeat: no-repeat;
     background-position: center;
-    width: 5px;
-    display: flex;
+    height: auto;
+    display: block;
 }
 
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
