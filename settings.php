@@ -112,7 +112,7 @@ if(isset($_GET['save'])) {
 				<h1 class="card-title">Sicherheit</h1>
 				<div class="card-text">
 					<div class="row justify-content-between">
-						<div class="col-6">
+						<div class="col-5">
 							<!-- E-Mail -->
 							<h3 class="ctext">E-Mail-Adresse</h3>
 							<form action="?save=email" method="post">
@@ -131,10 +131,12 @@ if(isset($_GET['save'])) {
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
-
-						<div class="vr mx-1"></div>
+						<div class="col-2">
+							<div class="vr mx-1"></div>
+						</div>
+						
 						<!-- Passwort -->
-						<div class="col-6">
+						<div class="col-5">
 							<h3 class="ctext">Passwort</h3>
 							<form>
 								<div class="form-floating mb-2">
