@@ -34,7 +34,8 @@ $user1 = check_user(FALSE);
 
 <nav class="navbar header-header navbar-expand-lg navbar-dark cbg ctext">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index"><img src="/favicon_<?php print(check_style())?>.svg" style="width:2.5rem;"></a>
+        
+        <a class="navbar-brand navbar-icon" href="/index"><!-- <img src="/favicon_<?php print(check_style())?>.svg" style="width:2.5rem;"> --></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
