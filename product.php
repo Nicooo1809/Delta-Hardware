@@ -13,7 +13,7 @@ $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
 $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $stmt->execute();
 if ($stmt->rowCount() != 1) {
-    error('Product ID wurde nicht gefunden!');
+    header("location: 404.php");
 }
 // Fetch the products from the database and return the result as an Array
 
