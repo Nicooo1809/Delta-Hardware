@@ -1,4 +1,5 @@
 <?php
+setcookie("test","df4dfgggg45",time()+(3600*24*365)); //Valid for 1 year
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 if (!isset($user['id'])) {
