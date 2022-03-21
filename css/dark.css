@@ -58,8 +58,7 @@ hr {
 }
 
 .navbar-icon {
-    background-image: url('/favicon_dark.png');
-    background-repeat: no-repeat;
+    content:url('/favicon_dark.png');
     height: 50px;
     width: 50px;
     display: block;
