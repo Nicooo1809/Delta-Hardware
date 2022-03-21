@@ -95,7 +95,7 @@ if(isset($_GET['save'])) {
 							</form>
 						</div>
 						<!-- ToBeAdded Adresse/n -->
-						<div class="cvr col-6">
+						<div class="col-6">
 							<h3 class="ctext my-0">Adresse</h3>
 							<span class="ctext text-center">To be added</span>
 						</div>
@@ -130,7 +130,7 @@ if(isset($_GET['save'])) {
 							</form>
 						</div>
 						<!-- Passwort -->
-						<div class="cvr col-6">
+						<div class="col-6">
 							<h3 class="ctext">Passwort</h3>
 							<form>
 								<div class="form-floating mb-2">
