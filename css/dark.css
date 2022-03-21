@@ -58,7 +58,6 @@ hr {
 }
 
 .navbar-icon {
-    content:url('/favicon_dark.png');
     height: 50px;
     width: 50px;
     display: block;
