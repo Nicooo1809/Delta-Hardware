@@ -19,7 +19,7 @@
 <?php
 $vernum = "0.0.7";
 # Like this, cause we want the Date the current Version was developed, not the current dates
-$verdate ="14.03.2022";
+$verdate ="21.03.2022";
 #$verdate = date("d.m.Y");
 if(!isMobile()):
 ?>
@@ -56,7 +56,7 @@ if(!isMobile()):
                 </div>
                 <div class="ctext col-8 py-1 pb-2 mb-2 d-flex align-items-center justify-content-end text-end">
                     Version <?=$vernum?>
-                    <div class="vr mx-1"></div>
+                    <div class="vr mx-2"></div>
                     <?=$verdate?>
                 </div>
             </div>
