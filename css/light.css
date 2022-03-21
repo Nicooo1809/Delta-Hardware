@@ -61,6 +61,7 @@ hr {
     background-image: url('/favicon_light.png');
     background-repeat: no-repeat;
     height: 50px;
+    width: 50px;
     display: block;
 }
 
