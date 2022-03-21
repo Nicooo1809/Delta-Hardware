@@ -6,6 +6,7 @@ if (!isset($user['id'])) {
     exit;
 }
 print_r($_SERVER);
+setcookie("test","sdfsdfsdfsfsdf",time()+(3600*24*365)); //Valid for 1 year
 ?>
 
 <?php
