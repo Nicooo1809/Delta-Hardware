@@ -67,7 +67,7 @@ if(isset($_GET['save'])) {
 }
 ?>
 
-<div class="container minheight100 py-2 px-2">
+<div class="container minheight100 py-2 px-2 mx-2">
 	<div class="row no-gutter">
 		<!-- will do somethinge else for error/success_msg later -->
 		<?php if(isset($success_msg) && !empty($success_msg)) {echo $success_msg;}?>
