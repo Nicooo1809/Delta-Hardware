@@ -58,10 +58,9 @@ hr {
 }
 
 .navbar-icon {
-    src: url('/favicon_light.png');
+    src: url('favicon_light.svg');
     height: 50px;
     width: 50px;
-    display: block;
 }
 
 
