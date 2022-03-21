@@ -67,32 +67,83 @@ if(isset($_GET['save'])) {
 }
 ?>
 
-<div class="text-white minheight100 mx-3 my-3">
-	<h1>Einstellungen</h1>
-	<?php 
-	if(isset($success_msg) && !empty($success_msg)) {
-		echo $success_msg;
-	}
-	?>
-	<?php 
-	if(isset($error_msg) && !empty($error_msg)) {
-		echo $error_msg;
-	}
-	?>
+<div class="container minheight100 py-3 px-3">
+	<div class="row no-gutter">
+		<!-- will do somethinge else for error/success_msg later -->
+		<?php if(isset($success_msg) && !empty($success_msg)) {echo $success_msg;}?>
+		<?php if(isset($error_msg) && !empty($error_msg)) {echo $error_msg;}?>
+
+		<!-- Infocard -->
+		<div class="card cbg ctext my-2 mx-auto">
+			<div class="card-body text-center">
+				<h1 class="card-title">Einstellungen</h1>
+				<span class="card-text">
+					Hier kannst du alle deine Persönlichen Einstellungen anpassen.
+				</span>
+			</div>
+		</div>
+
+		<!-- Persönliche Daten Card -->
+		<div class="card cbg ctext my-2 mx-auto">
+			<div class="card-body text-center">
+				<h1 class="card-title">Persönliche Daten</h1>
+				<div class="card-text">
+					<div class="row justify-content-between">
+						<!-- Name -->
+						<div class="col-6">
+						<h3 class="ctext">Name</h3>
+							<form action="?save=personal_data" method="post">
+								<div class="form-floating py-3">
+									<input class="form-control border-0 ps-4 text-dark" id="inputVorname" name="vorname" type="text" value="<?=$user['vorname']?>" required>
+									<label class="text-dark" for="inputVorname">Vorname</label>
+								</div>
+								<div class="form-floating py-3">
+									<input class="form-control border-0 ps-4 text-dark" id="inputNachname" name="nachname" type="text" value="<?=$user['nachname']?>" required>
+									<label class="text-dark" for="inputNachname">Nachname</label>
+								</div>
+								<button type="submit py-3" class="btn btn-outline-primary">Speichern</button>
+							</form>
+						</div>
+						<!-- ToBeAdded Adresse/n -->
+						<div class="col-6">
+							<h3 class="ctext">Adresse</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- E-Mail und Password Card -->
+		<div class="card cbg ctext my-2 mx-auto">
+			<div class="card-body text-center">
+				<h1 class="card-title">Sicherheit</h1>
+				<div class="card-text">
+					<div class="row justify-content-between">
+						<div class="col-6">
+							<h3 class="ctext">E-Mail-Adresse</h3>
+							<form>
+
+							</form>
+						</div>
+						<div class="col-6">
+							<h3 class="ctext">Passworts</h3>
+							<form>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	
 
 	<div>
-		<!-- Persönliche Daten-->
-		<h2 onclick="toggleData(data)">Persönliche Daten</h2>
-		<script>
-			function toggleData() {
-				var x = document.getElementById("data");
-				if (x.style.display === "none") {
-					x.style.display = "block";
-				} else {
-					x.style.display = "none";
-				}
-			}
-		</script>
+		<!-- 		
+		Persönliche Daten
+		<h2>Persönliche Daten</h2>
 		<div id="data" style="display: none;">
 			<br>
 			<form action="?save=personal_data" method="post">
@@ -105,19 +156,9 @@ if(isset($_GET['save'])) {
 			<button type="submit" class="btn btn-outline-primary">Speichern</button>
 			</form>
 		</div>
-
+		-->
 		<!-- <h2 onclick="toggle(document.getElementById('email'))">E-Mail-Adresse</h2> -->
-		<h2 onclick="toggleEmail()">E-Mail-Adresse</h2>
-		<script>
-			function toggleEmail() {
-				var x = document.getElementById("email");
-				if (x.style.display === "none") {
-					x.style.display = "block";
-				} else {
-					x.style.display = "none";
-				}
-			}
-		</script>
+		<h2>E-Mail-Adresse</h2>
 		<!-- Änderung der E-Mail-Adresse -->
 		<div id="email" style="display: none;">
 			<br>
@@ -136,17 +177,7 @@ if(isset($_GET['save'])) {
 			</form>
 		</div>
 
-		<h2 onclick="togglePassword()">Passworts</h2>
-		<script>
-			function togglePassword() {
-				var x = document.getElementById("passwort");
-				if (x.style.display === "none") {
-					x.style.display = "block";
-				} else {
-					x.style.display = "none";
-				}
-			}
-		</script>
+		<h2>Passworts</h2>
 		<!-- Änderung des Passworts -->
 		<div id="passwort" style="display: none;">
 			<br>
