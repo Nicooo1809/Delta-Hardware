@@ -32,13 +32,16 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			#error_log(pdo_debugStrParams($insert));
 		}
 		#print($_SERVER['HTTP_REFERER']);
+		/*
 		if( strpos( $_SERVER['HTTP_REFERER'], "login" ) !== false) {
-			header("Location: test.php");
-			#print("Location: test.php");
+			header("Location: internal.php");
+			#print("Location: internal.php");
 		} else {
 			header("Location: " . $_SERVER['HTTP_REFERER']);
 			#print("Location: " . $_SERVER['HTTP_REFERER']);
 		}
+		*/
+		header("Location: internal.php");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
