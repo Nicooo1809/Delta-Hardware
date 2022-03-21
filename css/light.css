@@ -60,7 +60,6 @@ hr {
 .navbar-icon {
     background-image: url('/favicon_light.png');
     background-repeat: no-repeat;
-    background-position: center;
     height: 70%;
     display: block;
 }
