@@ -5,15 +5,24 @@ header {
     margin-bottom: 0 !important;
 }
 
+
+
+/* BreakLine at 400px (used for user.php for breaking the E-Mail at a certain lenght) */
 .bl-400 {
     max-width:400px;
     word-wrap:break-word;
 }
 
+
+
+/* remove scrollbar */
 ::-webkit-scrollbar {
     display: none;
 }
 
+
+
+/* Höhen auf 100vh (Vertical Height) setzen */
 .header-header {
     min-height: 8vh;
 }
@@ -26,68 +35,9 @@ header {
     min-height: 6vh;
 }
 
-.nav-link {
-    font-size: 1.3rem;
-}
-
-.fa-user:hover, .fa-cart-shopping:hover, .fa-circle-info:hover {
-    color: #0d6efd;
-}
-
-.fa-exclamation{
-    font-size: 1.5rem;
-    color: red;
-}
-
-.navbar-icon {
-    background: url('/favicon.png');
-    height: 50px;
-    width: 50px;
-    display: block;
-}
-
-.footer {
-    z-index: 900 !important;
-}
-
-.bg-custom-dark {
-    background-color: #2d3238 !important;
-}
-
-.custom-dark2 {
-    background-color: #3e444d !important;
-}
-
-.prodcard{
-    height: 100% !important; 
-}
 
 
-.modal-header {
-    /* border-bottom: 1px solid #32373d !important; */
-    border-bottom: 0px !important;
-}
-
-.modal-footer {
-    /* border-top: 1px solid #32373d !important; */
-    border-top: 0px !important;
-}
-
-.cookie-p-text {
-    margin-bottom: 0 !important;
-}
-
-
-.impressum-breite{
-    width: 75%;
-}
-
-.hr-light {
-    border-top: 3px solid #fff;
-    width: 80px;
-}
-
-
+/* Light/Dark mode Switch */
 .styleswitcher {
     width: 0;
     height: 0;
@@ -135,7 +85,77 @@ header {
 
 
 
+/* Header Navbar usw. */
+.nav-link {
+    font-size: 1.3rem;
+}
+
+.fa-user:hover, .fa-cart-shopping:hover, .fa-circle-info:hover {
+    color: #0d6efd;
+}
+
+.fa-exclamation{
+    font-size: 1.5rem;
+    color: red;
+}
+
+.navbar-icon {
+    background: url('/favicon.png');
+    height: 50px;
+    width: 50px;
+    display: block;
+}
+
+
+
+/* Cutsom colors */
+.bg-custom-dark {
+    background-color: #2d3238 !important;
+}
+
+.custom-dark2 {
+    background-color: #3e444d !important;
+}
+
+
+
+/* sets all card from products.php to the same height (per row) */
+.prodcard{
+    height: 100% !important; 
+}
+
+
+
+/* css stuff for Cookies */
+.modal-header {
+    /* border-bottom: 1px solid #32373d !important; */
+    border-bottom: 0px !important;
+}
+
+.modal-footer {
+    /* border-top: 1px solid #32373d !important; */
+    border-top: 0px !important;
+}
+
+.cookie-p-text {
+    margin-bottom: 0 !important;
+}
+
+
+
+/* footer setze z-index auf 900 */
+.footer {
+    z-index: 900 !important;
+}
+
+
+
 /* INDEX.PHP */
+/* INDEX.PHP Horizontale Linie */
+.hr-light {
+    border-top: 3px solid #fff;
+    width: 80px;
+}
 
 
 
@@ -145,7 +165,7 @@ header {
     background-position:right;
     background-repeat: no-repeat;
     background-size: cover;
-  }
+}
 
 .minimum-vh {
     min-height: 55vh !important;
@@ -162,4 +182,11 @@ header {
     font-family: 'Saira Condensed';
     font-weight: bold !important;
     font-size: 3.7rem !important ;
+}
+
+
+
+/* IMPRESSUM.PHP */
+.impressum-breite{
+    width: 75%;
 }

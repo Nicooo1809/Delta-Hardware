@@ -62,3 +62,11 @@ hr {
     color: #212529;
     transition: all 0.5s ease;
 }
+
+.Four0Four-img {
+    background-image: url("/media/404_light.gif");
+    height: 70%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
