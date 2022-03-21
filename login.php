@@ -31,11 +31,13 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 			#error_log(pdo_debugStrParams($insert));
 		}
-		error_log($_SERVER['HTTP_REFERER']);
+		print($_SERVER['HTTP_REFERER']);
 		if( strpos( $_SERVER['HTTP_REFERER'], "login" ) !== false) {
-			header("Location: test.php");
+			#header("Location: test.php");
+			print("Location: test.php");
 		} else {
-			header("Location: " . $_SERVER['HTTP_REFERER']);
+			#header("Location: " . $_SERVER['HTTP_REFERER']);
+			print("Location: " . $_SERVER['HTTP_REFERER']);
 		}
 		exit;
 	} else {
