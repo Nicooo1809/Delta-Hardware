@@ -94,6 +94,8 @@ if(isset($_GET['save'])) {
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
+
+						<div class="vr mx-1"></div>
 						<!-- ToBeAdded Adresse/n -->
 						<div class="col-6">
 							<h3 class="ctext my-0">Adresse</h3>
@@ -111,6 +113,7 @@ if(isset($_GET['save'])) {
 				<div class="card-text">
 					<div class="row justify-content-between">
 						<div class="col-6">
+							<!-- E-Mail -->
 							<h3 class="ctext">E-Mail-Adresse</h3>
 							<form action="?save=email" method="post">
 								<div class="form-floating mb-2">
@@ -128,6 +131,9 @@ if(isset($_GET['save'])) {
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
+
+						<div class="vr mx-1"></div>
+						<!-- Passwort -->
 						<div class="col-6">
 							<h3 class="ctext">Passwort</h3>
 							<form>
