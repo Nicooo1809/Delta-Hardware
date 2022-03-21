@@ -1,10 +1,5 @@
 <?php 
 require_once("php/functions.php");
-$user = require_once("templates/header.php");
-if (isset($user['id'])) {
-    require_once("internal.php");
-    exit;
-}
 
 $error_msg = "";
 if(isset($_POST['email']) && isset($_POST['passwort'])) {
@@ -41,7 +36,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			#print("Location: " . $_SERVER['HTTP_REFERER']);
 		}
 		*/
-		require_once("internal.php");
+		header("Location: internal.php");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
@@ -53,6 +48,11 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 $email_value = "";
 if(isset($_POST['email'])) {
 	$email_value = htmlentities($_POST['email']); 
+}
+$user = require_once("templates/header.php");
+if (isset($user['id'])) {
+    require_once("internal.php");
+    exit;
 }
 ?>
 <div class="container-fluid">
