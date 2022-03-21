@@ -2,7 +2,7 @@
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 if (isset($user['id'])) {
-    header("Location: internal.php");
+    require_once("internal.php");
     exit;
 }
 
@@ -41,7 +41,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			#print("Location: " . $_SERVER['HTTP_REFERER']);
 		}
 		*/
-		header("Location: internal.php");
+		require_once("internal.php");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
