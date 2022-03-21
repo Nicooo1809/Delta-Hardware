@@ -131,10 +131,9 @@ if(isset($_GET['save'])) {
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
-						<div class="vr-light"></div>
 						
 						<!-- Passwort -->
-						<div class="col-6">
+						<div class="vr-light col-6">
 							<h3 class="ctext">Passwort</h3>
 							<form>
 								<div class="form-floating mb-2">
