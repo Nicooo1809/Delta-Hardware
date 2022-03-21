@@ -74,7 +74,7 @@ if(isset($_GET['save'])) {
 		<?php if(isset($error_msg) && !empty($error_msg)) {echo $error_msg;}?>
 
 		<!-- Infocard -->
-		<div class="card cbg ctext my-3 mx-auto">
+		<div class="card cbg ctext my-2 mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title">Einstellungen</h1>
 				<span class="card-text">
@@ -84,28 +84,29 @@ if(isset($_GET['save'])) {
 		</div>
 
 		<!-- Persönliche Daten Card -->
-		<div class="card cbg ctext my-3 mx-auto">
+		<div class="card cbg ctext my-2 mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title">Persönliche Daten</h1>
 				<div class="card-text">
 					<div class="row justify-content-between">
 						<!-- Name -->
-						<div class="col-5">
-							<h3 class="ctext">Name</h3>
+						<div class="col-6">
+						<h3 class="ctext">Name</h3>
 							<form action="?save=personal_data" method="post">
-								<div class="form-floating">
+								<div class="form-floating py-3">
 									<input class="form-control border-0 ps-4 text-dark" id="inputVorname" name="vorname" type="text" value="<?=$user['vorname']?>" required>
 									<label class="text-dark" for="inputVorname">Vorname</label>
 								</div>
-								<div class="form-floating">
+								<div class="form-floating py-3">
 									<input class="form-control border-0 ps-4 text-dark" id="inputNachname" name="nachname" type="text" value="<?=$user['nachname']?>" required>
 									<label class="text-dark" for="inputNachname">Nachname</label>
 								</div>
-								<button type="submit" class="btn btn-outline-primary">Speichern</button>
+								<button type="submit py-3" class="btn btn-outline-primary">Speichern</button>
 							</form>
 						</div>
 						<!-- ToBeAdded Adresse/n -->
-						<div class="col-5">
+						<div class="col-6">
+							<h3 class="ctext">Adresse</h3>
 						</div>
 					</div>
 				</div>
@@ -113,18 +114,18 @@ if(isset($_GET['save'])) {
 		</div>
 
 		<!-- E-Mail und Password Card -->
-		<div class="card cbg ctext my-3 mx-auto">
+		<div class="card cbg ctext my-2 mx-auto">
 			<div class="card-body text-center">
 				<h1 class="card-title">Sicherheit</h1>
 				<div class="card-text">
 					<div class="row justify-content-between">
-						<div class="col-5">
+						<div class="col-6">
 							<h3 class="ctext">E-Mail-Adresse</h3>
 							<form>
 
 							</form>
 						</div>
-						<div class="col-5">
+						<div class="col-6">
 							<h3 class="ctext">Passworts</h3>
 							<form>
 
