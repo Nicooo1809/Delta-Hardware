@@ -30,7 +30,8 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
                 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
                 $stmt->execute();
-                header("location: cart.php");
+                echo("<script>location.href='cart.php'</script>");
+                #header("location: cart.php");
                 exit;
             } else {
                 $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
@@ -51,7 +52,8 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(2, $_POST['productid']);
                 $stmt->bindValue(3, $quantity, PDO::PARAM_INT);
                 $stmt->execute();
-                header("location: cart.php");
+                echo("<script>location.href='cart.php'</script>");
+                #header("location: cart.php");
                 exit;
             }
             
@@ -69,11 +71,13 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
                     $stmt->execute();
-                    header('Location: cart.php');
+                    echo("<script>location.href='cart.php'</script>");
+                    #header('Location: cart.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
-                    header('Location: cart.php');
+                    echo("<script>location.href='cart.php'</script>");
+                    #header('Location: cart.php');
                     exit;
                 }
             } else {
@@ -126,7 +130,8 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $_POST['listid'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
-            header('Location: cart.php');
+            echo("<script>location.href='cart.php'</script>");
+            #header('Location: cart.php');
             exit;
         } else {
             error('Some informations are missing!');
