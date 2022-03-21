@@ -57,6 +57,13 @@ hr {
     background-color: #2c3135 !important;
 }
 
+.navbar-icon {
+    background: url('/favicon_dark.png');
+    height: 50px;
+    width: 50px;
+    display: block;
+}
+
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
     font-size: 1.5rem;
     color: #ffffff;

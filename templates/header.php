@@ -21,7 +21,7 @@ $user1 = check_user(FALSE);
     <link rel="stylesheet" href="/css/styles.css?v=<?php print(date("Y.m.d.H.i.s")); ?>">
     <link rel="stylesheet"  href="/css/dark.css" disabled>
     <link rel="stylesheet"  href="/css/light.css" disabled>
-    <link rel="icon" type="image/png" href="favicon.png" sizes="1024x1024" />
+    <link rel="icon" type="image/png" href="favicon_<?php print(check_style())?>.png" sizes="1024x1024" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/3386a0b16e.js" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@ $user1 = check_user(FALSE);
 
 <nav class="navbar header-header navbar-expand-lg navbar-dark cbg ctext">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index"><img src="/favicon.svg" style="width:2.5rem;"></a>
+        <a class="navbar-brand" href="/index"><img src="/favicon_<?php print(check_style())?>.svg" style="width:2.5rem;"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
