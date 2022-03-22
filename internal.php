@@ -20,6 +20,7 @@ if (!isset($user['id'])) {
 					Herzlich Willkommen im internen Bereich!<br>
 				</span>
 				<a href="logout.php"><button type="button" class="btn btn-outline-primary my-3">Abmelden</button></a>
+				<a href="settings.php"><button type="button" class="btn btn-outline-primary my-3">Einstellungen</button></a>
 			</div>
 		</div>
 		<?php if ($user['showUser'] == 1 or $user['showUserPerms'] == 1) { ?>
