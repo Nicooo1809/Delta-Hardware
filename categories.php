@@ -5,7 +5,7 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-if ($user['showCategories'] == 1) { #PERMISSION
+if ($user['showCategories'] == 1) { #PERMISSION edit
     error('Permission denied!');
 }
 if(isset($_POST['action'])) {
