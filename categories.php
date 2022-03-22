@@ -104,7 +104,7 @@ if(isset($_POST['action'])) {
     }
 }
 
-$stmt = $pdo->prepare('SELECT *, (select COUNT(*) as products from products where product_types.id = products.productTypeId ) as products FROM product_types');
+$stmt = $pdo->prepare('SELECT *,(SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id) as products from products_types');
 $stmt->execute();
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
@@ -153,15 +153,15 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <strong><?=$categorie['id']?></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><?=$categorie['name']?></strong>
+                                            <strong><?=$categorie['type']?></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
                                             <select class="form-select" id="permissions" name="permissions">
-                                                <?php foreach ($permissions as $permission) {
-                                                    if ($permission['id'] == $user1[0]['permission_group']) {
-                                                        print('<option class="text-dark" value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
+                                                <?php foreach ($cats as $cat) {
+                                                    if ($cat['id'] == $categorie['permission_group']) {
+                                                        print('<option class="text-dark" value="' . $cat['id'] . '" selected>' . $cat['type'] . '</option>');
                                                     } else {
-                                                        print('<option class="text-dark" value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
+                                                        print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
                                                     }
                                                 }?>
                                             </select>
