@@ -104,7 +104,7 @@ if(isset($_POST['action'])) {
     }
 }
 
-$stmt = $pdo->prepare('SELECT * FROM permission_group');
+$stmt = $pdo->prepare('SELECT *, (select COUNT(*) as products from products where product_types.id = products.productTypeId ) as products FROM product_types');
 $stmt->execute();
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
@@ -156,10 +156,18 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <strong><?=$categorie['name']?></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><input type="checkbox" class="form-check-input" name="showUser" <?=($categorie['showUser']==1 ? 'checked':'')?>></strong>
+                                            <select class="form-select" id="permissions" name="permissions">
+                                                <?php foreach ($permissions as $permission) {
+                                                    if ($permission['id'] == $user1[0]['permission_group']) {
+                                                        print('<option class="text-dark" value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
+                                                    } else {
+                                                        print('<option class="text-dark" value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
+                                                    }
+                                                }?>
+                                            </select>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <strong><input type="checkbox" class="form-check-input" name="modifyUser" <?=($categorie['modifyUser']==1 ? 'checked':'')?>></strong>
+                                            <strong><a><?=$categorie['products']?></a></strong>
                                         </td>
                                         
                                         <td class="border-0 align-middle actions">
@@ -183,10 +191,14 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <strong><?=$categories['name']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" name="showUser" <?=($categories['showUser']==1 ? 'checked':'')?> disabled></strong>
+                                    <?php foreach ($permissions as $permission) {
+                                        if ($permission['id'] == $user1[0]['permission_group']) {
+                                            print('<a value="' . $permission['id'] . '">' . $permission['name'] . '</a>');
+                                        }
+                                    }?>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><input type="checkbox" class="form-check-input" name="modifyUser" <?=($categories['modifyUser']==1 ? 'checked':'')?> disabled></strong>
+                                    <strong><a><?=$categorie['products']?></a></strong>
                                 </td>
 
                             </tr>
