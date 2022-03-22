@@ -19,8 +19,10 @@ if (!isset($user['id'])) {
 					Hallo <?=$user['vorname']?>,<br>
 					Herzlich Willkommen im internen Bereich!<br>
 				</span>
-				<a href="logout.php"><button type="button" class="btn btn-outline-primary my-3">Abmelden</button></a>
-				<a href="settings.php"><button type="button" class="btn btn-outline-primary my-3">Einstellungen</button></a>
+				<div class="card-text">
+					<a href="logout.php"><button type="button" class="btn btn-outline-primary my-3">Abmelden</button></a>
+					<a href="settings.php"><button type="button" class="btn btn-outline-primary my-3">Einstellungen</button></a>
+				</div>
 			</div>
 		</div>
 		<?php if ($user['showUser'] == 1 or $user['showUserPerms'] == 1) { ?>
