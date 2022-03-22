@@ -20,8 +20,8 @@ if (!isset($user['id'])) {
 					Herzlich Willkommen im internen Bereich!<br>
 				</span>
 				<div class="card-text">
-					<a href="logout.php"><button type="button" class="btn btn-outline-primary mx-2">Abmelden</button></a>
-					<a href="settings.php"><button type="button" class="btn btn-outline-primary mx-2">Einstellungen</button></a>
+					<a href="logout.php"><button type="button" class="btn btn-outline-primary mx-2 my-2">Abmelden</button></a>
+					<a href="settings.php"><button type="button" class="btn btn-outline-primary mx-2 my-2">Einstellungen</button></a>
 				</div>
 			</div>
 		</div>
@@ -32,11 +32,11 @@ if (!isset($user['id'])) {
 				<div class="card-text">
 					<?php
 						if ($user['showUser'] == 1) {
-							print('<a href="user.php"><button class="btn btn-outline-primary mx-2" type="button">Benutzer</button></a>');
+							print('<a href="user.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Benutzer</button></a>');
 						
 						} 
 						if ($user['showUserPerms'] == 1) {
-							print('<a href="perms.php"><button class="btn btn-outline-primary mx-2" type="button">Berechtigungen</button></a>');
+							print('<a href="perms.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Berechtigungen</button></a>');
 						}
 					?>
 				</div>
