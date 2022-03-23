@@ -25,7 +25,7 @@ if(isset($_POST['action'])) {
     }
 
     if($_POST['action'] == 'del') {
-        if ($user['modifyCategories'] != 1) {
+        if ($user['modifyCategories'] == 1) { #PERMISSION
             error('Permission denied!');
         }
         if(isset($_POST['categoriesid']) and !empty($_POST['categoriesid'])) {
@@ -90,7 +90,7 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
-        if ($user['modifyCategories'] != 1) {
+        if ($user['modifyCategories'] == 1) { #PERMISSION
             error('Permission denied!');
         }
 
