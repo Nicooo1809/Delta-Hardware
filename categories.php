@@ -10,7 +10,7 @@ if ($user['showCategories'] == 1) { #PERMISSION edit
 }
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'add') {
-        if ($user['modifyCategories'] != 1) {
+        if ($user['modifyCategories'] == 1) { #PERMISSION
             error('Permission denied!');
         }
         if (isset($_POST['categoriesname']) and isset($_POST['parentcategorie'])) {
