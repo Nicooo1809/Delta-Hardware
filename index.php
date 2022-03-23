@@ -50,12 +50,10 @@ require_once("templates/header.php");
             <div class="carousel-inner py-4">
                 <?php $i = 0; foreach ($products as $product): ?>
                     <?php if ($i <= 12):?>
-                        <?php if ($i % 4 == 0):?>
-                            <?php if ($i != 0):?>
+                        <?php if ($i % 4 == 0 && $i != 0):?>
                                     </div>
                                 </div>
                             </div>
-                            <?php endif;?>
                             <div class="carousel-item" data-bs-interval="5000">
                                 <div class="container">
                                     <div class="row">
