@@ -18,8 +18,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $_POST['categoriesname']);
             $stmt->bindValue(2, $_POST['parentcategorie']);
             $stmt->execute();
-            $stmt->debugDumpParams();
-            print_r($_POST);
+            echo("<script>location.href='categories.php'</script>");
         } else {
             error('Some informations are missing!');
         }
@@ -167,7 +166,6 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </td>
                                         <td class="border-0 align-middle text-center">
                                             <input class="form-control" id="categoriesname" name="categoriesname" type="text" value="<?=$categorie['type']?>" required>
-                                            <strong><?=$categorie['type']?></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
                                             <select class="form-select" id="permissions" name="permissions">
