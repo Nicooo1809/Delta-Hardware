@@ -18,6 +18,8 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $_POST['categoriesname']);
             $stmt->bindValue(2, $_POST['parentcategorie']);
             $stmt->execute();
+            $stmt->debugDumpParams();
+            print_r($_POST);
         } else {
             error('Some informations are missing!');
         }
