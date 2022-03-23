@@ -55,6 +55,7 @@ if(isset($_POST['action'])) {
             } else {
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE NOT parent_id = 0');
                 $stmt->execute();
+                $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <div class="container-fluid">
                         <div class="row no-gutter">
@@ -69,7 +70,6 @@ if(isset($_POST['action'])) {
                                                     <?php foreach ($cats as $cat) {
                                                         print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
                                                     }
-                                                    print('<option class="text-dark" value="0">ROOT</option>');
                                                     ?>
                                                 </select>
                                                 <input type="number" value="<?=$_POST['categoriesid']?>" name="categoriesid" style="display: none;" required>
