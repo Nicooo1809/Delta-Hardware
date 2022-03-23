@@ -166,6 +166,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <strong><?=$categorie['id']?></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
+                                            <input class="form-control" id="categoriesname" name="categoriesname" type="text" value="<?=$categorie['type']?>" required>
                                             <strong><?=$categorie['type']?></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
