@@ -81,7 +81,7 @@ require_once("templates/header.php");
                                     }?>
                                     <!-- <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="..."> -->
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
+                                        <h5 class="card-title"><?=$product['name']?></h5>
                                         <p class="card-text">
                                             Some quick example text to build on the card title and
                                             make up the bulk of the card's content.
