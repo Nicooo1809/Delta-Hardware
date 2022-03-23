@@ -97,7 +97,7 @@ if(isset($_POST['action'])) {
         $stmt = $pdo->prepare("UPDATE products_types SET type = ?, parent_id = ? WHERE id = ?");
         $stmt->bindValue(1, $_POST['categoriesname']);
         $stmt->bindValue(2, $_POST['parentcategories'], PDO::PARAM_INT);
-        $stmt->bindValue(8, $_POST['categoriesid'], PDO::PARAM_INT);
+        $stmt->bindValue(3, $_POST['categoriesid'], PDO::PARAM_INT);
         $stmt->execute();
 
         #error_log(pdo_debugStrParams($stmt));
