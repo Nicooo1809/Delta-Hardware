@@ -110,7 +110,6 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $pdo->prepare('SELECT * from products_types where parent_id = 0');
 $stmt->execute();
 $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 #print_r($permissiontypes);
 ?>
 <div class="container minheight100 users content-wrapper py-3 px-3">
@@ -199,7 +198,11 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         if ($cat['id'] == $categorie['parent_id']) {
                                             print('<a value="' . $cat['id'] . '">' . $cat['type'] . '</a>');
                                         }
-                                    }?>
+                                    }
+                                    if ($categorie['parent_id'] == 0) {
+                                        print('<a value="0">ROOT</a>');
+                                    }
+                                    ?>
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><a><?=$categorie['products']?></a></strong>
