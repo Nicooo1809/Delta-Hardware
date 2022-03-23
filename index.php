@@ -79,7 +79,7 @@ require_once("templates/header.php");
                                     } else {
                                         print('<img src="product_img/' . $product['image'] . '" class="card-img-top" alt="' . $product['name'] . '">');
                                     }?>
-                                    <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
+                                    <!-- <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="..."> -->
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">
