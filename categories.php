@@ -107,6 +107,10 @@ if(isset($_POST['action'])) {
 $stmt = $pdo->prepare('SELECT *,(SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id) as products from products_types');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare('SELECT * from products_types where parent_id = 0');
+$stmt->execute();
+$cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 #print_r($permissiontypes);
 ?>
 <div class="container minheight100 users content-wrapper py-3 px-3">
@@ -158,7 +162,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <td class="border-0 align-middle text-center">
                                             <select class="form-select" id="permissions" name="permissions">
                                                 <?php foreach ($cats as $cat) {
-                                                    if ($cat['id'] == $categorie['permission_group']) {
+                                                    if ($cat['id'] == $categorie['parent_id']) {
                                                         print('<option class="text-dark" value="' . $cat['id'] . '" selected>' . $cat['type'] . '</option>');
                                                     } else {
                                                         print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
@@ -188,12 +192,12 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <strong><?=$categories['id']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$categories['name']?></strong>
+                                    <strong><?=$categories['type']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <?php foreach ($permissions as $permission) {
-                                        if ($permission['id'] == $user1[0]['permission_group']) {
-                                            print('<a value="' . $permission['id'] . '">' . $permission['name'] . '</a>');
+                                    <?php foreach ($cats as $cat) {
+                                        if ($cat['id'] == $categorie['parent_id']) {
+                                            print('<a value="' . $cat['id'] . '">' . $cat['type'] . '</a>');
                                         }
                                     }?>
                                 </td>
