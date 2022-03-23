@@ -48,9 +48,6 @@ require_once("templates/header.php");
 
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <div class="carousel-inner py-4">
-                <div class="carousel-item active" data-bs-interval="5000">
-                    <div class="container">
-                        <div class="row">
                             <?php $i = 1; foreach ($products as $product): ?>
                                 <?php if ($i <= 12):?>
                                     <?php if ($i % 4 == 0):?>
