@@ -119,6 +119,13 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <form action="categories.php" method="post" class="">
                 <div class="input-group">
                     <input type="text" name="categoriesname" class="form-control" required>
+                    <select class="form-select" id="parentcategorie" name="permissions">
+                        <?php foreach ($cats as $cat) {
+                            print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
+                        }
+                        print('<option class="text-dark" value="0">ROOT</option>');
+                        ?>
+                    </select>
                     <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
                 </div>
             </form>
@@ -149,7 +156,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                         <?php foreach ($categories as $categorie): ?>
-                            <?php if ($user['modifyCategories'] == 1) {?>
+                            <?php if ($user['modifyCategories'] != 1) { #PERMISSIONS?> 
                                 <tr>
                                     <form action="categories.php" method="post" class="">
                                         <td class="border-0 align-middle">
@@ -166,7 +173,13 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     } else {
                                                         print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
                                                     }
-                                                }?>
+                                                }
+                                                if ($categorie['parent_id'] == 0) {
+                                                    print('<option class="text-dark" value="0" selected>ROOT</option>');
+                                                } else {
+                                                    print('<option class="text-dark" value="0">ROOT</option>');
+                                                }
+                                                ?>
                                             </select>
                                         </td>
                                         <td class="border-0 align-middle text-center">
