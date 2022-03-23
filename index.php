@@ -48,9 +48,19 @@ require_once("templates/header.php");
 
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <div class="carousel-inner py-4">
-                <?php $i = 1; foreach ($products as $product): ?>
+                <?php $i = 0; foreach ($products as $product): ?>
                     <?php if ($i <= 12):?>
-                        <?php if ($i == 1): ?>
+                        <?php if ($i % 4 == 0):?>
+                            <?php if ($i != 0)?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endif;?>
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <div class="container">
+                                    <div class="row">
+                        <?php endif;?>
+                        <?php if ($i == 0): ?>
                             <div class="carousel-item active" data-bs-interval="5000">
                                 <div class="container">
                                     <div class="row">
@@ -86,14 +96,6 @@ require_once("templates/header.php");
                                 </div>
                             </div>
                         <?php endif; $i++;?>
-                        <?php if ($i % 4 == 0):?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item" data-bs-interval="5000">
-                                <div class="container">
-                                    <div class="row">
-                        <?php endif;?>
                     <?php endif;?>
                 <?php endforeach; ?>                            
             </div>
