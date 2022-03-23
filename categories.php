@@ -13,9 +13,10 @@ if(isset($_POST['action'])) {
         if ($user['modifyCategories'] != 1) {
             error('Permission denied!');
         }
-        if (isset($_POST['categoriesname'])) {
-            $stmt = $pdo->prepare('INSERT INTO permission_group (name) VALUES (?)');
+        if (isset($_POST['categoriesname']) and isset($_POST['parentcategorie'])) {
+            $stmt = $pdo->prepare('INSERT INTO products_types (type, parent_id) VALUES (?,?)');
             $stmt->bindValue(1, $_POST['categoriesname']);
+            $stmt->bindValue(2, $_POST['parentcategorie']);
             $stmt->execute();
         } else {
             error('Some informations are missing!');
@@ -119,7 +120,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <form action="categories.php" method="post" class="">
                 <div class="input-group">
                     <input type="text" name="categoriesname" class="form-control" required>
-                    <select class="form-select" id="parentcategorie" name="permissions">
+                    <select class="form-select" id="parentcategorie" name="parentcategorie">
                         <?php foreach ($cats as $cat) {
                             print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
                         }
