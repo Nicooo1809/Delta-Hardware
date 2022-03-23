@@ -53,6 +53,8 @@ if(isset($_POST['action'])) {
                     exit;
                 }
             } else {
+                $stmt = $pdo->prepare('SELECT * from products_types WHERE NOT parent_id = 0');
+                $stmt->execute();
                 ?>
                     <div class="container-fluid">
                         <div class="row no-gutter">
