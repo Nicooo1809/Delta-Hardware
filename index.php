@@ -73,7 +73,7 @@ require_once("templates/header.php");
                         <div class="row">
 
                             <div class="col">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <?php if (empty($product['image'])) {
                                         print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
                                     } else {
@@ -92,7 +92,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -106,7 +106,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block ">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -120,7 +120,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block ">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -142,7 +142,7 @@ require_once("templates/header.php");
                         <div class="row">
 
                             <div class="col">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -156,7 +156,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -170,7 +170,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -184,7 +184,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/z8/wallhaven-z839rg.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -205,7 +205,7 @@ require_once("templates/header.php");
                         <div class="row">
 
                             <div class="col">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -219,7 +219,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -233,7 +233,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
@@ -247,7 +247,7 @@ require_once("templates/header.php");
                             </div>
 
                             <div class="col d-none d-lg-block">
-                                <div class="card cbg">
+                                <div class="card cbg prodcard">
                                     <img src="https://w.wallhaven.cc/full/dp/wallhaven-dpmdq3.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
