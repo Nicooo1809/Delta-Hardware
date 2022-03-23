@@ -78,7 +78,7 @@ require_once("templates/header.php");
                                             </div>
                                         </div>
                         <?php else: ?>
-                            <div class="col<?php if ($i % 4 == 0) {print(' d-none d-lg-block');} ?>">
+                            <div class="col<?php if ($i % 4 != 0) {print(' d-none d-lg-block');} ?>">
                                 <div class="card cbg prodcard">
                                     <?php if (empty($product['image'])) {
                                         print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
