@@ -85,8 +85,7 @@ require_once("templates/header.php");
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php endif;?>
-                                    $i++:
+                                    <?php endif; $i++;?>
                                 <?php endif;?>
                             <?php endforeach; ?>                            
 <!--  
