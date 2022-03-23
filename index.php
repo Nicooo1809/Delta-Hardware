@@ -49,7 +49,7 @@ require_once("templates/header.php");
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <div class="carousel-inner py-4">
                 <?php $i = 0; foreach ($products as $product): ?>
-                    <?php if ($i <= 12):?>
+                    <?php if ($i < 12):?>
                         <?php if ($i % 4 == 0 && $i != 0):?>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@ require_once("templates/header.php");
                                             </div>
                                         </div>
                         <?php else: ?>
-                            <div class="col d-none d-lg-block">
+                            <div class="col<?php if ($i % 4 == 0) {print(' d-none d-lg-block');} ?>">
                                 <div class="card cbg prodcard">
                                     <?php if (empty($product['image'])) {
                                         print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
