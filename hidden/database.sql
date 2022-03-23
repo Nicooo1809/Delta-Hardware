@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2022 at 09:49 AM
+-- Generation Time: Mar 23, 2022 at 04:59 PM
 -- Server version: 10.5.12-MariaDB-0+deb11u1
 -- PHP Version: 7.4.28
 
@@ -105,7 +105,10 @@ INSERT INTO `products` (`id`, `name`, `desc`, `product_type_id`, `price`, `rrp`,
 (5, 'Uhr', 'Ist der Hammer', 99999, '120.00', '140.00', 6, '2022-02-10 05:39:19', '2022-03-12 19:43:13', 1),
 (6, 'RTX 3060', 'Ist der Hammer und nicht überteuert', 54, '1500.00', '900.00', 5, '2022-03-06 05:38:03', '2022-03-12 19:43:13', 1),
 (7, 'Test', 'Test Description', 99999, '10.00', '0.00', 0, '2022-02-07 15:24:08', '2022-03-12 19:43:13', 1),
-(8, 'Classic Vintage Monitor', 'Best Device ever.', 106, '1099.99', '1099.99', 5, '2022-03-13 19:03:15', '2022-03-13 19:03:15', 1);
+(8, 'Classic Vintage Monitor', 'Best Device ever.', 106, '1099.99', '1099.99', 5, '2022-03-13 19:03:15', '2022-03-13 19:03:15', 1),
+(9, 'Test2', 'Test2 Description', 99999, '10.00', '0.00', 0, '2022-02-07 15:24:08', '2022-03-12 19:43:13', 1),
+(10, 'RTX 307023 TI', 'Ist der Hammer', 54, '1500.00', '900.00', 200, '2022-03-31 04:38:19', '2022-04-01 18:43:13', 1),
+(11, 'Rick Astley\'s Mikrofon', 'This Mikrofon never gonna gives you up', 252, '69420.00', '69421.00', 24, '2022-03-23 07:57:08', '2022-03-23 07:57:08', 1);
 
 -- --------------------------------------------------------
 
@@ -198,7 +201,11 @@ INSERT INTO `product_images` (`id`, `img`, `product_id`) VALUES
 (6, 'RTX3070.jpg', 4),
 (7, 'RTX3070.jpg', 4),
 (8, 'test.jpg', 7),
-(9, 'High-end-monitor.jpg', 8);
+(9, 'High-end-monitor.jpg', 8),
+(10, 'CapOwhpQaQn8MquiO5nNNe.webp', 8),
+(11, 'test.jpg', 9),
+(12, 'RTX3070_TI.jpg', 10),
+(13, 'CapOwhpQaQn8MquiO5nNNe.webp', 11);
 
 -- --------------------------------------------------------
 
@@ -222,8 +229,11 @@ INSERT INTO `product_list` (`id`, `list_id`, `product_id`, `quantity`) VALUES
 (2, 1, 2, 200),
 (40, 1, 3, 100),
 (46, 1, 5, 6),
-(47, 4, 2, 2),
-(50, 6, 2, 199);
+(47, 4, 2, 3),
+(50, 6, 2, 199),
+(55, 6, 3, 2),
+(56, 6, 4, 2),
+(57, 1, 8, 5);
 
 -- --------------------------------------------------------
 
@@ -264,10 +274,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `created_at`, `updated_at`, `passwortcode`, `passwortcode_time`, `permission_group`) VALUES
 (1, 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'Vorname', 'Nachname', '2022-02-04 08:57:26', '2022-03-12 23:23:31', NULL, NULL, 1),
-(2, 'ich@paul-vassen.de', '$2y$10$AjGihIboyCYY/gnDq7J08.spp4N6Du.wog2anlhRsFALSZj9DPrPq', 'Paul', 'Vaßen', '2022-02-04 15:34:37', '2022-03-10 07:04:28', NULL, NULL, 2),
-(3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', 'Jan', 'Schniebs', '2022-02-23 07:14:00', '2022-03-11 18:28:52', NULL, NULL, 2),
+(2, 'ich@paul-vassen.de', '$2y$10$AjGihIboyCYY/gnDq7J08.spp4N6Du.wog2anlhRsFALSZj9DPrPq', 'Paul', 'Vaßen', '2022-02-04 15:34:37', '2022-03-21 11:08:26', NULL, NULL, 2),
+(3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', 'Jan', 'Schniebs', '2022-02-23 07:14:00', '2022-03-21 11:06:26', NULL, NULL, 2),
 (5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', 'Gerhard', 'Einkaufstüte', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 1),
-(25, 'max@musterman.de', '$2y$10$FWcz3DcRpbAPJgs2UBbp5.1ECDidXnFYxYif63d9XuCyhyBqnMZoe', 'Max', 'Musterman', '2022-03-10 12:32:01', '2022-03-12 19:59:58', NULL, NULL, 3);
+(25, 'max@musterman.de', '$2y$10$FWcz3DcRpbAPJgs2UBbp5.1ECDidXnFYxYif63d9XuCyhyBqnMZoe', 'Maxnix', 'Musterman', '2022-03-10 12:32:01', '2022-03-21 11:00:15', NULL, NULL, 3);
 
 --
 -- Indexes for dumped tables
@@ -348,7 +358,7 @@ ALTER TABLE `permission_group`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products_types`
@@ -360,13 +370,13 @@ ALTER TABLE `products_types`
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `securitytokens`
