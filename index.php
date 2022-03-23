@@ -51,7 +51,7 @@ require_once("templates/header.php");
                 <?php $i = 0; foreach ($products as $product): ?>
                     <?php if ($i <= 12):?>
                         <?php if ($i % 4 == 0):?>
-                            <?php if ($i != 0)?>
+                            <?php if ($i != 0):?>
                                     </div>
                                 </div>
                             </div>
