@@ -51,24 +51,50 @@ require_once("templates/header.php");
                 <div class="carousel-item active" data-bs-interval="5000">
                     <div class="container">
                         <div class="row">
-                            <?php $i = 0; foreach ($products as $product): ?>
-                                <?php if ($i < 12):?>
-                                    <?php if ($i == 0): ?>
-                                        <div class="col">
-                                            <div class="card cbg prodcard">
-                                                <?php if (empty($product['image'])) {
-                                                    print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
-                                                } else {
-                                                    print('<img src="product_img/' . $product['image'] . '" class="card-img-top" alt="' . $product['name'] . '">');
-                                                }?>
-                                                <!-- <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="..."> -->
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><?=$product['name']?></h5>
-                                                    <p class="card-text"><?=$product['desc']?></p>
-                                                    <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
+                            <?php $i = 1; foreach ($products as $product): ?>
+                                <?php if ($i <= 12):?>
+                                    <?php if ($i % 4):?>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="carousel-item" data-bs-interval="5000">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="card cbg prodcard">
+                                                            <?php if (empty($product['image'])) {
+                                                                print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
+                                                            } else {
+                                                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top" alt="' . $product['name'] . '">');
+                                                            }?>
+                                                            <!-- <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="..."> -->
+                                                            <div class="card-body">
+                                                                <h5 class="card-title"><?=$product['name']?></h5>
+                                                                <p class="card-text"><?=$product['desc']?></p>
+                                                                <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                    <?php endif;?>
+                                    <?php if ($i == 1): ?>
+                                        <div class="carousel-item active" data-bs-interval="5000">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="card cbg prodcard">
+                                                            <?php if (empty($product['image'])) {
+                                                                print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
+                                                            } else {
+                                                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top" alt="' . $product['name'] . '">');
+                                                            }?>
+                                                            <!-- <img src="https://w.wallhaven.cc/full/y8/wallhaven-y83o9x.jpg" class="card-img-top" alt="..."> -->
+                                                            <div class="card-body">
+                                                                <h5 class="card-title"><?=$product['name']?></h5>
+                                                                <p class="card-text"><?=$product['desc']?></p>
+                                                                <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                     <?php else: ?>
                                         <div class="col d-none d-lg-block">
                                             <div class="card cbg prodcard">
