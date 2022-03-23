@@ -82,7 +82,7 @@ if(isset($_GET['register'])) {
 					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded cbg">
 						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH<i class="fa-solid fa-check"></i></h1>
 						<p class="ctext">
-						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login">hier</a>.
+						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login.php">hier</a>.
 						</p>
 					</div>
 				</div>
@@ -100,7 +100,7 @@ if(isset($_GET['register'])) {
 						<h1 class="text-danger">Oops, das hat nicht geklappt!<br><i class="fa-solid fa-x"></i></h1>
 						<p class="ctext">
 						Beim Abspeichern ist leider ein Fehler aufgetreten, bitte versuche es später erneut.
-						Du wirst automatisch in 5 Sekunden zurückgeleitet, solltest du nicht weitergeleitet werden klicke <a href="register">hier</a>.
+						Du wirst automatisch in 5 Sekunden zurückgeleitet, solltest du nicht weitergeleitet werden klicke <a href="register.php">hier</a>.
 						</p>
 					</div>
 				</div>

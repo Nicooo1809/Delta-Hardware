@@ -34,7 +34,7 @@ $user1 = check_user(FALSE);
 
 <nav class="navbar header-header navbar-expand-lg navbar-dark cbg ctext sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index"><img src="/favicon.svg" class="navbar-icon"></a>
+        <a class="navbar-brand" href="/"><img src="/favicon.svg" class="navbar-icon"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -92,7 +92,7 @@ $user1 = check_user(FALSE);
             <?php if(isset($user1['id'])): ?>
             <a class="icon-navbar-a" href="/cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(!isset($user1['id'])): ?>
-                <a class="icon-navbar-a" href="<?php if(isset($user1['id'])) {print("settings");} else {print("login");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+                <a class="icon-navbar-a" href="<?php if(isset($user1['id'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(isset($user1['id'])): ?>
             <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item dropdown">

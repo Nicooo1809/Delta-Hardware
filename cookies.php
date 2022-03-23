@@ -24,7 +24,7 @@ require_once("templates/header.php");
                 </div>
             </div>
             <div class="modal-footer ctext cbg fw-bold">
-                <a href="/index"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück zur Startseite</button></a>
+                <a href="/"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück zur Startseite</button></a>
             </div>
         </div>
     </div>
