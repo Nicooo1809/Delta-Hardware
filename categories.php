@@ -189,10 +189,10 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php } else {?>
                             <tr>
                                 <td class="border-0 align-middle">
-                                    <strong><?=$categories['id']?></strong>
+                                    <strong><?=$categorie['id']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <strong><?=$categories['type']?></strong>
+                                    <strong><?=$categorie['type']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <?php foreach ($cats as $cat) {
