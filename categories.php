@@ -106,7 +106,7 @@ if(isset($_POST['action'])) {
 
 $stmt = $pdo->prepare('SELECT *,(SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id) as products from products_types');
 $stmt->execute();
-$permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
 ?>
 <div class="container minheight100 users content-wrapper py-3 px-3">
