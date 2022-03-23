@@ -32,13 +32,17 @@ if(isset($_POST['action'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
                     // User clicked the "Yes" button, delete record
-                    $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
-                    $stmt->bindValue(1, 1, PDO::PARAM_INT);
+                    $stmt = $pdo->prepare('UPDATE products SET product_type_id = ? WHERE product_type_id = ?');
+                    $stmt->bindValue(1, $_POST['newparentcategorie'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $_POST['categoriesid'], PDO::PARAM_INT);
                     $stmt->execute();
-                    $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
+
+                    $stmt = $pdo->prepare('DELETE FROM products_types WHERE id = ?');
                     $stmt->bindValue(1, $_POST['categoriesid'], PDO::PARAM_INT);
                     $stmt->execute();
+
+                    
+
                     echo("<script>location.href='categories.php'</script>");
                     #header('Location: categories.php');
                     exit;
@@ -56,9 +60,16 @@ if(isset($_POST['action'])) {
                                 <div class="card cbg text-center mx-auto" style="width: 75%;">
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
-                                        <h2 class="card-title mb-2 text-center">Alle Benutzer in dieser Gruppe werden in Default verschoben!</h2>
+                                        <h2 class="card-title mb-2 text-center">Alle Produkte werden in folgende Gruppe verschoben!</h2>
                                         <p class="text-center">
                                             <form action="categories.php" method="post">
+                                                <select class="form-select" id="newparentcategorie" name="newparentcategorie">
+                                                    <?php foreach ($cats as $cat) {
+                                                        print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
+                                                    }
+                                                    print('<option class="text-dark" value="0">ROOT</option>');
+                                                    ?>
+                                                </select>
                                                 <input type="number" value="<?=$_POST['categoriesid']?>" name="categoriesid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
@@ -83,14 +94,9 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
 
-        $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, deleteUser = ?, modifyUserPerms = ?, showUserPerms = ?, createProduct = ?, modifyProduct = ? WHERE permission_group.id = ?");
-        $stmt->bindValue(1, (isset($_POST['showUser']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(2, (isset($_POST['modifyUser']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(3, (isset($_POST['deleteUser']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(4, (isset($_POST['modifyUserPerms']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(5, (isset($_POST['showUserPerms']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(6, (isset($_POST['createProduct']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(7, (isset($_POST['modifyProduct']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt = $pdo->prepare("UPDATE products_types SET type = ?, parent_id = ? WHERE id = ?");
+        $stmt->bindValue(1, $_POST['categoriesname']);
+        $stmt->bindValue(2, $_POST['parentcategories'], PDO::PARAM_INT);
         $stmt->bindValue(8, $_POST['categoriesid'], PDO::PARAM_INT);
         $stmt->execute();
 
@@ -168,7 +174,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <input class="form-control" id="categoriesname" name="categoriesname" type="text" value="<?=$categorie['type']?>" required>
                                         </td>
                                         <td class="border-0 align-middle text-center">
-                                            <select class="form-select" id="permissions" name="permissions">
+                                            <select class="form-select" id="parentcategories" name="parentcategories">
                                                 <?php foreach ($cats as $cat) {
                                                     if ($cat['id'] == $categorie['parent_id']) {
                                                         print('<option class="text-dark" value="' . $cat['id'] . '" selected>' . $cat['type'] . '</option>');
