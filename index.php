@@ -2,7 +2,7 @@
 require_once("php/functions.php");
 
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ORDER BY created_at');
+$stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ORDER BY created_at DESC');
 $stmt->execute();
 // Get the total number of products
 $total_products = $stmt->rowCount();
