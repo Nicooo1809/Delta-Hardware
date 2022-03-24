@@ -24,7 +24,7 @@ if(isset($_POST['action'])) {
             $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $stmt->execute();
-            header('Location: user.php');
+            echo("<script>location.href='user.php'</script>");
             exit;
         }
     }
