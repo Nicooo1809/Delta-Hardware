@@ -15,7 +15,7 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
-            error_log($_POST['userid']);
+            error_log(print_r($_POST['userid'],true));
             $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $stmt->execute();
