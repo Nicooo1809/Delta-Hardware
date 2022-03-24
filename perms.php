@@ -92,6 +92,7 @@ if(isset($_POST['action'])) {
         #showCategories
         #modifyCategories
         #deleteCategories
+        #createCategories
         $stmt->bindValue(8, $_POST['permsid'], PDO::PARAM_INT);
         $stmt->execute();
 
