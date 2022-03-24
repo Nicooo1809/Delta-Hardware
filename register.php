@@ -83,6 +83,7 @@ if(isset($_GET['register'])) {
 						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH<i class="fa-solid fa-check"></i></h1>
 						<p class="ctext">
 						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login.php">hier</a>.
+						<?php header("url=login.php;refresh:5");?>
 						</p>
 					</div>
 				</div>
