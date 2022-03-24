@@ -15,8 +15,6 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
-            $testid = $_POST['userid'];
-            error_log($testid);
             $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $stmt->execute();
@@ -28,63 +26,6 @@ if(isset($_POST['action'])) {
             $stmt->execute();
             echo("<script>location.href='user.php'</script>");
             exit;
-        }
-    }
-
-    if($_POST['action'] == 'del') {
-        if ($user['deleteUser'] != 1) {
-            error('Permission denied!');
-        }
-        if(isset($_POST['userid']) and !empty($_POST['userid'])) {
-            if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
-                if ($_POST['confirm'] == 'yes') {
-                    // User clicked the "Yes" button, delete record
-                    $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    $stmt = $pdo->prepare('DELETE FROM orders WHERE kunden_id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    echo("<script>location.href='user.php'</script>");
-                    #header('Location: user.php');
-                    exit;
-                } else {
-                    // User clicked the "No" button, redirect them back to the read page
-                    echo("<script>location.href='user.php'</script>");
-                    #header('Location: user.php');
-                    exit;
-                }
-            } else {
-                require_once("templates/header.php");
-                ?>
-                    <div class="container-fluid">
-                        <div class="row no-gutter">
-                            <div class="minheight100 col py-4 px-3">
-                                <div class="card cbg text-center mx-auto" style="width: 75%;">
-                                    <div class="card-body">
-                                        <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
-                                        <p class="text-center">
-                                            <form action="user.php" method="post">
-                                                <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
-                                                <input type="text" value="del" name="action" style="display: none;" required>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="no">Nein</button>
-                                            </form>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                require_once("templates/footer.php");
-                exit;
-            }
-        } else {
-            error('Some informations are missing!');
         }
     }
     if($_POST['action'] == 'mod') {
