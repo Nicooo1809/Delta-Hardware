@@ -245,10 +245,17 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <?php if ($user['deleteUser'] == 1) {?>
                                         <div class="">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
-                                            <button type="button" class="btn btn-outline-danger" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-                                                <button type="submit" name="confirm" value="yes">Ja</button>
-                                                <button type="submit" name="confirm" value="no">Nein</button>
-                                            </button>
+                                            <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Löschen</button>
+                                                <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                                                    <div class="offcanvas-header">
+                                                        <h2 class="offcanvas-title" id="offcanvasRightLabel">Wirlich Löschen?</h2>
+                                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="offcanvas-body">
+                                                        <button type="submit" name="confirm" value="yes">Ja</button>
+                                                        <button type="submit" name="confirm" value="no">Nein</button>
+                                                    </div>
+                                                </div>
                                             <!-- <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button> -->
                                         </div>
                                         <?php }?>
