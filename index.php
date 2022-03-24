@@ -19,7 +19,7 @@ require_once("templates/header.php");
         <div class="mask rgba-black-light align-items-center">
             <div class="container">
                 <div class="d-flex flex-row minimum-vh justify-content-start align-items-center">
-                    <a class="stretched-link" href="products.php?search=RTX">
+                    <a href="products.php?search=RTX">
                         <div class="col-md-12 mt-1 text-white text-start">
                             <h1 class="h1-reponsive text-uppercase fw-bold mb-0 pt-md-5 pt-5 index-rtx-text text-primary">GEFORCE RTX 30-SERIE</h1>
                             <h2 class="h2-responsive text-white fw-bold">DIE ULTIMATIVE WAHL</h2>
