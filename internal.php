@@ -38,6 +38,9 @@ if (!isset($user['id'])) {
 						if ($user['showUserPerms'] == 1) {
 							print('<a href="perms.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Berechtigungen</button></a>');
 						}
+						if ($user['showCategories'] == 1) {
+							print('<a href="categories.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Kategorien</button></a>');
+						}
 					?>
 				</div>
 			</div>

@@ -89,6 +89,9 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(5, (isset($_POST['showUserPerms']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(6, (isset($_POST['createProduct']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(7, (isset($_POST['modifyProduct']) ? "1" : "0"), PDO::PARAM_INT);
+        #showCategories
+        #modifyCategories
+        #deleteCategories
         $stmt->bindValue(8, $_POST['permsid'], PDO::PARAM_INT);
         $stmt->execute();
 
@@ -151,6 +154,18 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Modify Product</div>
                                 </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Show Kategorien</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Modify Kategorien</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Delete Kategorien</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Create Kategorien</div>
+                                </th>
                                 <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase"></div>
@@ -191,7 +206,18 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <td class="border-0 align-middle text-center">
                                             <strong><input type="checkbox" class="form-check-input" name="modifyProduct" <?=($perms['modifyProduct']==1 ? 'checked':'')?>></strong>
                                         </td>
-                                        
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><input type="checkbox" class="form-check-input" name="showCategories" <?=($perms['showCategories']==1 ? 'checked':'')?>></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><input type="checkbox" class="form-check-input" name="modifyCategories" <?=($perms['modifyCategories']==1 ? 'checked':'')?>></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><input type="checkbox" class="form-check-input" name="deleteCategories" <?=($perms['deleteCategories']==1 ? 'checked':'')?>></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><input type="checkbox" class="form-check-input" name="createCategories" <?=($perms['createCategories']==1 ? 'checked':'')?>></strong>
+                                        </td>
                                         <td class="border-0 align-middle actions">
                                             <div class="px-1 py-1">
                                                 <input type="number" value="<?=$perms['id']?>" name="permsid" style="display: none;" required>
@@ -234,6 +260,18 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><input type="checkbox" class="form-check-input" name="modifyProduct" <?=($perms['modifyProduct']==1 ? 'checked':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><input type="checkbox" class="form-check-input" name="showCategories" <?=($perms['showCategories']==1 ? 'checked':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><input type="checkbox" class="form-check-input" name="modifyCategories" <?=($perms['modifyCategories']==1 ? 'checked':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><input type="checkbox" class="form-check-input" name="deleteCategories" <?=($perms['deleteCategories']==1 ? 'checked':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><input type="checkbox" class="form-check-input" name="createCategories" <?=($perms['createCategories']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                             </tr>
                             <?php }?>
