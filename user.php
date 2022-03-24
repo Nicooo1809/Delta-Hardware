@@ -15,6 +15,7 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
+            error_log($_POST['userid']);
             $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $stmt->execute();
@@ -271,11 +272,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                                     </div>
                                                     <div class="offcanvas-body">
-                                                        <form method="post">
-                                                            <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
-                                                            <button class="btn btn-outline-success mx-2" type="submit" name="action" value="deleteconfirm">Ja</button>
-                                                            <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
-                                                        </form>
+                                                        <button class="btn btn-outline-success mx-2" type="submit" name="action" value="deleteconfirm">Ja</button>
+                                                        <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
                                                     </div>
                                                 </div>
                                             <!-- <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button> -->
