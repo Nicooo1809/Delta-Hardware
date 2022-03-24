@@ -142,7 +142,7 @@ if(isset($_POST['action'])) {
                                 <?php foreach ($permissions as $permission) {
                                     if ($permission['id'] == $user1[0]['permission_group']) {
                                         print('<option class="text-dark" value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
-                                    } else {
+                                    } else { 
                                         print('<option class="text-dark" value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
                                     }
                                 }?>
@@ -245,7 +245,11 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <?php if ($user['deleteUser'] == 1) {?>
                                         <div class="">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
-                                            <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button>
+                                            <button type="button" class="btn btn-outline-danger" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                <button type="submit" name="confirm" value="yes">Ja</button>
+                                                <button type="submit" name="confirm" value="no">Nein</button>
+                                            </button>
+                                            <!-- <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button> -->
                                         </div>
                                         <?php }?>
                                     </form>
