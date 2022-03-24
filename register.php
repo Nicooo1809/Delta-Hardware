@@ -88,7 +88,7 @@ if(isset($_GET['register'])) {
 					</div>
 				</div>
 			</div>
-			<?php header("refresh:5;url=login.php");?>
+			<?php header("refresh:5;url=login.php"); echo("error");?>
 			
 
 		<?php
