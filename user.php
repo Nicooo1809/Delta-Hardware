@@ -10,6 +10,31 @@ if ($user['showUser'] != 1) {
     error('Permission denied!');
 }
 if(isset($_POST['action'])) {
+    if ($_POST['action'] == 'deleteconfirm') {
+        if ($user['deleteUser'] != 1) {
+            error('Permission denied!');
+        }
+        if(isset($_POST['userid']) and !empty($_POST['userid'])) {
+            if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
+                if ($_POST['confirm'] == 'yes') {
+                    // User clicked the "Yes" button, delete record
+                    $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
+                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt->execute();
+                    $stmt = $pdo->prepare('DELETE FROM orders WHERE kunden_id = ?');
+                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt->execute();
+                    $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
+                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+                    $stmt->execute();
+                    #echo("<script>location.href='user.php'</script>");
+                    #header('Location: user.php');
+                    exit;
+                }
+            }
+        }
+    }
+
     if($_POST['action'] == 'del') {
         if ($user['deleteUser'] != 1) {
             error('Permission denied!');
@@ -252,8 +277,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                                     </div>
                                                     <div class="offcanvas-body">
-                                                        <button class="btn btn-outline-success mx-2" type="submit" name="confirm" value="yes">Ja</button>
-                                                        <button class="btn btn-outline-danger mx-2" type="submit" name="confirm" value="no">Nein</button>
+                                                        <button class="btn btn-outline-success mx-2" type="submit" name="action" value="deleteconfirm">Ja</button>
+                                                        <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
                                                     </div>
                                                 </div>
                                             <!-- <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button> -->
