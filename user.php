@@ -15,23 +15,18 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
-            if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
-                if ($_POST['confirm'] == 'yes') {
-                    // User clicked the "Yes" button, delete record
-                    $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    $stmt = $pdo->prepare('DELETE FROM orders WHERE kunden_id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
-                    $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    #echo("<script>location.href='user.php'</script>");
-                    #header('Location: user.php');
-                    exit;
-                }
-            }
+            $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
+            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+            $stmt->execute();
+            $stmt = $pdo->prepare('DELETE FROM orders WHERE kunden_id = ?');
+            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+            $stmt->execute();
+            $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
+            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+            $stmt->execute();
+            #echo("<script>location.href='user.php'</script>");
+            #header('Location: user.php');
+            exit;
         }
     }
 
