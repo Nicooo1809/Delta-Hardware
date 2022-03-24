@@ -19,7 +19,7 @@
 <?php
 $vernum = "0.0.7";
 # Like this, cause we want the Date the current Version was developed, not the current dates
-$verdate ="21.03.2022";
+$verdate ="24.03.2022";
 #$verdate = date("d.m.Y");
 if(!isMobile()):
 ?>
