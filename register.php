@@ -88,7 +88,7 @@ if(isset($_GET['register'])) {
 					</div>
 				</div>
 			</div>
-			<?php header("location: login.php");?>
+			<meta http-equiv="refresh" content="5;url=login.php">
 			
 
 		<?php
