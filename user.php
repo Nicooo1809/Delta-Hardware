@@ -272,7 +272,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     </div>
                                                     <div class="offcanvas-body">
                                                         <form method="post">
-                                                            <input type="number" value="<?=$user1['userid']?>" name="userid" style="display: none;" required>
+                                                            <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                                             <button class="btn btn-outline-success mx-2" type="submit" name="action" value="deleteconfirm">Ja</button>
                                                             <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
                                                         </form>
