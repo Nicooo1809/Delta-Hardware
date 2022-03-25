@@ -432,3 +432,12 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+use shop;
+alter table permission_group add column showCategories tinyint(1) default 0 not null;
+alter table permission_group add column modifyCategories tinyint(1) default 0 not null;
+alter table permission_group add column deleteCategories tinyint(1) default 0 not null;
+alter table permission_group add column createCategories tinyint(1) default 0 not null;

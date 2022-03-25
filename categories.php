@@ -5,12 +5,12 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-if ($user['showCategories'] == 1) { #PERMISSION edit
+if ($user['showCategories'] !== 1) {
     error('Permission denied!');
 }
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'add') {
-        if ($user['modifyCategories'] == 1) { #PERMISSION
+        if ($user['modifyCategories'] !== 1) {
             error('Permission denied!');
         }
         if (isset($_POST['categoriesname']) and isset($_POST['parentcategorie'])) {
@@ -25,7 +25,7 @@ if(isset($_POST['action'])) {
     }
 
     if($_POST['action'] == 'del') {
-        if ($user['modifyCategories'] == 1) { #PERMISSION
+        if ($user['modifyCategories'] !== 1) {
             error('Permission denied!');
         }
         if(isset($_POST['categoriesid']) and !empty($_POST['categoriesid'])) {
@@ -92,7 +92,7 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
-        if ($user['modifyCategories'] == 1) { #PERMISSION
+        if ($user['modifyCategories'] !== 1) {
             error('Permission denied!');
         }
 
@@ -166,7 +166,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                         <?php foreach ($categories as $categorie): ?>
-                            <?php if ($user['modifyCategories'] != 1) { #PERMISSIONS?> 
+                            <?php if ($user['modifyCategories'] == 1) {?> 
                                 <tr>
                                     <form action="categories.php" method="post" class="">
                                         <td class="border-0 align-middle">
