@@ -81,7 +81,7 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
 
-        $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, deleteUser = ?, modifyUserPerms = ?, showUserPerms = ?, createProduct = ?, modifyProduct = ? WHERE permission_group.id = ?");
+        $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, deleteUser = ?, modifyUserPerms = ?, showUserPerms = ?, createProduct = ?, modifyProduct = ?, showCategories = ?, modifyCategories = ?, deleteCategories = ?, createCategories = ? WHERE permission_group.id = ?");
         $stmt->bindValue(1, (isset($_POST['showUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(2, (isset($_POST['modifyUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(3, (isset($_POST['deleteUser']) ? "1" : "0"), PDO::PARAM_INT);
