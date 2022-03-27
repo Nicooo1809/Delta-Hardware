@@ -32,7 +32,7 @@ $user1 = check_user(FALSE);
 </head>
 <body>
 
-<nav class="navbar header-header navbar-expand-lg navbar-dark cbg ctext sticky-top">
+<nav class="navbar header-header navbar-expand-lg navbar-<?php print(check_style());?> cbg ctext sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><img src="/favicon.svg" class="navbar-icon"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
