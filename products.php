@@ -35,11 +35,11 @@ require_once("templates/header.php");
 <div class="container-fluid minheight100 py-3 products content-wrapper">
     <h1 class="ctext">Products</h1>
     <form action="products.php" method="get" class="mx-0">
-        <select class="form-select me-2" name="sortby">
-            <option value="name" <?php if ($_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
-            <option value="price" <?php if ($_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
-            <option value="rrp" <?php if ($_GET["sortby"] == 'rrp') { print('selected="selected"');} ?>>UVP</option>
-            <option value="created_at" <?php if ($_GET["sortby"] == 'created_at') { print('selected="selected"');} ?>>Date</option>
+        <select class="form-select me-2 cbg" name="sortby">
+            <option class="ctext" value="name" <?php if ($_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
+            <option class="ctext" value="price" <?php if ($_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
+            <option class="ctext" value="rrp" <?php if ($_GET["sortby"] == 'rrp') { print('selected="selected"');} ?>>UVP</option>
+            <option class="ctext" value="created_at" <?php if ($_GET["sortby"] == 'created_at') { print('selected="selected"');} ?>>Date</option>
         </select>
         <?php foreach (array_keys($_GET) as $getindex) {
             if ($getindex != "order" && $getindex != "sortby") {
