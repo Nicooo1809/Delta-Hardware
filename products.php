@@ -35,7 +35,7 @@ require_once("templates/header.php");
 <div class="container-fluid minheight100 py-3 products content-wrapper">
     <h1 class="ctext">Products</h1>
     <form action="products.php" method="get" class="mx-0">
-        <select class="form-select me-2 cbg" name="sortby">
+        <select class="form-select me-2 cbg ctext" name="sortby">
             <option class="ctext" value="name" <?php if ($_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
             <option class="ctext" value="price" <?php if ($_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
             <option class="ctext" value="rrp" <?php if ($_GET["sortby"] == 'rrp') { print('selected="selected"');} ?>>UVP</option>
