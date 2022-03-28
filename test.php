@@ -15,7 +15,7 @@ if(isset($_POST["submit"])){
         $fileCount = count($_FILES['file']['name']);
         for($i = 0; $i < $fileCount; $i++){
             $fileName = basename($_FILES["file"]["name"][$i]);
-            $targetFilePath = "uploads/" . $fileName;
+            $targetFilePath = "product_img/" . $fileName;
             if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
                 // Upload file to server
                 if(move_uploaded_file($_FILES["file"]["tmp_name"][$i], $targetFilePath)){
