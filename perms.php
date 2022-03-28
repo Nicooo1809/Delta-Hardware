@@ -95,11 +95,13 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(11, (isset($_POST['deleteCategories']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(12, (isset($_POST['createCategories']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(13, (isset($_POST['showOrders']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(14, $_POST['permsid'], PDO::PARAM_INT);
+        $stmt->bindValue(14, (isset($_POST['markOrders']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(15, $_POST['permsid'], PDO::PARAM_INT);
         $stmt->execute();
 
         #showProduct
         #showOrders
+        #markOrders
 
         #error_log(pdo_debugStrParams($stmt));
         echo("<script>location.href='perms.php'</script>");
