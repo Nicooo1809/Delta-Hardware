@@ -195,19 +195,19 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `img`, `product_id`) VALUES
-(1, 'product_images/RTX3080_TI.jpg', 2),
-(2, 'product_images/RTX3070_TI.jpg', 2),
-(3, 'product_images/test.jpg', 1),
-(4, 'product_images/RTX3070_TI.jpg', 3),
-(5, 'product_images/RTX3080_TI.jpg', 6),
-(6, 'product_images/RTX3070.jpg', 4),
-(7, 'product_images/RTX3070.jpg', 4),
-(8, 'product_images/test.jpg', 7),
-(9, 'product_images/High-end-monitor.jpg', 8),
-(10, 'product_images/CapOwhpQaQn8MquiO5nNNe.webp', 8),
-(11, 'product_images/test.jpg', 9),
-(12, 'product_images/RTX3070_TI.jpg', 10),
-(13, 'product_images/CapOwhpQaQn8MquiO5nNNe.webp', 11);
+(1, 'RTX3080_TI.jpg', 2),
+(2, 'RTX3070_TI.jpg', 2),
+(3, 'test.jpg', 1),
+(4, 'RTX3070_TI.jpg', 3),
+(5, 'RTX3080_TI.jpg', 6),
+(6, 'RTX3070.jpg', 4),
+(7, 'RTX3070.jpg', 4),
+(8, 'test.jpg', 7),
+(9, 'High-end-monitor.jpg', 8),
+(10, 'CapOwhpQaQn8MquiO5nNNe.webp', 8),
+(11, 'test.jpg', 9),
+(12, 'RTX3070_TI.jpg', 10),
+(13, 'CapOwhpQaQn8MquiO5nNNe.webp', 11);
 
 -- --------------------------------------------------------
 
