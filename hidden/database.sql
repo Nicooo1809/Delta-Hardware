@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2022 at 10:53 PM
--- Server version: 10.5.12-MariaDB-0+deb11u1
+-- Generation Time: Mar 28, 2022 at 08:14 AM
+-- Server version: 10.5.15-MariaDB-0+deb11u1
 -- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -44,8 +44,7 @@ INSERT INTO `orders` (`id`, `kunden_id`, `ordered`, `ordered_date`, `sent`, `sen
 (1, 1, 0, NULL, 0, NULL),
 (4, 2, 0, NULL, 0, NULL),
 (6, 3, 0, NULL, 0, NULL),
-(7, 5, 0, NULL, 0, NULL),
-(10, 25, 0, NULL, 0, NULL);
+(7, 5, 0, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -62,17 +61,21 @@ CREATE TABLE `permission_group` (
   `showUserPerms` tinyint(1) NOT NULL DEFAULT 0,
   `modifyUserPerms` tinyint(1) NOT NULL DEFAULT 0,
   `createProduct` tinyint(1) NOT NULL DEFAULT 0,
-  `modifyProduct` tinyint(1) NOT NULL DEFAULT 0
+  `modifyProduct` tinyint(1) NOT NULL DEFAULT 0,
+  `showCategories` tinyint(1) NOT NULL DEFAULT 0,
+  `modifyCategories` tinyint(1) NOT NULL DEFAULT 0,
+  `deleteCategories` tinyint(1) NOT NULL DEFAULT 0,
+  `createCategories` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `permission_group`
 --
 
-INSERT INTO `permission_group` (`id`, `name`, `showUser`, `modifyUser`, `deleteUser`, `showUserPerms`, `modifyUserPerms`, `createProduct`, `modifyProduct`) VALUES
-(1, 'default', 0, 0, 0, 0, 0, 0, 0),
-(2, 'admin', 1, 1, 1, 1, 1, 1, 1),
-(3, 'employee', 1, 0, 0, 0, 0, 1, 1);
+INSERT INTO `permission_group` (`id`, `name`, `showUser`, `modifyUser`, `deleteUser`, `showUserPerms`, `modifyUserPerms`, `createProduct`, `modifyProduct`, `showCategories`, `modifyCategories`, `deleteCategories`, `createCategories`) VALUES
+(1, 'default', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 'admin', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0),
+(3, 'employee', 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -192,19 +195,19 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `img`, `product_id`) VALUES
-(1, 'RTX3080_TI.jpg', 2),
-(2, 'RTX3070_TI.jpg', 2),
-(3, 'test.jpg', 1),
-(4, 'RTX3070_TI.jpg', 3),
-(5, 'RTX3080_TI.jpg', 6),
-(6, 'RTX3070.jpg', 4),
-(7, 'RTX3070.jpg', 4),
-(8, 'test.jpg', 7),
-(9, 'High-end-monitor.jpg', 8),
-(10, 'CapOwhpQaQn8MquiO5nNNe.webp', 8),
-(11, 'test.jpg', 9),
-(12, 'RTX3070_TI.jpg', 10),
-(13, 'CapOwhpQaQn8MquiO5nNNe.webp', 11);
+(1, 'product_images/RTX3080_TI.jpg', 2),
+(2, 'product_images/RTX3070_TI.jpg', 2),
+(3, 'product_images/test.jpg', 1),
+(4, 'product_images/RTX3070_TI.jpg', 3),
+(5, 'product_images/RTX3080_TI.jpg', 6),
+(6, 'product_images/RTX3070.jpg', 4),
+(7, 'product_images/RTX3070.jpg', 4),
+(8, 'product_images/test.jpg', 7),
+(9, 'product_images/High-end-monitor.jpg', 8),
+(10, 'product_images/CapOwhpQaQn8MquiO5nNNe.webp', 8),
+(11, 'product_images/test.jpg', 9),
+(12, 'product_images/RTX3070_TI.jpg', 10),
+(13, 'product_images/CapOwhpQaQn8MquiO5nNNe.webp', 11);
 
 -- --------------------------------------------------------
 
@@ -232,7 +235,8 @@ INSERT INTO `product_list` (`id`, `list_id`, `product_id`, `quantity`) VALUES
 (50, 6, 2, 199),
 (55, 6, 3, 2),
 (56, 6, 4, 2),
-(57, 1, 8, 5);
+(57, 1, 8, 5),
+(58, 6, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -247,10 +251,6 @@ CREATE TABLE `securitytokens` (
   `securitytoken` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `securitytokens`
---
 
 -- --------------------------------------------------------
 
@@ -279,8 +279,7 @@ INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `created_
 (1, 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'Vorname', 'Nachname', '2022-02-04 07:57:26', '2022-03-12 22:23:31', NULL, NULL, 1),
 (2, 'ich@paul-vassen.de', '$2y$10$AjGihIboyCYY/gnDq7J08.spp4N6Du.wog2anlhRsFALSZj9DPrPq', 'Paul', 'Vaßen', '2022-02-04 15:34:37', '2022-03-21 11:08:26', NULL, NULL, 2),
 (3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', 'Jan', 'Schniebs', '2022-02-23 07:14:00', '2022-03-21 11:06:26', NULL, NULL, 2),
-(5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', 'Gerhard', 'Einkaufstüte', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 1),
-(25, 'max@musterman.de', '$2y$10$FWcz3DcRpbAPJgs2UBbp5.1ECDidXnFYxYif63d9XuCyhyBqnMZoe', 'Maxnix', 'Musterman', '2022-03-10 12:32:01', '2022-03-21 11:00:15', NULL, NULL, 3);
+(5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', 'Gerhard', 'Einkaufstüte', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -349,7 +348,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `permission_group`
@@ -379,19 +378,19 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `securitytokens`
 --
 ALTER TABLE `securitytokens`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Constraints for dumped tables
@@ -432,12 +431,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-
-use shop;
-alter table permission_group add column showCategories tinyint(1) default 0 not null;
-alter table permission_group add column modifyCategories tinyint(1) default 0 not null;
-alter table permission_group add column deleteCategories tinyint(1) default 0 not null;
-alter table permission_group add column createCategories tinyint(1) default 0 not null;
