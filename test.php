@@ -3,18 +3,13 @@ require_once("php/functions.php");
 $user = require_once("templates/header.php");
 
 
-
-
-
-
-
 $allowTypes = array('jpg','png','jpeg','gif');
 if(isset($_POST["submit"])){
     if(!empty($_FILES["file"]["name"][0])){
         // Allow certain file formats
         $fileCount = count($_FILES['file']['name']);
         for($i = 0; $i < $fileCount; $i++){
-            $fileName = basename($_FILES["file"]["name"][$i]);
+            $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
             $targetFilePath = "product_img/" . $fileName;
             if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
                 // Upload file to server
@@ -40,7 +35,7 @@ if(isset($_POST["submit"])){
 }
 // Display status message
 echo $statusMsg;
-
+echo $fileName;
 ?>
 
 <form action="test.php" method="post" enctype="multipart/form-data">
