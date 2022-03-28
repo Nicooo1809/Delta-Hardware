@@ -41,13 +41,32 @@ echo $statusMsg;
 
 
 
+/*
+
+if(isset($_POST['submit'])){
+ 
+    // Count total files
+    $fileCount = count($_FILES['file']['name']);
+
+    // Iterate through the files
+    for($i = 0; $i < $fileCount; $i++){
+
+         $file = $_FILES['file']['name'][$i];
+
+         // Upload file to $path
+         move_uploaded_file($_FILES['file']['tmp_name'][$i], $file);
+
+    }
+} 
+
+*/
 
 
 ?>
 
 <form action="test.php" method="post" enctype="multipart/form-data">
     Select Image File to Upload:
-    <input type="file" name="file">
+    <input type="file" name="file" multiple>
     <input type="submit" name="submit" value="Upload">
 </form>
 
