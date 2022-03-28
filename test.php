@@ -21,7 +21,7 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
             $stmt->bindValue(1, $fileName);
             $stmt->bindValue(2, 1, PDO::PARAM_INT);
             $stmt->execute();
-            if($insert){
+            if($stmt){
                 $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
             }else{
                 $statusMsg = "File upload failed, please try again.";
