@@ -7,31 +7,40 @@ $user = require_once("templates/header.php");
 
 
 
-$fileName = basename($_FILES["file"]["name"]);
-$targetFilePath = "uploads/" . $fileName;
+
 
 if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
     // Allow certain file formats
-    $allowTypes = array('jpg','png','jpeg','gif');
-    if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
-        // Upload file to server
-        if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
-            // Insert image file name into database
-            $stmt = $pdo->prepare("INSERT into product_images (img, product_id) VALUES ( ? , ? )");
-            $stmt->bindValue(1, $fileName);
-            $stmt->bindValue(2, 1, PDO::PARAM_INT);
-            $stmt->execute();
-            if($stmt){
-                $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+    $fileCount = count($_FILES['file']['name']);
+    for($i = 0; $i < $fileCount; $i++){
+        $fileName = basename($_FILES["file"]["name"][$i]);
+        $targetFilePath = "uploads/" . $fileName;
+
+
+        $allowTypes = array('jpg','png','jpeg','gif');
+        if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
+            // Upload file to server
+            if(move_uploaded_file($_FILES["file"]["tmp_name"][$i], $targetFilePath)){
+                // Insert image file name into database
+                $stmt = $pdo->prepare("INSERT into product_images (img, product_id) VALUES ( ? , ? )");
+                $stmt->bindValue(1, $fileName);
+                $stmt->bindValue(2, 1, PDO::PARAM_INT);
+                $stmt->execute();
+                if($stmt){
+                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                }else{
+                    $statusMsg = "File upload failed, please try again.";
+                } 
             }else{
-                $statusMsg = "File upload failed, please try again.";
-            } 
+                $statusMsg = "Sorry, there was an error uploading your file.";
+            }
         }else{
-            $statusMsg = "Sorry, there was an error uploading your file.";
+            $statusMsg = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.';
         }
-    }else{
-        $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
     }
+
+
+
 }else{
     $statusMsg = 'Please select a file to upload.';
 }
