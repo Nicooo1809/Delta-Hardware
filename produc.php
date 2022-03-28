@@ -6,7 +6,7 @@ if (!isset($user['id'])) {
     exit;
 }
 #error_log(print_r($user,true));
-if ($user['showUser'] != 1) {
+if ($user['showProduct'] != 1) {
     error('Permission denied!');
 }
 if(isset($_POST['action'])) {

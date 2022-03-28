@@ -81,7 +81,7 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
 
-        $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, deleteUser = ?, modifyUserPerms = ?, showUserPerms = ?, createProduct = ?, modifyProduct = ?, showCategories = ?, modifyCategories = ?, deleteCategories = ?, createCategories = ? WHERE permission_group.id = ?");
+        $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, deleteUser = ?, modifyUserPerms = ?, showUserPerms = ?, showProduct = ?, createProduct = ?, modifyProduct = ?, showCategories = ?, modifyCategories = ?, deleteCategories = ?, createCategories = ?, showOrders = ?, markOrders = ? WHERE permission_group.id = ?");
         $stmt->bindValue(1, (isset($_POST['showUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(2, (isset($_POST['modifyUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(3, (isset($_POST['deleteUser']) ? "1" : "0"), PDO::PARAM_INT);
@@ -157,6 +157,9 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="p-2 px-3 text-uppercase">Modify User Permission</div>
                                 </th>
                                 <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Show Product</div>
+                                </th>
+                                <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Create Product</div>
                                 </th>
                                 <th scope="col" class="border-0">
@@ -173,6 +176,12 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </th>
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase">Create Kategorien</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Show Order</div>
+                                </th>
+                                <th scope="col" class="border-0">
+                                    <div class="p-2 px-3 text-uppercase">Mark Order</div>
                                 </th>
                                 <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <th scope="col" class="border-0" style="width: 15%">
@@ -208,6 +217,9 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <strong><input type="checkbox" class="form-check-input" name="modifyUserPerms" <?=($perms['modifyUserPerms']==1 ? 'checked':'')?>></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
+                                            <strong><input type="checkbox" class="form-check-input" name="showProduct" <?=($perms['showProduct']==1 ? 'checked':'')?>></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
                                             <strong><input type="checkbox" class="form-check-input" name="createProduct" <?=($perms['createProduct']==1 ? 'checked':'')?>></strong>
                                         </td>
                                         <td class="border-0 align-middle text-center">
@@ -224,6 +236,12 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </td>
                                         <td class="border-0 align-middle text-center">
                                             <strong><input type="checkbox" class="form-check-input" name="createCategories" <?=($perms['createCategories']==1 ? 'checked':'')?>></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><input type="checkbox" class="form-check-input" name="showOrders" <?=($perms['showOrders']==1 ? 'checked':'')?>></strong>
+                                        </td>
+                                        <td class="border-0 align-middle text-center">
+                                            <strong><input type="checkbox" class="form-check-input" name="markOrders" <?=($perms['markOrders']==1 ? 'checked':'')?>></strong>
                                         </td>
                                         <td class="border-0 align-middle actions">
                                             <div class="px-1 py-1">
@@ -263,6 +281,9 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <strong><input type="checkbox" class="form-check-input" name="modifyUserPerms" <?=($perms['modifyUserPerms']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
+                                    <strong><input type="checkbox" class="form-check-input" name="showProduct" <?=($perms['showProduct']==1 ? 'checked':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
                                     <strong><input type="checkbox" class="form-check-input" name="createProduct" <?=($perms['createProduct']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
@@ -279,6 +300,12 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </td>
                                 <td class="border-0 align-middle text-center">
                                     <strong><input type="checkbox" class="form-check-input" name="createCategories" <?=($perms['createCategories']==1 ? 'checked':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><input type="checkbox" class="form-check-input" name="showOrders" <?=($perms['showOrders']==1 ? 'checked':'')?> disabled></strong>
+                                </td>
+                                <td class="border-0 align-middle text-center">
+                                    <strong><input type="checkbox" class="form-check-input" name="markOrders" <?=($perms['markOrders']==1 ? 'checked':'')?> disabled></strong>
                                 </td>
                             </tr>
                             <?php }?>
