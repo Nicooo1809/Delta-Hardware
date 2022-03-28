@@ -157,8 +157,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="p-2 px-3 text-uppercase">Products</div>
                                 </th>
                                 <?php if ($user['modifyCategories'] == 1) {?>
-                                <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase"></div>
+                                <th scope="col" class="border-0" style="width: 15%">
                                 </th>
                                 <?php }?>
                             </div>
