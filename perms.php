@@ -87,13 +87,15 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(3, (isset($_POST['deleteUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(4, (isset($_POST['modifyUserPerms']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(5, (isset($_POST['showUserPerms']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(6, (isset($_POST['createProduct']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(7, (isset($_POST['modifyProduct']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(8, (isset($_POST['showCategories']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(9, (isset($_POST['modifyCategories']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(10, (isset($_POST['deleteCategories']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(11, (isset($_POST['createCategories']) ? "1" : "0"), PDO::PARAM_INT);
-        $stmt->bindValue(12, $_POST['permsid'], PDO::PARAM_INT);
+        $stmt->bindValue(6, (isset($_POST['showProduct']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(7, (isset($_POST['createProduct']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(8, (isset($_POST['modifyProduct']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(9, (isset($_POST['showCategories']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(10, (isset($_POST['modifyCategories']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(11, (isset($_POST['deleteCategories']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(12, (isset($_POST['createCategories']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(13, (isset($_POST['showOrders']) ? "1" : "0"), PDO::PARAM_INT);
+        $stmt->bindValue(14, $_POST['permsid'], PDO::PARAM_INT);
         $stmt->execute();
 
         #error_log(pdo_debugStrParams($stmt));
