@@ -22,7 +22,9 @@ if(isset($_POST['action'])) {
         $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
         $stmt->execute();
         $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         if (!empty($_FILES["file"]["name"][0])){
+            $allowTypes = array('jpg','png','jpeg','gif');
             $fileCount = count($_FILES['file']['name']);
             for($i = 0; $i < $fileCount; $i++){
                 $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
@@ -36,13 +38,13 @@ if(isset($_POST['action'])) {
                         $stmt->bindValue(2, $_POST['productid'], PDO::PARAM_INT);
                         $stmt->execute();
                         if(!$stmt){
-                            $statusMsg = "File upload failed, please try again.";
+                            error("File upload failed, please try again.");
                         } 
                     }else{
-                        $statusMsg = "Sorry, there was an error uploading your file.";
+                        error("Sorry, there was an error uploading your file.");
                     }
                 }else{
-                    $statusMsg = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.';
+                    error('Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.');
                 }
             }
         }
@@ -68,7 +70,7 @@ if(isset($_POST['action'])) {
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>
-                <form action="produc.php" method="post">
+                <form action="produc.php" method="post" enctype="multipart/form-data">
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputName">Name</span>
                         <input class="form-control" id="inputName" name="name" type="text" value="<?=$product[0]['name']?>" required>
@@ -106,7 +108,7 @@ if(isset($_POST['action'])) {
                             ?>
                         </select>
                     </div>
-
+                    <!-- DIE BILDER -->
                     <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                     <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                     <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
@@ -146,6 +148,7 @@ if(isset($_POST['action'])) {
             $productForImg = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (!empty($_FILES["file"]["name"][0])){
+                $allowTypes = array('jpg','png','jpeg','gif');
                 $fileCount = count($_FILES['file']['name']);
                 for($i = 0; $i < $fileCount; $i++){
                     $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
@@ -159,13 +162,13 @@ if(isset($_POST['action'])) {
                             $stmt->bindValue(2, $productForImg[0]['id'], PDO::PARAM_INT);
                             $stmt->execute();
                             if(!$stmt){
-                                $statusMsg = "File upload failed, please try again.";
+                                error("File upload failed, please try again.");
                             } 
                         }else{
-                            $statusMsg = "Sorry, there was an error uploading your file.";
+                            error("Sorry, there was an error uploading your file.");
                         }
                     }else{
-                        $statusMsg = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.';
+                        error('Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.');
                     }
                 }
             }
@@ -180,7 +183,7 @@ if(isset($_POST['action'])) {
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>
-                <form action="produc.php" method="post">
+                <form action="produc.php" method="post" enctype="multipart/form-data">
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputName">Name</span>
                         <input class="form-control" id="inputName" name="name" type="text" required>
