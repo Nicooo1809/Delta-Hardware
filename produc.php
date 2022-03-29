@@ -25,11 +25,14 @@ if(isset($_POST['action'])) {
 
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
             
-            $stmt = $pdo->prepare("UPDATE products SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE products.id = ?");
-            $stmt->bindValue(1, $_POST['email']);
-            $stmt->bindValue(2, $_POST['vorname']);
-            $stmt->bindValue(3, $_POST['nachname']);
-            $stmt->bindValue(4, $_POST['productid'], PDO::PARAM_INT);
+            $stmt = $pdo->prepare("UPDATE products SET name = ?, price = ?, rrp = ?, quantity = ?, desc = ?, visible = ?, product_type_id = ?, updated_at = now() WHERE products.id = ?");
+            $stmt->bindValue(1, $_POST['name']);
+            $stmt->bindValue(2, $_POST['price']);
+            $stmt->bindValue(3, $_POST['rrp']);
+            $stmt->bindValue(4, $_POST['quantity']);
+            $stmt->bindValue(5, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
+            $stmt->bindValue(6, $_POST['product_type_id'], PDO::PARAM_INT);
+            $stmt->bindValue(7, $_POST['productid'], PDO::PARAM_INT);
             $stmt->execute();
 
             #error_log(pdo_debugStrParams($stmt));
@@ -60,23 +63,27 @@ if(isset($_POST['action'])) {
                         <input class="form-control" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
                     </div>
                     <div class="input-group py-2">
-                        <span class="input-group-text" for="inputDesk">Description</span>
-                        <textarea  class="form-control" name="desk" id="inputDesk" value="<?=$product[0]['desk']?>" required></textarea> 
+                        <span class="input-group-text" for="inputDesc">Description</span>
+                        <textarea  class="form-control" name="desc" id="inputDesc" value="<?=$product[0]['desc']?>" required></textarea> 
                     </div>
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputVisible">Visible</span>
                         <input type="checkbox" class="form-check-input" id="inputVisible" name="visible" <?=($product[0]['visible']==1 ? 'checked':'')?>>
                     </div>
-                    <select class="form-select" id="categorie" name="categorie">
-                        <?php foreach ($types as $type) {
-                            if ($type['id'] == $product[0]['product_type_id']) {
-                                print('<option class="text-dark" value="' . $type['id'] . '" selected>' . $type['type'] . '</option>');
-                            } else {
-                                print('<option class="text-dark" value="' . $type['id'] . '">' . $type['type'] . '</option>');
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputCategorie">Type</span>
+                        <select class="form-select" id="inputCategorie" name="categorie">
+                            <?php foreach ($types as $type) {
+                                if ($type['id'] == $product[0]['product_type_id']) {
+                                    print('<option class="text-dark" value="' . $type['id'] . '" selected>' . $type['type'] . '</option>');
+                                } else {
+                                    print('<option class="text-dark" value="' . $type['id'] . '">' . $type['type'] . '</option>');
+                                }
                             }
-                        }
-                        ?>
-                    </select>
+                            ?>
+                        </select>
+                    </div>
+
                     <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                     <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
                     <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
@@ -109,10 +116,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h1>Produktverwaltung</h1>
             <form action="produc.php" method="post">
                 <div>
-                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Editieren</button>
+                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
                 </div>
             </form>
-            <a href="register.php">Produkt hinzufügen</a>
             <p><?php print($total_products); ?> Benutzer</p>
             <div class="table-responsive">
                 <table class="table align-middle table-borderless table-hover">
