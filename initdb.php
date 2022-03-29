@@ -1,7 +1,7 @@
 <?php
 require_once("php/mysql.php");
 // Name of the file
-$filename = 'hidden/database.php'
+$filename = 'hidden/database.sql';
 // Temporary variable, used to store current query
 $templine = '';
 // Read in entire file
@@ -21,7 +21,6 @@ if (substr(trim($line), -1, 1) == ';')
     // Perform the query
     $stmt = $pdo->prepare($templine);
     $stmt->execute();
-    // mysql_query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
     // Reset temp variable to empty
     $templine = '';
 }
