@@ -226,7 +226,10 @@ foreach ($products as $product) {
                     </table>
                 </div>         
                 <strong>Summe: <?=$summprice?>&euro;</strong>
-                <a href="order.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>
+                <?php
+                if ($total_products > 0) {
+                    print('<a href="order.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
+                } ?>
             </div>
         </div>
     </div> 
