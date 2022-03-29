@@ -19,6 +19,10 @@ if(isset($_POST['action'])) {
         $stmt->execute();
         $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
+        $stmt->execute();
+        $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
             
             $stmt = $pdo->prepare("UPDATE products SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE products.id = ?");
@@ -27,6 +31,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(3, $_POST['nachname']);
             $stmt->bindValue(4, $_POST['productid'], PDO::PARAM_INT);
             $stmt->execute();
+
             #error_log(pdo_debugStrParams($stmt));
             echo("<script>location.href='produc.php'</script>");
             #header("location: produc.php");
@@ -39,25 +44,39 @@ if(isset($_POST['action'])) {
             <div>
                 <form action="produc.php" method="post">
                     <div class="input-group py-2">
-                        <span class="input-group-text" for="inputVorname">Vorname</span>
-                        <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$product[0]['vorname']?>" required>
+                        <span class="input-group-text" for="inputName">Name</span>
+                        <input class="form-control" id="inputName" name="name" type="text" value="<?=$product[0]['name']?>" required>
                     </div>
                     <div class="input-group py-2">
-                        <span class="input-group-text" for="inputNachname">Nachname</span>
-                        <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$product[0]['nachname']?>" required>
-                    </div>
-                    <div class="input-group py-2">    
-                        <span class="input-group-text" for="inputEmail">E-Mail</span>
-                        <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$product[0]['email']?>" required>
+                        <span class="input-group-text" for="inputPrice">Preis</span>
+                        <input class="form-control" id="inputPrice" name="price" type="text" value="<?=$product[0]['price']?>" required>
                     </div>
                     <div class="input-group py-2">
-                        <span class="input-group-text" for="inputPasswortNeu">Neues Passwort</span>
-                        <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
+                        <span class="input-group-text" for="inputRrp">UVP</span>
+                        <input class="form-control" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>" required>
                     </div>
                     <div class="input-group py-2">
-                        <span class="input-group-text" for="inputPasswortNeu2">Neues Passwort (wiederholen)</span>
-                        <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
+                        <span class="input-group-text" for="inputQuantity">UVP</span>
+                        <input class="form-control" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
                     </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputDesk">Description</span>
+                        <textarea  class="form-control" name="desk" id="inputDesk" value="<?=$product[0]['desk']?>" required></textarea> 
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputVisible">Visible</span>
+                        <input type="checkbox" class="form-check-input" id="inputVisible" name="visible" <?=($product[0]['visible']==1 ? 'checked':'')?>>
+                    </div>
+                    <select class="form-select" id="categorie" name="categorie">
+                        <?php foreach ($types as $type) {
+                            if ($type['id'] == $product[0]['product_type_id']) {
+                                print('<option class="text-dark" value="' . $type['id'] . '" selected>' . $type['type'] . '</option>');
+                            } else {
+                                print('<option class="text-dark" value="' . $type['id'] . '">' . $type['type'] . '</option>');
+                            }
+                        }
+                        ?>
+                    </select>
                     <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                     <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
                     <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
