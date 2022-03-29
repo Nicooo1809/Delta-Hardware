@@ -66,8 +66,12 @@ if(isset($_GET['register'])) {
 	if(!$error) {	
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 		
-		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
-		$result = $stmt->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
+		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (?, ?, ?, ?)");
+		$stmt->bindValue(1, $email);
+		$stmt->bindValue(2, $passwort_hash);
+		$stmt->bindValue(3, $vorname);
+		$stmt->bindValue(4, $nachname);
+		$result = $stmt->execute();
 		if ($result) {
 			$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES ((select id from users where email = ?), '0', '0')");
 			$stmt->bindValue(1, $email);
