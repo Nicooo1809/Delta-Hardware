@@ -22,17 +22,16 @@ if(isset($_POST['action'])) {
         $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
         $stmt->execute();
         $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
-            
-            $stmt = $pdo->prepare("UPDATE products SET name = ?, price = ?, rrp = ?, quantity = ?, desc = ?, visible = ?, product_type_id = ?, updated_at = now() WHERE products.id = ?");
+        if(isset($_POST['name']) and isset($_POST['price']) and isset($_POST['rrp']) and isset($_POST['quantity']) and isset($_POST['desc']) and isset($_POST['productid']) and isset($_POST['categorie']) and !empty($_POST['name']) and !empty($_POST['price']) and !empty($_POST['rrp']) and !empty($_POST['desc']) and !empty($_POST['productid']) and !empty($_POST['categorie'])) {
+            $stmt = $pdo->prepare("UPDATE products SET name = ?, price = ?, rrp = ?, quantity = ?, `desc` = ?, visible = ?, product_type_id = ?, updated_at = now() WHERE products.id = ?");
             $stmt->bindValue(1, $_POST['name']);
             $stmt->bindValue(2, $_POST['price']);
             $stmt->bindValue(3, $_POST['rrp']);
             $stmt->bindValue(4, $_POST['quantity']);
-            $stmt->bindValue(5, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
-            $stmt->bindValue(6, $_POST['product_type_id'], PDO::PARAM_INT);
-            $stmt->bindValue(7, $_POST['productid'], PDO::PARAM_INT);
+            $stmt->bindValue(5, $_POST['desc']);
+            $stmt->bindValue(6, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
+            $stmt->bindValue(7, $_POST['categorie'], PDO::PARAM_INT);
+            $stmt->bindValue(8, $_POST['productid'], PDO::PARAM_INT);
             $stmt->execute();
 
             #error_log(pdo_debugStrParams($stmt));
@@ -59,12 +58,12 @@ if(isset($_POST['action'])) {
                         <input class="form-control" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>" required>
                     </div>
                     <div class="input-group py-2">
-                        <span class="input-group-text" for="inputQuantity">UVP</span>
+                        <span class="input-group-text" for="inputQuantity">Menge</span>
                         <input class="form-control" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
                     </div>
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputDesc">Description</span>
-                        <textarea  class="form-control" name="desc" id="inputDesc" value="<?=$product[0]['desc']?>" required></textarea> 
+                        <textarea  class="form-control" name="desc" id="inputDesc" required><?=$product[0]['desc']?></textarea> 
                     </div>
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputVisible">Visible</span>
@@ -86,6 +85,82 @@ if(isset($_POST['action'])) {
 
                     <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                     <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
+                    <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
+                </form>
+            </div>
+        </div>
+        <?php 
+        include_once("templates/footer.php");
+        exit;
+        } 
+    }
+    if($_POST['action'] == 'add') {
+        if ($user['createProduct'] != 1) {
+            error('Permission denied!');
+        }
+
+        $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
+        $stmt->execute();
+        $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(isset($_POST['name']) and isset($_POST['price']) and isset($_POST['rrp']) and isset($_POST['quantity']) and isset($_POST['desc']) and isset($_POST['categorie']) and !empty($_POST['name']) and !empty($_POST['price']) and !empty($_POST['rrp']) and !empty($_POST['desc']) and !empty($_POST['categorie'])) {
+            $stmt = $pdo->prepare("INSERT INTO products (name, price, rrp, quantity, `desc`, visible, product_type_id, updated_at, created_at) VALUE (?, ?, ?, ?, ?, ?, ?, now(), now())");
+            $stmt->bindValue(1, $_POST['name']);
+            $stmt->bindValue(2, $_POST['price']);
+            $stmt->bindValue(3, $_POST['rrp']);
+            $stmt->bindValue(4, $_POST['quantity']);
+            $stmt->bindValue(5, $_POST['desc']);
+            $stmt->bindValue(6, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
+            $stmt->bindValue(7, $_POST['categorie'], PDO::PARAM_INT);
+            $stmt->execute();
+
+            error_log(pdo_debugStrParams($stmt));
+            echo("<script>location.href='produc.php'</script>");
+            #header("location: produc.php");
+            exit;
+        } else {
+        require_once("templates/header.php");
+        ?>
+        <div class="minheight100 px-3 py-3">
+            <h1>Einstellungen</h1>
+            <div>
+                <form action="produc.php" method="post">
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputName">Name</span>
+                        <input class="form-control" id="inputName" name="name" type="text" required>
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputPrice">Preis</span>
+                        <input class="form-control" id="inputPrice" name="price" type="text" required>
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputRrp">UVP</span>
+                        <input class="form-control" id="inputRrp" name="rrp" type="text" required>
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputQuantity">Menge</span>
+                        <input class="form-control" id="inputQuantity" name="quantity" type="text" required>
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputDesc">Description</span>
+                        <textarea  class="form-control" name="desc" id="inputDesc" required></textarea> 
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputVisible">Visible</span>
+                        <input type="checkbox" class="form-check-input" id="inputVisible" name="visible" checked>
+                    </div>
+                    <div class="input-group py-2">
+                        <span class="input-group-text" for="inputCategorie">Type</span>
+                        <select class="form-select" id="inputCategorie" name="categorie">
+                            <?php foreach ($types as $type) {
+                                
+                                print('<option class="text-dark" value="' . $type['id'] . '">' . $type['type'] . '</option>');
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <button type="submit" name="action" value="add" class="py-2 btn btn-outline-success">Speichern</button>
                     <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
                 </form>
             </div>
