@@ -8,6 +8,12 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+if ($user['showOrders'] == 1) {
+	$stmt = $pdo->prepare('SELECT * FROM orders where ordered = 1 and sent = 0');
+	$stmt->execute();
+	$total_orders = $stmt->rowCount();
+	$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 
 <div class="container minheight100 py-3 px-3">
@@ -53,7 +59,41 @@ if (!isset($user['id'])) {
 			<div class="card-body text-center">
 				<h1 class="card-title">Bestellungen</h1>
 				<div class="card-text">
-					<a href="orders.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellungen ansehen/bearbeiten</button></a>
+					<p><?=$total_orders?> Bestellung<?=($total_products>1 ? 'en':'')?></p>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<div class="ctext rounded">
+										<th scope="col" class="border-0">
+											<div class="p-2 px-3 text-uppercase ctext">Produkt</div>
+										</th>
+										<th scope="col" class="border-0 text-center">
+											<div class="p-2 px-3 text-uppercase ctext">Preis</div>
+										</th>
+										<th scope="col" class="border-0 text-center">
+											<div class="p-2 px-3 text-uppercase ctext">Menge</div>
+										</th>
+									</div>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($orders as $order): ?>
+									<tr>
+										<td class="border-0 align-middle text-center ctext">
+											<span><?=$order['price']?>&euro;</span>
+										</td>
+										<td class="border-0 align-middle text-center ctext">
+											<span><?=$order['quantity']?></span>
+										</td>
+										<td class="border-0 align-middle text-center ctext">
+											<span><?=$order['quantity']?></span>
+										</td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>         
 				</div>
 			</div>
 		</div>
