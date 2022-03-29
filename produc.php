@@ -22,6 +22,30 @@ if(isset($_POST['action'])) {
         $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
         $stmt->execute();
         $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($_FILES["file"]["name"][0])){
+            $fileCount = count($_FILES['file']['name']);
+            for($i = 0; $i < $fileCount; $i++){
+                $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
+                $targetFilePath = "product_img/" . $fileName;
+                if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
+                    // Upload file to server
+                    if(move_uploaded_file($_FILES["file"]["tmp_name"][$i], $targetFilePath)){
+                        // Insert image file name into database
+                        $stmt = $pdo->prepare("INSERT into product_images (img, product_id) VALUES ( ? , ? )");
+                        $stmt->bindValue(1, $fileName);
+                        $stmt->bindValue(2, $_POST['productid'], PDO::PARAM_INT);
+                        $stmt->execute();
+                        if(!$stmt){
+                            $statusMsg = "File upload failed, please try again.";
+                        } 
+                    }else{
+                        $statusMsg = "Sorry, there was an error uploading your file.";
+                    }
+                }else{
+                    $statusMsg = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.';
+                }
+            }
+        }
         if(isset($_POST['name']) and isset($_POST['price']) and isset($_POST['rrp']) and isset($_POST['quantity']) and isset($_POST['desc']) and isset($_POST['productid']) and isset($_POST['categorie']) and !empty($_POST['name']) and !empty($_POST['price']) and !empty($_POST['rrp']) and !empty($_POST['desc']) and !empty($_POST['productid']) and !empty($_POST['categorie'])) {
             $stmt = $pdo->prepare("UPDATE products SET name = ?, price = ?, rrp = ?, quantity = ?, `desc` = ?, visible = ?, product_type_id = ?, updated_at = now() WHERE products.id = ?");
             $stmt->bindValue(1, $_POST['name']);
@@ -83,6 +107,7 @@ if(isset($_POST['action'])) {
                         </select>
                     </div>
 
+                    <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                     <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                     <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
                     <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
@@ -114,7 +139,38 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(7, $_POST['categorie'], PDO::PARAM_INT);
             $stmt->execute();
 
-            error_log(pdo_debugStrParams($stmt));
+            $stmt = $pdo->prepare('SELECT * FROM products where name = ? and `desc` = ? order by id desc');
+            $stmt->bindValue(1, $_POST['name']);
+            $stmt->bindValue(2, $_POST['desc']);
+            $stmt->execute();
+            $productForImg = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (!empty($_FILES["file"]["name"][0])){
+                $fileCount = count($_FILES['file']['name']);
+                for($i = 0; $i < $fileCount; $i++){
+                    $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
+                    $targetFilePath = "product_img/" . $fileName;
+                    if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
+                        // Upload file to server
+                        if(move_uploaded_file($_FILES["file"]["tmp_name"][$i], $targetFilePath)){
+                            // Insert image file name into database
+                            $stmt = $pdo->prepare("INSERT into product_images (img, product_id) VALUES ( ? , ? )");
+                            $stmt->bindValue(1, $fileName);
+                            $stmt->bindValue(2, $productForImg[0]['id'], PDO::PARAM_INT);
+                            $stmt->execute();
+                            if(!$stmt){
+                                $statusMsg = "File upload failed, please try again.";
+                            } 
+                        }else{
+                            $statusMsg = "Sorry, there was an error uploading your file.";
+                        }
+                    }else{
+                        $statusMsg = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.';
+                    }
+                }
+            }
+
+            #error_log(pdo_debugStrParams($stmt));
             echo("<script>location.href='produc.php'</script>");
             #header("location: produc.php");
             exit;
@@ -159,7 +215,7 @@ if(isset($_POST['action'])) {
                             ?>
                         </select>
                     </div>
-
+                    <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                     <button type="submit" name="action" value="add" class="py-2 btn btn-outline-success">Speichern</button>
                     <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
                 </form>

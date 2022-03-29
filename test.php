@@ -40,7 +40,7 @@ echo $fileName;
 
 <form action="test.php" method="post" enctype="multipart/form-data">
     Select Image File to Upload:
-    <input type="file" name="file[]" multiple>
+    <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
     <input type="submit" name="submit" value="Upload">
 </form>
 
