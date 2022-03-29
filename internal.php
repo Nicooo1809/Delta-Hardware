@@ -53,9 +53,7 @@ if (!isset($user['id'])) {
 			<div class="card-body text-center">
 				<h1 class="card-title">Bestellungen</h1>
 				<div class="card-text">
-					<?php
-						# foreach
-					?>
+					<a href="orders.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellungen ansehen/bearbeiten</button></a>
 				</div>
 			</div>
 		</div>
