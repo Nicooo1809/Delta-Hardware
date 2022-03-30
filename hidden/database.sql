@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2022 at 12:05 PM
+-- Generation Time: Mar 30, 2022 at 02:34 PM
 -- Server version: 10.5.15-MariaDB-0+deb11u1
 -- PHP Version: 7.4.28
 
@@ -42,9 +42,10 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `kunden_id`, `ordered`, `ordered_date`, `sent`, `sent_date`) VALUES
 (1, 1, 0, NULL, 0, NULL),
-(4, 2, 0, NULL, 0, NULL),
+(4, 2, 1, '2022-03-30 14:04:09', 0, NULL),
 (6, 3, 0, NULL, 0, NULL),
-(7, 5, 0, NULL, 0, NULL);
+(7, 5, 0, NULL, 0, NULL),
+(20, 2, 0, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,7 @@ CREATE TABLE `permission_group` (
 INSERT INTO `permission_group` (`id`, `name`, `showUser`, `modifyUser`, `deleteUser`, `showUserPerms`, `modifyUserPerms`, `showProduct`, `createProduct`, `modifyProduct`, `showCategories`, `modifyCategories`, `deleteCategories`, `createCategories`, `showOrders`, `markOrders`) VALUES
 (1, 'default', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (2, 'admin', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-(3, 'employee', 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
+(3, 'employee', 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,7 @@ INSERT INTO `products` (`id`, `name`, `desc`, `product_type_id`, `price`, `rrp`,
 (7, 'Test', 'Test Description', 100000, '10.00', '0.00', 0, '2022-02-07 15:24:08', '2022-03-23 21:13:16', 1),
 (8, 'Classic Vintage Monitor', 'Best Device ever.', 106, '1099.99', '1099.99', 5, '2022-03-13 19:03:15', '2022-03-13 19:03:15', 1),
 (9, 'Test2', 'Test2 Description', 100000, '10.00', '0.00', 0, '2022-02-07 15:24:08', '2022-03-23 21:13:16', 1),
-(10, 'RTX 307023 TI', 'Ist der Hammer', 54, '1500.00', '900.00', 200, '2022-03-31 04:38:19', '2022-04-01 18:43:13', 1),
+(10, 'RTX 3090 TI', 'Ist der Hammer', 54, '3000.00', '1500.00', 200, '2022-03-31 04:38:19', '2022-03-30 11:53:03', 1),
 (11, 'Rick Astley\'s Mikrofon', 'This Mikrofon never gonna gives you up', 252, '69420.00', '69421.00', 24, '2022-03-23 07:57:08', '2022-03-23 07:57:08', 1);
 
 -- --------------------------------------------------------
@@ -236,10 +237,12 @@ INSERT INTO `product_list` (`id`, `list_id`, `product_id`, `quantity`) VALUES
 (46, 1, 5, 6),
 (47, 4, 2, 3),
 (50, 6, 2, 199),
-(55, 6, 3, 2),
 (56, 6, 4, 2),
 (57, 1, 8, 5),
-(58, 6, 11, 1);
+(58, 6, 11, 1),
+(67, 6, 1, 1),
+(69, 4, 3, 1),
+(72, 4, 10, 5);
 
 -- --------------------------------------------------------
 
@@ -255,6 +258,13 @@ CREATE TABLE `securitytokens` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `securitytokens`
+--
+
+INSERT INTO `securitytokens` (`id`, `user_id`, `identifier`, `securitytoken`, `created_at`) VALUES
+(1, 2, '57ffdb9d05d4ba6ffff84e3de7404eaa', '67973b2bf76e24f5d8626afe63c2119be15f8a51', '2022-03-30 13:19:17');
+
 -- --------------------------------------------------------
 
 --
@@ -265,7 +275,6 @@ CREATE TABLE `users` (
   `id` int(10) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `passwort` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `gender` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `vorname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `nachname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `streetHouseNr` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -281,11 +290,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `passwort`, `gender`, `vorname`, `nachname`, `streetHouseNr`, `city`, `created_at`, `updated_at`, `passwortcode`, `passwortcode_time`, `permission_group`) VALUES
-(1, 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', '', 'Vorname', 'Nachname', '', '', '2022-02-04 07:57:26', '2022-03-12 22:23:31', NULL, NULL, 1),
-(2, 'ich@paul-vassen.de', '$2y$10$AjGihIboyCYY/gnDq7J08.spp4N6Du.wog2anlhRsFALSZj9DPrPq', '', 'Paul', 'Vaßen', '', '', '2022-02-04 15:34:37', '2022-03-21 11:08:26', NULL, NULL, 2),
-(3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', '', 'Jan', 'Schniebs', '', '', '2022-02-23 07:14:00', '2022-03-21 11:06:26', NULL, NULL, 2),
-(5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', '', 'Gerhard', 'Einkaufstüte', '', '', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 1);
+INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `streetHouseNr`, `city`, `created_at`, `updated_at`, `passwortcode`, `passwortcode_time`, `permission_group`) VALUES
+(1, 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'Vorname', 'Nachname', 'Teststraße 1', '123456 Stadt', '2022-02-04 07:57:26', '2022-03-30 09:45:09', NULL, NULL, 1),
+(2, 'ich@paul-vassen.de', '$2y$10$AjGihIboyCYY/gnDq7J08.spp4N6Du.wog2anlhRsFALSZj9DPrPq', 'Paul', 'Vaßen', 'Talstraße 106', '70188 Stuttgart', '2022-02-04 15:34:37', '2022-03-30 09:45:13', NULL, NULL, 2),
+(3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', 'Jan', 'Schniebs', '', '', '2022-02-23 07:14:00', '2022-03-21 11:06:26', NULL, NULL, 2),
+(5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', 'Gerhard', 'Einkaufstüte', '', '', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -354,7 +363,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `permission_group`
@@ -384,13 +393,13 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `securitytokens`
 --
 ALTER TABLE `securitytokens`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
