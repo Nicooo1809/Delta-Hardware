@@ -82,7 +82,7 @@ foreach ($products as $product) {
                 } else {?>
                 <form action="order.php" method="post" class="row me-2">
                     <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Kostenpflichtig bestellen</button>
-                    <button type="submit" name="confirm" value="no" class="btn btn-outline-primary">Abbrechen</button>
+                    <a href="cart.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
                 </form>
                 <?php } ?>
                 <div class="table-responsive">
@@ -144,7 +144,7 @@ foreach ($products as $product) {
                     <p>Sie sind im Begriff folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> kostenpflichtig zu bestellen. Sind Sie Sicher?</p>
                     <form action="order.php" method="post" class="row me-2">
                         <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Kostenpflichtig bestellen</button>
-                        <button type="submit" name="confirm" value="no" class="btn btn-outline-primary">Abbrechen</button>
+                        <a href="cart.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
                     </form>
                     </div>
                 </div>

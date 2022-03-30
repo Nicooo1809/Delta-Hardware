@@ -3,7 +3,7 @@ require_once("php/functions.php");
 $user = require_once("templates/header.php");
 
 print_r($_POST);
-
+error('Permission denied!');
 $allowTypes = array('jpg','png','jpeg','gif');
 if(isset($_POST["submit"])){
     if(!empty($_FILES["file"]["name"][0])){

@@ -76,14 +76,15 @@ if(isset($_POST['action'])) {
                                                     <select class="form-select" id="newparentcategorie" name="newparentcategorie">
                                                         <?php foreach ($cats as $cat) {
                                                             print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
-                                                        }    #EDIT
+                                                        }
                                                         ?>
                                                     </select>
-                                                <?php } ?>
-                                                <input type="number" value="<?=$_POST['categoriesid']?>" name="categoriesid" style="display: none;" required>
+                                                <?php } else {
+                                                    print('<input type="number" value="0" name="newparentcategorie" style="display: none;" required>');
+                                                } ?>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="no">Nein</button>
+                                                <a href="categories.php"><button class="btn btn-outline-primary mx-2" type="button">Nein</button></a>
                                             </form>
                                         </p>
                                     </div>

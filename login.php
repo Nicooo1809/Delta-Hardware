@@ -26,16 +26,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 			#error_log(pdo_debugStrParams($insert));
 		}
-		#print($_SERVER['HTTP_REFERER']);
-		/*
-		if( strpos( $_SERVER['HTTP_REFERER'], "login" ) !== false) {
-			header("Location: internal.php");
-			#print("Location: internal.php");
-		} else {
-			header("Location: " . $_SERVER['HTTP_REFERER']);
-			#print("Location: " . $_SERVER['HTTP_REFERER']);
-		}
-		*/
+
 		echo("<script>location.href='internal.php'</script>");
 		#header("Location: internal.php");
 		exit;
