@@ -63,6 +63,23 @@ if(isset($_GET['save'])) {
 				
 			$success_msg = "Passwort erfolgreich gespeichert.";
 		}
+	} else if($save == 'address') {
+		$street = $_POST['strasse'];
+		$city = $_POST['stadt'];
+		
+		if($street == "" || $city == "") {
+			$error_msg = "Bitte Addresse eintragen.";
+		} else {
+			$statement = $pdo->prepare("UPDATE users SET streetHouseNr = ?, city = ?, updated_at=NOW() WHERE id = ?");
+			$stmt->bindValue(1, $street);
+			$stmt->bindValue(2, $city);
+			$stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
+			$result = $statement->execute();
+			$user['streetHouseNr'] = $street;
+			$user['city'] = $city;
+
+			$success_msg = "Daten erfolgreich gespeichert.";
+		}
 	}
 }
 ?>
@@ -94,10 +111,20 @@ if(isset($_GET['save'])) {
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
 						</div>
-						<!-- ToBeAdded Adresse/n -->
+						<!-- Adresse -->
 						<div class="col-6">
 							<h3 class="ctext my-0">Adresse</h3>
-							<span class="ctext text-center">To be added</span>
+							<form action="?save=address" method="post">
+								<div class="form-floating mb-2">
+									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputStrasse" placeholder="Straße und Hausnummer" name="strasse" type="text" value="<?=$user['streetHouseNr']?>" required>
+									<label class="text-dark fw-bold" for="inputStrasse">Straße und Hausnummer</label>
+								</div>
+								<div class="form-floating my-2">
+									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputStadt" placeholder="Stadt" name="stadt" type="text" value="<?=$user['city']?>" required>
+									<label class="text-dark fw-bold" for="inputStadt">Stadt mit Postleitzahl</label>
+								</div>
+								<button class="btn btn-outline-primary" type="submit">Speichern</button>
+							</form>
 						</div>
 					</div>
 				</div>
