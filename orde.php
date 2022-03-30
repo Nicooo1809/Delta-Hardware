@@ -5,6 +5,9 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+if ($user['showOrders'] != 1) {
+    error('Permission denied!');
+}
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and product_list.list_id = ?');
 $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
 $stmt->execute();
@@ -13,6 +16,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_POST['confirm'])) {
     if($_POST['confirm'] == 'yes') {
+		if ($user['markOrders'] != 1) {
+			error('Permission denied!');
+		}
         $stmt = $pdo->prepare('UPDATE orders SET sent = 1, sent_date = now() WHERE id = ? and ordered = 1');
         $stmt->bindValue(1, $_POST['id'], PDO::PARAM_INT);
         $stmt->execute();
@@ -42,7 +48,7 @@ foreach ($products as $product) {
         <div class="row">
             <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Bestellen bearbeiten</h1>
-                <p>Bitte packe folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden ein und versehen das Packet mit folgendem Addressaufkleber:</p>
+                <p>Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
 				<p><?=$customer[0]['gender'].' '.$customer[0]['vorname'].' '.$customer[0]['nachname']?></p></br>
 				<p><?=$customer[0]['streetHouseNr']?></p></br>
 				<p><?=$customer[0]['city']?></p>
