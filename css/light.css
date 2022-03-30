@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+* {
+    color: #212529;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: "Montserrat", sans-serif;
+}
+
+html, body {
+    /*background-color: rgb(66, 66, 66); */
+    background-color: #ffffff !important;
+    height: 100%;
+	margin: 0;
+}
+
+li, a, button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
+    font-size: 18px !important;
+    color: #212529;
+    text-decoration: none !important;
+}
+
+span, div, i {
+    color: #212529;
+}
+
+hr {
+    border: 0 !important;
+    border-top: 1px solid #ffffff !important;
+    width: 90% !important;
+    margin: auto !important;
+    opacity: .25 !important;
+}
+
+.cbg {
+    background-color: #dee2e6 !important;
+}
+
+.ctext {
+    color: #212529 !important;
+}
+
+.dropdown-menu {
+    background-color: #dee2e6 !important;
+}
+
+.dropdown-item {
+    font-size: 1.3rem;
+    color: #212529 !important;
+}
+
+.dropdown-item:hover {
+    background-color: #b8babd !important;
+}
+
+.navbar-icon {
+    filter: invert(100%);
+    height: 50px;
+    width: 50px;
+    display: block;
+}
+
+.fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
+    font-size: 1.5rem;
+    color: #212529;
+    transition: all 0.5s ease;
+}
+
+.fof-img {
+    background-image: url("/media/404_light.gif");
+    height: 70%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.cvr {
+    border-left: 2px solid #212529;
+    height: 100%;
+}
+
+.cvl {
+    border-right: 2px solid #212529;
+    height: 100%;
+}

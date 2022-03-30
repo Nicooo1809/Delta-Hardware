@@ -1,9 +1,6 @@
 name: push to delta-hw dev
 on:  
   workflow_dispatch:
-  push:
-    branches:
-      - dev
 jobs:
   repo-sync:
     runs-on: ubuntu-latest

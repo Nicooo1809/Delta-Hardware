@@ -66,8 +66,12 @@ if(isset($_GET['register'])) {
 	if(!$error) {	
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 		
-		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
-		$result = $stmt->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
+		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (?, ?, ?, ?)");
+		$stmt->bindValue(1, $email);
+		$stmt->bindValue(2, $passwort_hash);
+		$stmt->bindValue(3, $vorname);
+		$stmt->bindValue(4, $nachname);
+		$result = $stmt->execute();
 		if ($result) {
 			$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES ((select id from users where email = ?), '0', '0')");
 			$stmt->bindValue(1, $email);
@@ -79,15 +83,16 @@ if(isset($_GET['register'])) {
 			?>
 			<div class="container minheight100">
 				<div class="row">
-					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
+					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded cbg">
 						<h1 class="text-success">REGISTRIERUNG ERFOLGREICH<i class="fa-solid fa-check"></i></h1>
-						<p class="text-white">
-						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login">hier</a>.
+						<p class="ctext">
+						Du wirst automatisch in 5 Sekunden zum Login geleitet, solltest du nicht weitergeleitet werden klicke <a href="login.php">hier</a>.
+						
 						</p>
 					</div>
 				</div>
 			</div>
-
+			<meta http-equiv="refresh" content="5;url=login.php">
 			
 
 		<?php
@@ -96,11 +101,11 @@ if(isset($_GET['register'])) {
 			?>
 			<div class="container minheight100">
 				<div class="row">
-					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded bg-dark">
+					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded cbg">
 						<h1 class="text-danger">Oops, das hat nicht geklappt!<br><i class="fa-solid fa-x"></i></h1>
-						<p class="text-white">
+						<p class="ctext">
 						Beim Abspeichern ist leider ein Fehler aufgetreten, bitte versuche es später erneut.
-						Du wirst automatisch in 5 Sekunden zurückgeleitet, solltest du nicht weitergeleitet werden klicke <a href="register">hier</a>.
+						Du wirst automatisch in 5 Sekunden zurückgeleitet, solltest du nicht weitergeleitet werden klicke <a href="register.php">hier</a>.
 						</p>
 					</div>
 				</div>
@@ -120,52 +125,51 @@ if($showFormular) {
 
 <div class="container-fluid minheight100">
 	<div class="row no-gutter">
-		<div class="bg-custom-dark">
+		<div class="ctext">
 			<div class="register-register d-flex align-items-center py-5">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-10 col-xl-7 mx-auto">
+						<div class="col-lg-10 col-xl-7 mx-auto cbg rounded">
 
 
-							<h3 class="display-4 text-white">Registrierung</h3>
+							<h3 class="display-4 ctext">Registrierung</h3>
 
 							<?php 
 							if(isset($error_msg) && !empty($error_msg)) {
 								echo $error_msg;
 							}
 							?>
-							<p class="text-white mb-4">Herzlich Willkommen!</p>
+							<p class="ctext mb-4">Herzlich Willkommen!</p>
 
 							<form action="?register=1" method="post">
-
-								<div class="form-group mb-3">
-									<label for="inputVorname" class="custom-control-label text-white">Vorname:</label>
-									<input placeholder="Max" type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								<div class="form-floating mb-3">
+									<input placeholder="Max" type="text" value="<?=$_POST["vorname"]?>" id="inputVorname" size="40" maxlength="250" name="vorname" class="form-control border-0 px-4 text-dark fw-bold" required>
+									<label for="inputVorname" class="text-dark fw-bold">Vorname</label>
 								</div>
-								<div class="form-group mb-3">
-									<label for="inputNachname" class="custom-control-label text-white">Nachname:</label>
-									<input placeholder="Mustermann" type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								<div class="form-floating mb-3">
+									<input placeholder="Mustermann" type="text" value="<?=$_POST["nachname"]?>" id="inputNachname" size="40" maxlength="250" name="nachname" class="form-control border-0 px-4 text-dark fw-bold" required>
+									<label for="inputNachname" class="text-dark fw-bold">Nachname</label>
 								</div>
-								<div class="form-group mb-3">
-									<label for="inputEmail" class="custom-control-label text-white">E-Mail:</label>
-									<input placeholder="max@mustermann.de" type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								<div class="form-floating mb-3">
+									<input placeholder="max@mustermann.de" type="email" value="<?=$_POST["email"]?>" id="inputEmail" size="40" maxlength="250" name="email" class="form-control border-0 px-4 text-dark fw-bold" required>
+									<label for="inputEmail" class="text-dark fw-bold">E-Mail</label>
 								</div>
-								<div class="form-group mb-3">
-									<label for="inputPasswort" class="custom-control-label text-white">Dein Passwort:</label>
-									<input placeholder="Passwort" type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								<div class="form-floating mb-3">
+									<input placeholder="Passwort" type="password" value="<?=$_POST["passwort"]?>" id="inputPasswort" size="40"  maxlength="250" name="passwort" class="form-control border-0 px-4 text-dark fw-bold" required>
+									<label for="inputPasswort" class="text-dark fw-bold">Dein Passwort</label>
 								</div>
-								<div class="form-group mb-3">
-									<label for="inputPasswort2" class="custom-control-label text-white">Passwort wiederholen:</label>
-									<input placeholder="Passwort wiederholen" type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" class="form-control border-0 shadow-sm px-4 text-dark fw-bold" required>
+								<div class="form-floating mb-3">
+									<input placeholder="Passwort wiederholen" type="password" id="inputPasswort2" size="40" maxlength="250" name="passwort2" class="form-control border-0 px-4 text-dark fw-bold" required>
+									<label for="inputPasswort2" class="text-dark fw-bold">Passwort wiederholen</label>
 								</div>
 
 								<div class="custom-control custom-checkbox mb-3">
 									<input type="checkbox" id="customCheck1" name="dsgvo" value="gelesen" class="custom-control-input" required> 
-									<label for="customCheck1" class="custom-control-label text-white">Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.</label>
+									<label for="customCheck1" class="custom-control-label ctext">Ich habe die <a href="dsgvo.php">Datenschutzerklärung</a> gelesen und akzeptiere diese.</label>
 								</div>
 								<div class="custom-control custom-checkbox mb-3">
 									<input type="checkbox" id="customCheck2" name="agb" value="gelesen" class="custom-control-input" required> 
-									<label for="customCheck2" class="custom-control-label text-white"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.</label>		
+									<label for="customCheck2" class="custom-control-label ctext"> Ich habe die <a href="agb.php">AGBs</a> gelesen und akzeptiere diese.</label>		
 								</div>
 								<button type="submit" class="btn btn-outline-primary btn-block text-uppercase mb-2 shadow-sm">Registrieren</button>
 							</form>

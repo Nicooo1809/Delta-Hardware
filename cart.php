@@ -1,7 +1,10 @@
 <?php
 require_once("php/functions.php");
-$user = check_user();
-
+$user = require_once("templates/header.php");
+if (!isset($user['id'])) {
+    require_once("login.php");
+    exit;
+}
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'add') {
         if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
@@ -27,7 +30,8 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
                 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
                 $stmt->execute();
-                header("location: cart.php");
+                echo("<script>location.href='cart.php'</script>");
+                #header("location: cart.php");
                 exit;
             } else {
                 $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
@@ -48,7 +52,8 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(2, $_POST['productid']);
                 $stmt->bindValue(3, $quantity, PDO::PARAM_INT);
                 $stmt->execute();
-                header("location: cart.php");
+                echo("<script>location.href='cart.php'</script>");
+                #header("location: cart.php");
                 exit;
             }
             
@@ -66,11 +71,13 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
                     $stmt->execute();
-                    header('Location: cart.php');
+                    echo("<script>location.href='cart.php'</script>");
+                    #header('Location: cart.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
-                    header('Location: cart.php');
+                    echo("<script>location.href='cart.php'</script>");
+                    #header('Location: cart.php');
                     exit;
                 }
             } else {
@@ -79,7 +86,7 @@ if(isset($_POST['action'])) {
                     <div class="container-fluid">
                         <div class="row no-gutter">
                             <div class="minheight100 col py-4 px-3">
-                                <div class="card bg-dark text-center mx-auto" style="width: 75%;">
+                                <div class="card cbg text-center mx-auto" style="width: 75%;">
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <p class="text-center">
@@ -123,7 +130,8 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $_POST['listid'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $stmt->execute();
-            header('Location: cart.php');
+            echo("<script>location.href='cart.php'</script>");
+            #header('Location: cart.php');
             exit;
         } else {
             error('Some informations are missing!');
@@ -144,7 +152,6 @@ $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);
 #$stmt->debugDumpParams();
-require_once("templates/header.php");
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
@@ -153,22 +160,22 @@ foreach ($products as $product) {
 <?php if (!isMobile()): ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row">
-            <div class="py-3 px-3 bg-dark rounded">
+            <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Warenkorb</h1>
                 <p><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <div class="bg-black rounded">
+                                <div class="ctext rounded">
                                     <th scope="col" class="border-0">
-                                        <div class="p-2 px-3 text-uppercase">Produkt</div>
+                                        <div class="p-2 px-3 text-uppercase ctext">Produkt</div>
                                     </th>
                                     <th scope="col" class="border-0 text-center">
-                                        <div class="p-2 px-3 text-uppercase">Preis</div>
+                                        <div class="p-2 px-3 text-uppercase ctext">Preis</div>
                                     </th>
                                     <th scope="col" class="border-0 text-center">
-                                        <div class="p-2 px-3 text-uppercase">Menge</div>
+                                        <div class="p-2 px-3 text-uppercase ctext">Menge</div>
                                     </th>
                                     <th scope="col" class="border-0">
                                         <div class="p-2 px-3 text-uppercase"></div>
@@ -188,15 +195,15 @@ foreach ($products as $product) {
                                             }?>
                                             <div class="ms-3 d-inline-block align-middle">
                                                 <h5 class="mb-0"> 
-                                                    <a href="product.php?id=<?=$product['product_id']?>" class="text-white d-inline-block align-middle"><?=$product['name']?></a>
+                                                    <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle"><?=$product['name']?></a>
                                                 </h5>
                                             </div>
                                         </div>
                                     </th>
-                                    <td class="border-0 align-middle text-center">
+                                    <td class="border-0 align-middle text-center ctext">
                                         <span><?=$product['price']?>&euro;</span>
                                     </td>
-                                    <td class="border-0 align-middle text-center">
+                                    <td class="border-0 align-middle text-center ctext">
                                         <span><?=$product['quantity']?></span>
                                     </td>
                                     <td class="border-0 align-middle actions">
@@ -219,6 +226,10 @@ foreach ($products as $product) {
                     </table>
                 </div>         
                 <strong>Summe: <?=$summprice?>&euro;</strong>
+                <?php
+                if ($total_products > 0) {
+                    print('<a href="order.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
+                } ?>
             </div>
         </div>
     </div> 
@@ -226,7 +237,7 @@ foreach ($products as $product) {
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row row-cols-1 row-cols-md-1 g-3">
             <div class="col">
-                <div class="card mx-auto bg-dark">
+                <div class="card mx-auto cbg">
                     <div class="card-body">
                         <h2 class="card-title name">Warenkorb</h2>
                         <p class="card-text"><?php print($total_products); ?> Produkt<?php if ($total_products > 1) { print('e'); } ?> im Warenkorb</p>
@@ -235,7 +246,7 @@ foreach ($products as $product) {
             </div>
             <?php foreach ($products as $product): ?>
                 <div class="col">
-                    <div class="card mx-auto bg-dark">
+                    <div class="card mx-auto cbg">
                         <div class="card-body">
                             <?php if (empty($product['image'])) {
                                 print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
@@ -264,10 +275,14 @@ foreach ($products as $product) {
                 </div>
             <?php endforeach; ?>
             <div class="col">
-                <div class="card mx-auto bg-dark">
+                <div class="card mx-auto cbg">
                     <div class="card-body">
                         <h2 class="card-title name">Summe:</h2>
                         <strong class="card-text"><?=$summprice?>&euro;</strong>
+                        <?php
+                        if ($total_products > 0) {
+                            print('<a href="order.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
+                        } ?>
                     </div>
                 </div>
             </div>

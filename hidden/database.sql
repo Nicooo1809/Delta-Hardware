@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 10, 2022 at 12:25 PM
--- Server version: 10.5.12-MariaDB-0+deb11u1
+-- Generation Time: Mar 30, 2022 at 02:34 PM
+-- Server version: 10.5.15-MariaDB-0+deb11u1
 -- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -42,9 +42,10 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `kunden_id`, `ordered`, `ordered_date`, `sent`, `sent_date`) VALUES
 (1, 1, 0, NULL, 0, NULL),
-(4, 2, 0, NULL, 0, NULL),
+(4, 2, 1, '2022-03-30 14:04:09', 0, NULL),
 (6, 3, 0, NULL, 0, NULL),
-(7, 5, 0, NULL, 0, NULL);
+(7, 5, 0, NULL, 0, NULL),
+(20, 2, 0, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -58,18 +59,27 @@ CREATE TABLE `permission_group` (
   `showUser` tinyint(1) NOT NULL DEFAULT 0,
   `modifyUser` tinyint(1) NOT NULL DEFAULT 0,
   `deleteUser` tinyint(1) NOT NULL DEFAULT 0,
+  `showUserPerms` tinyint(1) NOT NULL DEFAULT 0,
+  `modifyUserPerms` tinyint(1) NOT NULL DEFAULT 0,
+  `showProduct` tinyint(1) NOT NULL DEFAULT 0,
   `createProduct` tinyint(1) NOT NULL DEFAULT 0,
-  `modifyProduct` tinyint(1) NOT NULL DEFAULT 0
+  `modifyProduct` tinyint(1) NOT NULL DEFAULT 0,
+  `showCategories` tinyint(1) NOT NULL DEFAULT 0,
+  `modifyCategories` tinyint(1) NOT NULL DEFAULT 0,
+  `deleteCategories` tinyint(1) NOT NULL DEFAULT 0,
+  `createCategories` tinyint(1) NOT NULL DEFAULT 0,
+  `showOrders` tinyint(1) NOT NULL DEFAULT 0,
+  `markOrders` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `permission_group`
 --
 
-INSERT INTO `permission_group` (`id`, `name`, `showUser`, `modifyUser`, `deleteUser`, `createProduct`, `modifyProduct`) VALUES
-(1, 'default', 0, 0, 0, 0, 0),
-(2, 'admin', 1, 1, 1, 1, 1),
-(3, 'employee', 1, 0, 0, 1, 1);
+INSERT INTO `permission_group` (`id`, `name`, `showUser`, `modifyUser`, `deleteUser`, `showUserPerms`, `modifyUserPerms`, `showProduct`, `createProduct`, `modifyProduct`, `showCategories`, `modifyCategories`, `deleteCategories`, `createCategories`, `showOrders`, `markOrders`) VALUES
+(1, 'default', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 'admin', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(3, 'employee', 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -95,13 +105,17 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `desc`, `product_type_id`, `price`, `rrp`, `quantity`, `created_at`, `updated_at`, `visible`) VALUES
-(1, 'Test', 'Test Description', 1, '10.00', '0.00', 20, '2022-02-07 15:24:08', '2022-03-08 18:32:41', 0),
-(2, 'RTX 3080 TI', 'Ist der Hammer und nicht überteuert', 2, '1500.00', '900.00', 200, '2022-02-10 05:38:03', '2022-03-08 18:31:58', 1),
-(3, 'RTX 3070 TI', 'Ist der Hammer', 2, '1500.00', '900.00', 200, '2022-02-10 05:38:19', '2022-03-08 18:32:03', 1),
-(4, 'RTX 3070', 'Ist der Hammer', 2, '1500.00', '900.00', 19, '2022-02-10 05:38:39', '2022-03-08 18:32:07', 1),
-(5, 'Uhr', 'Ist der Hammer', 1, '120.00', '140.00', 6, '2022-02-10 05:39:19', '2022-03-08 18:32:11', 1),
-(6, 'RTX 3060', 'Ist der Hammer und nicht überteuert', 2, '1500.00', '900.00', 5, '2022-03-06 05:38:03', '2022-03-08 18:32:14', 1),
-(7, 'Test', 'Test Description', 1, '10.00', '0.00', 0, '2022-02-07 15:24:08', '2022-03-08 19:21:02', 1);
+(1, 'Test', 'Test Description', 100000, '10.00', '0.00', 20, '2022-02-07 15:24:08', '2022-03-23 21:13:16', 0),
+(2, 'RTX 3080 TI', 'Ist der Hammer und nicht überteuert', 54, '1500.00', '900.00', 200, '2022-02-10 05:38:03', '2022-03-12 19:42:41', 1),
+(3, 'RTX 3070 TI', 'Ist der Hammer', 54, '1500.00', '900.00', 200, '2022-02-10 05:38:19', '2022-03-12 19:43:13', 1),
+(4, 'RTX 3070', 'Ist der Hammer', 54, '1500.00', '900.00', 19, '2022-02-10 05:38:39', '2022-03-12 19:43:13', 1),
+(5, 'Uhr', 'Ist der Hammer', 100000, '120.00', '140.00', 6, '2022-02-10 05:39:19', '2022-03-23 21:13:16', 1),
+(6, 'RTX 3060', 'Ist der Hammer und nicht überteuert', 54, '1500.00', '900.00', 5, '2022-03-06 05:38:03', '2022-03-12 19:43:13', 1),
+(7, 'Test', 'Test Description', 100000, '10.00', '0.00', 0, '2022-02-07 15:24:08', '2022-03-23 21:13:16', 1),
+(8, 'Classic Vintage Monitor', 'Best Device ever.', 106, '1099.99', '1099.99', 5, '2022-03-13 19:03:15', '2022-03-13 19:03:15', 1),
+(9, 'Test2', 'Test2 Description', 100000, '10.00', '0.00', 0, '2022-02-07 15:24:08', '2022-03-23 21:13:16', 1),
+(10, 'RTX 3090 TI', 'Ist der Hammer', 54, '3000.00', '1500.00', 200, '2022-03-31 04:38:19', '2022-03-30 11:53:03', 1),
+(11, 'Rick Astley\'s Mikrofon', 'This Mikrofon never gonna gives you up', 252, '69420.00', '69421.00', 24, '2022-03-23 07:57:08', '2022-03-23 07:57:08', 1);
 
 -- --------------------------------------------------------
 
@@ -111,8 +125,8 @@ INSERT INTO `products` (`id`, `name`, `desc`, `product_type_id`, `price`, `rrp`,
 
 CREATE TABLE `products_types` (
   `id` int(10) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
   `type` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -121,9 +135,52 @@ CREATE TABLE `products_types` (
 -- Dumping data for table `products_types`
 --
 
-INSERT INTO `products_types` (`id`, `type`, `img`, `created_at`, `updated_at`) VALUES
-(1, 'Test', '', '2022-02-07 15:22:54', '2022-02-07 15:22:54'),
-(2, 'Grafikkarte', '', '2022-02-10 05:36:35', '2022-02-10 05:36:35');
+INSERT INTO `products_types` (`id`, `parent_id`, `type`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Hardware', '2022-02-07 15:22:54', '2022-03-12 19:32:20'),
+(2, 0, 'Monitore', '2022-03-12 19:39:16', '2022-03-12 19:40:58'),
+(3, 0, 'Peripherie', '2022-03-12 19:49:04', '2022-03-12 19:49:04'),
+(4, 0, 'Netzwerktechnik', '2022-03-12 19:53:02', '2022-03-12 19:53:02'),
+(5, 0, 'Audio', '2022-03-12 19:56:55', '2022-03-12 19:56:55'),
+(50, 1, 'Arbeitsspeicher', '2022-03-11 11:34:41', '2022-03-12 19:39:38'),
+(51, 1, 'CPUs', '2022-03-11 11:34:57', '2022-03-12 19:39:43'),
+(52, 1, 'CPU Kühler', '2022-03-11 11:43:53', '2022-03-12 19:39:48'),
+(53, 1, 'Festplatten & SSDs', '2022-03-11 11:43:53', '2022-03-12 19:39:54'),
+(54, 1, 'Grafikkarten', '2022-02-10 05:36:35', '2022-03-12 19:39:59'),
+(55, 1, 'Laufwerke', '2022-03-11 11:43:53', '2022-03-12 19:41:10'),
+(56, 1, 'Mainboards', '2022-03-11 11:43:53', '2022-03-12 19:41:17'),
+(57, 1, 'Netzteile', '2022-03-11 11:43:53', '2022-03-12 19:41:24'),
+(58, 1, 'Gehäuse', '2022-03-11 11:43:53', '2022-03-12 19:41:45'),
+(59, 1, 'Kühlung', '2022-03-11 11:43:53', '2022-03-12 19:41:54'),
+(60, 1, 'Serverschrank', '2022-03-11 11:43:53', '2022-03-12 19:42:10'),
+(100, 2, '24 Zoll', '2022-03-11 11:43:53', '2022-03-12 19:44:03'),
+(101, 2, '27 Zoll', '2022-03-11 11:43:53', '2022-03-12 19:49:50'),
+(102, 2, '32 Zoll', '2022-03-11 11:43:53', '2022-03-12 19:49:57'),
+(103, 2, '34 Zoll', '2022-03-11 11:43:53', '2022-03-12 19:49:57'),
+(104, 2, '49 Zoll', '2022-03-11 11:43:53', '2022-03-12 19:49:57'),
+(105, 2, 'Monitorzubehör', '2022-03-11 11:43:53', '2022-03-13 18:59:58'),
+(106, 2, 'High-End', '2022-03-13 19:00:09', '2022-03-13 19:00:09'),
+(150, 3, 'Office-Mäuse', '2022-03-11 11:43:53', '2022-03-12 19:52:34'),
+(151, 3, 'Gaming-Mäuse', '2022-03-11 11:43:53', '2022-03-12 19:52:26'),
+(152, 3, 'Mauspads', '2022-03-11 11:43:53', '2022-03-12 19:51:34'),
+(153, 3, 'Office-Tastaturen', '2022-03-11 11:43:53', '2022-03-12 19:51:46'),
+(154, 3, 'Gaming-Tastaturen', '2022-03-11 11:43:53', '2022-03-12 19:51:53'),
+(155, 3, 'Joystick', '2022-03-11 11:43:53', '2022-03-12 19:52:03'),
+(156, 3, 'Lenkräder', '2022-03-11 11:43:53', '2022-03-12 19:52:12'),
+(157, 3, 'Controller', '2022-03-11 11:43:53', '2022-03-12 19:52:47'),
+(158, 3, 'USB-Hubs', '2022-03-11 11:43:53', '2022-03-12 19:55:37'),
+(200, 4, 'Access-Points', '2022-03-11 11:43:53', '2022-03-12 19:53:20'),
+(201, 4, 'Bluetooth Adapter', '2022-03-11 11:43:53', '2022-03-12 19:53:29'),
+(202, 4, 'Netzwerkswitches', '2022-03-11 11:43:53', '2022-03-12 19:53:47'),
+(203, 4, 'Router', '2022-03-11 11:43:53', '2022-03-12 19:54:01'),
+(204, 4, 'WLAN Repeater', '2022-03-11 11:43:53', '2022-03-12 19:54:12'),
+(250, 5, 'Headsets', '2022-03-11 11:43:53', '2022-03-12 19:55:49'),
+(251, 5, 'Kopfhörer', '2022-03-11 11:43:53', '2022-03-12 19:55:59'),
+(252, 5, 'Mikrofone', '2022-03-11 11:43:53', '2022-03-12 19:56:06'),
+(253, 5, 'Lautsprecher', '2022-03-11 11:43:53', '2022-03-12 19:56:15'),
+(254, 5, 'Soundbar', '2022-03-11 11:43:53', '2022-03-12 19:56:24'),
+(255, 5, 'Soundkarten', '2022-03-11 11:43:53', '2022-03-12 19:56:29'),
+(99998, 0, 'To be Removed', '2022-03-12 20:49:43', '2022-03-12 20:50:11'),
+(100000, 99998, 'test', '2022-03-23 20:03:10', '2022-03-23 21:13:39');
 
 -- --------------------------------------------------------
 
@@ -149,7 +206,12 @@ INSERT INTO `product_images` (`id`, `img`, `product_id`) VALUES
 (5, 'RTX3080_TI.jpg', 6),
 (6, 'RTX3070.jpg', 4),
 (7, 'RTX3070.jpg', 4),
-(8, 'test.jpg', 7);
+(8, 'test.jpg', 7),
+(9, 'High-end-monitor.jpg', 8),
+(10, 'CapOwhpQaQn8MquiO5nNNe.webp', 8),
+(11, 'test.jpg', 9),
+(12, 'RTX3070_TI.jpg', 10),
+(13, 'CapOwhpQaQn8MquiO5nNNe.webp', 11);
 
 -- --------------------------------------------------------
 
@@ -173,12 +235,14 @@ INSERT INTO `product_list` (`id`, `list_id`, `product_id`, `quantity`) VALUES
 (2, 1, 2, 200),
 (40, 1, 3, 100),
 (46, 1, 5, 6),
-(47, 4, 2, 1),
-(48, 6, 3, 200),
-(50, 6, 2, 200),
-(51, 6, 4, 19),
-(52, 6, 5, 6),
-(53, 6, 6, 5);
+(47, 4, 2, 3),
+(50, 6, 2, 199),
+(56, 6, 4, 2),
+(57, 1, 8, 5),
+(58, 6, 11, 1),
+(67, 6, 1, 1),
+(69, 4, 3, 1),
+(72, 4, 10, 5);
 
 -- --------------------------------------------------------
 
@@ -199,26 +263,7 @@ CREATE TABLE `securitytokens` (
 --
 
 INSERT INTO `securitytokens` (`id`, `user_id`, `identifier`, `securitytoken`, `created_at`) VALUES
-(5, 3, 'cabdab583aa4be27614eba1ea75329a2', 'df21c3e0cb55927075d1ab68f1f83db310fa6ab4', '2022-03-09 08:09:23'),
-(6, 1, '04fef56f661f51f6ce00398b6cb8f085', 'e80a28ff6d8123c71ee97a21bcc25ab2b0aeecb2', '2022-03-09 08:09:46'),
-(7, 1, '172d003be4f62a4ec0d42eedede7c865', 'f254fae7749d182b43178ed674e3ff6c203e3710', '2022-03-09 08:10:11'),
-(8, 1, '09a631c1ac41e600a5dec89f913633db', '06801b5b4970a7faa017a019f82e97f1f7f21002', '2022-03-09 09:35:40'),
-(9, 3, 'de2e79e9c828fd854988ca3285a243b2', '8d3b07c5bac26a26e5cbf4454b2069bd749b643d', '2022-03-09 10:05:04'),
-(10, 17, '0ed0dae9ef2190d5b60f71b165745f09', 'b40e28d639410ed1a42ea226d1369067ba200c21', '2022-03-09 11:58:17'),
-(13, 3, 'bc8d2f5bc72a32e357f020ff0acf5ac8', '8323a7394669355181464ce8dc2ebadfcc168b07', '2022-03-09 12:06:34'),
-(15, 1, '69767b877f28ffa0cde719133b157d43', 'd1e25147466b90b9954d726cd3da1d0110575fac', '2022-03-09 14:18:19'),
-(16, 3, '4346f307eee5a5b63672ef37d52c5030', '1945fe923ddd57393000b20ff2704f34a4178696', '2022-03-09 15:30:16'),
-(18, 1, '321e4164bc7b42a3949672dae3c441c7', '81b9ce38287b6f85c7f4119489bd2c99b13a1da1', '2022-03-09 17:35:42'),
-(19, 1, '001edcb807f5931ade3e5c9753d5f399', '486a1ffb8684647b95eb2e5b5fd965ebc5731b29', '2022-03-09 17:59:00'),
-(20, 1, '92d9599eae3a9661256347cfd3f7a6de', '25021352fa9afda640029bab912b8e5f6b9bf7de', '2022-03-09 20:02:37'),
-(21, 1, 'e3ed3590159de4fa2b6744ee80f38873', 'c3c1954c351390e71d3d9ef7bfc1d06c7a7492a0', '2022-03-09 20:45:18'),
-(22, 1, '84e3c987fec10155a4b9c5c6d3c75ae6', '662ea61ad94957fa45bc2a318b661fbf1777dcec', '2022-03-10 08:00:32'),
-(23, 2, '4e228bb0c07b999a2ac56f32d2900a57', '8a8c728baf605f821e7bb029f86fd51649afd87e', '2022-03-10 08:03:29'),
-(24, 3, '4adc7a452cd77f30eb5203f46f4e6b24', 'ee2c5af6ad5d303cb893fdc4c9cf62428b7a8165', '2022-03-10 09:49:10'),
-(25, 20, 'e7347c8a97ec60625841dddcfda2db6e', 'ef5dbff1e312e4209c97ead57c5b75d0763a5ddc', '2022-03-10 11:47:22'),
-(26, 3, 'eed80a99855990ca31a64198de350715', 'eae9b1d9da4f9558310dbe89b46e77d7f0012a79', '2022-03-10 11:49:33'),
-(27, 20, '59d27a0e3311dcaff21f4a0d422930e6', '182112ce2d2ffb8936cc662d28b54c46bca22732', '2022-03-10 12:08:18'),
-(28, 20, '6a6d0c8f7ae3ea5fe8251754963a7d74', '1a33f0a082890dd44b419b11bd08bc500c6d396f', '2022-03-10 12:08:46');
+(1, 2, '57ffdb9d05d4ba6ffff84e3de7404eaa', '67973b2bf76e24f5d8626afe63c2119be15f8a51', '2022-03-30 13:19:17');
 
 -- --------------------------------------------------------
 
@@ -232,6 +277,8 @@ CREATE TABLE `users` (
   `passwort` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `vorname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `nachname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `streetHouseNr` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `passwortcode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -243,13 +290,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `created_at`, `updated_at`, `passwortcode`, `passwortcode_time`, `permission_group`) VALUES
-(1, 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'Vorname', 'Nachname', '2022-02-04 08:57:26', '2022-02-08 11:14:46', NULL, NULL, 1),
-(2, 'ich@paul-vassen.de', '$2y$10$AjGihIboyCYY/gnDq7J08.spp4N6Du.wog2anlhRsFALSZj9DPrPq', 'Paul', 'Vaßen', '2022-02-04 15:34:37', '2022-03-10 07:04:28', NULL, NULL, 2),
-(3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', 'Jan', 'Schniebs', '2022-02-23 07:14:00', '2022-03-08 21:57:49', NULL, NULL, 2),
-(5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', 'Gerhard', 'Einkaufstüte', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 1),
-(17, 'jan@jan.com', '$2y$10$FkgirZYJH4wb.ocNUDqHp.A2LwLHjR5X.Zjo68GT2N1QqTP2aPAEm', 'Jan', 'Seitz', '2022-03-09 10:56:33', '2022-03-09 10:56:33', NULL, NULL, 1),
-(20, 'max@musterman.de', '$2y$10$EeWHkxh2yAHs5UfPyXF3v.IndEHxtDfZ/e8srZzTd/6zoV9rIQOom', 'test1', 'sdfsdfdsf1', '2022-03-10 08:24:37', '2022-03-10 11:08:38', NULL, NULL, 1);
+INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `streetHouseNr`, `city`, `created_at`, `updated_at`, `passwortcode`, `passwortcode_time`, `permission_group`) VALUES
+(1, 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'Vorname', 'Nachname', 'Teststraße 1', '123456 Stadt', '2022-02-04 07:57:26', '2022-03-30 09:45:09', NULL, NULL, 1),
+(2, 'ich@paul-vassen.de', '$2y$10$AjGihIboyCYY/gnDq7J08.spp4N6Du.wog2anlhRsFALSZj9DPrPq', 'Paul', 'Vaßen', 'Talstraße 106', '70188 Stuttgart', '2022-02-04 15:34:37', '2022-03-30 09:45:13', NULL, NULL, 2),
+(3, 'jan@schniebs.com', '$2y$10$xlYaMlJc0JLTBAhHLrgC5.Y1ECi5y8IbxBY74W4nzCmuNLio.NwFO', 'Jan', 'Schniebs', '', '', '2022-02-23 07:14:00', '2022-03-21 11:06:26', NULL, NULL, 2),
+(5, 'g.einkaufstute@edeka.de', '$2y$10$unifQHy15eQr./VQXD1lj.Zouy/HURsgZYUtbUNy0VDA/mtrqrf8i', 'Gerhard', 'Einkaufstüte', '', '', '2022-02-23 09:36:25', '2022-02-23 09:36:25', NULL, NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -318,49 +363,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `permission_group`
 --
 ALTER TABLE `permission_group`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products_types`
 --
 ALTER TABLE `products_types`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100001;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `securitytokens`
 --
 ALTER TABLE `securitytokens`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Constraints for dumped tables

@@ -13,7 +13,7 @@ $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
 $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $stmt->execute();
 if ($stmt->rowCount() != 1) {
-    error('Product ID wurde nicht gefunden!');
+    header("location: 404.php");
 }
 // Fetch the products from the database and return the result as an Array
 
@@ -33,7 +33,7 @@ require("templates/header.php");
 ?>
 <div class="container-fluid minheight100 px-3 py-3 row row-cols-1 row-cols-md-2 gx-0 product content-wrapper">
     <div class="col">
-        <div class="card bg-dark py-2 px-2 mx-2">
+        <div class="card cbg py-2 px-2 mx-2">
             <div class="card-body px-3 py-3">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <?php if($images == null):?>
@@ -91,14 +91,14 @@ require("templates/header.php");
         </div>
     </div>
     <div class="col">
-        <div class="card bg-dark py-2 px-2 mx-2">
+        <div class="card cbg py-2 px-2 mx-2">
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <div>
-                        <h1 class=""><?=$product[0]['name']?></h1>
-                        <span class=" col">Preis: &euro;<?=$product[0]['price']?></span> 
+                        <h1 class="ctext"><?=$product[0]['name']?></h1>
+                        <span class="ctext col">Preis: <?=$product[0]['price']?>&euro;</span> 
                         <?php if ($product[0]['rrp'] > 0): ?>
-                            <span class=" col">UVP &euro;<?=$product[0]['rrp']?></span>
+                            <span class="ctext col">UVP <?=$product[0]['rrp']?>&euro;</span>
                         <?php endif; ?>
                         <?php if ($product[0]['visible'] == 0):?>
                             <h2 class="text-danger my-2">Das Produkt aktuell nicht bestellbar!</h2>
@@ -127,13 +127,18 @@ require("templates/header.php");
                     </div>
                 </div>
                 <div class="row">
-                <p class=""><?=$product[0]['desc']?></p>
+                <p class="ctext"><?=$product[0]['desc']?></p>
                 </div>
                 <?php endif; ?>
             </div>
         </div>
     </div>
 </div>
+<!--
+Ein Wird oft zusammen gekauf fehlt noch
+SQL ABFRAGE:
+SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = 1) AND NOT product_list.product_id = 1 and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;
+-->
 <?php
 include_once("templates/footer.php")
 ?>

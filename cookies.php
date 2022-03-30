@@ -1,13 +1,32 @@
-<?php
-include_once('templates/header.php');
+<?php 
+require_once("templates/header.php");
 ?>
-<div class="container-fluid minheight100 px-2 text-white">
-    <h1>Cookies</h1>
-    <div>Wir verwenden nur die Cookies, die die Webseite zum Funktionieren benötigt, nämlich für:</div>
-    <div  class="px-2">
-        <li>Das speichern der PHP Session</li>
-        <li>Login Remember me Funktion</li>
-        <li>Das Speichern der Cookie Einstellung</li>
+
+
+<div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+    <div class="modal-dialog cbg">
+        <div class="modal-content cbg">
+            <div class="modal-header cbg">
+                <h4 class="modal-title ctext fw-bold" id="cookieModalLabel">Mhhh Lecker &#x1F36A;!</h4>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <hr>
+            <div class="modal-body ctext cbg fw-normal">
+                <div class="px-2">
+                    <h4 class="fw-bold ctext">Wir verwenden nur notwendige Cookies aus lokalem Anbau um folgende Funktion bereitzustellen:</h4>
+                    <br>
+                    <p class="fs-5 ctext cookie-p-text">- Speichern der PHP-Session</p>
+                    <p class="fs-5 ctext cookie-p-text">- Angemeldet bleiben</p>
+                    <p class="fs-5 ctext cookie-p-text">- Speichern der Style-Einstellung</p>
+                    <p class="fs-5 ctext cookie-p-text mb-1">- Speichern der Cookie-Einstellung</p>
+                    <br>
+                    <p class="fw-light fs-6 cookie-p-text ctext">Ihre Cookie-Einstellung wird gespeichert.</p>
+                </div>
+            </div>
+            <div class="modal-footer ctext cbg fw-bold">
+                <a href="/"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück zur Startseite</button></a>
+            </div>
+        </div>
     </div>
 </div>
     
