@@ -18,7 +18,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $_POST['categoriesname']);
             $stmt->bindValue(2, $_POST['parentcategorie']);
             $stmt->execute();
-            echo("<script>location.href='admin/categories.php'</script>");
+            echo("<script>location.href='categories.php'</script>");
         } else {
             error('Some informations are missing!');
         }
@@ -43,13 +43,13 @@ if(isset($_POST['action'])) {
 
                     
 
-                    echo("<script>location.href='admin/categories.php'</script>");
-                    #header('Location: admin/categories.php');
+                    echo("<script>location.href='categories.php'</script>");
+                    #header('Location: categories.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
-                    echo("<script>location.href='admin/categories.php'</script>");
-                    #header('Location: admin/categories.php');
+                    echo("<script>location.href='categories.php'</script>");
+                    #header('Location: categories.php');
                     exit;
                 }
             } else {
@@ -65,7 +65,7 @@ if(isset($_POST['action'])) {
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <h2 class="card-title mb-2 text-center">Alle Produkte werden in folgende Gruppe verschoben!</h2>
                                         <p class="text-center">
-                                            <form action="admin/categories.php" method="post">
+                                            <form action="categories.php" method="post">
                                                 <select class="form-select" id="newparentcategorie" name="newparentcategorie">
                                                     <?php foreach ($cats as $cat) {
                                                         print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
@@ -103,13 +103,13 @@ if(isset($_POST['action'])) {
         $stmt->execute();
 
         #error_log(pdo_debugStrParams($stmt));
-        echo("<script>location.href='admin/categories.php'</script>");
-        #header("location: admin/categories.php");
+        echo("<script>location.href='categories.php'</script>");
+        #header("location: categories.php");
         exit;
     }
     if ($_POST['action'] == 'cancel') {
-        echo("<script>location.href='admin/categories.php'</script>");
-        #header("location: admin/categories.php");
+        echo("<script>location.href='categories.php'</script>");
+        #header("location: categories.php");
         exit;
     }
 }
@@ -126,7 +126,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
             <h1>Menüverwaltung</h1>
-            <form action="admin/categories.php" method="post" class="">
+            <form action="categories.php" method="post" class="">
                 <div class="input-group">
                     <input type="text" name="categoriesname" class="form-control" required>
                     <select class="form-select" id="parentcategorie" name="parentcategorie">
@@ -167,7 +167,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php foreach ($categories as $categorie): ?>
                             <?php if ($user['modifyCategories'] == 1) {?> 
                                 <tr>
-                                    <form action="admin/categories.php" method="post" class="">
+                                    <form action="categories.php" method="post" class="">
                                         <td class="border-0 align-middle">
                                             <strong><?=$categorie['id']?></strong>
                                         </td>
