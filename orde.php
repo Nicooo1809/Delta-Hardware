@@ -52,7 +52,7 @@ foreach ($products as $product) {
             <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Bestellen bearbeiten</h1>
                 <p>Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
-				<p><?=$customer[0]['gender'].' '.$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+				<p><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
 				<?=$customer[0]['streetHouseNr']?></br>
 				<?=$customer[0]['city']?></p>
 				<form action="orde.php" method="post" class="row me-2">
