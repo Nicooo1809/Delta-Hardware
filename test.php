@@ -2,6 +2,7 @@
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 
+print_r($_POST);
 
 $allowTypes = array('jpg','png','jpeg','gif');
 if(isset($_POST["submit"])){
@@ -41,7 +42,11 @@ echo $fileName;
 <form action="test.php" method="post" enctype="multipart/form-data">
     Select Image File to Upload:
     <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
+    <input type="checkbox" class="form-check-input" value="1" name="test0">
+    <input type="checkbox" class="form-check-input" value="2" name="test">
+    <input type="checkbox" class="form-check-input" value="3" name="test">
     <input type="submit" name="submit" value="Upload">
+
 </form>
 
 <?php
