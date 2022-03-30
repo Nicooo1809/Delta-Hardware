@@ -8,6 +8,9 @@ if (!isset($user['id'])) {
 if ($user['showOrders'] != 1) {
     error('Permission denied!');
 }
+if (!isset($_GET['id']) or empty($_GET['id'])) {
+    echo("<script>location.href='internal.php'</script>");
+}
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and product_list.list_id = ?');
 $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
 $stmt->execute();
