@@ -29,15 +29,12 @@ if(isset($_POST['confirm'])) {
             $stmt->execute();
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($product['quantity'] > $product1[0]['quantity']) {
-                require_once("templates/header.php");
-                print('Entschuldigen sie es gibt nur noch ' . $product1['quantity'] . ' ' . $product1['name'] . 'Bitte passen sie Ihre Bestellmenge an oder warten noch mit Ihrer Bestellung');
-                $error = true;
-            } else {
-                $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
-                $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
-                $stmt->bindValue(2, $product1['id'], PDO::PARAM_INT);
-                $stmt->execute();
+                print('Entschuldigen sie es gibt nur noch ' . $product1['quantity'] . ' ' . $product1['name'] . 'Ihrer Bestellung könnte länger dauern als gewohnt');
             }
+            $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
+            $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $product1['id'], PDO::PARAM_INT);
+            $stmt->execute();
         }
         $stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES (?, 0, 0)");
         $stmt->bindValue(1, $user['id']);
@@ -61,10 +58,6 @@ if(isset($_POST['confirm'])) {
         echo("<script>location.href='cart.php'</script>");
         exit;
     }
-}
-if (isset($error) and $error = true) {
-    include_once("templates/footer.php");
-    exit;
 }
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
