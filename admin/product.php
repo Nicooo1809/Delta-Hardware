@@ -77,8 +77,8 @@ if(isset($_POST['action'])) {
             $stmt->execute();
 
             #error_log(pdo_debugStrParams($stmt));
-            echo("<script>location.href='produc.php'</script>");
-            #header("location: produc.php");
+            echo("<script>location.href='admin/product.php'</script>");
+            #header("location: admin/product.php");
             exit;
         } else {
         require_once("templates/header.php");
@@ -86,7 +86,7 @@ if(isset($_POST['action'])) {
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>
-                <form action="produc.php" method="post" enctype="multipart/form-data">
+                <form action="admin/product.php" method="post" enctype="multipart/form-data">
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputName">Name</span>
                         <input class="form-control" id="inputName" name="name" type="text" value="<?=$product[0]['name']?>" required>
@@ -201,8 +201,8 @@ if(isset($_POST['action'])) {
             }
 
             #error_log(pdo_debugStrParams($stmt));
-            echo("<script>location.href='produc.php'</script>");
-            #header("location: produc.php");
+            echo("<script>location.href='admin/product.php'</script>");
+            #header("location: admin/product.php");
             exit;
         } else {
         require_once("templates/header.php");
@@ -210,7 +210,7 @@ if(isset($_POST['action'])) {
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>
-                <form action="produc.php" method="post" enctype="multipart/form-data">
+                <form action="admin/product.php" method="post" enctype="multipart/form-data">
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputName">Name</span>
                         <input class="form-control" id="inputName" name="name" type="text" required>
@@ -257,8 +257,8 @@ if(isset($_POST['action'])) {
         } 
     }
     if ($_POST['action'] == 'cancel') {
-        echo("<script>location.href='produc.php'</script>");
-        #header("location: produc.php");
+        echo("<script>location.href='admin/product.php'</script>");
+        #header("location: admin/product.php");
         exit;
     }
 }
@@ -275,7 +275,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
             <h1>Produktverwaltung</h1>
-            <form action="produc.php" method="post">
+            <form action="admin/product.php" method="post">
                 <div>
                     <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
                 </div>
@@ -345,7 +345,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </td>
                                 <td class="border-0 actions text-center">
                                 <?php if ($user['modifyProduct'] == 1) {?>
-                                    <form action="produc.php" method="post" class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <form action="admin/product.php" method="post" class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <div>
                                             <input type="number" value="<?=$product['id']?>" name="productid" style="display: none;" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>

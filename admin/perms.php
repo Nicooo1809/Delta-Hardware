@@ -37,13 +37,13 @@ if(isset($_POST['action'])) {
                     $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
                     $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
                     $stmt->execute();
-                    echo("<script>location.href='perms.php'</script>");
-                    #header('Location: perms.php');
+                    echo("<script>location.href='admin/perms.php'</script>");
+                    #header('Location: admin/perms.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
-                    echo("<script>location.href='perms.php'</script>");
-                    #header('Location: perms.php');
+                    echo("<script>location.href='admin/perms.php'</script>");
+                    #header('Location: admin/perms.php');
                     exit;
                 }
             } else {
@@ -56,7 +56,7 @@ if(isset($_POST['action'])) {
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
                                         <h2 class="card-title mb-2 text-center">Alle Benutzer in dieser Gruppe werden in Default verschoben!</h2>
                                         <p class="text-center">
-                                            <form action="perms.php" method="post">
+                                            <form action="admin/perms.php" method="post">
                                                 <input type="number" value="<?=$_POST['permsid']?>" name="permsid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
@@ -104,13 +104,13 @@ if(isset($_POST['action'])) {
         #markOrders
 
         #error_log(pdo_debugStrParams($stmt));
-        echo("<script>location.href='perms.php'</script>");
-        #header("location: perms.php");
+        echo("<script>location.href='admin/perms.php'</script>");
+        #header("location: admin/perms.php");
         exit;
     }
     if ($_POST['action'] == 'cancel') {
-        echo("<script>location.href='perms.php'</script>");
-        #header("location: perms.php");
+        echo("<script>location.href='admin/perms.php'</script>");
+        #header("location: admin/perms.php");
         exit;
     }
 }
@@ -124,7 +124,7 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
             <h1>Rechteverwaltung</h1>
-            <form action="perms.php" method="post" class="">
+            <form action="admin/perms.php" method="post" class="">
                 <div class="input-group">
                     <input type="text" name="permsname" class="form-control" required>
                     <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
@@ -194,7 +194,7 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php foreach ($permissions as $perms): ?>
                             <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <tr>
-                                    <form action="perms.php" method="post" class="">
+                                    <form action="admin/perms.php" method="post" class="">
                                         <td class="border-0 align-middle">
                                             <strong><?=$perms['id']?></strong>
                                         </td>

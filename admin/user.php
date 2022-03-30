@@ -24,7 +24,7 @@ if(isset($_POST['action'])) {
             $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $stmt->execute();
-            echo("<script>location.href='user.php'</script>");
+            echo("<script>location.href='admin/user.php'</script>");
             exit;
         }
     }
@@ -67,8 +67,8 @@ if(isset($_POST['action'])) {
                 }
             }
             #error_log(pdo_debugStrParams($stmt));
-            echo("<script>location.href='user.php'</script>");
-            #header("location: user.php");
+            echo("<script>location.href='admin/user.php'</script>");
+            #header("location: admin/user.php");
             exit;
         } else {
         require_once("templates/header.php");
@@ -76,7 +76,7 @@ if(isset($_POST['action'])) {
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>
-                <form action="user.php" method="post">
+                <form action="admin/user.php" method="post">
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputVorname">Vorname</span>
                         <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
@@ -123,8 +123,8 @@ if(isset($_POST['action'])) {
         } 
     }
     if ($_POST['action'] == 'cancel') {
-        echo("<script>location.href='user.php'</script>");
-        #header("location: user.php");
+        echo("<script>location.href='admin/user.php'</script>");
+        #header("location: admin/user.php");
         exit;
     }
 }
@@ -197,7 +197,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </td>
                                 <td class="border-0 actions text-center">
                                 <?php if ($user['modifyUser'] == 1 or $user['deleteUser'] == 1) {?>
-                                    <form action="user.php" method="post" class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <form action="admin/user.php" method="post" class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <?php if ($user['modifyUser'] == 1) {?>
                                         <div class="">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
