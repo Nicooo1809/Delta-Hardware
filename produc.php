@@ -28,6 +28,17 @@ if(isset($_POST['action'])) {
         $stmt->execute();
         $imgs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        for ($x = 0; $x < count($imgs); $x++) {
+            $var = 'delImage-'.$x;
+            if (isset($_POST[$var])) {
+                #del
+                $stmt = $pdo->prepare('DELETE FROM product_images where id = ? and product_id = ?');
+                $stmt->bindValue(1, $_POST[$var], PDO::PARAM_INT);
+                $stmt->bindValue(2, $_POST[productid], PDO::PARAM_INT);
+                $stmt->execute();
+            }
+        }
+
         if (!empty($_FILES["file"]["name"][0])){
             $allowTypes = array('jpg','png','jpeg','gif');
             $fileCount = count($_FILES['file']['name']);
@@ -114,16 +125,17 @@ if(isset($_POST['action'])) {
                         </select>
                     </div>
                     <?php 
-                    $counter = 0;
-                    foreach ($imgs as $img) { ?>
+                    for ($x = 0; $x < count($imgs); $x++) {
+                        ?>
                         <div class="input-group py-2">
-                            <img src="product_img/<?=$img['img']?>" class="img-fluid rounded" alt="<?=$img['id']?>">
-                            <input type="checkbox" class="form-check-input" value="<?=$img['id']?>" name="<?='delImage-'.$counter?>">
+                            <img src="product_img/<?=$imgs[$x]['img']?>" class="img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
+                            <input type="checkbox" class="form-check-input" value="<?=$imgs[$x]['id']?>" name="<?='delImage-'.$x?>">
+
                         </div>
                         <?php
-                        $counter = $counter + 1;
                     }
                     ?>
+                    
                     <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                     <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                     <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
