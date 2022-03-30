@@ -99,10 +99,6 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(15, $_POST['permsid'], PDO::PARAM_INT);
         $stmt->execute();
 
-        #showProduct
-        #showOrders
-        #markOrders
-
         #error_log(pdo_debugStrParams($stmt));
         echo("<script>location.href='perms.php'</script>");
         #header("location: perms.php");

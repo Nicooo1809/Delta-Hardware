@@ -1,8 +1,6 @@
 <?php 
-session_start();
-require_once("php/mysql.php");
 require_once("php/functions.php");
-include("templates/header.php")
+$user = require_once("templates/header.php");
 ?>
 
 <?php
@@ -61,9 +59,10 @@ if(isset($_GET['register'])) {
 			$error = true;
 		}	
 	}
-
+	error_log('123456');
 	//Keine Fehler, wir können den Nutzer registrieren
 	if(!$error) {	
+		error_log('12345');
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 		
 		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (?, ?, ?, ?)");

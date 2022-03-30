@@ -36,7 +36,8 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			#print("Location: " . $_SERVER['HTTP_REFERER']);
 		}
 		*/
-		header("Location: internal.php");
+		echo("<script>location.href='internal.php'</script>");
+		#header("Location: internal.php");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
@@ -51,7 +52,7 @@ if(isset($_POST['email'])) {
 }
 $user = require_once("templates/header.php");
 if (isset($user['id'])) {
-    require_once("internal.php");
+    echo("<script>location.href='internal.php'</script>");
     exit;
 }
 ?>

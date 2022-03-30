@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2022 at 02:34 PM
+-- Generation Time: Mar 30, 2022 at 08:35 PM
 -- Server version: 10.5.15-MariaDB-0+deb11u1
 -- PHP Version: 7.4.28
 
@@ -263,7 +263,9 @@ CREATE TABLE `securitytokens` (
 --
 
 INSERT INTO `securitytokens` (`id`, `user_id`, `identifier`, `securitytoken`, `created_at`) VALUES
-(1, 2, '57ffdb9d05d4ba6ffff84e3de7404eaa', '67973b2bf76e24f5d8626afe63c2119be15f8a51', '2022-03-30 13:19:17');
+(1, 2, '57ffdb9d05d4ba6ffff84e3de7404eaa', '255a0be4ca6e8d5ac1472e6999523b14bae3a71b', '2022-03-30 13:19:17'),
+(2, 2, '96a1e0a70cb3c1d4e05c03693ed6fb00', '7a3ffecebeadc5fd1633496e1c70a3ece4a18090', '2022-03-30 20:05:42'),
+(3, 1, '49c15ec1c608091aff4d76b72dd32738', '671d327e8bf73e3aefb92a666bfa4f6437a190c3', '2022-03-30 20:07:36');
 
 -- --------------------------------------------------------
 
@@ -277,8 +279,8 @@ CREATE TABLE `users` (
   `passwort` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `vorname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `nachname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `streetHouseNr` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `streetHouseNr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `passwortcode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -399,7 +401,7 @@ ALTER TABLE `product_list`
 -- AUTO_INCREMENT for table `securitytokens`
 --
 ALTER TABLE `securitytokens`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
