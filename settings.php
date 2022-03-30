@@ -18,12 +18,12 @@ if(isset($_GET['save'])) {
 		if($vorname == "" || $nachname == "") {
 			$error_msg = "Bitte Vor- und Nachname ausfüllen.";
 		} else {
-			$statement = $pdo->prepare("UPDATE users SET vorname = :vorname, nachname = :nachname, updated_at=NOW() WHERE id = :userid");
-			$result = $statement->execute(array('vorname' => $vorname, 'nachname'=> $nachname, 'userid' => $user['id'] ));
+			$stmt = $pdo->prepare("UPDATE users SET vorname = :vorname, nachname = :nachname, updated_at=NOW() WHERE id = :userid");
+			$result = $stmt->execute(array('vorname' => $vorname, 'nachname'=> $nachname, 'userid' => $user['id'] ));
 			$user['vorname'] = $vorname;
 			$user['nachname'] = $nachname;
 
-			$success_msg = "Daten erfolgreich gespeichert.";
+			echo("<script>location.href='settings.php'</script>");
 		}
 	} else if($save == 'email') {
 		$passwort = $_POST['passwort'];
@@ -37,11 +37,11 @@ if(isset($_GET['save'])) {
 		} else if(!password_verify($passwort, $user['passwort'])) {
 			$error_msg = "Bitte korrektes Passwort eingeben.";
 		} else {
-			$statement = $pdo->prepare("UPDATE users SET email = :email WHERE id = :userid");
-			$result = $statement->execute(array('email' => $email, 'userid' => $user['id'] ));
+			$stmt = $pdo->prepare("UPDATE users SET email = :email WHERE id = :userid");
+			$result = $stmt->execute(array('email' => $email, 'userid' => $user['id'] ));
 			$user['email'] = $email;
 			
-			$success_msg = "E-Mail-Adresse erfolgreich gespeichert.";
+			echo("<script>location.href='settings.php'</script>");
 		}
 		
 	} else if($save == 'passwort') {
@@ -58,10 +58,10 @@ if(isset($_GET['save'])) {
 		} else {
 			$passwort_hash = password_hash($passwortNeu, PASSWORD_DEFAULT);
 				
-			$statement = $pdo->prepare("UPDATE users SET passwort = :passwort WHERE id = :userid");
-			$result = $statement->execute(array('passwort' => $passwort_hash, 'userid' => $user['id'] ));
+			$stmt = $pdo->prepare("UPDATE users SET passwort = :passwort WHERE id = :userid");
+			$result = $stmt->execute(array('passwort' => $passwort_hash, 'userid' => $user['id'] ));
 				
-			$success_msg = "Passwort erfolgreich gespeichert.";
+			echo("<script>location.href='settings.php'</script>");
 		}
 	} else if($save == 'address') {
 		$street = $_POST['strasse'];
@@ -70,15 +70,15 @@ if(isset($_GET['save'])) {
 		if($street == "" || $city == "") {
 			$error_msg = "Bitte Addresse eintragen.";
 		} else {
-			$statement = $pdo->prepare("UPDATE users SET streetHouseNr = ?, city = ?, updated_at=NOW() WHERE id = ?");
+			$stmt = $pdo->prepare("UPDATE users SET streetHouseNr = ?, city = ?, updated_at=NOW() WHERE id = ?");
 			$stmt->bindValue(1, $street);
 			$stmt->bindValue(2, $city);
 			$stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
-			$result = $statement->execute();
+			$result = $stmt->execute();
 			$user['streetHouseNr'] = $street;
 			$user['city'] = $city;
 
-			$success_msg = "Daten erfolgreich gespeichert.";
+			echo("<script>location.href='settings.php'</script>");
 		}
 	}
 }
@@ -87,7 +87,6 @@ if(isset($_GET['save'])) {
 <div class="container minheight100 py-2 px-2">
 	<div class="row no-gutter">
 		<!-- will do somethinge else for error/success_msg later -->
-		<?php if(isset($success_msg) && !empty($success_msg)) {echo $success_msg;}?>
 		<?php if(isset($error_msg) && !empty($error_msg)) {echo $error_msg;}?>
 
 		<!-- Persönliche Daten Card -->
