@@ -279,6 +279,10 @@ foreach ($products as $product) {
                     <div class="card-body">
                         <h2 class="card-title name">Summe:</h2>
                         <strong class="card-text"><?=$summprice?>&euro;</strong>
+                        <?php
+                        if ($total_products > 0) {
+                            print('<a href="order.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
+                        } ?>
                     </div>
                 </div>
             </div>
