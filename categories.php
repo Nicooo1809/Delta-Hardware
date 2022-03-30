@@ -5,12 +5,12 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-if ($user['showCategories'] !== 1) {
+if ($user['showCategories'] != 1) {
     error('Permission denied!');
 }
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'add') {
-        if ($user['modifyCategories'] !== 1) {
+        if ($user['modifyCategories'] != 1) {
             error('Permission denied!');
         }
         if (isset($_POST['categoriesname']) and isset($_POST['parentcategorie'])) {
@@ -25,7 +25,7 @@ if(isset($_POST['action'])) {
     }
 
     if($_POST['action'] == 'del') {
-        if ($user['modifyCategories'] !== 1) {
+        if ($user['modifyCategories'] != 1) {
             error('Permission denied!');
         }
         if(isset($_POST['categoriesid']) and !empty($_POST['categoriesid'])) {
@@ -56,6 +56,10 @@ if(isset($_POST['action'])) {
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE NOT parent_id = 0');
                 $stmt->execute();
                 $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $pdo->prepare('SELECT * from products_types WHERE id = ?');
+                $stmt->bindValue(1, $_POST['categoriesid'], PDO::PARAM_INT);
+                $stmt->execute();
+                $tmp = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <div class="container-fluid">
                         <div class="row no-gutter">
@@ -63,15 +67,19 @@ if(isset($_POST['action'])) {
                                 <div class="card cbg text-center mx-auto" style="width: 75%;">
                                     <div class="card-body">
                                         <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
-                                        <h2 class="card-title mb-2 text-center">Alle Produkte werden in folgende Gruppe verschoben!</h2>
+                                        <?php if ($tmp[0]['parent_id'] != 0) { ?>
+                                            <h2 class="card-title mb-2 text-center">Alle Produkte werden in folgende Gruppe verschoben!</h2>
+                                        <?php } ?>
                                         <p class="text-center">
                                             <form action="categories.php" method="post">
-                                                <select class="form-select" id="newparentcategorie" name="newparentcategorie">
-                                                    <?php foreach ($cats as $cat) {
-                                                        print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <?php if ($tmp[0]['parent_id'] != 0) { ?>
+                                                    <select class="form-select" id="newparentcategorie" name="newparentcategorie">
+                                                        <?php foreach ($cats as $cat) {
+                                                            print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
+                                                        }    #EDIT
+                                                        ?>
+                                                    </select>
+                                                <?php } ?>
                                                 <input type="number" value="<?=$_POST['categoriesid']?>" name="categoriesid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
@@ -92,7 +100,7 @@ if(isset($_POST['action'])) {
         }
     }
     if($_POST['action'] == 'mod') {
-        if ($user['modifyCategories'] !== 1) {
+        if ($user['modifyCategories'] != 1) {
             error('Permission denied!');
         }
 
