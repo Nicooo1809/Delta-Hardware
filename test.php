@@ -35,8 +35,9 @@ if(isset($_POST["submit"])){
     }
 }
 // Display status message
-echo $statusMsg;
-echo $fileName;
+if (isset($statusMsg)) {
+    echo $statusMsg;
+}
 ?>
 
 <form action="test.php" method="post" enctype="multipart/form-data">
