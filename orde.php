@@ -23,14 +23,10 @@ if(isset($_POST['confirm'])) {
 			error('Permission denied!');
 		}
         $stmt = $pdo->prepare('UPDATE orders SET sent = 1, sent_date = now() WHERE id = ? and ordered = 1');
-        $stmt->bindValue(1, $_POST['id'], PDO::PARAM_INT);
+        $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
         $stmt->execute();
 		echo("<script>location.href='internal.php'</script>");
         #error_log(print_r($product, true));
-    }
-    if($_POST['confirm'] == 'no') {
-        echo("<script>location.href='internal.php'</script>");
-        exit;
     }
 }
 
@@ -55,11 +51,12 @@ foreach ($products as $product) {
 				<p><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
 				<?=$customer[0]['streetHouseNr']?></br>
 				<?=$customer[0]['city']?></p>
-				<form action="orde.php" method="post" class="row me-2">
-					<input type="number" value="<?=$_GET['id']?>" name="id" style="display: none;" required>
-                    <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Erledigt</button>
-                    <button type="submit" name="confirm" value="no" class="btn btn-outline-primary">Abbrechen</button>
-                </form>
+                <?php if ($user['markOrders'] == 1) { ?>
+                    <form action="?id=<?=$_GET['id']?>" method="post" class="row me-2">
+                        <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Erledigt</button>
+                        <a href="internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                    </form>
+                <?php } ?>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -123,7 +120,7 @@ foreach ($products as $product) {
 					<form action="orde.php" method="post" class="row me-2">
 						<input type="number" value="<?=$_GET['id']?>" name="id" style="display: none;" required>
 						<button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Erledigt</button>
-						<button type="submit" name="confirm" value="no" class="btn btn-outline-primary">Abbrechen</button>
+                        <a href="internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
 					</form>
                     </div>
                 </div>

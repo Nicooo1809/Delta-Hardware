@@ -59,7 +59,7 @@ if ($user['showOrders'] == 1) {
 			<div class="card-body text-center">
 				<h1 class="card-title">Offene Bestellungen</h1>
 				<div class="card-text">
-					<p><?=$total_orders?> Bestellung<?=($total_products==1 ? '':'en')?></p>
+					<p><?=$total_orders?> Bestellung<?=($total_orders==1 ? '':'en')?></p>
 					<div class="table-responsive">
 						<table class="table">
 							<thead>

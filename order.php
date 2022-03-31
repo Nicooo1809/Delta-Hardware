@@ -19,10 +19,9 @@ if ($total_products < 1) {
 
 if(isset($_POST['confirm'])) {
     if($_POST['confirm'] == 'yes') {
-        $stmt = $pdo->prepare('UPDATE orders SET ordered = 1, ordered_date = now() WHERE kunden_id = ? and ordered = 0');
-        $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
-        $stmt->execute();
-
+        if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
+            error('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
+        }
         foreach ($products as $product) {
             $stmt = $pdo->prepare('SELECT * from  products WHERE id = ?');
             $stmt->bindValue(1, $product['product_id'], PDO::PARAM_INT);
@@ -36,6 +35,9 @@ if(isset($_POST['confirm'])) {
             $stmt->bindValue(2, $product1['id'], PDO::PARAM_INT);
             $stmt->execute();
         }
+        $stmt = $pdo->prepare('UPDATE orders SET ordered = 1, ordered_date = now() WHERE kunden_id = ? and ordered = 0');
+        $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+        $stmt->execute();
         $stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES (?, 0, 0)");
         $stmt->bindValue(1, $user['id']);
         $stmt->execute();
@@ -75,10 +77,14 @@ foreach ($products as $product) {
             <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Bestellen</h1>
                 <p>Sie sind im Begriff folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> kostenpflichtig zu bestellen. Sind Sie Sicher?</p>
+                <?php if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
+                    print('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
+                } else {?>
                 <form action="order.php" method="post" class="row me-2">
                     <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Kostenpflichtig bestellen</button>
-                    <button type="submit" name="confirm" value="no" class="btn btn-outline-primary">Abbrechen</button>
+                    <a href="cart.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
                 </form>
+                <?php } ?>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -138,7 +144,7 @@ foreach ($products as $product) {
                     <p>Sie sind im Begriff folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> kostenpflichtig zu bestellen. Sind Sie Sicher?</p>
                     <form action="order.php" method="post" class="row me-2">
                         <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Kostenpflichtig bestellen</button>
-                        <button type="submit" name="confirm" value="no" class="btn btn-outline-primary">Abbrechen</button>
+                        <a href="cart.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
                     </form>
                     </div>
                 </div>

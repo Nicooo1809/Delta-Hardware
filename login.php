@@ -26,17 +26,9 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 			#error_log(pdo_debugStrParams($insert));
 		}
-		#print($_SERVER['HTTP_REFERER']);
-		/*
-		if( strpos( $_SERVER['HTTP_REFERER'], "login" ) !== false) {
-			header("Location: internal.php");
-			#print("Location: internal.php");
-		} else {
-			header("Location: " . $_SERVER['HTTP_REFERER']);
-			#print("Location: " . $_SERVER['HTTP_REFERER']);
-		}
-		*/
-		header("Location: internal.php");
+
+		echo("<script>location.href='internal.php'</script>");
+		#header("Location: internal.php");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
@@ -51,7 +43,7 @@ if(isset($_POST['email'])) {
 }
 $user = require_once("templates/header.php");
 if (isset($user['id'])) {
-    require_once("internal.php");
+    echo("<script>location.href='internal.php'</script>");
     exit;
 }
 ?>

@@ -60,7 +60,7 @@ if(isset($_POST['action'])) {
                                                 <input type="number" value="<?=$_POST['permsid']?>" name="permsid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="no">Nein</button>
+                                                <a href="perms.php"><button class="btn btn-outline-primary mx-2" type="button">Nein</button></a>
                                             </form>
                                         </p>
                                     </div>
@@ -98,10 +98,6 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(14, (isset($_POST['markOrders']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(15, $_POST['permsid'], PDO::PARAM_INT);
         $stmt->execute();
-
-        #showProduct
-        #showOrders
-        #markOrders
 
         #error_log(pdo_debugStrParams($stmt));
         echo("<script>location.href='perms.php'</script>");
