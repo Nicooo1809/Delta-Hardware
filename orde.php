@@ -53,7 +53,7 @@ foreach ($products as $product) {
 				<?=$customer[0]['city']?></p>
                 <?php if ($user['markOrders'] == 1) { ?>
                     <form action="?id=<?=$_GET['id']?>" method="post" class="row me-2">
-                        <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Erledigt</button>
+                        <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary my-2">Erledigt</button>
                         <a href="internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
                     </form>
                 <?php } ?>
