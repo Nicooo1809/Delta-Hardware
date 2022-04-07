@@ -108,7 +108,7 @@ foreach ($products as $product) {
         </div>
     </div> 
 <?php else: ?>
-    <div class="container minheight100 products content-wrapper py-3 px-3">
+    <div class="container minheight100 products content-wrapper py-2 px-2">
         <div class="card mx-auto my-2 cbg">
             <div class="card-body">
                 <h2 class="card-title name">Bestellung bearbeiten</h2>
@@ -138,9 +138,9 @@ foreach ($products as $product) {
             <div class="col">
                 <div class="card mx-auto my-2 cbg">
                     <?php if (empty($product['image'])) {
-                        print('<img src="/images/image-not-found.png" class="card-img-top img-fluid" alt="' . $product['name'] . '">');
+                        print('<img src="/images/image-not-found.png" class="card-img-top img-fluid" style="height: 100%;" alt="' . $product['name'] . '">');
                     } else {
-                        print('<img src="/product_img/' . $product['image'] . '" class="card-img-top img-fluid" alt="' . $product['name'] . '">');
+                        print('<img src="/product_img/' . $product['image'] . '" class="card-img-top img-fluid" style="height: 100%;" alt="' . $product['name'] . '">');
                     }?>
                         <div class="card-body">
                         <h4 class="card-title name"><?=$product['name']?></h4>
