@@ -121,12 +121,10 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
             <h1>Rechteverwaltung</h1>
-            <div class="">
-                <form action="perms.php" method="post" class="col input-group d-flex justify-content-end">
-                    <input type="text" name="permsname" class="form-control" required>
-                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
-                </form>
-            </div>
+            <form action="perms.php" method="post" class="col-4 input-group d-flex justify-content-end">
+                <input type="text" name="permsname" class="form-control" required>
+                <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+            </form>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
