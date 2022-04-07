@@ -21,10 +21,10 @@ require_once("templates/header.php");
                 <div class="d-flex flex-row minimum-vh justify-content-start align-items-center">
                     <div class="col-md-12 mt-1 text-white text-start">
                         <a href="products.php?search=RTX">
-                            <h1 class="h1-reponsive text-uppercase fw-bold mb-0 pt-md-5 pt-5 index-rtx-text text-primary">GEFORCE RTX 30-SERIE</h1>
-                            <h2 class="h2-responsive text-white fw-bold">DIE ULTIMATIVE WAHL</h2>
+                            <h1 class="h1-reponsive text-uppercase fw-bold mb-0 pt-md-5 pt-5 index-rtx-text text-primary text-center">HERZLICH WILLKOMMEN</h1>
+                            <h2 class="h2-responsive text-white fw-bold text-center">Delta-Hardware, dein Hardware Onlinehandel</h2>
                             <hr class="hr-light my-3">
-                            <h5 class="text-uppercase mb-4 text-white me-5">
+                            <h5 class="text-uppercase mb-4 text-white me-5 text-center">
                                 Die Grafikprozessoren der GeForce RTX™ 30-Serie liefern die ultimative Leistung für Gamer und Kreative.
                             </h5>
                         </a>
