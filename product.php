@@ -127,10 +127,14 @@ require("templates/header.php");
                         </form>
                     </div>
                 </div>
-                <div class="row">
-                <p class="ctext"><?=$product[0]['desc']?></p>
-                </div>
                 <?php endif; ?>
+            </div>
+        </div>
+        <div class="card cbg py-2 px-2 mx-2">
+            <div class="card-body px-3 py-3">
+                <div class="row">
+                    <p class="ctext"><?=$product[0]['desc']?></p>
+                </div>
             </div>
         </div>
     </div>
