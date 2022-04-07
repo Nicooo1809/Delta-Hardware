@@ -129,7 +129,7 @@ if(isset($_POST['action'])) {
                     for ($x = 0; $x < count($imgs); $x++) {
                         ?>
                         <div class="input-group py-2">
-                            <img src="product_img/<?=$imgs[$x]['img']?>" class="img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
+                            <img src="/product_img/<?=$imgs[$x]['img']?>" class="img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
                             <input type="checkbox" class="form-check-input" value="<?=$imgs[$x]['id']?>" name="<?='delImage-'.$x?>">
 
                         </div>
