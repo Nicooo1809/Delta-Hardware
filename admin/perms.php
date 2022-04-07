@@ -133,52 +133,52 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <div class="cbg rounded">
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">#</div>
+                                    <div class="p-2 px-1 text-uppercase">#</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Name</div>
+                                    <div class="p-2 px-1 text-uppercase">Name</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show User</div>
+                                    <div class="p-2 px-1 text-uppercase">Show User</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify User</div>
+                                    <div class="p-2 px-1 text-uppercase">Modify User</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Delete User</div>
+                                    <div class="p-2 px-1 text-uppercase">Delete User</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show User Permission</div>
+                                    <div class="p-2 px-1 text-uppercase">Show User Permission</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify User Permission</div>
+                                    <div class="p-2 px-1 text-uppercase">Modify User Permission</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show Product</div>
+                                    <div class="p-2 px-1 text-uppercase">Show Product</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Create Product</div>
+                                    <div class="p-2 px-1 text-uppercase">Create Product</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify Product</div>
+                                    <div class="p-2 px-1 text-uppercase">Modify Product</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show Kategorien</div>
+                                    <div class="p-2 px-1 text-uppercase">Show Kategorien</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify Kategorien</div>
+                                    <div class="p-2 px-1 text-uppercase">Modify Kategorien</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Delete Kategorien</div>
+                                    <div class="p-2 px-1 text-uppercase">Delete Kategorien</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Create Kategorien</div>
+                                    <div class="p-2 px-1 text-uppercase">Create Kategorien</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show Order</div>
+                                    <div class="p-2 px-1 text-uppercase">Show Order</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Mark Order</div>
+                                    <div class="p-2 px-1 text-uppercase">Mark Order</div>
                                 </th>
                                 <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <th scope="col" class="border-0" style="width: 15%">
