@@ -71,7 +71,12 @@ $user1 = check_user(FALSE);
                             <?php if ($subtype['type'] == "line"):?>
                                 <li><hr class="dropdown-divider"></li>
                             <?php else:?>
-                                <li><a class="dropdown-item stretched-link" href="products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?></a><span class="text-end"><?=$subtype['quantity']?><span></li>
+                                <li>
+                                    <div>
+                                        <a class="dropdown-item text-start" href="products.php?type=<?=$subtype['id']?>" style="display: inline-block;"><?=$subtype['type']?></a>
+                                        <span class="text-end" style="display: inline-block;"><?=$subtype['quantity']?><span>
+                                    </div>
+                                </li>
                             <?php endif; ?>
                         <?php
                         }
