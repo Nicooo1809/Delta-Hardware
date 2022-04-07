@@ -100,7 +100,7 @@ require("templates/header.php");
                         <?php if ($product[0]['rrp'] > 0): ?>
                             <span class="ctext col">UVP <?=$product[0]['rrp']?>&euro;</span>
                         <?php endif; ?>
-                            <span class="ctext">Artikelnummer: <?=$product[0]['id']?></span>
+                            <p class="ctext">Artikelnummer: <?=$product[0]['id']?></p>
                         <?php if ($product[0]['visible'] == 0):?>
                             <h2 class="text-danger my-2">Das Produkt aktuell nicht bestellbar!</h2>
                         <?php elseif ($product[0]['quantity'] >= 20):?>
@@ -130,7 +130,7 @@ require("templates/header.php");
                 <?php endif; ?>
             </div>
         </div>
-        <div class="card cbg py-2 px-2 mx-2">
+        <div class="card cbg py-2 px-2 mx-2 my-2">
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <p class="ctext"><?=$product[0]['desc']?></p>
