@@ -117,7 +117,7 @@ $stmt->execute();
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
 ?>
-<div class="container minheight100 users content-wrapper py-3 px-3">
+<div class="container-fluid minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
             <h1>Rechteverwaltung</h1>
