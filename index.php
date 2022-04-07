@@ -32,7 +32,8 @@ require_once("templates/header.php");
     </div>
     
     <div class="container my-3">
-        <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEUERSCHEINUNGEN</h1>
+        <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEU
+            ERSCHEINUNGEN</h1>
         <hr class="hr-light my-3">
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <div class="carousel-inner py-4">
