@@ -121,10 +121,9 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
             <h1>Rechteverwaltung</h1>
-            <div class="col">
-                <form action="perms.php" method="post" class="">
+            <div class="">
+                <form action="perms.php" method="post" class="col">
                     <div class="input-group d-flex justify-content-end">
-                        <span for="addGroup" class="input-group-text">Gruppen Name:</span>
                         <input type="text" name="permsname" class="form-control" required>
                         <button id="addGroup" type="submit" name="action" value="add" class="btn btn-outline-primary form-control">Hinzufügen</button>
                     </div>
