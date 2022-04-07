@@ -84,7 +84,17 @@ require_once("templates/header.php");
         </div>
     </div>
 
-    <div class="container"></div>
+    <div class="container">
+        <div class="hovereffect">
+            <img class="img-responsive" src="/media/bg-img-old.jpg" alt="">
+            <div class="overlay">
+                <h2>RTX 30-Serie</h2>
+                <p>
+                    <a href="products.php?search=rtx+30">Weiter -></a>
+                </p>
+            </div>
+        </div>
+    </div>
 </main>
 
 
