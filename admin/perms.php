@@ -120,8 +120,10 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container-fluid minheight100 users content-wrapper py-3 px-3 mx-auto">
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
-            <h1>Rechteverwaltung</h1>
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-between">
+                <div class="col-4">
+                    <h1>Rechteverwaltung</h1>
+                </div>
                 <div class="col-4">
                     <form action="perms.php" method="post" class="input-group">
                         <input type="text" name="permsname" class="form-control" required>
