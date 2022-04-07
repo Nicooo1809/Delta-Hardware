@@ -129,7 +129,7 @@ foreach ($products as $product) {
                 <?php if ($user['markOrders'] == 1) { ?>
                     <div class="card mx-auto my-2 cbg">
                         <div class="card-body">
-                            <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end mb-2">
+                            <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-between">
                                 <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success me-2">Erledigt</button>
                                 <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                             </form>
@@ -139,13 +139,13 @@ foreach ($products as $product) {
             </div>
             <?php foreach ($products as $product): ?>
                 <div class="col">
-                    <div class="card mx-auto cbg">
-                        <div class="card-body">
-                            <?php if (empty($product['image'])) {
-                                print('<img src="/images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                            } else {
-                                print('<img src="/product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                            }?>
+                    <div class="card mx-auto my-2 cbg">
+                        <?php if (empty($product['image'])) {
+                            print('<img src="/images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                        } else {
+                            print('<img src="/product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                        }?>
+                            <div class="card-body">
                             <h4 class="card-title name"><?=$product['name']?></h4>
                             <span class="card-text price">
                                 Preis: &euro;<?=$product['price']?><br>
@@ -156,7 +156,7 @@ foreach ($products as $product) {
                 </div>
             <?php endforeach; ?>
             <div class="col">
-                <div class="card mx-auto cbg">
+                <div class="card mx-auto my-2 cbg">
                     <div class="card-body">
                         <h2 class="card-title name">Summe:</h2>
                         <strong class="card-text"><?=$summprice?>&euro;</strong>
