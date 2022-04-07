@@ -32,7 +32,7 @@ if(isset($_POST['confirm'])) {
             }
             $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
-            $stmt->bindValue(2, $product1['id'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $product['product_id'], PDO::PARAM_INT);
             $stmt->execute();
         }
         $stmt = $pdo->prepare('UPDATE orders SET ordered = 1, ordered_date = now() WHERE kunden_id = ? and ordered = 0');
