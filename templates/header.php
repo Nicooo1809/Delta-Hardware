@@ -1,5 +1,5 @@
 <?php
-require_once("/php/functions.php");
+require_once("php/functions.php");
 #error_log($_SESSION['userid']);
 #error_log('8');
 session_start();
@@ -72,7 +72,7 @@ $user1 = check_user(FALSE);
                                 <li><hr class="dropdown-divider"></li>
                             <?php else:?>
                                 <li>
-                                        <a class="dropdown-item text-start" href="products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?> <?=$subtype['quantity']?></a>
+                                        <a class="dropdown-item text-start" href="/products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?> <?=$subtype['quantity']?></a>
                                         
                                 </li>
                             <?php endif; ?>
@@ -95,7 +95,7 @@ $user1 = check_user(FALSE);
             <?php if(isset($user1['id'])): ?>
             <a class="icon-navbar-a" href="/cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(!isset($user1['id'])): ?>
-                <a class="icon-navbar-a" href="<?php if(isset($user1['id'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
+                <a class="icon-navbar-a" href="/<?php if(isset($user1['id'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(isset($user1['id'])): ?>
             <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item dropdown">
