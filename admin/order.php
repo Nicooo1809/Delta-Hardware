@@ -81,9 +81,9 @@ foreach ($products as $product) {
                                     <th scope="row" class="border-0">
                                         <div class="p-2">
                                             <?php if (empty($product['image'])) {
-                                                print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                                print('<img src="/images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
                                             } else {
-                                                print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                                print('<img src="/product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
                                             }?>
                                             <div class="ms-3 d-inline-block align-middle">
                                                 <h5 class="mb-0"> 
@@ -131,9 +131,9 @@ foreach ($products as $product) {
                     <div class="card mx-auto cbg">
                         <div class="card-body">
                             <?php if (empty($product['image'])) {
-                                print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                print('<img src="/images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             } else {
-                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                print('<img src="/product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             }?>
                             <h4 class="card-title name"><?=$product['name']?></h4>
                             <span class="card-text price">
