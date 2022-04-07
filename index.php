@@ -32,7 +32,7 @@ require_once("templates/header.php");
     </div>
     
     <div class="container my-3">
-    <h1 class="h1-reponsive text-uppercase fw-bold pt-md-5 pt-3 index-rtx-text text-primary text-center">NEUERSCHEINUNGEN</h1>
+        <h1 class="h1-reponsive text-uppercase fw-bold pt-md-5 pt-3 index-rtx-text text-primary text-center">NEUERSCHEINUNGEN</h1>
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <div class="carousel-inner py-4">
                 <?php $i = 0; foreach ($products as $product): ?>
@@ -82,6 +82,8 @@ require_once("templates/header.php");
             </div>
         </div>
     </div>
+
+    <div class="container"></div>
 </main>
 
 
