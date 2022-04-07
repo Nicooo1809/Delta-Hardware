@@ -110,7 +110,9 @@ if(isset($_POST['action'])) {
                     </div>
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputVisible">Visible</span>
-                        <input type="checkbox" class="form-control form-check-input" id="inputVisible" name="visible" <?=($product[0]['visible']==1 ? 'checked':'')?>>
+                        <div class="input-group-text">
+                            <input class="form-check-input mt-0" type="checkbox" id="inputVisible" name="visible" <?=($product[0]['visible']==1 ? 'checked':'')?>>
+                        </div>
                     </div>
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputCategorie">Type</span>
