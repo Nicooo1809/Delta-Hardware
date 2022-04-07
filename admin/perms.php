@@ -123,10 +123,10 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h1>Rechteverwaltung</h1>
             <div class="col">
                 <form action="perms.php" method="post" class="">
-                    <div class="input-group">
+                    <div class="input-group d-flex justify-content-end">
                         <span for="addGroup" class="input-group-text">Gruppen Name:</span>
                         <input type="text" name="permsname" class="form-control" required>
-                        <button id="addGroup" type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+                        <button id="addGroup" type="submit" name="action" value="add" class="btn btn-outline-primary form-control">Hinzufügen</button>
                     </div>
                 </form>
             </div>
