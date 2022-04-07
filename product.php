@@ -133,6 +133,7 @@ require("templates/header.php");
         <div class="card cbg mx-2 my-3">
             <div class="card-body px-3 py-3">
                 <div class="row">
+                    <h2 class="fw-blod">Beschreibung</h2>
                     <p class="ctext mb-0"><?=$product[0]['desc']?></p>
                 </div>
             </div>
