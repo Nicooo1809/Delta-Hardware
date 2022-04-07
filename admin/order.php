@@ -109,59 +109,53 @@ foreach ($products as $product) {
     </div> 
 <?php else: ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
-        <div class="row row-cols-1 row-cols-md-1 g-3">
-            <div class="col">
-                <div class="card mx-auto my-2 cbg">
-                    <div class="card-body">
-                        <h2 class="card-title name">Bestellung bearbeiten</h2>
-                        <p class="card-text">Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
-                    </div>
-                </div>
-                <div class="card mx-auto my-2 cbg">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
-                            <?=$customer[0]['streetHouseNr']?></br>
-                            <?=$customer[0]['city']?>
-                        </p>
-                    </div>
-                </div>
-                <?php if ($user['markOrders'] == 1) { ?>
-                    <div class="card mx-auto my-2 cbg">
-                        <div class="card-body">
-                            <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-between">
-                                <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success me-2">Erledigt</button>
-                                <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
-                            </form>
-                        </div>
-                    </div>
-                <?php } ?>
+        <div class="card mx-auto my-2 cbg">
+            <div class="card-body">
+                <h2 class="card-title name">Bestellung bearbeiten</h2>
+                <p class="card-text">Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
             </div>
-            <?php foreach ($products as $product): ?>
-                <div class="col">
-                    <div class="card mx-auto my-2 cbg">
-                        <?php if (empty($product['image'])) {
-                            print('<img src="/images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                        } else {
-                            print('<img src="/product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                        }?>
-                            <div class="card-body">
-                            <h4 class="card-title name"><?=$product['name']?></h4>
-                            <span class="card-text price">
-                                Preis: &euro;<?=$product['price']?><br>
-                                Menge: <?=$product['quantity']?>
-                            </span>
-                        </div>
-                    </div>
+        </div>
+        <div class="card mx-auto my-2 cbg">
+            <div class="card-body">
+                <p class="card-text">
+                    <?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                    <?=$customer[0]['streetHouseNr']?></br>
+                    <?=$customer[0]['city']?>
+                </p>
+            </div>
+        </div>
+        <?php if ($user['markOrders'] == 1) { ?>
+            <div class="card mx-auto my-2 cbg">
+                <div class="card-body">
+                    <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-between">
+                        <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success">Erledigt</button>
+                        <button class="py-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
+                    </form>
                 </div>
-            <?php endforeach; ?>
+            </div>
+        <?php } ?>
+        <?php foreach ($products as $product): ?>
             <div class="col">
                 <div class="card mx-auto my-2 cbg">
-                    <div class="card-body">
-                        <h2 class="card-title name">Summe:</h2>
-                        <strong class="card-text"><?=$summprice?>&euro;</strong>
+                    <?php if (empty($product['image'])) {
+                        print('<img src="/images/image-not-found.png" class="card-img-top img-fluid" alt="' . $product['name'] . '">');
+                    } else {
+                        print('<img src="/product_img/' . $product['image'] . '" class="card-img-top img-fluid" alt="' . $product['name'] . '">');
+                    }?>
+                        <div class="card-body">
+                        <h4 class="card-title name"><?=$product['name']?></h4>
+                        <span class="card-text price">
+                            Preis: &euro;<?=$product['price']?><br>
+                            Menge: <?=$product['quantity']?>
+                        </span>
                     </div>
                 </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="card mx-auto my-2 cbg">
+            <div class="card-body">
+                <h2 class="card-title name">Summe:</h2>
+                <strong class="card-text"><?=$summprice?>&euro;</strong>
             </div>
         </div>
     </div>
