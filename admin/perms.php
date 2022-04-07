@@ -117,16 +117,19 @@ $stmt->execute();
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
 ?>
-<div class="container-fluid minheight100 users content-wrapper py-3 px-3">
+<div class="container-fluid minheight100 users content-wrapper py-3 px-3 mx-auto">
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
             <h1>Rechteverwaltung</h1>
-            <form action="perms.php" method="post" class="">
-                <div class="input-group">
-                    <input type="text" name="permsname" class="form-control" required>
-                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
-                </div>
-            </form>
+            <div class="col">
+                <form action="perms.php" method="post" class="">
+                    <div class="input-group">
+                        <span for="addGroup" class="input-group-text">Gruppen Name:</span>
+                        <input type="text" name="permsname" class="form-control" required>
+                        <button id="addGroup" type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+                    </div>
+                </form>
+            </div>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
