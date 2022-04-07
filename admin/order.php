@@ -47,15 +47,15 @@ foreach ($products as $product) {
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row">
             <div class="py-3 px-3 cbg ctext rounded">
-                <h1>Bestellen bearbeiten</h1>
+                <h1>Bestellung bearbeiten</h1>
                 <p>Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
 				<p><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
 				<?=$customer[0]['streetHouseNr']?></br>
 				<?=$customer[0]['city']?></p>
                 <?php if ($user['markOrders'] == 1) { ?>
                     <form action="?id=<?=$_GET['id']?>" method="post" class="row me-2">
-                        <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary my-2">Erledigt</button>
-                        <a href="/internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                        <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success">Erledigt</button>
+                        <button class="py-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                     </form>
                 <?php } ?>
                 <div class="table-responsive">
