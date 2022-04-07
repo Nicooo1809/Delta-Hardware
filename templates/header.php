@@ -72,10 +72,8 @@ $user1 = check_user(FALSE);
                                 <li><hr class="dropdown-divider"></li>
                             <?php else:?>
                                 <li>
-                                    <div>
-                                        <a class="dropdown-item text-start" href="products.php?type=<?=$subtype['id']?>" style="display: inline-block;"><?=$subtype['type']?></a>
-                                        <span class="text-end" style="display: inline-block;"><?=$subtype['quantity']?><span>
-                                    </div>
+                                        <a class="dropdown-item text-start" href="products.php?type=<?=$subtype['id']?>"><?=$subtype['type']?><span class="text-end"><?=$subtype['quantity']?><span></a>
+                                        
                                 </li>
                             <?php endif; ?>
                         <?php
