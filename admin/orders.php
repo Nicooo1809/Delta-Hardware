@@ -1,4 +1,5 @@
 <?php
+chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 if (!isset($user['id'])) {
@@ -9,7 +10,7 @@ if ($user['showOrders'] != 1) {
     error('Permission denied!');
 }
 if (!isset($_GET['id']) or empty($_GET['id'])) {
-    echo("<script>location.href='internal.php'</script>");
+    echo("<script>location.href='/internal.php'</script>");
 }
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and product_list.list_id = ?');
 $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
@@ -25,7 +26,7 @@ if(isset($_POST['confirm'])) {
         $stmt = $pdo->prepare('UPDATE orders SET sent = 1, sent_date = now() WHERE id = ? and ordered = 1');
         $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
         $stmt->execute();
-		echo("<script>location.href='internal.php'</script>");
+		echo("<script>location.href='/internal.php'</script>");
         #error_log(print_r($product, true));
     }
 }
@@ -54,7 +55,7 @@ foreach ($products as $product) {
                 <?php if ($user['markOrders'] == 1) { ?>
                     <form action="?id=<?=$_GET['id']?>" method="post" class="row me-2">
                         <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary my-2">Erledigt</button>
-                        <a href="internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                        <a href="/internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
                     </form>
                 <?php } ?>
                 <div class="table-responsive">
@@ -86,7 +87,7 @@ foreach ($products as $product) {
                                             }?>
                                             <div class="ms-3 d-inline-block align-middle">
                                                 <h5 class="mb-0"> 
-                                                    <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle"><?=$product['name']?></a>
+                                                    <a href="/product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle"><?=$product['name']?></a>
                                                 </h5>
                                             </div>
                                         </div>
@@ -117,10 +118,10 @@ foreach ($products as $product) {
 					<p><?=$customer[0]['gender'].' '.$customer[0]['vorname'].' '.$customer[0]['nachname']?></p></br>
 					<p><?=$customer[0]['streetHouseNr']?></p></br>
 					<p><?=$customer[0]['city']?></p>
-					<form action="orde.php" method="post" class="row me-2">
+					<form action="/admin/orders.php" method="post" class="row me-2">
 						<input type="number" value="<?=$_GET['id']?>" name="id" style="display: none;" required>
 						<button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Erledigt</button>
-                        <a href="internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                        <a href="/internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
 					</form>
                     </div>
                 </div>
