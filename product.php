@@ -91,7 +91,7 @@ require("templates/header.php");
         </div>
     </div>
     <div class="col">
-        <div class="card cbg py-2 px-2 mx-2">
+        <div class="card cbg py-2 px-2 mx-2 mb-2">
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <div>
