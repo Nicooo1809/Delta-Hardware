@@ -84,7 +84,7 @@ if ($user['showOrders'] == 1) {
 								<?php foreach ($orders as $order): ?>
 									<tr>
 										<td class="border-0 align-middle text-center ctext">
-											<span><a href="/admin/order?=$order['id']?>"><?=$order['id']?></a></span>
+											<span><a href="/admin/order.php?is=<?=$order['id']?>"><?=$order['id']?></a></span>
 										</td>
 										<td class="border-0 align-middle text-center ctext">
 											<span><?=$order['vorname']?> <?=$order['nachname']?></span>
