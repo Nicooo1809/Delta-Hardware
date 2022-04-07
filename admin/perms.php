@@ -124,7 +124,7 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="">
                 <form action="perms.php" method="post" class="col input-group d-flex justify-content-end">
                     <input type="text" name="permsname" class="form-control" required>
-                    <button id="addGroup" type="submit" name="action" value="add" class="btn btn-outline-primary form-control">Hinzufügen</button>
+                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
                 </form>
             </div>
             <div class="table-responsive">
