@@ -53,7 +53,7 @@ foreach ($products as $product) {
 				<?=$customer[0]['streetHouseNr']?></br>
 				<?=$customer[0]['city']?></p>
                 <?php if ($user['markOrders'] == 1) { ?>
-                    <form action="?id=<?=$_GET['id']?>" method="post" class="row me-2">
+                    <form action="?id=<?=$_GET['id']?>" method="post" class="row">
                         <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success">Erledigt</button>
                         <button class="py-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                     </form>
