@@ -195,7 +195,7 @@ header {
     height: 100%;
     float: left;
     overflow: hidden;
-    position: relative;
+    position: absolute;
     text-align: center;
     cursor: default;
     background: -webkit-linear-gradient(45deg, #0d6efd 0%, #05abe0 100%);
