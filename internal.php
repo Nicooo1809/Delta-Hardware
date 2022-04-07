@@ -38,16 +38,16 @@ if ($user['showOrders'] == 1) {
 				<div class="card-text">
 					<?php
 						if ($user['showUser'] == 1) {
-							print('<a href="user.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Benutzer</button></a>');
+							print('<a href="admin/user.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Benutzer</button></a>');
 						} 
 						if ($user['showUserPerms'] == 1) {
-							print('<a href="perms.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Berechtigungen</button></a>');
+							print('<a href="admin/perms.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Berechtigungen</button></a>');
 						}
 						if ($user['showCategories'] == 1) {
-							print('<a href="categories.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Kategorien</button></a>');
+							print('<a href="admin/categories.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Kategorien</button></a>');
 						}
 						if ($user['showProduct'] == 1) {
-							print('<a href="produc.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Produkte</button></a>');
+							print('<a href="admin/product.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Produkte</button></a>');
 						}
 					?>
 				</div>

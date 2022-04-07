@@ -1,4 +1,5 @@
 <?php
+chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 if (!isset($user['id'])) {
@@ -34,7 +35,7 @@ if(isset($_POST['action'])) {
                 #del
                 $stmt = $pdo->prepare('DELETE FROM product_images where id = ? and product_id = ?');
                 $stmt->bindValue(1, $_POST[$var], PDO::PARAM_INT);
-                $stmt->bindValue(2, $_POST[productid], PDO::PARAM_INT);
+                $stmt->bindValue(2, $_POST['productid'], PDO::PARAM_INT);
                 $stmt->execute();
             }
         }
