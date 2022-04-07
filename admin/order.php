@@ -53,9 +53,9 @@ foreach ($products as $product) {
 				<?=$customer[0]['streetHouseNr']?></br>
 				<?=$customer[0]['city']?></p>
                 <?php if ($user['markOrders'] == 1) { ?>
-                    <form action="?id=<?=$_GET['id']?>" method="post" class="row">
-                        <button type="submit" name="confirm" value="yes" class="py-2 btn  btn-lg btn-outline-success">Erledigt</button>
-                        <button class="py-2 btn btn-lg  btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
+                    <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
+                        <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success me-2">Erledigt</button>
+                        <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                     </form>
                 <?php } ?>
                 <div class="table-responsive">
