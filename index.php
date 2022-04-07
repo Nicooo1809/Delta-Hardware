@@ -22,8 +22,8 @@ require_once("templates/header.php");
                     <div class="col-md-12 mt-1 text-white text-start">
                         <a href="products.php?search=RTX">
                             <h1 class="h1-reponsive text-uppercase fw-bold mb-0 pt-md-5 pt-5 index-rtx-text text-primary text-center">HERZLICH WILLKOMMEN</h1>
-                            <h2 class="h2-responsive text-white fw-bold text-center">Delta-Hardware, dein Hardware Onlinehandel</h2>
                             <hr class="hr-light my-3">
+                            <h2 class="h2-responsive text-white fw-bold text-center">Delta-Hardware, dein Hardware Onlinehandel</h2>
                         </a>
                     </div>  
                 </div>
@@ -32,6 +32,7 @@ require_once("templates/header.php");
     </div>
     
     <div class="container my-3">
+        <h2 class="h2-responsive text-primary fw-bold text-center">Neu hinzugefügt</h2>
         <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
             <div class="carousel-inner py-4">
                 <?php $i = 0; foreach ($products as $product): ?>
