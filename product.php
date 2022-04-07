@@ -33,7 +33,7 @@ require("templates/header.php");
 ?>
 <div class="container-fluid minheight100 px-3 py-3 row row-cols-1 row-cols-md-2 gx-0 product content-wrapper">
     <div class="col">
-        <div class="card cbg py-2 px-2 mx-2">
+        <div class="card cbg mx-2">
             <div class="card-body px-3 py-3">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <?php if($images == null):?>
@@ -91,7 +91,7 @@ require("templates/header.php");
         </div>
     </div>
     <div class="col">
-        <div class="card cbg mx-2 mb-2">
+        <div class="card cbg mx-2">
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <div>
@@ -130,7 +130,7 @@ require("templates/header.php");
                 <?php endif; ?>
             </div>
         </div>
-        <div class="card cbg mx-2 my-2 mt-4">
+        <div class="card cbg mx-2 my-3">
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <p class="ctext mb-0"><?=$product[0]['desc']?></p>
