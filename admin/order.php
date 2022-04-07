@@ -118,7 +118,7 @@ foreach ($products as $product) {
 					<p><?=$customer[0]['gender'].' '.$customer[0]['vorname'].' '.$customer[0]['nachname']?></p></br>
 					<p><?=$customer[0]['streetHouseNr']?></p></br>
 					<p><?=$customer[0]['city']?></p>
-					<form action="/admin/orders.php" method="post" class="row me-2">
+					<form action="/admin/order.php" method="post" class="row me-2">
 						<input type="number" value="<?=$_GET['id']?>" name="id" style="display: none;" required>
 						<button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Erledigt</button>
                         <a href="/internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
