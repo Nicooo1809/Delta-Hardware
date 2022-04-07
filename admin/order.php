@@ -53,7 +53,7 @@ foreach ($products as $product) {
 				<?=$customer[0]['streetHouseNr']?></br>
 				<?=$customer[0]['city']?></p>
                 <?php if ($user['markOrders'] == 1) { ?>
-                    <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
+                    <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end mb-2">
                         <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success me-2">Erledigt</button>
                         <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                     </form>
@@ -111,20 +111,31 @@ foreach ($products as $product) {
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row row-cols-1 row-cols-md-1 g-3">
             <div class="col">
-                <div class="card mx-auto cbg">
+                <div class="card mx-auto my-2 cbg">
                     <div class="card-body">
-					<h1>Bestellen bearbeiten</h1>
-					<p>Bitte packe folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden ein und versehen das Packet mit folgendem Addressaufkleber:</p>
-					<p><?=$customer[0]['gender'].' '.$customer[0]['vorname'].' '.$customer[0]['nachname']?></p></br>
-					<p><?=$customer[0]['streetHouseNr']?></p></br>
-					<p><?=$customer[0]['city']?></p>
-					<form action="/admin/order.php" method="post" class="row me-2">
-						<input type="number" value="<?=$_GET['id']?>" name="id" style="display: none;" required>
-						<button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Erledigt</button>
-                        <a href="/internal.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
-					</form>
+                        <h2 class="card-title name">Bestellung bearbeiten</h2>
+                        <p class="card-text">Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
                     </div>
                 </div>
+                <div class="card mx-auto my-2 cbg">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <?=$customer[0]['streetHouseNr']?></br>
+                            <?=$customer[0]['city']?>
+                        </p>
+                    </div>
+                </div>
+                <?php if ($user['markOrders'] == 1) { ?>
+                    <div class="card mx-auto my-2 cbg">
+                        <div class="card-body">
+                            <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end mb-2">
+                                <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success me-2">Erledigt</button>
+                                <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
             <?php foreach ($products as $product): ?>
                 <div class="col">
@@ -154,7 +165,8 @@ foreach ($products as $product) {
             </div>
         </div>
     </div>
-<?php endif; ?>
+<?php endif;?>
+
 <?php
 include_once("templates/footer.php")
 ?>
