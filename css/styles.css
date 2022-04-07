@@ -184,6 +184,6 @@ header {
 /* BOOTSTRAP CUSTOM STUFF */
 .card-img-top {
     width: 100% !important;
-    height: 100vw !important;
+    height: auto !important;
     object-fit: cover !important;
 }
