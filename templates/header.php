@@ -1,5 +1,5 @@
 <?php
-require_once("php/functions.php");
+require_once("/php/functions.php");
 #error_log($_SESSION['userid']);
 #error_log('8');
 session_start();
@@ -21,7 +21,7 @@ $user1 = check_user(FALSE);
     <link rel="stylesheet" href="/css/styles.css?v=<?php print(date("Y.m.d.H.i.s")); ?>">
     <link rel="stylesheet"  href="/css/dark.css" disabled>
     <link rel="stylesheet"  href="/css/light.css" disabled>
-    <link rel="icon" type="image/png" href="favicon.png" sizes="1024x1024" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="1024x1024" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/3386a0b16e.js"></script>
