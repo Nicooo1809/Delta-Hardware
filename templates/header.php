@@ -86,7 +86,7 @@ $user1 = check_user(FALSE);
                         }
                     }
                 ?>
-                <li class="nav-item"><a href="/products.php">Alle Produkte</a></li>
+                <li class="nav-item"><a class="nav-link ctext" href="/products.php">Alle Produkte</a></li>
             </ul> 
 
             <form class="d-flex" action="/products.php">
