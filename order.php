@@ -138,7 +138,7 @@ foreach ($products as $product) {
                                             $("body").tooltip({ selector: '[data-toggle=tooltip]' });
                                         });
                                     </script>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Es gibt nicht genug Geräte für die Bestellung, sie können es bestellen es kann allerding länger dauern als üblich">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Es sind nicht genug Geräte für deine Bestellung vorhanden, du kannst trotzdem bestellen, allerrdings kann deine Bestellung deshalb länger dauern.">
                                             <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
                                         </button>
                                     </td>
