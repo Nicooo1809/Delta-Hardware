@@ -133,7 +133,7 @@ foreach ($products as $product) {
                                         </symbol>
                                     </svg>
                                     <td class="border-0 align-middle text-center ctext" style="width: 10%;">
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Es sind nicht genug Geräte für deine Bestellung vorhanden, du kannst trotzdem bestellen, allerrdings kann deine Bestellung deshalb länger dauern.">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="<h3>Hardware nicht vollständig auf Lager!</h3>">
                                             <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
                                         </button>
                                         <script>
