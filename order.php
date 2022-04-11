@@ -128,7 +128,7 @@ foreach ($products as $product) {
                                         <span><?=$product['quantity']?></span>
                                     </td>
                                     <td class="border-0 align-middle text-center ctext">
-                                        <span><?=$product['maxquantity']?></span>
+                                        <span><?=($product['maxquantity'] < $product['quantity'] ? "WARNUNG!" : "")?></span>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
