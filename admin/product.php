@@ -77,7 +77,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(8, $_POST['productid'], PDO::PARAM_INT);
             $stmt->execute();
 
-            error_log(pdo_debugStrParams($stmt));
+            #error_log(pdo_debugStrParams($stmt));
             echo("<script>location.href='product.php'</script>");
             #header("location: product.php");
             exit;
@@ -145,7 +145,7 @@ if(isset($_POST['action'])) {
                         <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                         <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                         <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
-                        <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
+                        <a href="product.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
                     </form>
                 </div>
             </div>
@@ -175,7 +175,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(7, $_POST['categorie'], PDO::PARAM_INT);
             $stmt->execute();
 
-            error_log(pdo_debugStrParams($stmt));
+            #error_log(pdo_debugStrParams($stmt));
 
             $stmt = $pdo->prepare('SELECT * FROM products where name = ? and `desc` = ? order by id desc');
             $stmt->bindValue(1, $_POST['name']);
@@ -260,7 +260,7 @@ if(isset($_POST['action'])) {
                     </div>
                     <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                     <button type="submit" name="action" value="add" class="py-2 btn btn-outline-success">Speichern</button>
-                    <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
+                    <a href="product.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
                 </form>
             </div>
         </div>
