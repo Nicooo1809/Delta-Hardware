@@ -133,9 +133,10 @@ foreach ($products as $product) {
                                         </symbol>
                                     </svg>
                                     <td class="border-0 align-middle text-center ctext">
+                                    <?=($product['maxquantity'] < $product['quantity'] ? '
                                         <button type="button" class="btn btn-danger d-flex justify-content-center" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top" title="<h5>Hardware nicht vollständig auf Lager!</h5>">
-                                            <span class="align-self-center"><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-0" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
-                                        </button>
+                                            <svg class="bi flex-shrink-0 me-0" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                        </button>' : "")?>
                                         <script>
                                             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
                                             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
