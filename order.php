@@ -28,7 +28,7 @@ if(isset($_POST['confirm'])) {
             $stmt->execute();
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($product['quantity'] > $product1[0]['quantity']) {
-                print('Entschuldigen sie es gibt nur noch ' . $product1[0]['quantity'] . ' ' . $product1[0]['name'] . 'Ihrer Bestellung könnte länger dauern als gewohnt');
+                print('Entschuldigen sie es gibt nur noch ' . $product1[0]['quantity'] . ' ' . $product1[0]['name'] . ' Ihrer Bestellung könnte länger dauern als gewohnt');
             }
             $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
@@ -99,6 +99,8 @@ foreach ($products as $product) {
                                     <th scope="col" class="border-0 text-center">
                                         <div class="p-2 px-3 text-uppercase ctext">Menge</div>
                                     </th>
+                                    <th scope="col" class="border-0 text-center">
+                                    </th>
                                 </div>
                             </tr>
                         </thead>
@@ -124,6 +126,9 @@ foreach ($products as $product) {
                                     </td>
                                     <td class="border-0 align-middle text-center ctext">
                                         <span><?=$product['quantity']?></span>
+                                    </td>
+                                    <td class="border-0 align-middle text-center ctext">
+                                        <span><?=$product['maxquantity']?></span>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

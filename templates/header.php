@@ -48,7 +48,7 @@ $user1 = check_user(FALSE);
                     $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     #error_log(print_r($roottypes, true));
                     foreach ($roottypes as $roottype) {
-                        $stmt = $pdo->prepare("SELECT *, (SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id) as quantity FROM products_types WHERE parent_id = ?");
+                        $stmt = $pdo->prepare("SELECT *, (SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id and visible = 1) as quantity FROM products_types WHERE parent_id = ?");
                         $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
                         $stmt->execute();
                         $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
