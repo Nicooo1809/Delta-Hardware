@@ -86,7 +86,7 @@ if(isset($_POST['action'])) {
         ?>
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
-            <div>
+            <div class="col">
                 <form action="product.php" method="post" enctype="multipart/form-data">
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputName">Name</span>
