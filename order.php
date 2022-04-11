@@ -137,9 +137,10 @@ foreach ($products as $product) {
                                             <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
                                         </button>
                                         <script>
-                                            $(document).ready(function(){
-                                                $('[data-bs-toggle="tooltip"]').tooltip();
-                                            });
+                                            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                                            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                                                return new bootstrap.Tooltip(tooltipTriggerEl)
+                                            })
                                         </script>
                                     </td>
                                 </tr>
