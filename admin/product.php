@@ -85,9 +85,9 @@ if(isset($_POST['action'])) {
         require_once("templates/header.php");
         ?>
         <div class="minheight100 px-3 py-3">
-            <div class="row">
+            <div>
                 <h1>Einstellungen</h1>
-                <div class="col">
+                <div>
                     <form action="product.php" method="post" enctype="multipart/form-data">
                         <div class="input-group py-2" style="max-width: 50rem;">
                             <span style="width: 150px;" class="input-group-text" for="inputName">Name</span>
@@ -95,17 +95,17 @@ if(isset($_POST['action'])) {
                         </div>
                         <div class="input-group py-2" style="max-width: 50rem;">
                             <span style="width: 150px;" class="input-group-text" for="inputPrice">Preis</span>
-                            <input class="form-control" id="inputPrice" name="price" type="text" value="<?=$product[0]['price']?>" required>
+                            <input class="form-control" pattern="[\d,.]*" id="inputPrice" name="price" type="text" value="<?=$product[0]['price']?>" required>
                             <span class="input-group-text">&euro;</span>
                         </div>
                         <div class="input-group py-2" style="max-width: 50rem;">
                             <span style="width: 150px;" class="input-group-text" for="inputRrp">UVP</span>
-                            <input class="form-control" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>">
+                            <input class="form-control" pattern="[\d,.]*" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>">
                             <span class="input-group-text">&euro;</span>
                         </div>
                         <div class="input-group py-2" style="max-width: 50rem;">
                             <span style="width: 150px;" class="input-group-text" for="inputQuantity">Menge</span>
-                            <input class="form-control" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
+                            <input class="form-control" pattern="[\d]*" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
                         </div>
                         <div class="input-group py-2" style="max-width: 50rem;">
                             <span style="width: 150px;" class="input-group-text" for="inputDesc">Description</span>
@@ -220,33 +220,35 @@ if(isset($_POST['action'])) {
             <h1>Einstellungen</h1>
             <div>
                 <form action="product.php" method="post" enctype="multipart/form-data">
-                    <div class="input-group py-2">
+                    <div class="input-group py-2" style="max-width: 50rem;">
                         <span style="width: 150px;" class="input-group-text" for="inputName">Name</span>
                         <input class="form-control" id="inputName" name="name" type="text" required>
                     </div>
-                    <div class="input-group py-2">
+                    <div class="input-group py-2" style="max-width: 50rem;">
                         <span style="width: 150px;" class="input-group-text" for="inputPrice">Preis</span>
-                        <input class="form-control" id="inputPrice" name="price" type="text" required>
+                        <input class="form-control" pattern="[\d,.]*" id="inputPrice" name="price" type="text" required>
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    <div class="input-group py-2">
+                    <div class="input-group py-2" style="max-width: 50rem;">
                         <span style="width: 150px;" class="input-group-text" for="inputRrp">UVP</span>
-                        <input class="form-control" id="inputRrp" name="rrp" type="text">
+                        <input class="form-control" pattern="[\d,.]*" id="inputRrp" name="rrp" type="text">
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    <div class="input-group py-2">
+                    <div class="input-group py-2" style="max-width: 50rem;">
                         <span style="width: 150px;" class="input-group-text" for="inputQuantity">Menge</span>
-                        <input class="form-control" id="inputQuantity" name="quantity" type="text" required>
+                        <input class="form-control" pattern="[\d]*" id="inputQuantity" name="quantity" type="text" required>
                     </div>
-                    <div class="input-group py-2">
+                    <div class="input-group py-2" style="max-width: 50rem;">
                         <span style="width: 150px;" class="input-group-text" for="inputDesc">Description</span>
                         <textarea  class="form-control" name="desc" id="inputDesc" required></textarea> 
                     </div>
-                    <div class="input-group py-2">
+                    <div class="input-group py-2" style="max-width: 50rem;">
                         <span style="width: 150px;" class="input-group-text" for="inputVisible">Visible</span>
-                        <input type="checkbox" class="form-check-input" id="inputVisible" name="visible" checked>
+                        <div class="input-group-text">
+                            <input class="form-check-input mt-0" type="checkbox" id="inputVisible" name="visible">
+                        </div>
                     </div>
-                    <div class="input-group py-2">
+                    <div class="input-group py-2" style="max-width: 50rem;">
                         <span style="width: 150px;" class="input-group-text" for="inputCategorie">Type</span>
                         <select class="form-select" id="inputCategorie" name="categorie">
                             <?php foreach ($types as $type) {
