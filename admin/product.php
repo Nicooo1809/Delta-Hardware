@@ -89,46 +89,48 @@ if(isset($_POST['action'])) {
                 <h1>Einstellungen</h1>
                 <div class="col">
                     <form action="product.php" method="post" enctype="multipart/form-data">
-                        <div class="input-group py-2">
-                            <span style="width: 150px;" class="input-group-text" for="inputName">Name</span>
-                            <input class="form-control" id="inputName" name="name" type="text" value="<?=$product[0]['name']?>" required>
-                        </div>
-                        <div class="input-group py-2">
-                            <span style="width: 150px;" class="input-group-text" for="inputPrice">Preis</span>
-                            <input class="form-control" id="inputPrice" name="price" type="text" value="<?=$product[0]['price']?>" required>
-                            <span class="input-group-text">&euro;</span>
-                        </div>
-                        <div class="input-group py-2">
-                            <span style="width: 150px;" class="input-group-text" for="inputRrp">UVP</span>
-                            <input class="form-control" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>">
-                            <span class="input-group-text">&euro;</span>
-                        </div>
-                        <div class="input-group py-2">
-                            <span style="width: 150px;" class="input-group-text" for="inputQuantity">Menge</span>
-                            <input class="form-control" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
-                        </div>
-                        <div class="input-group py-2">
-                            <span style="width: 150px;" class="input-group-text" for="inputDesc">Description</span>
-                            <textarea  class="form-control" name="desc" id="inputDesc" required><?=$product[0]['desc']?></textarea> 
-                        </div>
-                        <div class="input-group py-2">
-                            <span style="width: 150px;" class="input-group-text" for="inputVisible">Visible</span>
-                            <div class="input-group-text">
-                                <input class="form-check-input mt-0" type="checkbox" id="inputVisible" name="visible" <?=($product[0]['visible']==1 ? 'checked':'')?>>
+                        <div class="col-6">
+                            <div class="input-group py-2">
+                                <span style="width: 150px;" class="input-group-text" for="inputName">Name</span>
+                                <input class="form-control" id="inputName" name="name" type="text" value="<?=$product[0]['name']?>" required>
                             </div>
-                        </div>
-                        <div class="input-group py-2">
-                            <span style="width: 150px;" class="input-group-text" for="inputCategorie">Type</span>
-                            <select class="form-select" id="inputCategorie" name="categorie">
-                                <?php foreach ($types as $type) {
-                                    if ($type['id'] == $product[0]['product_type_id']) {
-                                        print('<option class="text-dark" value="' . $type['id'] . '" selected>' . $type['type'] . '</option>');
-                                    } else {
-                                        print('<option class="text-dark" value="' . $type['id'] . '">' . $type['type'] . '</option>');
+                            <div class="input-group py-2">
+                                <span style="width: 150px;" class="input-group-text" for="inputPrice">Preis</span>
+                                <input class="form-control" id="inputPrice" name="price" type="text" value="<?=$product[0]['price']?>" required>
+                                <span class="input-group-text">&euro;</span>
+                            </div>
+                            <div class="input-group py-2">
+                                <span style="width: 150px;" class="input-group-text" for="inputRrp">UVP</span>
+                                <input class="form-control" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>">
+                                <span class="input-group-text">&euro;</span>
+                            </div>
+                            <div class="input-group py-2">
+                                <span style="width: 150px;" class="input-group-text" for="inputQuantity">Menge</span>
+                                <input class="form-control" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
+                            </div>
+                            <div class="input-group py-2">
+                                <span style="width: 150px;" class="input-group-text" for="inputDesc">Description</span>
+                                <textarea  class="form-control" name="desc" id="inputDesc" required><?=$product[0]['desc']?></textarea> 
+                            </div>
+                            <div class="input-group py-2">
+                                <span style="width: 150px;" class="input-group-text" for="inputVisible">Visible</span>
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" id="inputVisible" name="visible" <?=($product[0]['visible']==1 ? 'checked':'')?>>
+                                </div>
+                            </div>
+                            <div class="input-group py-2">
+                                <span style="width: 150px;" class="input-group-text" for="inputCategorie">Type</span>
+                                <select class="form-select" id="inputCategorie" name="categorie">
+                                    <?php foreach ($types as $type) {
+                                        if ($type['id'] == $product[0]['product_type_id']) {
+                                            print('<option class="text-dark" value="' . $type['id'] . '" selected>' . $type['type'] . '</option>');
+                                        } else {
+                                            print('<option class="text-dark" value="' . $type['id'] . '">' . $type['type'] . '</option>');
+                                        }
                                     }
-                                }
-                                ?>
-                            </select>
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                         <?php 
                         for ($x = 0; $x < count($imgs); $x++) {
