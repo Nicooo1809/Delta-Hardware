@@ -85,65 +85,67 @@ if(isset($_POST['action'])) {
         require_once("templates/header.php");
         ?>
         <div class="minheight100 px-3 py-3">
-            <h1>Einstellungen</h1>
-            <div class="col">
-                <form action="product.php" method="post" enctype="multipart/form-data">
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputName">Name</span>
-                        <input class="form-control" id="inputName" name="name" type="text" value="<?=$product[0]['name']?>" required>
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputPrice">Preis</span>
-                        <input class="form-control" id="inputPrice" name="price" type="text" value="<?=$product[0]['price']?>" required>
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputRrp">UVP</span>
-                        <input class="form-control" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>" required>
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputQuantity">Menge</span>
-                        <input class="form-control" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputDesc">Description</span>
-                        <textarea  class="form-control" name="desc" id="inputDesc" required><?=$product[0]['desc']?></textarea> 
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputVisible">Visible</span>
-                        <div class="input-group-text">
-                            <input class="form-check-input mt-0" type="checkbox" id="inputVisible" name="visible" <?=($product[0]['visible']==1 ? 'checked':'')?>>
-                        </div>
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputCategorie">Type</span>
-                        <select class="form-select" id="inputCategorie" name="categorie">
-                            <?php foreach ($types as $type) {
-                                if ($type['id'] == $product[0]['product_type_id']) {
-                                    print('<option class="text-dark" value="' . $type['id'] . '" selected>' . $type['type'] . '</option>');
-                                } else {
-                                    print('<option class="text-dark" value="' . $type['id'] . '">' . $type['type'] . '</option>');
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <?php 
-                    for ($x = 0; $x < count($imgs); $x++) {
-                        ?>
+            <div class="row">
+                <h1>Einstellungen</h1>
+                <div class="col">
+                    <form action="product.php" method="post" enctype="multipart/form-data">
                         <div class="input-group py-2">
-                            <img src="/product_img/<?=$imgs[$x]['img']?>" class="img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
-                            <input type="checkbox" class="form-check-input" value="<?=$imgs[$x]['id']?>" name="<?='delImage-'.$x?>">
-
+                            <span class="input-group-text" for="inputName" style="width: 300px;">Name</span>
+                            <input class="form-control" id="inputName" name="name" type="text" value="<?=$product[0]['name']?>" required>
                         </div>
-                        <?php
-                    }
-                    ?>
-                    
-                    <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
-                    <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
-                    <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
-                    <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
-                </form>
+                        <div class="input-group py-2">
+                            <span class="input-group-text" for="inputPrice">Preis</span>
+                            <input class="form-control" id="inputPrice" name="price" type="text" value="<?=$product[0]['price']?>" required>
+                        </div>
+                        <div class="input-group py-2">
+                            <span class="input-group-text" for="inputRrp">UVP</span>
+                            <input class="form-control" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>" required>
+                        </div>
+                        <div class="input-group py-2">
+                            <span class="input-group-text" for="inputQuantity">Menge</span>
+                            <input class="form-control" id="inputQuantity" name="quantity" type="text" value="<?=$product[0]['quantity']?>" required>
+                        </div>
+                        <div class="input-group py-2">
+                            <span class="input-group-text" for="inputDesc">Description</span>
+                            <textarea  class="form-control" name="desc" id="inputDesc" required><?=$product[0]['desc']?></textarea> 
+                        </div>
+                        <div class="input-group py-2">
+                            <span class="input-group-text" for="inputVisible">Visible</span>
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="checkbox" id="inputVisible" name="visible" <?=($product[0]['visible']==1 ? 'checked':'')?>>
+                            </div>
+                        </div>
+                        <div class="input-group py-2">
+                            <span class="input-group-text" for="inputCategorie">Type</span>
+                            <select class="form-select" id="inputCategorie" name="categorie">
+                                <?php foreach ($types as $type) {
+                                    if ($type['id'] == $product[0]['product_type_id']) {
+                                        print('<option class="text-dark" value="' . $type['id'] . '" selected>' . $type['type'] . '</option>');
+                                    } else {
+                                        print('<option class="text-dark" value="' . $type['id'] . '">' . $type['type'] . '</option>');
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <?php 
+                        for ($x = 0; $x < count($imgs); $x++) {
+                            ?>
+                            <div class="input-group py-2">
+                                <img src="/product_img/<?=$imgs[$x]['img']?>" class="img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
+                                <input type="checkbox" class="form-check-input" value="<?=$imgs[$x]['id']?>" name="<?='delImage-'.$x?>">
+
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        
+                        <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
+                        <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
+                        <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
+                        <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
+                    </form>
+                </div>
             </div>
         </div>
         <?php 
