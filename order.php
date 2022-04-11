@@ -28,7 +28,7 @@ if(isset($_POST['confirm'])) {
             $stmt->execute();
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($product['quantity'] > $product1[0]['quantity']) {
-                print('Entschuldigen sie es gibt nur noch ' . $product1['quantity'] . ' ' . $product1['name'] . 'Ihrer Bestellung könnte länger dauern als gewohnt');
+                print('Entschuldigen sie es gibt nur noch ' . $product1[0]['quantity'] . ' ' . $product1[0]['name'] . 'Ihrer Bestellung könnte länger dauern als gewohnt');
             }
             $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
