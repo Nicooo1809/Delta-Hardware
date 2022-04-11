@@ -133,7 +133,10 @@ foreach ($products as $product) {
                                         </symbol>
                                     </svg>
                                     <td class="border-0 align-middle text-center ctext" style="width: 10%;">
-                                        <span title="Es gibt nicht genug Geräte für die Bestellung, sie können es bestellen es kann allerding länger dauern als üblich"><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                                    <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
+                                        Tooltip on top
+                                    </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
