@@ -133,15 +133,14 @@ foreach ($products as $product) {
                                         </symbol>
                                     </svg>
                                     <td class="border-0 align-middle text-center ctext" style="width: 10%;">
-                                    <script>
-                                        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                                        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                                            return new bootstrap.Tooltip(tooltipTriggerEl)
-                                        })
-                                    </script>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Es sind nicht genug Geräte für deine Bestellung vorhanden, du kannst trotzdem bestellen, allerrdings kann deine Bestellung deshalb länger dauern.">
                                             <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
                                         </button>
+                                        <script>
+                                            $(document).ready(function(){
+                                                $('[data-bs-toggle="tooltip"]').tooltip();
+                                            });
+                                        </script>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
