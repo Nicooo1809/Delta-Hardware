@@ -133,8 +133,8 @@ foreach ($products as $product) {
                                         </symbol>
                                     </svg>
                                     <td class="border-0 align-middle text-center ctext" style="width: 10%;">
-                                    <button type="button" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="<span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>">
-                                        Tooltip on top
+                                    <button type="button" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Es gibt nicht genug Geräte für die Bestellung, sie können es bestellen es kann allerding länger dauern als üblich">
+                                        <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
                                     </button>
                                     </td>
                                 </tr>
