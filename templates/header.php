@@ -23,7 +23,7 @@ $user1 = check_user(FALSE);
     <link rel="stylesheet"  href="/css/light.css" disabled>
     <link rel="icon" type="image/png" href="/favicon.png" sizes="1024x1024" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script src="/js/popper.min.js"></script>
+    <!-- <script src="/js/popper.min.js"></script> -->
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/3386a0b16e.js"></script>
     <script src="/js/custom.js"></script>
