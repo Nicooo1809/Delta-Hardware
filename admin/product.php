@@ -96,10 +96,12 @@ if(isset($_POST['action'])) {
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputPrice">Preis</span>
                             <input class="form-control" id="inputPrice" name="price" type="text" value="<?=$product[0]['price']?>" required>
+                            <span class="input-group-text">&euro;</span>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputRrp">UVP</span>
                             <input class="form-control" id="inputRrp" name="rrp" type="text" value="<?=$product[0]['rrp']?>">
+                            <span class="input-group-text">&euro;</span>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputQuantity">Menge</span>
@@ -225,10 +227,12 @@ if(isset($_POST['action'])) {
                     <div class="input-group py-2">
                         <span style="width: 150px;" class="input-group-text" for="inputPrice">Preis</span>
                         <input class="form-control" id="inputPrice" name="price" type="text" required>
+                        <span class="input-group-text">&euro;</span>
                     </div>
                     <div class="input-group py-2">
                         <span style="width: 150px;" class="input-group-text" for="inputRrp">UVP</span>
                         <input class="form-control" id="inputRrp" name="rrp" type="text">
+                        <span class="input-group-text">&euro;</span>
                     </div>
                     <div class="input-group py-2">
                         <span style="width: 150px;" class="input-group-text" for="inputQuantity">Menge</span>
