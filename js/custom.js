@@ -13,7 +13,6 @@ function toggleStyle() {
 
 function setStyle() {
   if (getCookie("style") == "dark") {
-    document.getElementById('style_switch').checked = true;
     setCookie("style", "dark", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
