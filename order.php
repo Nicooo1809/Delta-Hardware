@@ -133,7 +133,7 @@ foreach ($products as $product) {
                                         </symbol>
                                     </svg>
                                     <td class="border-0 align-middle text-center ctext" style="width: 10%;">
-                                        <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
+                                        <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg alt="TEST" class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
