@@ -133,6 +133,10 @@ foreach ($products as $product) {
                                         </symbol>
                                     </svg>
                                     <td class="border-0 align-middle text-center ctext" style="width: 10%;">
+                                    <script>
+                                        var exampleEl = document.getElementById('example')
+                                        var tooltip = new bootstrap.Tooltip(exampleEl, options)
+                                    </script>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Es gibt nicht genug Geräte für die Bestellung, sie können es bestellen es kann allerding länger dauern als üblich">
                                             <span><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
                                         </button>
