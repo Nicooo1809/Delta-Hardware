@@ -77,7 +77,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(8, $_POST['productid'], PDO::PARAM_INT);
             $stmt->execute();
 
-            #error_log(pdo_debugStrParams($stmt));
+            error_log(pdo_debugStrParams($stmt));
             echo("<script>location.href='product.php'</script>");
             #header("location: product.php");
             exit;
@@ -172,6 +172,8 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(6, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
             $stmt->bindValue(7, $_POST['categorie'], PDO::PARAM_INT);
             $stmt->execute();
+
+            error_log(pdo_debugStrParams($stmt));
 
             $stmt = $pdo->prepare('SELECT * FROM products where name = ? and `desc` = ? order by id desc');
             $stmt->bindValue(1, $_POST['name']);
