@@ -133,8 +133,8 @@ foreach ($products as $product) {
                                         </symbol>
                                     </svg>
                                     <td class="border-0 align-middle text-center ctext">
-                                        <button type="button" class="btn btn-danger d-flex justify-content-center" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top" title="<h3>Hardware nicht vollständig auf Lager!</h3>">
-                                            <span class="align-self-center"><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
+                                        <button type="button" class="btn btn-danger d-flex justify-content-center" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top" title="<h5>Hardware nicht vollständig auf Lager!</h5>">
+                                            <span class="align-self-center"><?=($product['maxquantity'] < $product['quantity'] ? '<svg class="bi flex-shrink-0 me-0" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>' : "")?></span>
                                         </button>
                                         <script>
                                             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
