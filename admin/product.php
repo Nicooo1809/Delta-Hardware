@@ -153,11 +153,11 @@ if(isset($_POST['action'])) {
                         </div>
                         <div class="row py-2 row-cols-2">
                             <div class="col-6">
-                                <div class="input-group" style="max-width: 50%;">
+                                <div class="input-group">
                                     <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 d-flex justify-content-end">
                                 <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                                 <div class="input-group">
                                     <button type="submit" name="action" value="mod" class="btn btn-outline-success">Speichern</button>
