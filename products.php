@@ -49,8 +49,8 @@ require_once("templates/header.php");
                 if ($getindex != "order" && $getindex != "sortby") {
                     print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
             } } ?>
-            <input class="btn btn-outline-primary" type="Submit" value="Aufsteigend" name="order"></input>
-            <input class="btn btn-outline-primary" type="Submit" value="Absteigend" name="order"></input>
+            <input class="btn btn-primary" type="Submit" value="Aufsteigend" name="order"></input>
+            <input class="btn btn-primary" type="Submit" value="Absteigend" name="order"></input>
         </div>
     </form>
     <p class="my-2"><?php print($total_products); ?> Produkte</p>
