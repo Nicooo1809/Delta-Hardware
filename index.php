@@ -63,6 +63,7 @@ require_once("templates/header.php");
                     <?php endif;?>
                     <div class="col">
                         <div class="card cbg prodcard">
+                            <!-- Bild wird aus der Datenbank gezogen, falls keins vorhanden ist wird ein Platzhalter angezeigt -->
                             <?php if (empty($product['image'])): ?>
                                 <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
                             <?php else: ?>
