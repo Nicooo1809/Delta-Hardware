@@ -90,7 +90,7 @@ if(isset($_POST['action'])) {
         ?>
         <div class="minheight100 px-3 py-3">
             <div>
-                <h1>Einstellungen</h1>
+                <h1>Produkt anpassen</h1>
                 <div>
                     <form action="product.php" method="post" enctype="multipart/form-data">
                         <div class="input-group py-2" style="max-width: 50rem;">
@@ -134,18 +134,20 @@ if(isset($_POST['action'])) {
                                 ?>
                             </select>
                         </div>
-                        <?php 
-                        for ($x = 0; $x < count($imgs); $x++) {
-                            ?>
-                            <div class="input-group py-2">
-                                <img src="/product_img/<?=$imgs[$x]['img']?>" class="img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
-                                <input type="checkbox" class="form-check-input" value="<?=$imgs[$x]['id']?>" name="<?='delImage-'.$x?>">
-
-                            </div>
-                            <?php
-                        }
-                        ?>
-                        
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <?php for ($x = 0; $x < count($imgs); $x++) :?>
+                                <div class="col">
+                                    <div class="card prodcard cbg">
+                                        <div class="input-group py-2">
+                                            <img src="/product_img/<?=$imgs[$x]['img']?>" class="card-img-top img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
+                                            <div class="card-body">
+                                                <input type="checkbox" class="form-check-input" value="<?=$imgs[$x]['id']?>" name="<?='delImage-'.$x?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endfor;?>
+                        </div>
                         <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                         <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                         <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
@@ -227,7 +229,7 @@ if(isset($_POST['action'])) {
         require_once("templates/header.php");
         ?>
         <div class="minheight100 px-3 py-3">
-            <h1>Einstellungen</h1>
+            <h1>Produkt hinzufügen</h1>
             <div>
                 <form action="product.php" method="post" enctype="multipart/form-data">
                     <div class="input-group py-2" style="max-width: 50rem;">
