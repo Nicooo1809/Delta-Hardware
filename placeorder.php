@@ -21,14 +21,18 @@ if(isset($_POST['confirm'])) {
     if($_POST['confirm'] == 'yes') {
         if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
             error('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
+            exit;
         }
+        $msg = '<p class="mb-0 text-success">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>';
         foreach ($products as $product) {
             $stmt = $pdo->prepare('SELECT * from  products WHERE id = ?');
             $stmt->bindValue(1, $product['product_id'], PDO::PARAM_INT);
             $stmt->execute();
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($product['quantity'] > $product1[0]['quantity']) {
-                print('<div class="text-danger">Entschuldigen sie es gibt nur noch ' . $product1[0]['quantity'] . ' ' . $product1[0]['name'] . ' Ihrer Bestellung könnte länger dauern als gewohnt</div>');
+                $msg = '
+                    <p class="mb-0 text-success">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
+                    <p class="mb-0 text-danger">Wir haben von mindestens einem der Bestellten Artikel weniger als bestellt auf lager. <br>Deine Bestellung könnte sich deshalb eventuell ein wenig verzögern.</p>';
             }
             $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
@@ -48,7 +52,7 @@ if(isset($_POST['confirm'])) {
         <div class="minheight100 px-3 py-3">
             <h1 class="ctext">Vielen Dank für Ihre Bestellung</h1>
             <div>
-                <p class="text-success">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
+                <?php print($msg); ?>
                 <a href="products.php">Zurück zum Sortiment</a>
             </div>
         </div>
