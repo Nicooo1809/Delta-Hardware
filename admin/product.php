@@ -159,10 +159,8 @@ if(isset($_POST['action'])) {
                             </div>
                             <div class="col-6 d-flex justify-content-end">
                                 <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
-                                <div class="input-group d-flex justify-content-end">
-                                    <button class="btn btn-success" type="submit" name="action" value="mod">Speichern</button>
-                                    <button class="btn btn-danger" type="button" onclick="window.location.href = '/admin/product.php';">Abbrechen</button>
-                                </div>
+                                <button class="btn btn-success" type="submit" name="action" value="mod">Speichern</button>
+                                <button class="btn btn-danger" type="button" onclick="window.location.href = '/admin/product.php';">Abbrechen</button>
                             </div>
                         </div>
                     </form>
@@ -290,10 +288,8 @@ if(isset($_POST['action'])) {
                     </div>
                     <div class="py-2">
                         <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
-                        <div class="input-group">
-                            <button class="btn btn-success" type="submit" name="action" value="add">Speichern</button>
-                            <button class="btn btn-danger" type="button" onclick="window.location.href = '/admin/product.php';">Abbrechen</button>
-                        </div>
+                        <button class="btn btn-success" type="submit" name="action" value="add">Speichern</button>
+                        <button class="btn btn-danger" type="button" onclick="window.location.href = '/admin/product.php';">Abbrechen</button>
                     </div>
                 </form>
             </div>
