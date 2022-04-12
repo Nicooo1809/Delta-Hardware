@@ -101,7 +101,7 @@ require("templates/header.php");
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
-                    <div class="row row-cols-3">
+                    <div class="row row-cols-<?php if (isMobile()) print("1"); else print("3");?>">
                         <?php foreach ($products as $product1): ?>
                             <div class="col">
                                 <div class="card prodcard cbg2">
