@@ -139,7 +139,7 @@ $orders1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 									<?php foreach ($orders1 as $order): ?>
 										<tr>
 											<td class="border-0 align-middle text-center ctext">
-												<span><a href="/admin/order.php?id=<?=$order['id']?>"><?=$order['id']?></a></span>
+												<span><a href="/order.php?id=<?=$order['id']?>"><?=$order['id']?></a></span>
 											</td>
 											<td class="border-0 align-middle text-center ctext">
 												<span><?=date('d.m.Y', strtotime($order['ordered_date']))?></span>
