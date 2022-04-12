@@ -112,7 +112,7 @@ if(isset($_GET['save'])) {
 						</div>
 						<!-- Adresse -->
 						<div class="col-6">
-							<h3 class="ctext my-0">Adresse</h3>
+							<h3 class="ctext">Adresse</h3>
 							<form action="?save=address" method="post">
 								<div class="form-floating mb-2">
 									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputStrasse" placeholder="Straße und Hausnummer" name="strasse" type="text" value="<?=$user['streetHouseNr']?>" required>
