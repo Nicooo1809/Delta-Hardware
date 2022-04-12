@@ -36,22 +36,24 @@ require_once("templates/header.php");
 ?>
 
 <div class="container-fluid minheight100 py-3 products content-wrapper">
-    <h1 class="ctext">Products</h1>
+    <h1 class="ctext">Produkte</h1>
     <form action="products.php" method="get" class="mx-0">
-        <select class="form-select me-2 cbg ctext" name="sortby">
-            <option class="ctext" value="name" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
-            <option class="ctext" value="price" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
-            <option class="ctext" value="rrp" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'rrp') { print('selected="selected"');} ?>>UVP</option>
-            <option class="ctext" value="created_at" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'created_at') { print('selected="selected"');} ?>>Date</option>
-        </select>
-        <?php foreach (array_keys($_GET) as $getindex) {
-            if ($getindex != "order" && $getindex != "sortby") {
-                print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
-        } } ?>
-        <input class="btn btn-outline-primary my-2 me-2" type="Submit" value="Aufsteigend" name="order"></input>
-        <input class="btn btn-outline-primary my-2 me-2" type="Submit" value="Absteigend" name="order"></input>
+            <select class="form-select me-2" name="sortby">
+                <option value="name" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
+                <option value="price" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
+                <option value="rrp" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'rrp') { print('selected="selected"');} ?>>UVP</option>
+                <option value="created_at" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'created_at') { print('selected="selected"');} ?>>Date</option>
+            </select>
+            <?php foreach (array_keys($_GET) as $getindex) {
+                if ($getindex != "order" && $getindex != "sortby") {
+                    print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
+            } } ?>
+        <div class="input-group">
+            <input class="btn btn-outline-primary" type="Submit" value="Aufsteigend" name="order"></input>
+            <input class="btn btn-outline-primary" type="Submit" value="Absteigend" name="order"></input>
+        </div>
     </form>
-    <p class=""><?php print($total_products); ?> Products</p>
+    <p class=""><?php print($total_products); ?> Produkte</p>
     <div class="products-wrapper row row-cols-1 row-cols-md-4 g-4">
         <?php foreach ($products as $product): ?>
                 <div class="col">
