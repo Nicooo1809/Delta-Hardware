@@ -137,7 +137,7 @@ if(isset($_POST['action'])) {
                         <div class="row row-cols-1 row-cols-md-3 g-4">
                             <?php for ($x = 0; $x < count($imgs); $x++) :?>
                                 <div class="col">
-                                    <div class="card prodcard cbg">
+                                    <div class="card prodcard">
                                         <div class="input-group py-2">
                                             <img src="/product_img/<?=$imgs[$x]['img']?>" class="card-img-top img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
                                             <div class="card-body">
