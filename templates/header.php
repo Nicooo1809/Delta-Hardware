@@ -100,7 +100,7 @@ $user1 = check_user(FALSE);
             <form class="d-flex" action="/products.php">
                 <div class="input-group">
                     <input class="form-control" name="search" type="search" placeholder="Suchen" aria-label="Search" required>
-                    <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
+                    <button class="btn btn-primary me-2" type="submit"><i class="bi bi-search"></i></button>
                 </div>
             </form>
             <!-- Der PHP Code überprüft, ob der user angemeldet ist, ist dies so dann wir dem User ein Warenkob Icon angezeigt -->
