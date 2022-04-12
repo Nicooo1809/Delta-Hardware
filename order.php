@@ -31,7 +31,7 @@ foreach ($products as $product) {
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row">
             <div class="py-3 px-3 cbg ctext rounded">
-                <h1>Bestellen</h1>
+                <h1>Bestellung</h1>
                 <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
                 <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
                 <?php if ($order[0]['sent']==1): ?>
@@ -93,15 +93,11 @@ foreach ($products as $product) {
                 <div class="card mx-auto cbg">
                     <div class="card-body">
                     <h1>Bestellen</h1>
-                    <p>Sie sind im Begriff folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> kostenpflichtig zu bestellen. Sind Sie Sicher?</p>
-                    <?php if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
-                        print('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
-                    } else {?>
-                    <form action="order.php" method="post" class="row me-2">
-                        <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Kostenpflichtig bestellen</button>
-                        <a href="cart.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
-                    </form>
-                    <?php } ?>
+                    <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
+                    <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
+                    <?php if ($order[0]['sent']==1): ?>
+                        <p>Versanddatum: <?=$order[0]['sent_date']?></p>
+                    <?php endif ?>
                     </div>
                 </div>
             </div>
