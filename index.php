@@ -67,13 +67,13 @@ require_once("templates/header.php");
                 </div>
             </div>
             <?php if ($i % 4 == 0):?>
-                <?php if (!$first):?>
+                <?php if ($first != true):?>
                             </div>
                         </div>
                     </div>
                 <?php endif; ?>
-            <?php $first = false; endif;?>
-            <?php $i++;?>
+            <?php endif;?>
+            <?php $first = false; $i++;?>
         <?php endforeach; ?>
     </div>
 </main>
