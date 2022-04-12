@@ -151,14 +151,18 @@ if(isset($_POST['action'])) {
                                 </div>
                             <?php endfor;?>
                         </div>
-                        <div class="row py-2">
-                            <div class="input-group col-6">
-                                <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
+                        <div class="row py-2 row-cols-2">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
+                                </div>
                             </div>
-                            <div class="input-group col-6">
+                            <div class="col-6 d-flex justify-content-end">
                                 <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
-                                <button type="submit" name="action" value="mod" class="btn btn-outline-success">Speichern</button>
-                                <a href="product.php"><button class="btn btn-outline-danger" type="button">Abbrechen</button></a>
+                                <div class="input-group d-flex justify-content-end">
+                                    <button class="btn btn-success" type="submit" name="action" value="mod">Speichern</button>
+                                    <button class="btn btn-danger" type="button" onclick="window.location.href = '/product.php';">Abbrechen</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -279,9 +283,20 @@ if(isset($_POST['action'])) {
                             ?>
                         </select>
                     </div>
-                    <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
-                    <button type="submit" name="action" value="add" class="py-2 btn btn-outline-success">Speichern</button>
-                    <a href="product.php"><button class="py-2 btn btn-outline-danger" type="button">Abbrechen</button></a>
+                    <div class="row py-2 row-cols-2">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                            <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
+                            <div class="input-group d-flex justify-content-end">
+                                <button class="btn btn-success" type="submit" name="action" value="add">Speichern</button>
+                                <button class="btn btn-danger" type="button" onclick="window.location.href = '/product.php';">Abbrechen</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
