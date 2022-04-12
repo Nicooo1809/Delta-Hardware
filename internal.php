@@ -145,8 +145,7 @@ $orders1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 												<span><?=date('d.m.Y', strtotime($order['ordered_date']))?></span>
 											</td>
 											<td class="border-0 align-middle text-center ctext">
-												<span><?=($order['sent']==1 ? date('d.m.Y', strtotime($order['sent_date'])):'')?></span>
-												<span><?=date('d.m.Y', strtotime($order['sent_date']))?></span>
+												<span><?=($order['sent']==1 ? date('d.m.Y', strtotime($order['sent_date'])):'-')?></span>
 											</td>
 											<td class="border-0 align-middle text-center ctext">
 												<span><?=$order['products']?></span>
