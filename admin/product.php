@@ -151,10 +151,16 @@ if(isset($_POST['action'])) {
                                 </div>
                             <?php endfor;?>
                         </div>
-                        <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
-                        <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
-                        <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
-                        <a href="product.php"><button class="py-2 btn btn-outline-danger" type="button">Abbrechen</button></a>
+                        <div class="row py-2">
+                            <div class="input-group col-6">
+                                <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
+                            </div>
+                            <div class="input-group col-6">
+                                <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
+                                <button type="submit" name="action" value="mod" class="btn btn-outline-success">Speichern</button>
+                                <a href="product.php"><button class="btn btn-outline-danger" type="button">Abbrechen</button></a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
