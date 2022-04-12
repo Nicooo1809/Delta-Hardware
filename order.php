@@ -34,7 +34,7 @@ foreach ($products as $product) {
                 <h1>Bestellen</h1>
                 <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
                 <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
-                <?php if (isset($order[0]['sent'])): ?>
+                <?php if ($order[0]['sent']==1): ?>
                     <p>Versanddatum: <?=$order[0]['sent_date']?></p>
                 <?php endif ?>
                 <div class="table-responsive">
