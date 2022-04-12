@@ -228,7 +228,7 @@ foreach ($products as $product) {
                 <strong>Summe: <?=$summprice?>&euro;</strong>
                 <?php
                 if ($total_products > 0) {
-                    print('<a href="order.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
+                    print('<a href="placeorder.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
                 } ?>
             </div>
         </div>
