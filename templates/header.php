@@ -98,8 +98,10 @@ $user1 = check_user(FALSE);
 
             <!-- Userinput + Button mit Suchfunktion um das Navigieren zu vereinfachen -->
             <form class="d-flex" action="/products.php">
-                <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search" required>
-                <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
+                <div class="input-group">
+                    <input class="form-control" name="search" type="search" placeholder="Suchen" aria-label="Search" required>
+                    <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
+                </div>
             </form>
             <!-- Der PHP Code überprüft, ob der user angemeldet ist, ist dies so dann wir dem User ein Warenkob Icon angezeigt -->
             <?php if(isset($user1['id'])): ?>
