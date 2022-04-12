@@ -1,20 +1,22 @@
 <?php
 require_once("php/functions.php");
 
-// Select products ordered by the date added
+// Per SQL Befehl werden die neuesten Produkte aus der Datenbank ausgewählt
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ORDER BY created_at DESC LIMIT 12');
 $stmt->execute();
-// Get the total number of products
+// Anzahl der Produkte bekommen
 $total_products = $stmt->rowCount();
 // Fetch the products from the database and return the result as an Array
+// Die aus der Datenbank gezogenen Produkte werden in ein Array returned
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 require_once("templates/header.php");
 ?>
 <script src="/js/slider.js"></script>
-
+<!-- Hauptteil bzw die eigentliche Website -->
 <main>
+    <!-- Titelbild + Text ganz oben auf der Startseite einfügen -->
     <div class="view bg">
         <div class="mask rgba-black-light align-items-center">
             <div class="container">
@@ -30,7 +32,10 @@ require_once("templates/header.php");
             </div>
         </div>
     </div>
-    
+    <!-- Neuerscheinungen werden als Slider/Carousel angezeigt -->
+    <!-- Die mit dem oben geschriebenen PHP-Code geholten Dateien werden ein einer Reihe angezeigt
+    dabei sieht man immer nur 4 Produkte für 5 Sekunden und geht dann zu den nächsten 4.
+    Es werden maximal 12 Produkte angezeigt (12 neuste) -->
     <div class="container my-3">
         <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEU
             ERSCHEINUNGEN</h1>
@@ -52,6 +57,7 @@ require_once("templates/header.php");
                                 <div class="row">
                                     <div class="col">
                                         <div class="card cbg prodcard">
+                                            <!-- Bild wird aus der Datenbank gezogen, falls keins vorhanden ist wird ein Platzhalter angezeigt -->
                                             <?php if (empty($product['image'])) {
                                                 print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
                                             } else {

@@ -13,7 +13,9 @@ $user1 = check_user(FALSE);
 <!DOCTYPE html>
 
 <html lang="en">
-
+<!-- Im Head werden Meta-Tags sowie Verlinkungen festgelegt, UTF-8 bedeutet, dass bspw Umlaute verwendet werden können -->
+<!-- "Viewport" sorgt dafür, dass die Website responsiv ist und sich dem Bildschirm anpasst -->
+<!-- CSS & JS Dateien Verlinkt (Alles lokal, da es schneller lädt) -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,8 +32,12 @@ $user1 = check_user(FALSE);
     <link rel="stylesheet" href="/css/cookiebanner.css">
     <title>Delta-Hardware</title>
 </head>
+
+<!-- Eröffnung des Body Tags (Hauptteils) -->
 <body>
 
+
+<!-- Navigationsleiste die auf jeder einzelnen Seite zu sehen ist -->
 <nav class="navbar header-header navbar-expand-lg navbar-<?php print(check_style());?> cbg ctext sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><img src="/favicon.svg" class="navbar-icon"></a>
@@ -40,8 +46,9 @@ $user1 = check_user(FALSE);
     </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!--Dynamic from Database-->
-                <?php
+                <!-- Der folgende Code holt sich die Produktkategorien sowie subkategorieren, 
+                ID's und Quantität der Produkte aus der Datenbank per SQL befehl und fügt diese im Dropdown-Menü ein -->
+                <?php           
                     $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = 0");
                     $stmt->execute();
                     #error_log(pdo_debugStrParams($stmt));
@@ -89,13 +96,16 @@ $user1 = check_user(FALSE);
                 <li class="nav-item"><a class="nav-link ctext" href="/products.php">Alle Produkte</a></li>
             </ul> 
 
+            <!-- Userinput + Button mit Suchfunktion um das Navigieren zu vereinfachen -->
             <form class="d-flex" action="/products.php">
                 <input class="form-control me-2" name="search" type="search" placeholder="Suchen" aria-label="Search" required>
                 <button class="btn btn-outline-primary me-2" type="submit">Suchen</button>
             </form>
+            <!-- Der PHP Code überprüft, ob der user angemeldet ist, ist dies so dann wir dem User ein Warenkob Icon angezeigt -->
             <?php if(isset($user1['id'])): ?>
             <a class="icon-navbar-a" href="/cart.php"><i class="fa-solid fa-cart-shopping me-2 ms-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(!isset($user1['id'])): ?>
+                <!-- Überprüft, ob der User angemeldet ist, wenn ja verweist das User-Icon nicht mehr auf den Login sondern auf die Einstellungen bzw öffnet das Dropdown menü-->
                 <a class="icon-navbar-a" href="/<?php if(isset($user1['id'])) {print("settings.php");} else {print("login.php");} ?>"><i class="fa-solid fa-user ms-2 me-2 mt-2" id="user-icon-navbar"></i></a>
             <?php endif; if(isset($user1['id'])): ?>
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -109,9 +119,6 @@ $user1 = check_user(FALSE);
             </li>
             </ul>
             <?php endif; ?>
-            <!--
-            <a class="d-flex icon-navbar-a" href="#HILFE"><i class="fa-solid fa-circle-info me-2 ms-4 mt-2" id="user-icon-navbar"></i></a>
-            -->
         </div>
     </div>
 </nav>
