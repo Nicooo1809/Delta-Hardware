@@ -158,7 +158,7 @@ if(isset($_POST['action'])) {
                             <div class="input-group col-6">
                                 <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                                 <button type="submit" name="action" value="mod" class="btn btn-outline-success">Speichern</button>
-                                <a href="product.php"><button class="btn btn-outline-danger" type="button">Abbrechen</button></a>
+                                <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/product.php';">Abbrechen</button>
                             </div>
                         </div>
                     </form>
