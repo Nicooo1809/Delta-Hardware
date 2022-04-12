@@ -103,7 +103,7 @@ require("templates/header.php");
                     <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
                     <div class="row row-cols-<?php if (isMobile()) print("1"); else print("3");?>">
                         <?php foreach ($products as $product1): ?>
-                            <div class="col my-2">
+                            <div class="col my-2 d-flex justify-content-center">
                                 <div class="card prodcard cbg2">
                                     <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
                                         <div class="card-body">
