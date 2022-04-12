@@ -104,7 +104,7 @@ require("templates/header.php");
                     <div class="row row-cols-<?php if (isMobile()) print("1"); else print("3");?>">
                         <?php foreach ($products as $product1): ?>
                             <div class="col my-2 d-flex justify-content-center">
-                                <div class="card prodcard cbg2">
+                                <div class="card prodcard cbg2 d-flex justify-content-center">
                                     <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
                                         <div class="card-body">
                                             <?php if (empty($product1['image'])) {
