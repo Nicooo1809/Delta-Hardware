@@ -36,10 +36,10 @@ require_once("templates/header.php");
 ?>
 
 <div class="container-fluid minheight100 py-3 products content-wrapper">
-    <h1 class="ctext">Produkte</h1>
-    <form action="products.php" method="get" class="mx-0">
+    <h1 class="ctext my-2">Produkte</h1>
+    <form action="products.php" method="get" class="my-2">
         <div class="input-group">
-            <select class="form-select me-2" name="sortby">
+            <select class="form-select" name="sortby">
                 <option class="text-dark" value="name" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
                 <option class="text-dark" value="price" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
                 <option class="text-dark" value="rrp" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'rrp') { print('selected="selected"');} ?>>UVP</option>
@@ -53,7 +53,7 @@ require_once("templates/header.php");
             <input class="btn btn-outline-primary" type="Submit" value="Absteigend" name="order"></input>
         </div>
     </form>
-    <p class=""><?php print($total_products); ?> Produkte</p>
+    <p class="my-2"><?php print($total_products); ?> Produkte</p>
     <div class="products-wrapper row row-cols-1 row-cols-md-4 g-4">
         <?php foreach ($products as $product): ?>
                 <div class="col">
