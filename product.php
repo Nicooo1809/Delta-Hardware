@@ -99,19 +99,19 @@ require("templates/header.php");
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
-                    <?php foreach ($products as $product): ?>
-                        <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
+                    <?php foreach ($products as $product1): ?>
+                        <a href="product1.php?id=<?=$product1['id']?>" class="product1 stretched-link">
                             <div class="card-body">
-                                <?php if (empty($product['image'])) {
-                                    print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                <?php if (empty($product1['image'])) {
+                                    print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
                                 } else {
-                                    print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                    print('<img src="product_img/' . $product1['image'] . '" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
                                 }?>
-                                <h4 class="card-title name"><?=$product['name']?></h4>
+                                <h4 class="card-title name"><?=$product1['name']?></h4>
                                 <p class="card-text ctext price">Preis: 
-                                    <?=$product['price']?>&euro;
-                                    <?php if ($product['rrp'] > 0): ?>
-                                    <span class="rrp ctext"><br>UVP: <?=$product['rrp']?> &euro;</span>
+                                    <?=$product1['price']?>&euro;
+                                    <?php if ($product1['rrp'] > 0): ?>
+                                    <span class="rrp ctext"><br>UVP: <?=$product1['rrp']?> &euro;</span>
                                     <?php endif; ?>
                                 </p>
                             </div>
