@@ -46,7 +46,7 @@ require_once("templates/header.php");
                     <div class="carousel-item active" data-bs-interval="5000">
                         <div class="container">
                             <div class="row">
-                <?php $first = false; else: ?>
+                <?php else: ?>
                     <div class="carousel-item" data-bs-interval="5000">
                         <div class="container">
                             <div class="row">
@@ -67,10 +67,12 @@ require_once("templates/header.php");
                 </div>
             </div>
             <?php if ($i % 4 == 0):?>
+                <?php if (!$first):?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endif;?>
+                <?php endif; ?>
+            <?php $first = false; endif;?>
             <?php $i++;?>
         <?php endforeach; ?>
     </div>
