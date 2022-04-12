@@ -187,3 +187,7 @@ header {
     height: auto !important;
     object-fit: cover !important;
 }
+
+.quantity-toright {
+    text-align: right;
+}
