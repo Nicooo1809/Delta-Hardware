@@ -80,9 +80,9 @@ foreach ($products as $product) {
                 <?php if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
                     print('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
                 } else {?>
-                <form action="placeorder.php" method="post" class="row me-2">
-                    <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Kostenpflichtig bestellen</button>
-                    <a href="cart.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                <form action="placeorder.php" method="post" class="">
+                    <button class="btn btn-success mx-1" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
+                    <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
                 </form>
                 <?php } ?>
                 <div class="table-responsive">
