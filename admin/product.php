@@ -284,7 +284,7 @@ if(isset($_POST['action'])) {
                         </select>
                     </div>
                     <div class="row py-2 row-cols-2">
-                        <div class="col-6">
+                        <div class="col" style="max-width: 50rem;">
                             <div class="input-group">
                                 <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                             </div>
