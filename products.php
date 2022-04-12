@@ -39,10 +39,10 @@ require_once("templates/header.php");
     <h1 class="ctext">Produkte</h1>
     <form action="products.php" method="get" class="mx-0">
             <select class="form-select me-2" name="sortby">
-                <option value="name" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
-                <option value="price" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
-                <option value="rrp" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'rrp') { print('selected="selected"');} ?>>UVP</option>
-                <option value="created_at" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'created_at') { print('selected="selected"');} ?>>Date</option>
+                <option class="text-dark" value="name" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
+                <option class="text-dark" value="price" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
+                <option class="text-dark" value="rrp" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'rrp') { print('selected="selected"');} ?>>UVP</option>
+                <option class="text-dark" value="created_at" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'created_at') { print('selected="selected"');} ?>>Date</option>
             </select>
             <?php foreach (array_keys($_GET) as $getindex) {
                 if ($getindex != "order" && $getindex != "sortby") {
