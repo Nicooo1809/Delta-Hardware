@@ -46,38 +46,10 @@ require_once("templates/header.php");
                     <div class="carousel-item active" data-bs-interval="5000">
                         <div class="container">
                             <div class="row">
-                                <div class="col">
-                                    <div class="card cbg prodcard">
-                                        <?php if (empty($product['image'])): ?>
-                                            <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
-                                        <?php else: ?>
-                                            <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
-                                        <?php endif; ?>
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?=$product['name']?></h5>
-                                            <p class="card-text"><?=$product['desc']?></p>
-                                            <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
-                                        </div>
-                                    </div>
-                                </div>
-                <?php $first == false; else: ?>
+                <?php $first = false; else: ?>
                     <div class="carousel-item" data-bs-interval="5000">
                         <div class="container">
                             <div class="row">
-                                <div class="col">
-                                    <div class="card cbg prodcard">
-                                        <?php if (empty($product['image'])): ?>
-                                            <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
-                                        <?php else: ?>
-                                            <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
-                                        <?php endif; ?>
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?=$product['name']?></h5>
-                                            <p class="card-text"><?=$product['desc']?></p>
-                                            <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
-                                        </div>
-                                    </div>
-                                </div>
                 <?php endif;?>
             <?php endif;?>
             <div class="col">
