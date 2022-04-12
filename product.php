@@ -29,6 +29,12 @@ $stmt->execute();
 $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($images);
 #$stmt->debugDumpParams();
+
+$stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = 1) AND NOT product_list.product_id = 1 and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;');
+$stmt->execute();
+// Fetch the products from the database and return the result as an Array
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 require("templates/header.php");
 ?>
 <div class="container-fluid minheight100 px-3 py-3 row row-cols-1 row-cols-md-2 gx-0 product content-wrapper">
@@ -135,6 +141,31 @@ require("templates/header.php");
                 <div class="row">
                     <h2 class="fw-blod">Beschreibung</h2>
                     <p class="ctext mb-0"><?=$product[0]['desc']?></p>
+                </div>
+            </div>
+        </div>
+        <div class="card cbg mx-2 my-3">
+            <div class="card-body px-3 py-3">
+                <div class="row">
+                    <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
+                    <?php foreach ($products as $product): ?>
+                        <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
+                            <div class="card-body">
+                                <?php if (empty($product['image'])) {
+                                    print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                } else {
+                                    print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                }?>
+                                <h4 class="card-title name"><?=$product['name']?></h4>
+                                <p class="card-text ctext price">Preis: 
+                                    <?=$product['price']?>&euro;
+                                    <?php if ($product['rrp'] > 0): ?>
+                                    <span class="rrp ctext"><br>UVP: <?=$product['rrp']?> &euro;</span>
+                                    <?php endif; ?>
+                                </p>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
