@@ -105,7 +105,7 @@ require("templates/header.php");
                         <?php foreach ($products as $product1): ?>
                             <div class="col">
                                 <div class="card prodcard cbg">
-                                    <a href="product1.php?id=<?=$product1['id']?>" class="stretched-link">
+                                    <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
                                         <div class="card-body">
                                             <?php if (empty($product1['image'])) {
                                                 print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
