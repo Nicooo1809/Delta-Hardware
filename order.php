@@ -14,6 +14,12 @@ $stmt->execute();
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$stmt = $pdo->prepare('SELECT * FROM orders where kunden_id = ? and id = ?');
+$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+$stmt->bindValue(2, $_GET['id'], PDO::PARAM_INT);
+$stmt->execute();
+$order = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 #print_r($products);
 #$stmt->debugDumpParams();
 $summprice = 0;
@@ -27,9 +33,9 @@ foreach ($products as $product) {
             <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Bestellen</h1>
                 <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
-                <p>Bestelldatum: <?=$products[0]['ordered_date']?></p>
-                <?php if (isset($products[0]['sent'])): ?>
-                    <p>Versanddatum: <?=$products[0]['sent_date']?></p>
+                <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
+                <?php if (isset($order[0]['sent'])): ?>
+                    <p>Versanddatum: <?=$order[0]['sent_date']?></p>
                 <?php endif ?>
                 <div class="table-responsive">
                     <table class="table">
