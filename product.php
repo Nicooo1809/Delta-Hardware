@@ -114,7 +114,7 @@ require("templates/header.php");
                         <?php endif; ?>
                     </div>
                 </div>
-                <?php if ($product[0]['visible'] == 1 && $product[0]['quantity'] != 0):?>
+                <?php if ($product[0]['visible'] == 1 && $product[0]['quantity'] > 0):?>
                 <div class="row">
                     <div class="cart">
                         <form action="cart.php" method="post">
