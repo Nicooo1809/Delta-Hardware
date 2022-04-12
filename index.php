@@ -40,55 +40,45 @@ require_once("templates/header.php");
         <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEU
             ERSCHEINUNGEN</h1>
         <hr class="hr-light my-3">
-        <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
-            <div class="carousel-inner py-4">
-                <?php $i = 0; foreach ($products as $product): ?>
-                    <?php if ($i % 4 == 0 && $i != 0):?>
-                                </div>
+        <?php $i = 0; $first = true; foreach ($products as $product): ?>
+            <?php if ($i % 4 == 0):?>
+                <?php if ($first): ?>
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <div class="container">
+                        <div class="row">
+                <?php $first == false; else: ?>
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <div class="container">
+                            <div class="row">
+                <?php endif;?>
+            <?php endif;?>
+                <div class="col d-none d-lg-block">
+                    <div class="card cbg prodcard">
+                        <?php if (empty($product['image'])): ?>
+                            <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
+                        <?php else: ?>
+                            <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
+                        <? endif; ?>
+                        <div class="card-body">
+                            <h5 class="card-title"><?=$product['name']?></h5>
+                            <p class="card-text"><?=$product['desc']?></p>
+                            <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+            <?php if ($i % 4 == 0):?>
+                <?php if ($first): ?>
+                        </div>
+                    </div>
+                </div>
+                <?php $first == false; else: ?>
                             </div>
                         </div>
-                        <div class="carousel-item" data-bs-interval="5000">
-                            <div class="container">
-                                <div class="row">
-                    <?php endif;?>
-                    <?php if ($i == 0): ?>
-                        <div class="carousel-item active" data-bs-interval="5000">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card cbg prodcard">
-                                            <!-- Bild wird aus der Datenbank gezogen, falls keins vorhanden ist wird ein Platzhalter angezeigt -->
-                                            <?php if (empty($product['image'])) {
-                                                print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
-                                            } else {
-                                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top" alt="' . $product['name'] . '">');
-                                            }?>
-                                            <div class="card-body">
-                                                <h5 class="card-title"><?=$product['name']?></h5>
-                                                <p class="card-text"><?=$product['desc']?></p>
-                                                <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                    <?php else: ?>
-                        <div class="col<?php if ($i % 4 != 0) {print(' d-none d-lg-block');} ?>">
-                            <div class="card cbg prodcard">
-                                <?php if (empty($product['image'])) {
-                                    print('<img src="images/image-not-found.png" class="card-img-top" alt="' . $product['name'] . '">');
-                                } else {
-                                    print('<img src="product_img/' . $product['image'] . '" class="card-img-top" alt="' . $product['name'] . '">');
-                                }?>
-                                <div class="card-body">
-                                    <h5 class="card-title"><?=$product['name']?></h5>
-                                    <p class="card-text"><?=$product['desc']?></p>
-                                    <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; $i++;?>
-                <?php endforeach; ?>                            
-            </div>
-        </div>
+                    </div>
+                <?php endif;?>
+            <?php endif;?>
+            <?php $i++;?>
+        <?php endforeach; ?>
     </div>
 </main>
 
