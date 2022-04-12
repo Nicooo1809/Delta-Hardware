@@ -134,12 +134,12 @@ if(isset($_POST['action'])) {
                                 ?>
                             </select>
                         </div>
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="row row-cols-1 row-cols-md-3 g-4 my-2">
                             <?php for ($x = 0; $x < count($imgs); $x++) :?>
                                 <div class="col">
                                     <div class="card prodcard bg-dark">
                                         <img src="/product_img/<?=$imgs[$x]['img']?>" class="card-img-top img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
-                                        <div class="card-body">
+                                        <div class="card-body d-flex justify-content-center">
                                             <div class="input-group py-2">
                                                 <span style="width: 150px;" class="input-group-text" for="inputVisible">Löschen?</span>
                                                 <div class="input-group-text">
