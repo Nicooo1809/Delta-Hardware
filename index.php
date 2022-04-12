@@ -42,35 +42,35 @@ require_once("templates/header.php");
         <hr class="hr-light my-3">
         <?php $i = 0; $first = true; foreach ($products as $product): ?>
             <?php if ($i % 4 == 0):?>
-                <?php if ($first): ?>
-                <div class="carousel-item active" data-bs-interval="5000">
-                    <div class="container">
-                        <div class="row">
+                <?php if ($first):?>
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <div class="container">
+                            <div class="row">
                 <?php $first == false; else: ?>
                     <div class="carousel-item" data-bs-interval="5000">
                         <div class="container">
                             <div class="row">
                 <?php endif;?>
             <?php endif;?>
-                <div class="col d-none d-lg-block">
-                    <div class="card cbg prodcard">
-                        <?php if (empty($product['image'])): ?>
-                            <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
-                        <?php else: ?>
-                            <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
-                        <? endif; ?>
-                        <div class="card-body">
-                            <h5 class="card-title"><?=$product['name']?></h5>
-                            <p class="card-text"><?=$product['desc']?></p>
-                            <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
-                        </div>
+            <div class="col d-none d-lg-block">
+                <div class="card cbg prodcard">
+                    <?php if (empty($product['image'])): ?>
+                        <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
+                    <?php else: ?>
+                        <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
+                    <? endif; ?>
+                    <div class="card-body">
+                        <h5 class="card-title"><?=$product['name']?></h5>
+                        <p class="card-text"><?=$product['desc']?></p>
+                        <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
                     </div>
                 </div>
+            </div>
             <?php if ($i % 4 == 0):?>
                 <?php if ($first): ?>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php $first == false; else: ?>
                             </div>
                         </div>
