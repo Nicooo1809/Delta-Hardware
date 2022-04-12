@@ -139,8 +139,8 @@ if(isset($_POST['action'])) {
                                 <div class="col">
                                     <div class="card prodcard bg-dark">
                                         <img src="/product_img/<?=$imgs[$x]['img']?>" class="card-img-top img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
-                                        <div class="card-body d-flex justify-content-center">
-                                            <div class="input-group py-2">
+                                        <div class="card-body">
+                                            <div class="input-group py-2 d-flex justify-content-center">
                                                 <span class="input-group-text" for="inputVisible">Löschen?</span>
                                                 <div class="input-group-text">
                                                     <input type="checkbox" class="form-check-input" value="<?=$imgs[$x]['id']?>" name="<?='delImage-'.$x?>">
