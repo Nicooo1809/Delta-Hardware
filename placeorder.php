@@ -28,7 +28,7 @@ if(isset($_POST['confirm'])) {
             $stmt->execute();
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($product['quantity'] > $product1[0]['quantity']) {
-                print('Entschuldigen sie es gibt nur noch ' . $product1[0]['quantity'] . ' ' . $product1[0]['name'] . ' Ihrer Bestellung könnte länger dauern als gewohnt');
+                print('<div class="danger">Entschuldigen sie es gibt nur noch ' . $product1[0]['quantity'] . ' ' . $product1[0]['name'] . ' Ihrer Bestellung könnte länger dauern als gewohnt</div>');
             }
             $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
@@ -46,9 +46,9 @@ if(isset($_POST['confirm'])) {
         require_once("templates/header.php");
         ?>
         <div class="minheight100 px-3 py-3">
-            <h1>Vielen Dank für Ihre Bestellung</h1>
+            <h1 class="ctext">Vielen Dank für Ihre Bestellung</h1>
             <div>
-                <p>Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
+                <p class="success">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
                 <a href="products.php">Zurück zum Sortiment</a>
             </div>
         </div>
