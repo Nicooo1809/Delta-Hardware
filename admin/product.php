@@ -88,7 +88,7 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
-        <div class="minheight100 px-3 py-3">
+        <div class="minheight100 px-3 my-3">
             <div>
                 <h1>Produkt anpassen</h1>
                 <div>
@@ -134,7 +134,7 @@ if(isset($_POST['action'])) {
                                 ?>
                             </select>
                         </div>
-                        <div class="row row-cols-1 row-cols-md-3 g-4 my-2">
+                        <div class="row row-cols-1 row-cols-md-3 g-4 py-2">
                             <?php for ($x = 0; $x < count($imgs); $x++) :?>
                                 <div class="col">
                                     <div class="card prodcard bg-dark">
@@ -154,7 +154,7 @@ if(isset($_POST['action'])) {
                         <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                         <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                         <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
-                        <a href="product.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                        <a href="product.php"><button class="py-2 btn btn-outline-danger" type="button">Abbrechen</button></a>
                     </form>
                 </div>
             </div>
