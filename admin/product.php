@@ -283,18 +283,16 @@ if(isset($_POST['action'])) {
                             ?>
                         </select>
                     </div>
-                    <div class="row py-2 row-cols-2">
-                        <div class="col" style="max-width: 50rem;">
-                            <div class="input-group">
-                                <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
-                            </div>
+                    <div style="max-width: 50rem;">
+                        <div class="input-group">
+                            <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                         </div>
-                        <div class="col-6 d-flex justify-content-end">
-                            <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
-                            <div class="input-group d-flex justify-content-end">
-                                <button class="btn btn-success" type="submit" name="action" value="add">Speichern</button>
-                                <button class="btn btn-danger" type="button" onclick="window.location.href = '/admin/product.php';">Abbrechen</button>
-                            </div>
+                    </div>
+                    <div>
+                        <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
+                        <div class="input-group d-flex justify-content-end">
+                            <button class="btn btn-success" type="submit" name="action" value="add">Speichern</button>
+                            <button class="btn btn-danger" type="button" onclick="window.location.href = '/admin/product.php';">Abbrechen</button>
                         </div>
                     </div>
                 </form>
