@@ -58,7 +58,7 @@ require_once("templates/header.php");
                         <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
                     <?php else: ?>
                         <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
-                    <? endif; ?>
+                    <?php endif; ?>
                     <div class="card-body">
                         <h5 class="card-title"><?=$product['name']?></h5>
                         <p class="card-text"><?=$product['desc']?></p>
