@@ -173,11 +173,7 @@ require("templates/header.php");
         </div>
     </div>
 </div>
-<!--
-Ein Wird oft zusammen gekauf fehlt noch
-SQL ABFRAGE:
-SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = 1) AND NOT product_list.product_id = 1 and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;
--->
+
 <?php
 include_once("templates/footer.php")
 ?>
