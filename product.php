@@ -30,7 +30,9 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($images);
 #$stmt->debugDumpParams();
 
-$stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = 1) AND NOT product_list.product_id = 1 and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;');
+$stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = ?) AND NOT product_list.product_id = ? and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;');
+$stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
+$stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
