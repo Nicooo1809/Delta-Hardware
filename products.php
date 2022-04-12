@@ -38,6 +38,7 @@ require_once("templates/header.php");
 <div class="container-fluid minheight100 py-3 products content-wrapper">
     <h1 class="ctext">Produkte</h1>
     <form action="products.php" method="get" class="mx-0">
+        <div class="input-group">
             <select class="form-select me-2" name="sortby">
                 <option class="text-dark" value="name" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'name') { print('selected="selected"');} ?>>Name</option>
                 <option class="text-dark" value="price" <?php if (isset($_GET["sortby"]) and $_GET["sortby"] == 'price') { print('selected="selected"');} ?>>Preis</option>
@@ -48,7 +49,6 @@ require_once("templates/header.php");
                 if ($getindex != "order" && $getindex != "sortby") {
                     print('<input type=text name="' . $getindex . '" value="' . $_GET[$getindex] . '" hidden>');
             } } ?>
-        <div class="input-group">
             <input class="btn btn-outline-primary" type="Submit" value="Aufsteigend" name="order"></input>
             <input class="btn btn-outline-primary" type="Submit" value="Absteigend" name="order"></input>
         </div>
