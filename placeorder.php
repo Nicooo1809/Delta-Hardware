@@ -28,7 +28,7 @@ if(isset($_POST['confirm'])) {
             $stmt->execute();
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($product['quantity'] > $product1[0]['quantity']) {
-                print('Entschuldigen sie es gibt nur noch ' . $product1[0]['quantity'] . ' ' . $product1[0]['name'] . ' Ihrer Bestellung könnte länger dauern als gewohnt');
+                print('<div class="text-danger">Entschuldigen sie es gibt nur noch ' . $product1[0]['quantity'] . ' ' . $product1[0]['name'] . ' Ihrer Bestellung könnte länger dauern als gewohnt</div>');
             }
             $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
@@ -46,9 +46,9 @@ if(isset($_POST['confirm'])) {
         require_once("templates/header.php");
         ?>
         <div class="minheight100 px-3 py-3">
-            <h1>Vielen Dank für Ihre Bestellung</h1>
+            <h1 class="ctext">Vielen Dank für Ihre Bestellung</h1>
             <div>
-                <p>Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
+                <p class="text-success">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
                 <a href="products.php">Zurück zum Sortiment</a>
             </div>
         </div>
@@ -80,9 +80,9 @@ foreach ($products as $product) {
                 <?php if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
                     print('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
                 } else {?>
-                <form action="order.php" method="post" class="row me-2">
-                    <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Kostenpflichtig bestellen</button>
-                    <a href="cart.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                <form action="placeorder.php" method="post" class="">
+                    <button class="btn btn-success mx-1" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
+                    <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
                 </form>
                 <?php } ?>
                 <div class="table-responsive">
@@ -164,9 +164,9 @@ foreach ($products as $product) {
                     <?php if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
                         print('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
                     } else {?>
-                    <form action="order.php" method="post" class="row me-2">
-                        <button type="submit" name="confirm" value="yes" class="btn btn-outline-primary">Kostenpflichtig bestellen</button>
-                        <a href="cart.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                    <form action="placeorder.php" method="post" class="">
+                        <button class="btn btn-success mx-1" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
+                        <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
                     </form>
                     <?php } ?>
                     </div>
