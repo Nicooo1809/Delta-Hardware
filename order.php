@@ -27,9 +27,9 @@ foreach ($products as $product) {
             <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Bestellen</h1>
                 <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
-                <p>Bestelldatum: <?=$product[0]['ordered_date']?></p>
-                <?php if (isset($product[0]['sent'])): ?>
-                    <p>Versanddatum: <?=$product[0]['sent_date']?></p>
+                <p>Bestelldatum: <?=$products[0]['ordered_date']?></p>
+                <?php if (isset($products[0]['sent'])): ?>
+                    <p>Versanddatum: <?=$products[0]['sent_date']?></p>
                 <?php endif ?>
                 <div class="table-responsive">
                     <table class="table">
