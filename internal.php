@@ -124,10 +124,10 @@ $orders1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 												<div class="p-2 px-3 text-uppercase ctext">#</div>
 											</th>
 											<th scope="col" class="border-0 text-center">
-												<div class="p-2 px-3 text-uppercase ctext">Name</div>
+												<div class="p-2 px-3 text-uppercase ctext">Bestelldatum</div>
 											</th>
 											<th scope="col" class="border-0 text-center">
-												<div class="p-2 px-3 text-uppercase ctext">Bestelldatum</div>
+												<div class="p-2 px-3 text-uppercase ctext">Versanddatum</div>
 											</th>
 											<th scope="col" class="border-0 text-center">
 												<div class="p-2 px-3 text-uppercase ctext">Produkte</div>
@@ -142,10 +142,11 @@ $orders1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 												<span><a href="/admin/order.php?id=<?=$order['id']?>"><?=$order['id']?></a></span>
 											</td>
 											<td class="border-0 align-middle text-center ctext">
-												<span><?=$order['vorname']?> <?=$order['nachname']?></span>
+												<span><?=date('d.m.Y', strtotime($order['ordered_date']))?></span>
 											</td>
 											<td class="border-0 align-middle text-center ctext">
-												<span><?=date('d.m.Y', strtotime($order['ordered_date']))?></span>
+												<span><?=($order['sent']==1 ? date('d.m.Y', strtotime($order['sent_date'])):'')?></span>
+												<span><?=date('d.m.Y', strtotime($order['sent_date']))?></span>
 											</td>
 											<td class="border-0 align-middle text-center ctext">
 												<span><?=$order['products']?></span>
