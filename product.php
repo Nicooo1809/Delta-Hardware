@@ -104,7 +104,7 @@ require("templates/header.php");
                     <div class="row row-cols-3">
                         <?php foreach ($products as $product1): ?>
                             <div class="col">
-                                <div class="card prodcard cbg">
+                                <div class="card prodcard cbg2">
                                     <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
                                         <div class="card-body">
                                             <?php if (empty($product1['image'])) {
