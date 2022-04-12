@@ -17,6 +17,12 @@ $stmt->execute();
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+if ($total_products < 1) {
+    error('Permission denied!');
+    #echo("<script>location.href='internal.php'</script>");
+    exit;
+}
+
 $stmt = $pdo->prepare('SELECT * FROM orders where kunden_id = ? and id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $_GET['id'], PDO::PARAM_INT);
