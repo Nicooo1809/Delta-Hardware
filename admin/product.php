@@ -275,7 +275,7 @@ if(isset($_POST['action'])) {
                     </div>
                     <input type="file" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
                     <button type="submit" name="action" value="add" class="py-2 btn btn-outline-success">Speichern</button>
-                    <a href="product.php"><button class="btn btn-outline-primary" type="button">Abbrechen</button></a>
+                    <a href="product.php"><button class="py-2 btn btn-outline-danger" type="button">Abbrechen</button></a>
                 </form>
             </div>
         </div>
