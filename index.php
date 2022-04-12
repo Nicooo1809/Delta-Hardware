@@ -15,7 +15,7 @@ require_once("templates/header.php");
 ?>
 <script src="/js/slider.js"></script>
 <!-- Hauptteil bzw die eigentliche Website -->
-<main class="minheight100">
+<main>
     <!-- Titelbild + Text ganz oben auf der Startseite einfügen -->
     <div class="view bg">
         <div class="mask rgba-black-light align-items-center">
@@ -40,41 +40,45 @@ require_once("templates/header.php");
         <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEU
             ERSCHEINUNGEN</h1>
         <hr class="hr-light my-3">
-        <?php $i = 0; $first = true; foreach ($products as $product): ?>
-            <?php if ($i % 4 == 0):?>
-                <?php if ($first != true):?>
+        <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
+            <div class="carousel-inner py-4">
+                <?php $i = 0; $first = true; foreach ($products as $product): ?>
+                    <?php if ($i % 4 == 0):?>
+                        <?php if ($first != true):?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif;?>
+                    <?php if ($i % 4 == 0):?>
+                        <?php if ($first == true):?>
+                            <div class="carousel-item active" data-bs-interval="5000">
+                                <div class="container">
+                                    <div class="row">
+                        <?php else: ?>
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <div class="container">
+                                    <div class="row">
+                        <?php endif;?>
+                    <?php endif;?>
+                    <div class="col">
+                        <div class="card cbg prodcard">
+                            <?php if (empty($product['image'])): ?>
+                                <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
+                            <?php else: ?>
+                                <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
+                            <?php endif; ?>
+                            <div class="card-body">
+                                <h5 class="card-title"><?=$product['name']?></h5>
+                                <p class="card-text"><?=$product['desc']?></p>
+                                <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
                             </div>
                         </div>
                     </div>
-                <?php endif; ?>
-            <?php endif;?>
-            <?php if ($i % 4 == 0):?>
-                <?php if ($first == true):?>
-                    <div class="carousel-item active" data-bs-interval="5000">
-                        <div class="container">
-                            <div class="row">
-                <?php else: ?>
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <div class="container">
-                            <div class="row">
-                <?php endif;?>
-            <?php endif;?>
-            <div class="col">
-                <div class="card cbg prodcard">
-                    <?php if (empty($product['image'])): ?>
-                        <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
-                    <?php else: ?>
-                        <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
-                    <?php endif; ?>
-                    <div class="card-body">
-                        <h5 class="card-title"><?=$product['name']?></h5>
-                        <p class="card-text"><?=$product['desc']?></p>
-                        <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
-                    </div>
-                </div>
+                    <?php $first = false; $i++;?>
+                <?php endforeach; ?>
             </div>
-            <?php $first = false; $i++;?>
-        <?php endforeach; ?>
+        </div>
     </div>
 </main>
 
