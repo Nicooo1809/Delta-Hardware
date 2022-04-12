@@ -52,7 +52,7 @@ require_once("templates/header.php");
                             <div class="row">
                 <?php endif;?>
             <?php endif;?>
-            <div class="col d-none d-lg-block">
+            <div class="col">
                 <div class="card cbg prodcard">
                     <?php if (empty($product['image'])): ?>
                         <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
