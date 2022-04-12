@@ -15,7 +15,7 @@ require_once("templates/header.php");
 ?>
 <script src="/js/slider.js"></script>
 <!-- Hauptteil bzw die eigentliche Website -->
-<main>
+<main class="minheight100">
     <!-- Titelbild + Text ganz oben auf der Startseite einfügen -->
     <div class="view bg">
         <div class="mask rgba-black-light align-items-center">
