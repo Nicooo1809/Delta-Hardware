@@ -42,6 +42,13 @@ require_once("templates/header.php");
         <hr class="hr-light my-3">
         <?php $i = 0; $first = true; foreach ($products as $product): ?>
             <?php if ($i % 4 == 0):?>
+                <?php if ($first != true):?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif;?>
+            <?php if ($i % 4 == 0):?>
                 <?php if ($first == true):?>
                     <div class="carousel-item active" data-bs-interval="5000">
                         <div class="container">
@@ -66,13 +73,6 @@ require_once("templates/header.php");
                     </div>
                 </div>
             </div>
-            <?php if ($i % 4 == 0):?>
-                <?php if ($first != true):?>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-            <?php endif;?>
             <?php $first = false; $i++;?>
         <?php endforeach; ?>
     </div>
