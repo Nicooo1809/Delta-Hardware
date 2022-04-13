@@ -34,8 +34,9 @@ if(isset($_GET['register'])) {
 	
 	//Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
 	if(!$error) { 
-		$stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-		$result = $stmt->execute(array('email' => $email));
+		$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+		$stmt->bindValue(1, $email);
+		$result = $stmt->execute();
 		$user = $stmt->fetch();
 		
 		if($user !== false) {

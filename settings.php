@@ -18,8 +18,11 @@ if(isset($_GET['save'])) {
 		if($vorname == "" || $nachname == "") {
 			$error_msg = "Bitte Vor- und Nachname ausfüllen.";
 		} else {
-			$stmt = $pdo->prepare("UPDATE users SET vorname = :vorname, nachname = :nachname, updated_at=NOW() WHERE id = :userid");
-			$result = $stmt->execute(array('vorname' => $vorname, 'nachname'=> $nachname, 'userid' => $user['id'] ));
+			$stmt = $pdo->prepare("UPDATE users SET vorname = ?, nachname = ?, updated_at=NOW() WHERE id = ?");
+			$stmt->bindValue(1, $vorname);
+			$stmt->bindValue(2, $nachname);
+			$stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
+			$result = $stmt->execute();
 			$user['vorname'] = $vorname;
 			$user['nachname'] = $nachname;
 
@@ -37,8 +40,10 @@ if(isset($_GET['save'])) {
 		} else if(!password_verify($passwort, $user['passwort'])) {
 			$error_msg = "Bitte korrektes Passwort eingeben.";
 		} else {
-			$stmt = $pdo->prepare("UPDATE users SET email = :email WHERE id = :userid");
-			$result = $stmt->execute(array('email' => $email, 'userid' => $user['id'] ));
+			$stmt = $pdo->prepare("UPDATE users SET email = ? WHERE id = ?");
+			$stmt->bindValue(1, $email);
+			$stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+			$result = $stmt->execute();
 			$user['email'] = $email;
 			
 			echo("<script>location.href='settings.php'</script>");
@@ -58,8 +63,10 @@ if(isset($_GET['save'])) {
 		} else {
 			$passwort_hash = password_hash($passwortNeu, PASSWORD_DEFAULT);
 				
-			$stmt = $pdo->prepare("UPDATE users SET passwort = :passwort WHERE id = :userid");
-			$result = $stmt->execute(array('passwort' => $passwort_hash, 'userid' => $user['id'] ));
+			$stmt = $pdo->prepare("UPDATE users SET passwort = ? WHERE id = ?");
+			$stmt->bindValue(1, $passwort_hash);
+			$stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+			$result = $stmt->execute();
 				
 			echo("<script>location.href='settings.php'</script>");
 		}

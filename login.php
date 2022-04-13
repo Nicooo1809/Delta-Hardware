@@ -6,9 +6,10 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 	$email = $_POST['email'];
 	$passwort = $_POST['passwort'];
 
-	$statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-	$result = $statement->execute(array('email' => $email));
-	$user = $statement->fetch();
+	$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+	$stmt->bindValue(1, $email);
+	$result = $statement->execute();
+	$user = $stmt->fetch();
 	#error_log(print_r($user,true));
 
 	//Überprüfung des Passworts
@@ -20,8 +21,11 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			$identifier = md5(uniqid());
 			$securitytoken = md5(uniqid());
 			
-			$insert = $pdo->prepare("INSERT INTO securitytokens (user_id, identifier, securitytoken) VALUES (:user_id, :identifier, :securitytoken)");
-			$insert->execute(array('user_id' => $user['id'], 'identifier' => $identifier, 'securitytoken' => sha1($securitytoken)));
+			$stmt = $pdo->prepare("INSERT INTO securitytokens (user_id, identifier, securitytoken) VALUES (?, ?, ?)");
+			$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+			$stmt->bindValue(2, $identifier);
+			$stmt->bindValue(3, sha1($securitytoken));
+			$stmt->execute();
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 			#error_log(pdo_debugStrParams($insert));

@@ -15,9 +15,10 @@ function check_user($redirect = TRUE) {
 		#print('2');
 		#print('| ' . $identifier . ' | ' . $securitytoken . ' |');
 
-		$statement = $pdo->prepare("SELECT * FROM securitytokens WHERE identifier = ?");
-		$result = $statement->execute(array($identifier));
-		$securitytoken_row = $statement->fetch();
+		$stmt = $pdo->prepare("SELECT * FROM securitytokens WHERE identifier = ?");
+		$stmt->bindValue(1, $identifier);
+		$result = $stmt->execute();
+		$securitytoken_row = $stmt->fetch();
 		#error_log(pdo_debugStrParams($statement));
 		#print_r($securitytoken_row);
 		#print('| ' . sha1($securitytoken) . ' | ' . $securitytoken_row['securitytoken'] . ' |');
@@ -31,8 +32,10 @@ function check_user($redirect = TRUE) {
 			#print('4');
 			//Setze neuen Token
 			$neuer_securitytoken = md5(uniqid());
-			$insert = $pdo->prepare("UPDATE securitytokens SET securitytoken = :securitytoken WHERE identifier = :identifier");
-			$insert->execute(array('securitytoken' => sha1($neuer_securitytoken), 'identifier' => $identifier));
+			$stmt = $pdo->prepare("UPDATE securitytokens SET securitytoken = ? WHERE identifier = ?");
+			$stmt->bindValue(1, sha1($neuer_securitytoken));
+			$stmt->bindValue(2, $identifier);
+			$stmt->execute();
 			setcookie("identifier",$identifier,time()+(3600*24*90)); //90 Tage Gültigkeit
 			setcookie("securitytoken",$neuer_securitytoken,time()+(3600*24*90)); //90 Tage Gültigkeit
 			#print(sha1($neuer_securitytoken));
