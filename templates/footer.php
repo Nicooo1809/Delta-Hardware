@@ -48,6 +48,7 @@ if(!isMobile()):
         <div class="ctext">
             <div class="col py-1 text-center">
                 <a href="/aboutus.php" class="ctext">Über uns</a>
+                <a class="ctext" href="/impressum.php">Impressum</a>
             </div>
             <div class="row">
                 <div class="ctext col-4 py-1 pb-2 mb-2 d-flex align-items-center justify-content-start">
