@@ -30,7 +30,7 @@ if(!isMobile()):
             </div>
             <div class="col text-center">
                 <a href="/aboutus.php" class="ctext me-2">Über uns</a>
-                <a class="ctext" href="/impressum.php">Impressum</a>
+                <a class="ctext me-2" href="/impressum.php">Impressum</a>
             </div>
             <div class="col d-flex justify-content-end align-items-center text-end ctext">
                 <input onchange="toggleStyle()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
