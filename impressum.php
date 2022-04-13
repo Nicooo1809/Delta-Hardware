@@ -5,61 +5,19 @@ require_once("templates/header.php")
 <div class="container mb-5 mt-5">
     <div class="row no-gutter">
         <div class="col cbg impressum-breite text-center">
-            <h1 class="mt-2">Impressum</h1>
+            <h1 class="mt-2">Impressum (FIKTIVER ONLINESHOP)</h1>
             <br>
-            <p>
-            Impressum\n
-
-            Angaben gem. § 5 TMG\n
-
-            Vorname, Name
-            Max Mustermann
-            Adresse
-            Musterstraße 2
-            PLZ
-            18700 Lazytown
-            Kontaktaufnahme:
-            -
-            Telefon:
-            0123456789
-            Fax:
-            -
-            E-Mail:
-            MaxM@Businessmail.com
-            
-
-            Umsatzsteuer-ID
-            13895760204
-            
-
-            Umsatzsteuer-Identifikationsnummer gem. § 27 a Umsatzsteuergesetz:
-
-            DE XXX XXX XXX
-
-            
-
-            Haftungsausschluss – Disclaimer:
-
-            Haftung für Inhalte
-
-            Alle Inhalte unseres Internetauftritts wurden mit größter Sorgfalt und nach bestem Gewissen erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.
-
-            Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntniserlangung einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von den o.g. Rechtsverletzungen werden wir diese Inhalte unverzüglich entfernen.
-
-            Haftungsbeschränkung für externe Links
-
-            Unsere Webseite enthält Links auf externe Webseiten Dritter. Auf die Inhalte dieser direkt oder indirekt verlinkten Webseiten haben wir keinen Einfluss. Daher können wir für die „externen Links“ auch keine Gewähr auf Richtigkeit der Inhalte übernehmen. Für die Inhalte der externen Links sind die jeweilige Anbieter oder Betreiber (Urheber) der Seiten verantwortlich.
-
-            Die externen Links wurden zum Zeitpunkt der Linksetzung auf eventuelle Rechtsverstöße überprüft und waren im Zeitpunkt der Linksetzung frei von rechtswidrigen Inhalten. Eine ständige inhaltliche Überprüfung der externen Links ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht möglich. Bei direkten oder indirekten Verlinkungen auf die Webseiten Dritter, die außerhalb unseres Verantwortungsbereichs liegen, würde eine Haftungsverpflichtung ausschließlich in dem Fall nur bestehen, wenn wir von den Inhalten Kenntnis erlangen und es uns technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger Inhalte zu verhindern.
-
-            Diese Haftungsausschlusserklärung gilt auch innerhalb des eigenen Internetauftrittes „Name Ihrer Domain“ gesetzten Links und Verweise von Fragestellern, Blogeinträgern, Gästen des Diskussionsforums. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargestellten Informationen entstehen, haftet allein der Diensteanbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.
-
-            Werden uns Rechtsverletzungen bekannt, werden die externen Links durch uns unverzüglich entfernt.
-
-            Urheberrecht
-
-            Die auf unserer Webseite veröffentlichen Inhalte und Werke unterliegen dem deutschen Urheberrecht (http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf) . Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung des geistigen Eigentums in ideeller und materieller Sicht des Urhebers außerhalb der Grenzen des Urheberrechtes bedürfen der vorherigen schriftlichen Zustimmung des jeweiligen Urhebers i.S.d. Urhebergesetzes (http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf ). Downloads und Kopien dieser Seite sind nur für den privaten und nicht kommerziellen Gebrauch erlaubt. Sind die Inhalte auf unserer Webseite nicht von uns erstellt wurden, sind die Urheberrechte Dritter zu beachten. Die Inhalte Dritter werden als solche kenntlich gemacht. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte unverzüglich entfernen.
-            </p>
+            <h2>Angaben gemäß § 5 TMG:</h2>
+            <p>Delta-Hardware<br></p>
+            <h3>Postanschrift:</h3>
+            <p>Musterstraße 2<br>12345 Lazytown<br></p>
+            <h3>Kontakt:</h3>
+            <p>Telefon: +49 123456789<br>E-Mail: muster@mann.com</p>
+            <p></p><p><br></p>
+            <p></p><h2>Hinweise zur Website</h2>
+            <p></p><h2>Hinweis</h2>
+            <p>Die Plattform der EU zur außergerichtlichen Streitbeilegung finden Sie online unter: <a href="https://ec.europa.eu/consumers/odr/">https://ec.europa.eu/consumers/odr/</a></p>
+            <p></p><p><em>Das Impressum wurde mit dem <a href="https://www.activemind.de/datenschutz/impressums-generator/">Impressums-Generator der activeMind AG</a> erstellt.</em></p>            </p>
         </div>
     </div>
 
