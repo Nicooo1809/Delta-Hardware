@@ -8,9 +8,9 @@ require_once("templates/header.php")
             <h1 class="mt-2">Impressum</h1>
             <br>
             <p>
-            Impressum
+            Impressum\n
 
-            Angaben gem. § 5 TMG:
+            Angaben gem. § 5 TMG\n
 
             Vorname, Name
             Max Mustermann
