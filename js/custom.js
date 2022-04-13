@@ -63,3 +63,12 @@ function getCookie(cname) {
   }
   return "";
 }
+
+function showPreview(event){
+	var files = event.target.files;
+	var preview = document.getElementById('preview');
+	preview.innerHTML = '';
+	for (var i = 0, f; f = files[i]; i++) { 
+		preview.innerHTML += ['<div class="card prodcard bg-dark"><img src="', URL.createObjectURL(f), '" class="card-img-top img-fluid rounded" title="', escape(f.name), '" alt="', escape(f.name), '"></div>'].join('');
+	}
+}

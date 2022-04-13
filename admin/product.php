@@ -151,10 +151,18 @@ if(isset($_POST['action'])) {
                                 </div>
                             <?php endfor;?>
                         </div>
+                        <div class="row row-cols-1 row-cols-md-3 g-4 py-2">
+                            <div class="col">
+                                <h2>Diese Bilder werden hinzufügt</h2>
+                                <div id="preview">
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="row py-2 row-cols-2">
                             <div class="col-6">
                                 <div class="input-group">
-                                    <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
+                                    <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple  onchange="showPreview(event);">
                                 </div>
                             </div>
                             <div class="col-6 d-flex justify-content-end">
@@ -322,7 +330,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
                 </div>
             </form>
-            <p><?php print($total_products); ?> Benutzer</p>
+            <p><?php print($total_products); ?> Produkt<?=($total_products==1 ? '':'e')?></p>
             <div class="table-responsive">
                 <table class="table align-middle table-borderless table-hover">
                     <thead>
