@@ -286,9 +286,14 @@ if(isset($_POST['action'])) {
                             ?>
                         </select>
                     </div>
+                    <div>
+                        <h2>Diese Bilder werden hinzufügt</h2>
+                        <div class="row row-cols-1 row-cols-md-3 g-4 py-2" id="preview">
+                        </div>
+                    </div>
                     <div class="py-2" style="max-width: 50rem;">
                         <div class="input-group">
-                            <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple>
+                            <input type="file" class="form-control" name="file[]" accept="image/png, image/gif, image/jpeg" multiple onchange="showPreview(event);">
                         </div>
                     </div>
                     <div class="py-2">
