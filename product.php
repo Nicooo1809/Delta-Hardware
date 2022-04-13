@@ -47,14 +47,14 @@ require("templates/header.php");
                     <?php if($images == null):?>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="images/image-not-found.png" class="img-fluid rounded" alt="<?=$product[0]['name']?>">
+                                <img src="images/image-not-found.png" class="img-fluid mx-auto d-block rounded" alt="<?=$product[0]['name']?>">
                             </div>
                         </div>
                     <?php elseif (count($images) == 1):?>
                         <div class="carousel-inner">
                             <?php foreach ($images as $image) {
                                 print('<div class="carousel-item active">');
-                                    print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                    print('<img src="product_img/'.$image['img'].'" class="img-fluid mx-auto d-block rounded" alt="'.$product[0]['name'].'">');
                                 print('</div>');
                             } ?>
                         </div>
@@ -74,12 +74,12 @@ require("templates/header.php");
                             <?php $i = 1; foreach ($images as $image) {
                                 if ($i == 1) {
                                     print('<div class="carousel-item active" data-bs-interval="10000">');
-                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid mx-auto d-block rounded" alt="'.$product[0]['name'].'">');
                                     print('</div>');
                                 }
                                 else {
                                     print('<div class="carousel-item" data-bs-interval="10000">');
-                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid mx-auto d-block rounded" alt="'.$product[0]['name'].'">');
                                     print('</div>');
                                 }
                                 $i++;
