@@ -287,7 +287,6 @@ if(isset($_POST['action'])) {
                         </div>
                     </div>
                     <div class="py-2">
-                        <input type="number" value="<?=$_POST['productid']?>" name="productid" style="display: none;" required>
                         <button class="btn btn-success mx-1" type="submit" name="action" value="add">Speichern</button>
                         <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = '/admin/product.php';">Abbrechen</button>
                     </div>
