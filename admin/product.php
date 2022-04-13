@@ -151,10 +151,7 @@ if(isset($_POST['action'])) {
                                 </div>
                             <?php endfor;?>
                         </div>
-                        <div class="row row-cols-1 row-cols-md-3 g-4 py-2">
-                            <h2>Diese Bilder werden hinzufügt</h2>
-                            <div id="preview">
-                            </div>
+                        <div class="row row-cols-1 row-cols-md-3 g-4 py-2" id="preview">
                         </div>
                         <div class="row py-2 row-cols-2">
                             <div class="col-6">
