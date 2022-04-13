@@ -55,13 +55,15 @@ if (isset($user['id'])) {
 					<div class="row">
 						<div class="col-lg-10 col-xl-7 mx-auto cbg rounded">
 							<h3 class="display-4 ">Anmelden</h3>
+							<!-- Zeigt eine Error-nachricht an, wenn es einen Fehler gibt -->
 							<?php 
 							if(isset($error_msg) && !empty($error_msg)) {
 								echo $error_msg;
 							}
 							?>
 							<p class="text-muted mb-4">Schön, dass du wieder da bist!</p>
-							
+							<!-- Login-Input boxen für E-Mail, passwort und ide Abfrage ob man angemeldet bleiben möchte
+							Die Auswahl wird dann als Cookie gespeichert -->
 							<form action="login.php" method="post">
 								<div class="form-floating mb-3">
 									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 ps-4 text-dark fw-bold" required>
