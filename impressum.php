@@ -2,7 +2,7 @@
 require_once("templates/header.php")
 ?>
 
-<div class="container mb-5">
+<div class="container mb-5 mt-5">
     <div class="row no-gutter">
         <div class="col cbg impressum-breite">
             <h1>Impressum</h1>
