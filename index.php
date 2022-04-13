@@ -2,7 +2,7 @@
 require_once("php/functions.php");
 
 // Per SQL Befehl werden die neuesten Produkte aus der Datenbank ausgewählt
-$stmt = $pdo->prepare('SELECT *, left(desc, 35) as desc ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ORDER BY created_at DESC LIMIT 12');
+$stmt = $pdo->prepare('SELECT *, substring(products.desc, 1, 35) as shortdesc ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ORDER BY created_at DESC LIMIT 12');
 $stmt->execute();
 // Anzahl der Produkte bekommen
 $total_products = $stmt->rowCount();
@@ -71,7 +71,7 @@ require_once("templates/header.php");
                             <?php endif; ?>
                             <div class="card-body">
                                 <h5 class="card-title"><?=$product['name']?></h5>
-                                <p class="card-text"><?=$product['desc']?></p>
+                                <p class="card-text"><?=$product['shortdesc']?></p>
                                 <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
                             </div>
                         </div>
