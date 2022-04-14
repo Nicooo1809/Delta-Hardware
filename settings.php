@@ -1,5 +1,4 @@
 <?php
-#require_once("php/mysql.php");
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 //Überprüfe, dass der User eingeloggt ist
