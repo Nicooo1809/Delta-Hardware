@@ -6,7 +6,8 @@ try {
   //Connected successfully
 } catch(PDOException $e) {
   // If there is an error with the connection, stop the script and display the error.  
-  print('Connection failed: ' . $e->getMessage());
+  error_log($backtrace[count($backtrace)-1]['file'] . ':' . $backtrace[count($backtrace)-1]['line'] . ': Database connection failed: ' . $e->getMessage());
+  print('Database connection failed');
   exit;
   #error_log($e->getMessage());
 }
