@@ -10,7 +10,7 @@ if (!isset($user['id'])) {
 if ($user['showOrders'] == 1) {
 	$stmt = $pdo->prepare('SELECT *, COUNT(product_list.id) as products FROM product_list, users, orders where product_list.list_id = orders.id AND orders.kunden_id = users.id AND ordered = 1 and sent = 0 group by orders.id order by orders.ordered_date; ');
 	$result = $stmt->execute();
-	if ($result) {
+	if (!$result) {
 		error('Database error', pdo_debugStrParams($stmt));
 	}
 	$total_orders = $stmt->rowCount();
@@ -19,7 +19,7 @@ if ($user['showOrders'] == 1) {
 $stmt = $pdo->prepare('SELECT *, COUNT(product_list.id) as products FROM product_list, orders where product_list.list_id = orders.id AND orders.kunden_id = ? AND ordered = 1 group by orders.id; ');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $total_orders1 = $stmt->rowCount();

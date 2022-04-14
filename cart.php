@@ -14,7 +14,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
                 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
                 $result = $stmt->execute();
-                if ($result) {
+                if (!$result) {
                     error('Database error', pdo_debugStrParams($stmt));
                 }                
                 echo("<script>location.href='cart.php'</script>");
@@ -40,7 +40,7 @@ if(isset($_POST['action'])) {
                 $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
                 $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
                 $result = $stmt->execute();
-                if ($result) {
+                if (!$result) {
                     error('Database error', pdo_debugStrParams($stmt));
                 }                
                 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -57,7 +57,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(2, $_POST['productid']);
                 $stmt->bindValue(3, $quantity, PDO::PARAM_INT);
                 $result = $stmt->execute();
-                if ($result) {
+                if (!$result) {
                     error('Database error', pdo_debugStrParams($stmt));
                 }                
                 echo("<script>location.href='cart.php'</script>");
@@ -78,7 +78,7 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
                     $result = $stmt->execute();
-                    if ($result) {
+                    if (!$result) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }                    
                     echo("<script>location.href='cart.php'</script>");
@@ -124,7 +124,7 @@ if(isset($_POST['action'])) {
             $stmt = $pdo->prepare('select *, products.quantity as maxquantity from products, product_list where products.id = product_list.product_id and product_list.id = ?');
             $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }            
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -141,7 +141,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(2, $_POST['listid'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }            
             echo("<script>location.href='cart.php'</script>");
@@ -157,7 +157,7 @@ $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_i
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 // Get the total number of products

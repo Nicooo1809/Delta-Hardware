@@ -15,7 +15,7 @@ if (!isset($_GET['id']) or empty($_GET['id'])) {
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and product_list.list_id = ?');
 $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $total_products = $stmt->rowCount();
@@ -29,7 +29,7 @@ if(isset($_POST['confirm'])) {
         $stmt = $pdo->prepare('UPDATE orders SET sent = 1, sent_date = now() WHERE id = ? and ordered = 1');
         $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
         $result = $stmt->execute();
-        if ($result) {
+        if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
 		echo("<script>location.href='/internal.php'</script>");
@@ -39,7 +39,7 @@ if(isset($_POST['confirm'])) {
 $stmt = $pdo->prepare('SELECT * FROM users, orders where users.id = orders.kunden_id AND orders.id = ?');
 $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $customer = $stmt->fetchAll(PDO::FETCH_ASSOC);

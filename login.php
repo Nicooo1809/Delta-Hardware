@@ -9,7 +9,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 	$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
 	$stmt->bindValue(1, $email);
 	$result = $stmt->execute();
-	if ($result) {
+	if (!$result) {
 		error('Database error', pdo_debugStrParams($stmt));
 	}
 	$user = $stmt->fetch();
@@ -26,7 +26,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			$stmt->bindValue(2, $identifier);
 			$stmt->bindValue(3, sha1($securitytoken));
 			$result = $stmt->execute();
-			if ($result) {
+			if (!$result) {
 				error('Database error', pdo_debugStrParams($stmt));
 			}
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year

@@ -14,7 +14,7 @@ $stmt->bindValue(2, $_GET['id'], PDO::PARAM_INT);
 $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(4, $_GET['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $total_products = $stmt->rowCount();
@@ -29,7 +29,7 @@ $stmt = $pdo->prepare('SELECT * FROM orders where kunden_id = ? and id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $_GET['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $order = $stmt->fetchAll(PDO::FETCH_ASSOC);

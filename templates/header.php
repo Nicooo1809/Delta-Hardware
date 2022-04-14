@@ -45,7 +45,7 @@ $user1 = check_user(FALSE);
                 <?php           
                     $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = 0");
                     $result = $stmt->execute();
-                    if ($result) {
+                    if (!$result) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }
                     $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,7 +53,7 @@ $user1 = check_user(FALSE);
                         $stmt = $pdo->prepare("SELECT *, (SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id and visible = 1) as quantity FROM products_types WHERE parent_id = ?");
                         $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
                         $result = $stmt->execute();
-                        if ($result) {
+                        if (!$result) {
                             error('Database error', pdo_debugStrParams($stmt));
                         }
                         $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);

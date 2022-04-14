@@ -4,7 +4,7 @@ require_once("php/functions.php");
 // Per SQL Befehl werden die neuesten Produkte aus der Datenbank ausgewählt
 $stmt = $pdo->prepare('SELECT *, substring(products.desc, 1, 35) as shortdesc ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ORDER BY created_at DESC LIMIT 12');
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 // Anzahl der Produkte bekommen

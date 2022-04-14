@@ -26,7 +26,7 @@ if (isset($_GET["search"])) {
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ' . $type . $search . $sortsql);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 // Get the total number of products

@@ -18,19 +18,19 @@ if(isset($_POST['action'])) {
             $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             $stmt = $pdo->prepare('DELETE FROM orders WHERE kunden_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             echo("<script>location.href='user.php'</script>");
@@ -44,14 +44,14 @@ if(isset($_POST['action'])) {
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
         $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
         $result = $stmt->execute();
-        if ($result) {
+        if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
         $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         $stmt = $pdo->prepare('SELECT * FROM permission_group');
         $result = $stmt->execute();
-        if ($result) {
+        if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -62,7 +62,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(3, $_POST['nachname']);
             $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }            
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
@@ -71,7 +71,7 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(1, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
-                    if ($result) {
+                    if (!$result) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }                    
                 }
@@ -84,7 +84,7 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
-                    if ($result) {
+                    if (!$result) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }                    
                 }
@@ -153,7 +153,7 @@ if(isset($_POST['action'])) {
 // Select users ordered by the date added
 $stmt = $pdo->prepare('SELECT * FROM permission_group, users where users.permission_group = permission_group.id ORDER BY users.id');
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 // Get the total number of users

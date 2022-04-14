@@ -19,7 +19,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $_POST['categoriesname']);
             $stmt->bindValue(2, $_POST['parentcategorie']);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             
@@ -41,14 +41,14 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(1, $_POST['newparentcategorie'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $_POST['categoriesid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
-                    if ($result) {
+                    if (!$result) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }
 
                     $stmt = $pdo->prepare('DELETE FROM products_types WHERE id = ?');
                     $stmt->bindValue(1, $_POST['categoriesid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
-                    if ($result) {
+                    if (!$result) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }
                     
@@ -63,14 +63,14 @@ if(isset($_POST['action'])) {
             } else {
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE NOT parent_id = 0');
                 $result = $stmt->execute();
-                if ($result) {
+                if (!$result) {
                     error('Database error', pdo_debugStrParams($stmt));
                 }
                 $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE id = ?');
                 $stmt->bindValue(1, $_POST['categoriesid'], PDO::PARAM_INT);
                 $result = $stmt->execute();
-                if ($result) {
+                if (!$result) {
                     error('Database error', pdo_debugStrParams($stmt));
                 }
                 $tmp = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -124,7 +124,7 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(2, $_POST['parentcategories'], PDO::PARAM_INT);
         $stmt->bindValue(3, $_POST['categoriesid'], PDO::PARAM_INT);
         $result = $stmt->execute();
-        if ($result) {
+        if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
         echo("<script>location.href='categories.php'</script>");
@@ -138,13 +138,13 @@ if(isset($_POST['action'])) {
 
 $stmt = $pdo->prepare('SELECT *,(SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id) as products from products_types');
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $pdo->prepare('SELECT * from products_types where parent_id = 0');
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);

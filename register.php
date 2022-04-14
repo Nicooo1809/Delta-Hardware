@@ -70,7 +70,7 @@ if(isset($_GET['register'])) {
 		$stmt->bindValue(3, $vorname);
 		$stmt->bindValue(4, $nachname);
 		$result = $stmt->execute();
-		if ($result) {
+		if (!$result) {
 			$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES ((select id from users where email = ?), '0', '0')");
 			$stmt->bindValue(1, $email);
 			$result = $stmt->execute();

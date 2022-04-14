@@ -9,7 +9,7 @@ $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_i
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $total_products = $stmt->rowCount();
@@ -31,7 +31,7 @@ if(isset($_POST['confirm'])) {
             $stmt = $pdo->prepare('SELECT * from  products WHERE id = ?');
             $stmt->bindValue(1, $product['product_id'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,20 +42,20 @@ if(isset($_POST['confirm'])) {
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
             $stmt->bindValue(2, $product['product_id'], PDO::PARAM_INT);
             $result = $stmt->execute();
-            if ($result) {
+            if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
         }
         $stmt = $pdo->prepare('UPDATE orders SET ordered = 1, ordered_date = now() WHERE kunden_id = ? and ordered = 0');
         $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
         $result = $stmt->execute();
-        if ($result) {
+        if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
         $stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES (?, 0, 0)");
         $stmt->bindValue(1, $user['id']);
         $result = $stmt->execute();
-        if ($result) {
+        if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
         require_once("templates/header.php");

@@ -12,7 +12,7 @@ $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 if ($stmt->rowCount() != 1) {
@@ -26,7 +26,7 @@ $stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 // Fetch the products from the database and return the result as an Array
@@ -36,7 +36,7 @@ $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_i
 $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
-if ($result) {
+if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 // Fetch the products from the database and return the result as an Array
