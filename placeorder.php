@@ -8,7 +8,10 @@ if (!isset($user['id'])) {
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
-$stmt->execute();
+$result = $stmt->execute();
+if ($result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -27,7 +30,10 @@ if(isset($_POST['confirm'])) {
         foreach ($products as $product) {
             $stmt = $pdo->prepare('SELECT * from  products WHERE id = ?');
             $stmt->bindValue(1, $product['product_id'], PDO::PARAM_INT);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if ($result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($product['quantity'] > $product1[0]['quantity']) {
                 $msg = '<p class="mb-0 text-danger">Wir haben von mindestens einem der bestellten Artikel weniger als bestellt auf lager. <br>Deine Bestellung könnte sich deshalb eventuell ein wenig verzögern.</p>';
@@ -35,14 +41,23 @@ if(isset($_POST['confirm'])) {
             $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
             $stmt->bindValue(2, $product['product_id'], PDO::PARAM_INT);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if ($result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
         }
         $stmt = $pdo->prepare('UPDATE orders SET ordered = 1, ordered_date = now() WHERE kunden_id = ? and ordered = 0');
         $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
+        if ($result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
         $stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES (?, 0, 0)");
         $stmt->bindValue(1, $user['id']);
-        $stmt->execute();
+        $result = $stmt->execute();
+        if ($result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
 
         #error_log(print_r($product, true));
         require_once("templates/header.php");

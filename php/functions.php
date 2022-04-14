@@ -18,6 +18,9 @@ function check_user($redirect = TRUE) {
 		$stmt = $pdo->prepare("SELECT * FROM securitytokens WHERE identifier = ?");
 		$stmt->bindValue(1, $identifier);
 		$result = $stmt->execute();
+		if ($result) {
+			error('Database error', pdo_debugStrParams($stmt));
+		}
 		$securitytoken_row = $stmt->fetch();
 		#error_log(pdo_debugStrParams($statement));
 		#print_r($securitytoken_row);
@@ -35,7 +38,10 @@ function check_user($redirect = TRUE) {
 			$stmt = $pdo->prepare("UPDATE securitytokens SET securitytoken = ? WHERE identifier = ?");
 			$stmt->bindValue(1, sha1($neuer_securitytoken));
 			$stmt->bindValue(2, $identifier);
-			$stmt->execute();
+			$result = $stmt->execute();
+			if ($result) {
+				error('Database error', pdo_debugStrParams($stmt));
+			}
 			setcookie("identifier",$identifier,time()+(3600*24*90)); //90 Tage Gültigkeit
 			setcookie("securitytoken",$neuer_securitytoken,time()+(3600*24*90)); //90 Tage Gültigkeit
 			#print(sha1($neuer_securitytoken));
@@ -60,7 +66,10 @@ function check_user($redirect = TRUE) {
 		#print('5');
 		$stmt = $pdo->prepare("SELECT * FROM permission_group, users WHERE users.permission_group = permission_group.id and users.id = ?");
 		$stmt->bindValue(1, $_SESSION['userid'], PDO::PARAM_INT);
-		$stmt->execute();
+		$result = $stmt->execute();
+		if ($result) {
+			error('Database error', pdo_debugStrParams($stmt));
+		}
 		$user = $stmt->fetch();
 	    #error_log(pdo_debugStrParams($stmt));
 		return $user;

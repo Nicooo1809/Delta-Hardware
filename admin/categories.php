@@ -18,7 +18,11 @@ if(isset($_POST['action'])) {
             $stmt = $pdo->prepare('INSERT INTO products_types (type, parent_id) VALUES (?,?)');
             $stmt->bindValue(1, $_POST['categoriesname']);
             $stmt->bindValue(2, $_POST['parentcategorie']);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if ($result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
+            
             echo("<script>location.href='categories.php'</script>");
         } else {
             error('Some informations are missing!');
@@ -36,12 +40,17 @@ if(isset($_POST['action'])) {
                     $stmt = $pdo->prepare('UPDATE products SET product_type_id = ? WHERE product_type_id = ?');
                     $stmt->bindValue(1, $_POST['newparentcategorie'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $_POST['categoriesid'], PDO::PARAM_INT);
-                    $stmt->execute();
+                    $result = $stmt->execute();
+                    if ($result) {
+                        error('Database error', pdo_debugStrParams($stmt));
+                    }
 
                     $stmt = $pdo->prepare('DELETE FROM products_types WHERE id = ?');
                     $stmt->bindValue(1, $_POST['categoriesid'], PDO::PARAM_INT);
-                    $stmt->execute();
-
+                    $result = $stmt->execute();
+                    if ($result) {
+                        error('Database error', pdo_debugStrParams($stmt));
+                    }
                     
 
                     echo("<script>location.href='categories.php'</script>");
@@ -55,11 +64,17 @@ if(isset($_POST['action'])) {
                 }
             } else {
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE NOT parent_id = 0');
-                $stmt->execute();
+                $result = $stmt->execute();
+                if ($result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }
                 $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE id = ?');
                 $stmt->bindValue(1, $_POST['categoriesid'], PDO::PARAM_INT);
-                $stmt->execute();
+                $result = $stmt->execute();
+                if ($result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }
                 $tmp = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <div class="container-fluid">
@@ -110,7 +125,10 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(1, $_POST['categoriesname']);
         $stmt->bindValue(2, $_POST['parentcategories'], PDO::PARAM_INT);
         $stmt->bindValue(3, $_POST['categoriesid'], PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
+        if ($result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
 
         #error_log(pdo_debugStrParams($stmt));
         echo("<script>location.href='categories.php'</script>");
@@ -125,10 +143,16 @@ if(isset($_POST['action'])) {
 }
 
 $stmt = $pdo->prepare('SELECT *,(SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id) as products from products_types');
-$stmt->execute();
+$result = $stmt->execute();
+if ($result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $pdo->prepare('SELECT * from products_types where parent_id = 0');
-$stmt->execute();
+$result = $stmt->execute();
+if ($result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
 ?>

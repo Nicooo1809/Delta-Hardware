@@ -50,14 +50,20 @@ $user1 = check_user(FALSE);
                 ID's und Quantität der Produkte aus der Datenbank per SQL befehl und fügt diese im Dropdown-Menü ein -->
                 <?php           
                     $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = 0");
-                    $stmt->execute();
+                    $result = $stmt->execute();
+                    if ($result) {
+                        error('Database error', pdo_debugStrParams($stmt));
+                    }
                     #error_log(pdo_debugStrParams($stmt));
                     $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     #error_log(print_r($roottypes, true));
                     foreach ($roottypes as $roottype) {
                         $stmt = $pdo->prepare("SELECT *, (SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id and visible = 1) as quantity FROM products_types WHERE parent_id = ?");
                         $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
-                        $stmt->execute();
+                        $result = $stmt->execute();
+                        if ($result) {
+                            error('Database error', pdo_debugStrParams($stmt));
+                        }
                         $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         if (isset($subtypes[0])) {
                             #error_log('1');

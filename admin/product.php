@@ -17,16 +17,25 @@ if(isset($_POST['action'])) {
         }
         $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
         $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
+        if ($result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
         $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
-        $stmt->execute();
+        $result = $stmt->execute();
+        if ($result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
         $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
         $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
+        if ($result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
         $imgs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         for ($x = 0; $x < count($imgs); $x++) {
@@ -36,7 +45,10 @@ if(isset($_POST['action'])) {
                 $stmt = $pdo->prepare('DELETE FROM product_images where id = ? and product_id = ?');
                 $stmt->bindValue(1, $_POST[$var], PDO::PARAM_INT);
                 $stmt->bindValue(2, $_POST['productid'], PDO::PARAM_INT);
-                $stmt->execute();
+                $result = $stmt->execute();
+                if ($result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }                
             }
         }
 
@@ -53,7 +65,10 @@ if(isset($_POST['action'])) {
                         $stmt = $pdo->prepare("INSERT into product_images (img, product_id) VALUES ( ? , ? )");
                         $stmt->bindValue(1, $fileName);
                         $stmt->bindValue(2, $_POST['productid'], PDO::PARAM_INT);
-                        $stmt->execute();
+                        $result = $stmt->execute();
+                        if ($result) {
+                            error('Database error', pdo_debugStrParams($stmt));
+                        }                        
                         if(!$stmt){
                             error("File upload failed, please try again.");
                         } 
@@ -79,7 +94,10 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(6, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
             $stmt->bindValue(7, $_POST['categorie'], PDO::PARAM_INT);
             $stmt->bindValue(8, $_POST['productid'], PDO::PARAM_INT);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if ($result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
 
             #error_log(pdo_debugStrParams($stmt));
             echo("<script>location.href='product.php'</script>");
@@ -183,7 +201,10 @@ if(isset($_POST['action'])) {
         }
 
         $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
-        $stmt->execute();
+        $result = $stmt->execute();
+        if ($result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }        
         $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         
@@ -201,14 +222,19 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(5, $_POST['desc']);
             $stmt->bindValue(6, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
             $stmt->bindValue(7, $_POST['categorie'], PDO::PARAM_INT);
-            $stmt->execute();
-
+            $result = $stmt->execute();
+            if ($result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
             #error_log(pdo_debugStrParams($stmt));
 
             $stmt = $pdo->prepare('SELECT * FROM products where name = ? and `desc` = ? order by id desc');
             $stmt->bindValue(1, $_POST['name']);
             $stmt->bindValue(2, $_POST['desc']);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if ($result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }            
             $productForImg = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (!empty($_FILES["file"]["name"][0])){
@@ -224,7 +250,10 @@ if(isset($_POST['action'])) {
                             $stmt = $pdo->prepare("INSERT into product_images (img, product_id) VALUES ( ? , ? )");
                             $stmt->bindValue(1, $fileName);
                             $stmt->bindValue(2, $productForImg[0]['id'], PDO::PARAM_INT);
-                            $stmt->execute();
+                            $result = $stmt->execute();
+                            if ($result) {
+                                error('Database error', pdo_debugStrParams($stmt));
+                            }                            
                             if(!$stmt){
                                 error("File upload failed, please try again.");
                             } 
@@ -316,7 +345,10 @@ if(isset($_POST['action'])) {
 }
 
 $stmt = $pdo->prepare('SELECT * FROM products_types, products where products.product_type_id = products_types.id ORDER BY products.id;');
-$stmt->execute();
+$result = $stmt->execute();
+if ($result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($products);

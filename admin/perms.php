@@ -17,7 +17,10 @@ if(isset($_POST['action'])) {
         if (isset($_POST['permsname'])) {
             $stmt = $pdo->prepare('INSERT INTO permission_group (name) VALUES (?)');
             $stmt->bindValue(1, $_POST['permsname']);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if ($result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
         } else {
             error('Some informations are missing!');
         }
@@ -34,10 +37,16 @@ if(isset($_POST['action'])) {
                     $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
                     $stmt->bindValue(1, 1, PDO::PARAM_INT);
                     $stmt->bindValue(2, $_POST['permsid'], PDO::PARAM_INT);
-                    $stmt->execute();
+                    $result = $stmt->execute();
+                    if ($result) {
+                        error('Database error', pdo_debugStrParams($stmt));
+                    }
                     $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
                     $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
-                    $stmt->execute();
+                    $result = $stmt->execute();
+                    if ($result) {
+                        error('Database error', pdo_debugStrParams($stmt));
+                    }
                     echo("<script>location.href='perms.php'</script>");
                     #header('Location: perms.php');
                     exit;
@@ -98,7 +107,10 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(13, (isset($_POST['showOrders']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(14, (isset($_POST['markOrders']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(15, $_POST['permsid'], PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
+        if ($result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
 
         #error_log(pdo_debugStrParams($stmt));
         echo("<script>location.href='perms.php'</script>");
@@ -113,7 +125,10 @@ if(isset($_POST['action'])) {
 }
 
 $stmt = $pdo->prepare('SELECT * FROM permission_group');
-$stmt->execute();
+$result = $stmt->execute();
+if ($result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 #print_r($permissiontypes);
 ?>
