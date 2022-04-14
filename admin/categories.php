@@ -54,12 +54,10 @@ if(isset($_POST['action'])) {
                     
 
                     echo("<script>location.href='categories.php'</script>");
-                    #header('Location: categories.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
                     echo("<script>location.href='categories.php'</script>");
-                    #header('Location: categories.php');
                     exit;
                 }
             } else {
@@ -129,15 +127,11 @@ if(isset($_POST['action'])) {
         if ($result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
-
-        #error_log(pdo_debugStrParams($stmt));
         echo("<script>location.href='categories.php'</script>");
-        #header("location: categories.php");
         exit;
     }
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='categories.php'</script>");
-        #header("location: categories.php");
         exit;
     }
 }
@@ -154,7 +148,6 @@ if ($result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($permissiontypes);
 ?>
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">

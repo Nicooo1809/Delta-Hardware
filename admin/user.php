@@ -6,7 +6,6 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-#error_log(print_r($user,true));
 if ($user['showUser'] != 1) {
     error('Permission denied!');
 }
@@ -66,7 +65,6 @@ if(isset($_POST['action'])) {
             if ($result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }            
-            #error_log(pdo_debugStrParams($stmt));
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
                 if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
                     $stmt = $pdo->prepare("UPDATE users SET passwort = ?, updated_at = now() WHERE users.id = ?");
@@ -91,9 +89,7 @@ if(isset($_POST['action'])) {
                     }                    
                 }
             }
-            #error_log(pdo_debugStrParams($stmt));
             echo("<script>location.href='user.php'</script>");
-            #header("location: user.php");
             exit;
         } else {
         require_once("templates/header.php");
@@ -149,7 +145,6 @@ if(isset($_POST['action'])) {
     }
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='user.php'</script>");
-        #header("location: user.php");
         exit;
     }
 }
@@ -165,8 +160,6 @@ if ($result) {
 $total_users = $stmt->rowCount();
 // Fetch the users from the database and return the result as an Array
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($users);
-#$stmt->debugDumpParams();
 ?>
 
 <div class="container minheight100 users content-wrapper py-3 px-3">

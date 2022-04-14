@@ -33,7 +33,6 @@ if(isset($_POST['confirm'])) {
             error('Database error', pdo_debugStrParams($stmt));
         }
 		echo("<script>location.href='/internal.php'</script>");
-        #error_log(print_r($product, true));
     }
 }
 
@@ -45,8 +44,6 @@ if ($result) {
 }
 $customer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-#print_r($products);
-#$stmt->debugDumpParams();
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);

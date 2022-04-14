@@ -60,10 +60,8 @@ if(isset($_GET['register'])) {
 			$error = true;
 		}	
 	}
-	error_log('123456');
 	//Keine Fehler, wir können den Nutzer registrieren
 	if(!$error) {	
-		error_log('12345');
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 		
 		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (?, ?, ?, ?)");

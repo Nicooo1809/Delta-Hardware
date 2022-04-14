@@ -48,12 +48,10 @@ if(isset($_POST['action'])) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }
                     echo("<script>location.href='perms.php'</script>");
-                    #header('Location: perms.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
                     echo("<script>location.href='perms.php'</script>");
-                    #header('Location: perms.php');
                     exit;
                 }
             } else {
@@ -111,15 +109,11 @@ if(isset($_POST['action'])) {
         if ($result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
-
-        #error_log(pdo_debugStrParams($stmt));
         echo("<script>location.href='perms.php'</script>");
-        #header("location: perms.php");
         exit;
     }
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='perms.php'</script>");
-        #header("location: perms.php");
         exit;
     }
 }
@@ -130,7 +124,6 @@ if ($result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($permissiontypes);
 ?>
 <div class="container minheight100 users content-wrapper py-3 px-3 mx-auto">
     <div class="row">

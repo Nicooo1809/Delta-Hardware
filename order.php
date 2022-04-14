@@ -22,7 +22,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($total_products < 1) {
     error('Permission denied!');
-    #echo("<script>location.href='internal.php'</script>");
     exit;
 }
 
@@ -34,9 +33,6 @@ if ($result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $order = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-#print_r($products);
-#$stmt->debugDumpParams();
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);

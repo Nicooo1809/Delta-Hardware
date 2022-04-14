@@ -58,8 +58,6 @@ if(isset($_POST['confirm'])) {
         if ($result) {
             error('Database error', pdo_debugStrParams($stmt));
         }
-
-        #error_log(print_r($product, true));
         require_once("templates/header.php");
         ?>
         <div class="minheight100 px-3 py-3">
@@ -82,8 +80,6 @@ if(isset($_POST['confirm'])) {
 // SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
 
-#print_r($products);
-#$stmt->debugDumpParams();
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);

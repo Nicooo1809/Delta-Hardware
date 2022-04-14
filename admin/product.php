@@ -6,7 +6,6 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-#error_log(print_r($user,true));
 if ($user['showProduct'] != 1) {
     error('Permission denied!');
 }
@@ -99,9 +98,7 @@ if(isset($_POST['action'])) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
 
-            #error_log(pdo_debugStrParams($stmt));
             echo("<script>location.href='product.php'</script>");
-            #header("location: product.php");
             exit;
         } else {
         require_once("templates/header.php");
@@ -226,8 +223,6 @@ if(isset($_POST['action'])) {
             if ($result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
-            #error_log(pdo_debugStrParams($stmt));
-
             $stmt = $pdo->prepare('SELECT * FROM products where name = ? and `desc` = ? order by id desc');
             $stmt->bindValue(1, $_POST['name']);
             $stmt->bindValue(2, $_POST['desc']);
@@ -265,10 +260,7 @@ if(isset($_POST['action'])) {
                     }
                 }
             }
-
-            #error_log(pdo_debugStrParams($stmt));
             echo("<script>location.href='product.php'</script>");
-            #header("location: product.php");
             exit;
         } else {
         require_once("templates/header.php");
@@ -339,7 +331,6 @@ if(isset($_POST['action'])) {
     }
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='product.php'</script>");
-        #header("location: product.php");
         exit;
     }
 }
@@ -351,8 +342,6 @@ if ($result) {
 }
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($products);
-#$stmt->debugDumpParams();
 ?>
 
 <div class="container minheight100 users content-wrapper py-3 px-3">

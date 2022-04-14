@@ -21,8 +21,6 @@ if ($stmt->rowCount() != 1) {
 // Fetch the products from the database and return the result as an Array
 
 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($product);
-#$stmt->debugDumpParams();
 
 $stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
@@ -33,8 +31,6 @@ if ($result) {
 }
 // Fetch the products from the database and return the result as an Array
 $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($images);
-#$stmt->debugDumpParams();
 
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = ?) AND NOT product_list.product_id = ? and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;');
 $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
@@ -46,7 +42,7 @@ if ($result) {
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-require("templates/header.php");
+require_once("templates/header.php");
 ?>
 <div class="container-fluid minheight100 px-3 py-3 row row-cols-1 row-cols-md-2 gx-0 product content-wrapper">
     <div class="col">

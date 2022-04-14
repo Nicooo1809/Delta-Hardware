@@ -9,6 +9,5 @@ try {
   error_log($backtrace[count($backtrace)-1]['file'] . ':' . $backtrace[count($backtrace)-1]['line'] . ': Database connection failed: ' . $e->getMessage());
   print('Database connection failed');
   exit;
-  #error_log($e->getMessage());
 }
 ?>

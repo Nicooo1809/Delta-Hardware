@@ -1,13 +1,7 @@
 <?php
 require_once("php/functions.php");
-#error_log($_SESSION['userid']);
-#error_log('8');
 session_start();
-#error_log(print_r($_SESSION['userid'],true));
-#error_log($user1);
 $user1 = check_user(FALSE);
-
-#error_log($_SESSION['userid']);
 ?>
 
 <!DOCTYPE html>
@@ -54,9 +48,7 @@ $user1 = check_user(FALSE);
                     if ($result) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }
-                    #error_log(pdo_debugStrParams($stmt));
                     $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    #error_log(print_r($roottypes, true));
                     foreach ($roottypes as $roottype) {
                         $stmt = $pdo->prepare("SELECT *, (SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id and visible = 1) as quantity FROM products_types WHERE parent_id = ?");
                         $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
@@ -66,7 +58,6 @@ $user1 = check_user(FALSE);
                         }
                         $subtypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         if (isset($subtypes[0])) {
-                            #error_log('1');
                             ?>
                                 <li class="nav-item dropdown">
                                 <a class="nav-link ctext dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

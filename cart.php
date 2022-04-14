@@ -18,8 +18,6 @@ if(isset($_POST['action'])) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            #error_log(print_r($product, true));
-
             if (isset($product[0])) {
                 if ($_POST['quantity'] + $product[0]['quantity'] > $product[0]['maxquantity']) {
                     $quantity = $product[0]['maxquantity'];
@@ -37,7 +35,6 @@ if(isset($_POST['action'])) {
                     error('Database error', pdo_debugStrParams($stmt));
                 }                
                 echo("<script>location.href='cart.php'</script>");
-                #header("location: cart.php");
                 exit;
             } else {
                 $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
@@ -47,7 +44,6 @@ if(isset($_POST['action'])) {
                     error('Database error', pdo_debugStrParams($stmt));
                 }                
                 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                #print_r($product);
                 if ($_POST['quantity'] > $product[0]['quantity']) {
                     $quantity = $product[0]['quantity'];
                 } else {
@@ -65,7 +61,6 @@ if(isset($_POST['action'])) {
                     error('Database error', pdo_debugStrParams($stmt));
                 }                
                 echo("<script>location.href='cart.php'</script>");
-                #header("location: cart.php");
                 exit;
             }
             
@@ -87,12 +82,10 @@ if(isset($_POST['action'])) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }                    
                     echo("<script>location.href='cart.php'</script>");
-                    #header('Location: cart.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
                     echo("<script>location.href='cart.php'</script>");
-                    #header('Location: cart.php');
                     exit;
                 }
             } else {
@@ -152,7 +145,6 @@ if(isset($_POST['action'])) {
                 error('Database error', pdo_debugStrParams($stmt));
             }            
             echo("<script>location.href='cart.php'</script>");
-            #header('Location: cart.php');
             exit;
         } else {
             error('Some informations are missing!');
@@ -160,10 +152,8 @@ if(isset($_POST['action'])) {
     }
 }
 
-// SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products_types, products, product_list where product_list.product_id = products.id and products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
-#$stmt = $pdo->prepare('SELECT *,(SELECT quantity From product_list WHERE product_list.product_id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? )) LIMIT 1) AS quantity,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? ))');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -174,8 +164,6 @@ if ($result) {
 $total_products = $stmt->rowCount();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($products);
-#$stmt->debugDumpParams();
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);

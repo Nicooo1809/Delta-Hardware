@@ -13,14 +13,11 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 		error('Database error', pdo_debugStrParams($stmt));
 	}
 	$user = $stmt->fetch();
-	#error_log(print_r($user,true));
-
 	//Überprüfung des Passworts
 	if ($user !== false && password_verify($passwort, $user['passwort'])) {
 		$_SESSION['userid'] = $user['id'];
 		//Möchte der Nutzer angemeldet beleiben?
 		if(isset($_POST['angemeldet_bleiben'])) {
-			#print_r($_POST);
 			$identifier = md5(uniqid());
 			$securitytoken = md5(uniqid());
 			
@@ -34,11 +31,9 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			}
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
-			#error_log(pdo_debugStrParams($insert));
 		}
 
 		echo("<script>location.href='internal.php'</script>");
-		#header("Location: internal.php");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
