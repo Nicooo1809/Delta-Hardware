@@ -70,8 +70,14 @@ function check_user($redirect = TRUE) {
 /**
  * Outputs an error message and stops the further exectution of the script.
  */
-function error($error_msg) {
+function error($error_msg, $error_log = "") {
 	global $pdo;
+	$backtrace = debug_backtrace();
+	if (!empty($error_log)) {
+		error_log($backtrace[count($backtrace)-1]['file'] . ':' . $backtrace[count($backtrace)-1]['line'] . ': ' . $error_msg . ': ' . $error_log);
+	} else {
+		error_log($backtrace[count($backtrace)-1]['file'] . ':' . $backtrace[count($backtrace)-1]['line'] . ':' . $error_msg);
+	}
 	include_once("templates/header.php");
 	include_once("templates/error.php");
 	include_once("templates/footer.php");
