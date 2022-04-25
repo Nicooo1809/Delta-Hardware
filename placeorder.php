@@ -30,7 +30,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_POST['confirm'])) {
     if($_POST['confirm'] == 'yes') {
-        if (isset($_POST['rechnugsaddresse']) and isset($_POST['lieferaddresse']) and !empty($_POST['rechnugsaddresse']) and !empty($_POST['lieferaddresse'])) {
+        if (!isset($_POST['rechnugsaddresse']) and !isset($_POST['lieferaddresse']) and empty($_POST['rechnugsaddresse']) and empty($_POST['lieferaddresse'])) {
             error('Keine Addresse ausgewählt! Tipp: In den Einstellungen können sie eine Standardaddresse hinterlegen');
         }
         $msg = '';
