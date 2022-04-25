@@ -31,8 +31,8 @@ if(isset($_POST['action'])) {
             error('Permission denied!');
         }
         if(isset($_POST['permsid']) and !empty($_POST['permsid'])) {
-            if (isset($_POST['confirm']) and !empty($_POST['confirm']) && $perms['id'] != 1 || $perms['id'] != 2) {
-                if ($_POST['confirm'] == 'yes') {
+            if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
+                if ($_POST['confirm'] == 'yes' && ($perms['id'] != 1 || $perms['id'] != 2)) {
                     // User clicked the "Yes" button, delete record
                     $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
                     $stmt->bindValue(1, 1, PDO::PARAM_INT);
