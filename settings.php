@@ -151,7 +151,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 											<?php endif; ?>
 										<?php endforeach; ?>
 									</select>
-									<label class="text-dark fw-bold" for="inputVorname">Standard Adresse</label>
+									<label class="text-dark fw-bold" for="inputStandardaddresse">Standard Adresse</label>
 								</div>
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>

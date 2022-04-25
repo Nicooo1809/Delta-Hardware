@@ -20,12 +20,19 @@ if ($total_products < 1) {
     exit;
 }
 
+$stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
+$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
+$addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 if(isset($_POST['confirm'])) {
     if($_POST['confirm'] == 'yes') {
-        // if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
-        //     error('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
-        //     exit;
-        // }
+        if (isset($_POST['rechnugsaddresse']) and isset($_POST['lieferaddresse']) and !empty($_POST['rechnugsaddresse']) and !empty($_POST['lieferaddresse'])) {
+            error('Keine Addresse ausgewählt! Tipp: In den Einstellungen können sie eine Standardaddresse hinterlegen');
+        }
         $msg = '';
         foreach ($products as $product) {
             $stmt = $pdo->prepare('SELECT * from  products WHERE id = ?');
@@ -46,8 +53,10 @@ if(isset($_POST['confirm'])) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
         }
-        $stmt = $pdo->prepare('UPDATE orders SET ordered = 1, ordered_date = now() WHERE kunden_id = ? and ordered = 0');
-        $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+        $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ?, lieferadresse = ?, ordered = 1, ordered_date = now() WHERE kunden_id = ? and ordered = 0');
+        $stmt->bindValue(1, $_POST['rechnugsaddresse'], PDO::PARAM_INT);
+        $stmt->bindValue(2, $_POST['lieferaddresse'], PDO::PARAM_INT);
+        $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
@@ -97,6 +106,26 @@ foreach ($products as $product) {
                     print('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
                 } else {?>
                 <form action="placeorder.php" method="post" class="">
+                    <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
+                        <?php foreach ($addresses as $address): ?>
+                            <?php if ($address['default'] == 1): ?>
+                                <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                            <?php else:?>
+                                <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </select>
+                    <label class="text-dark fw-bold" for="inputRechnugsaddresse">Rechnungsadresse</label>
+                    <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
+                        <?php foreach ($addresses as $address): ?>
+                            <?php if ($address['default'] == 1): ?>
+                                <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                            <?php else:?>
+                                <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </select>
+                    <label class="text-dark fw-bold" for="inputLieferaddresse">Lieferadresse</label>
                     <button class="btn btn-success mx-1" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
                     <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
                 </form>
