@@ -199,13 +199,17 @@ foreach ($products as $product) {
                             <?php foreach ($products as $product): ?>
                                 <tr>
                                     <th scope="row" class="border-0">
-                                        <div class="max-h-150 p-2">
-                                            <?php if (empty($product['image'])) {
-                                                print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                            } else {
-                                                print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                            }?>
-                                                <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle text-wrap"><?=$product['name']?></a>
+                                        <div class="p-2">
+                                            <div class="col-4">
+                                                <?php if (empty($product['image'])) {
+                                                    print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                                } else {
+                                                    print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                                }?>
+                                            </div>
+                                            <div class="col-8 text-wrap">
+                                                <a href="product.php?id=<?=$product['product_id']?>" class="ctext align-middle text-wrap"><?=$product['name']?></a>
+                                            </div>
                                         </div>
                                     </th>
                                     <td class="border-0 align-middle text-center ctext">
