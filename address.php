@@ -110,7 +110,7 @@ if(isset($_POST['action'])) {
         }
         $address = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if(isset($_POST['addressid']) and isset($_POST['street']) and isset($_POST['number']) and isset($_POST['PLZ']) and isset($_POST['city']) and !empty($_POST['addressid']) and !empty($_POST['street']) and !empty($_POST['number']) and !empty($_POST['PLZ']) and !empty($_POST['city'])) {
+        if(isset($_POST['street']) and isset($_POST['number']) and isset($_POST['PLZ']) and isset($_POST['city']) and !empty($_POST['street']) and !empty($_POST['number']) and !empty($_POST['PLZ']) and !empty($_POST['city'])) {
 
             $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
             $stmt->bindValue(1, $_POST['PLZ']);
