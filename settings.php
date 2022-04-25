@@ -143,14 +143,13 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 								<form action="?save=address" method="post">
 								<div class="form-floating mb-2">
 									<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
-										<?php foreach ($addresses as $address) {
-											if ($address['default'] == 1) {
-												print('<option class="text-dark" value="' . $address['id'] . '" selected>' . $address['street'] . ' ' . $address['number'] . ', ' . $address['citys_id'] . '</option>');
-											} else {
-												print('<option class="text-dark" value="' . $address['id'] . '">' . $address['street'] . ' ' . $address['number'] . ', ' . $address['citys_id'] . '</option>');
-											}
-										}
-										?>
+										<?php foreach ($addresses as $address): ?>
+											<?php if ($address['default'] == 1): ?>
+												<option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> <?=$address['PLZ']?>, <?=$address['city']?></option>
+											<?php else:?>
+												<option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> <?=$address['PLZ']?>, <?=$address['city']?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
 									</select>
 									<label class="text-dark fw-bold" for="inputVorname">Standard Adresse</label>
 								</div>
