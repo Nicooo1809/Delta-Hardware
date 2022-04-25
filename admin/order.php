@@ -154,11 +154,18 @@ foreach ($products as $product) {
         </div>
         <div class="card mx-auto my-2 cbg">
             <div class="card-body">
-                <p class="card-text">
-                    <?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
-                    <?=$customer[0]['streetHouseNr']?></br>
-                    <?=$customer[0]['city']?>
-                </p>
+                <div class="card-text">
+                    <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                    <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
+                    <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                    <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
+                    <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
+                </div>
             </div>
         </div>
         <?php if ($user['markOrders'] == 1) { ?>
