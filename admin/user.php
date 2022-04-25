@@ -21,8 +21,9 @@ if(isset($_POST['action'])) {
             if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
-            $stmt = $pdo->prepare('DELETE FROM orders WHERE kunden_id = ?');
-            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+            $stmt = $pdo->prepare('UPDATE orders SET kunden_id = ? WHERE kunden_id = ?');
+            $stmt->bindValue(1, 1, PDO::PARAM_INT);
+            $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
