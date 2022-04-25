@@ -44,7 +44,7 @@ if (!$result) {
 }
 $customer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND id = ?');
+$stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $customer[0]['rechnungsadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
@@ -52,7 +52,7 @@ if (!$result) {
 }
 $rechnungsadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND id = ?');
+$stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $customer[0]['lieferadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
