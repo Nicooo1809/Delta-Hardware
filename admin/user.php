@@ -11,7 +11,7 @@ if ($user['showUser'] != 1) {
 }
 if(isset($_POST['action'])) {
     if ($_POST['action'] == 'deleteconfirm') {
-        if ($user['deleteUser'] != 1 || $_POST['userid'] != 1) {
+        if ($user['deleteUser'] != 1 || $_POST['userid'] == 1) {
             error('Permission denied!');
         }
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
