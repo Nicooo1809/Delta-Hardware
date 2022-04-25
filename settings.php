@@ -80,13 +80,13 @@ if(isset($_GET['save'])) {
 	} else if($save == 'address') {
 		
 		if(isset($_POST['standardaddresse']) && !empty($_POST['standardaddresse'])) {
-			$stmt = $pdo->prepare("UPDATE address SET default = 0, updated_at=NOW() WHERE default = 1 and user_id = ?");
+			$stmt = $pdo->prepare("UPDATE `address SET` `default` = 0, updated_at=NOW() WHERE `default` = 1 and user_id = ?");
 			$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 			$result = $stmt->execute();
 			if (!$result) {
 				error('Database error', pdo_debugStrParams($stmt));
 			}
-			$stmt = $pdo->prepare("UPDATE address SET default = 1, updated_at=NOW() WHERE id = ? and user_id = ?");
+			$stmt = $pdo->prepare("UPDATE `address SET` `default` = 1, updated_at=NOW() WHERE id = ? and user_id = ?");
 			$stmt->bindValue(1, $_POST['standardaddresse'], PDO::PARAM_INT);
 			$stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
 			$result = $stmt->execute();
@@ -139,7 +139,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 						<!-- Adresse -->
 						<div class="col-6">
 							<h3 class="ctext">Adresse</h3>
-							<button class="btn btn-danger mx-1" type="button" onclick="window.location.href = '/address.php';">Abbrechen</button>
+							<button class="btn btn-danger mx-1" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
 							<form action="?save=address" method="post">
 								<div class="form-floating mb-2">
 									<span style="width: 150px;" class="input-group-text" for="inputCategorie">Standardaddresse</span>
