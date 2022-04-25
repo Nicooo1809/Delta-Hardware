@@ -53,7 +53,7 @@ if(isset($_POST['action'])) {
                     $cityid = $city[0]['id'];
                 }
             }
-            $stmt = $pdo->prepare("UPDATE `address` SET street = ?, `number` = ?, city_id = ?, updated_at = now() WHERE `address`.`id` = ?");
+            $stmt = $pdo->prepare("UPDATE `address` SET street = ?, `number` = ?, citys_id = ?, updated_at = now() WHERE `address`.`id` = ?");
             $stmt->bindValue(1, $_POST['street']);
             $stmt->bindValue(2, $_POST['number']);
             $stmt->bindValue(3, $cityid);
