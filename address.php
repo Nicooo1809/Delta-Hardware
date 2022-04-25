@@ -19,12 +19,12 @@ if(isset($_POST['action'])) {
 
         if(isset($_POST['addressid']) and isset($_POST['street']) and isset($_POST['number']) and isset($_POST['PLZ']) and isset($_POST['city']) and !empty($_POST['addressid']) and !empty($_POST['street']) and !empty($_POST['number']) and !empty($_POST['PLZ']) and !empty($_POST['city'])) {
 
-            $stmt = $pdo->prepare("UPDATE `address` SET street = ?, `number` = ?, PLZ = ?, city = ?, updated_at = now() WHERE `address.id` = ?");
+            $stmt = $pdo->prepare("UPDATE `address` SET street = ?, `number` = ?, PLZ = ?, city = ?, updated_at = now() WHERE `address`.`id` = ?");
             $stmt->bindValue(1, $_POST['street']);
             $stmt->bindValue(2, $_POST['number']);
             $stmt->bindValue(3, $_POST['PLZ']);
             $stmt->bindValue(4, $_POST['city']);
-            $stmt->bindValue(5, $_POST['address'], PDO::PARAM_INT);
+            $stmt->bindValue(5, $_POST['addressid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
