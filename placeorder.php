@@ -60,17 +60,19 @@ if(isset($_POST['confirm'])) {
         }
         require_once("templates/header.php");
         ?>
-        <div class="minheight100 px-3 py-3">
-            <h1 class="ctext">Vielen Dank für Ihre Bestellung</h1>
-            <div>
-                <p class="mb-0 text-success">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
-                <?php print($msg); ?>
-                <a href="products.php">Zurück zum Sortiment</a>
+        <div class="container minheight100 py-3 px-3">
+            <div class="row">
+                <div class="py-3 px-3 cbg ctext rounded">
+                    <div>
+                        <p class="mb-0 text-success">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
+                        <?php print($msg); ?>
+                        <a href="products.php">Zurück zum Sortiment</a>
+                    </div>
+                </div>
             </div>
         </div>
         <?php 
         $error = true;
-
     }
     if($_POST['confirm'] == 'no') {
         echo("<script>location.href='cart.php'</script>");
@@ -86,7 +88,7 @@ foreach ($products as $product) {
 }
 ?>
 <?php if (!isMobile()): ?>
-    <div class="container minheight100 products content-wrapper py-3 px-3">
+    <div class="container minheight100 py-3 px-3">
         <div class="row">
             <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Bestellen</h1>
