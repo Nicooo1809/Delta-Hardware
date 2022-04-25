@@ -80,8 +80,6 @@ if(isset($_GET['save'])) {
 	} else if($save == 'address') {
 		
 		if(isset($_POST['standardaddresse']) && !empty($_POST['standardaddresse'])) {
-			$error_msg = "Bitte Addresse auswählen.";
-		} else {
 			$stmt = $pdo->prepare("UPDATE address SET default = 0, updated_at=NOW() WHERE default = 1 and user_id = ?");
 			$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 			$result = $stmt->execute();
@@ -97,6 +95,8 @@ if(isset($_GET['save'])) {
 			}
 
 			echo("<script>location.href='settings.php'</script>");
+		} else {
+			$error_msg = "Bitte Addresse auswählen.";
 		}
 	}
 }
