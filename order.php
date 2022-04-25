@@ -38,7 +38,6 @@ if ($total_products > 0) {
         if($_POST['action'] == 'del') {
             $stmt = $pdo->prepare('DELETE FROM product_list WHERE list_id = ?');
             $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
-            $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
