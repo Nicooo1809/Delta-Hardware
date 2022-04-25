@@ -37,6 +37,23 @@ $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
 }
+
+$stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
+$stmt->bindValue(1, $customer[0]['rechnungsadresse'], PDO::PARAM_INT);
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
+$rechnungsadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
+$stmt->bindValue(1, $customer[0]['lieferadresse'], PDO::PARAM_INT);
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
+$lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <?php if (!isMobile()): ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
@@ -48,6 +65,26 @@ foreach ($products as $product) {
                 <?php if ($order[0]['sent']==1): ?>
                     <p>Versanddatum: <?=$order[0]['sent_date']?></p>
                 <?php endif ?>
+                <div class="row mb-2">
+                        <h1>Bestellung bearbeiten</h1>
+                        <p>Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
+                    <div class="col-6">
+                        <h2>Rechnungsaddresse</h2>
+                        <div class="card cbg2 mx-auto py-2 px-2">
+                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
+                            <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h2>Lieferaddresse</h2>
+                        <div class="card cbg2 mx-auto py-2 px-2">
+                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
+                            <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
+                        </div>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -109,6 +146,24 @@ foreach ($products as $product) {
                     <?php if ($order[0]['sent']==1): ?>
                         <p>Versanddatum: <?=$order[0]['sent_date']?></p>
                     <?php endif ?>
+                    </div>
+                </div>
+                <div class="card mx-auto my-2 cbg">
+                    <div class="card-body">
+                        <h2>Rechnungsaddresse</h2>
+                        <div class="card-text">
+                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
+                            <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h2>Lieferaddresse</h2>
+                        <div class="card-text">
+                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
+                            <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
+                        </div>
                     </div>
                 </div>
             </div>
