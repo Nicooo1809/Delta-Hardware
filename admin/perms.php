@@ -32,23 +32,27 @@ if(isset($_POST['action'])) {
         }
         if(isset($_POST['permsid']) and !empty($_POST['permsid'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
-                if ($_POST['confirm'] == 'yes' && ($perms['id'] != 1 || $perms['id'] != 11)) {
-                    // User clicked the "Yes" button, delete record
-                    $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
-                    $stmt->bindValue(1, 1, PDO::PARAM_INT);
-                    $stmt->bindValue(2, $_POST['permsid'], PDO::PARAM_INT);
-                    $result = $stmt->execute();
-                    if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
+                if ($_POST['confirm'] == 'yes') {
+                    if (($perms['id'] != 1) || ($perms['id'] != 2)) {
+                        // User clicked the "Yes" button, delete record
+                        $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
+                        $stmt->bindValue(1, 1, PDO::PARAM_INT);
+                        $stmt->bindValue(2, $_POST['permsid'], PDO::PARAM_INT);
+                        $result = $stmt->execute();
+                        if (!$result) {
+                            error('Database error', pdo_debugStrParams($stmt));
+                        }
+                        $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
+                        $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
+                        $result = $stmt->execute();
+                        if (!$result) {
+                            error('Database error', pdo_debugStrParams($stmt));
+                        }
+                        echo("<script>location.href='perms.php'</script>");
+                        exit;
+                    } else {
+                        error('Permission denied!');
                     }
-                    $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
-                    $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
-                    $result = $stmt->execute();
-                    if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
-                    }
-                    echo("<script>location.href='perms.php'</script>");
-                    exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
                     echo("<script>location.href='perms.php'</script>");
@@ -257,7 +261,7 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <input type="number" value="<?=$perms['id']?>" name="permsid" style="display: none;" required>
                                                 <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                             </div>
-                                            <?php if ($perms['id'] != 1 || $perms['id'] != 2){?>
+                                            <?php if (($perms['id'] != 1) || ($perms['id'] != 2)) {?>
                                             <div class="px-1 py-1">
                                                 <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                             </div>
