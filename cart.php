@@ -207,7 +207,7 @@ foreach ($products as $product) {
                                             }?>
                                             <div class="ms-3 d-inline-block align-middle">
                                                 <h5 class="mb-0"> 
-                                                    <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle"><?=$product['name']?></a>
+                                                    <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle text-wrap"><?=$product['name']?></a>
                                                 </h5>
                                             </div>
                                         </div>
@@ -265,7 +265,7 @@ foreach ($products as $product) {
                             } else {
                                 print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             }?>
-                            <h4 class="card-title name"><?=$product['name']?></h4>
+                            <h4 class="card-title name text-wrap"><?=$product['name']?></h4>
                             <span class="card-text price">
                                 Preis: &euro;<?=$product['price']?><br>
                                 Menge: <?=$product['quantity']?>
