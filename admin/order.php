@@ -44,6 +44,22 @@ if (!$result) {
 }
 $customer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND id = ?');
+$stmt->bindValue(1, $customer[0]['rechnungsadresse'], PDO::PARAM_INT);
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
+$rechnungsadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND id = ?');
+$stmt->bindValue(1, $customer[0]['lieferadresse'], PDO::PARAM_INT);
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
+$lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
@@ -59,8 +75,15 @@ foreach ($products as $product) {
                     <div class="col-6">
                         <div class="card cbg2 mx-auto py-2 px-2">
                             <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
-                            <?=$customer[0]['streetHouseNr']?></br>
-                            <?=$customer[0]['city']?></p>
+                            <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
+                            <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card cbg2 mx-auto py-2 px-2">
+                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
+                            <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
                         </div>
                     </div>
                     <div class="col-6">
