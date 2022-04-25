@@ -200,15 +200,15 @@ foreach ($products as $product) {
                                 <tr>
                                     <th scope="row" class="border-0">
                                         <div class="p-2">
-                                            <div class="col-3">
-                                                <?php if (empty($product['image'])) {
-                                                    print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                                } else {
-                                                    print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                                }?>
-                                            </div>
-                                            <div class="col-9 text-wrap">
-                                                <a href="product.php?id=<?=$product['product_id']?>" class="ctext align-middle text-wrap"><?=$product['name']?></a>
+                                            <?php if (empty($product['image'])) {
+                                                print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                            } else {
+                                                print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                            }?>
+                                            <div class="ms-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"> 
+                                                    <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle text-wrap"><?=$product['name']?></a>
+                                                </h5>
                                             </div>
                                         </div>
                                     </th>
