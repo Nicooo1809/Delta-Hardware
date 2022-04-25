@@ -100,7 +100,7 @@ if(isset($_GET['save'])) {
 		}
 	}
 }
-$stmt = $pdo->prepare('SELECT * FROM address where user_id = ?');
+$stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
@@ -139,20 +139,19 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 						<!-- Adresse -->
 						<div class="col-6">
 							<h3 class="ctext">Adresse</h3>
-							<button class="btn btn-danger mx-1" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
-							<form action="?save=address" method="post">
+								<button class="btn btn-primary mb-2" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
+								<form action="?save=address" method="post">
 								<div class="form-floating mb-2">
-									<span style="width: 150px;" class="input-group-text" for="inputCategorie">Standardaddresse</span>
-									<select class="form-select" id="inputStandardaddresse" name="standardaddresse">
-										<?php foreach ($addresses as $address) {
-											if ($address['default'] == 1) {
-												print('<option class="text-dark" value="' . $address['id'] . '" selected>' . $address['street'] . ' ' . $address['number'] . ', ' . $address['citys_id'] . '</option>');
-											} else {
-												print('<option class="text-dark" value="' . $address['id'] . '">' . $address['street'] . ' ' . $address['number'] . ', ' . $address['citys_id'] . '</option>');
-											}
-										}
-										?>
+									<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
+										<?php foreach ($addresses as $address): ?>
+											<?php if ($address['default'] == 1): ?>
+												<option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+											<?php else:?>
+												<option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
 									</select>
+									<label class="text-dark fw-bold" for="inputVorname">Standard Adresse</label>
 								</div>
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
