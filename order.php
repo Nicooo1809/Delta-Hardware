@@ -36,14 +36,14 @@ if ($total_products > 0) {
             echo("<script>location.href='/internal.php'</script>");
         }
         if($_POST['action'] == 'del') {
-            $stmt = $pdo->prepare('DELETE FROM orders WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT sent = 1');
+            $stmt = $pdo->prepare('DELETE FROM product_list WHERE list_id = ?');
             $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
-            $stmt = $pdo->prepare('DELETE FROM product_list WHERE list_id = ?');
+            $stmt = $pdo->prepare('DELETE FROM orders WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT sent = 1');
             $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
