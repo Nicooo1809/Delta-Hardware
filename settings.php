@@ -100,7 +100,7 @@ if(isset($_GET['save'])) {
 		}
 	}
 }
-$stmt = $pdo->prepare('SELECT * FROM address where user_id = ?');
+$stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
