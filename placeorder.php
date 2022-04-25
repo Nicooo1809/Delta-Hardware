@@ -22,10 +22,10 @@ if ($total_products < 1) {
 
 if(isset($_POST['confirm'])) {
     if($_POST['confirm'] == 'yes') {
-        if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
-            error('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
-            exit;
-        }
+        // if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
+        //     error('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
+        //     exit;
+        // }
         $msg = '';
         foreach ($products as $product) {
             $stmt = $pdo->prepare('SELECT * from  products WHERE id = ?');
