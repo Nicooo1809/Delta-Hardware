@@ -11,7 +11,8 @@ if ($user['showProduct'] != 1) {
 }
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'mod') {
-        $stmt = $pdo->prepare('SELECT * FROM `address` where id = ?');
+        $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ? and `address.id` = ?');
+        $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
         $stmt->bindValue(1, $_POST['addressid'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
@@ -147,7 +148,7 @@ $total_addresses = $stmt->rowCount();
                                 <?php if ($user['modifyProduct'] == 1) {?>
                                     <form action="address.php" method="post" class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <div>
-                                            <input type="number" value="<?=$address['id']?>" name="productid" style="display: none;" required>
+                                            <input type="number" value="<?=$address['id']?>" name="addressid" style="display: none;" required>
                                             <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Editieren</button>
                                         </div>
                                     </form>
