@@ -32,7 +32,7 @@ if(isset($_POST['action'])) {
         }
         if(isset($_POST['permsid']) and !empty($_POST['permsid'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
-                if ($_POST['confirm'] == 'yes') {
+                if ($_POST['confirm'] == 'yes' && $perms['id'] != 1 || $perms['id'] != 2) {
                     // User clicked the "Yes" button, delete record
                     $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
                     $stmt->bindValue(1, 1, PDO::PARAM_INT);
@@ -257,7 +257,7 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <input type="number" value="<?=$perms['id']?>" name="permsid" style="display: none;" required>
                                                 <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                             </div>
-                                            <?php if ($perms['id'] != 1){?>
+                                            <?php if ($perms['id'] != 1 || $perms['id'] != 2){?>
                                             <div class="px-1 py-1">
                                                 <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
                                             </div>
