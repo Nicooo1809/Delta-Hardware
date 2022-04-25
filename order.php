@@ -8,6 +8,7 @@ if (!isset($user['id'])) {
 if (!isset($_GET['id'])) {
     echo("<script>location.href='internal.php'</script>");
 }
+
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and id = ?)) and product_list.list_id = (select id from orders where kunden_id = ? and id = ?)');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $_GET['id'], PDO::PARAM_INT);
@@ -20,6 +21,39 @@ if (!$result) {
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+if ($total_products > 0) {
+    if(isset($_POST['action'])) {
+        if($_POST['action'] == 'edit') {
+            $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = 1, lieferadresse = ? WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT sent = 1');
+            $stmt->bindValue(1, $_GET['rechnugsaddresse'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $_POST['lieferaddresse'], PDO::PARAM_INT);
+            $stmt->bindValue(3, $_POST['id'], PDO::PARAM_INT);
+            $stmt->bindValue(4, $user['id'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
+            echo("<script>location.href='/internal.php'</script>");
+        }
+        if($_POST['action'] == 'del') {
+            $stmt = $pdo->prepare('DELETE FROM orders WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT sent = 1');
+            $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
+            $stmt = $pdo->prepare('DELETE FROM product_list WHERE list_id = ?');
+            $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
+            echo("<script>location.href='/internal.php'</script>");
+        }
+    }
+}
 if ($total_products < 1) {
     error('Permission denied!');
     exit;
@@ -94,7 +128,8 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php endforeach; ?>
                         </select>
                         <label class="text-dark fw-bold" for="inputLieferaddresse">Lieferadresse</label>
-                        <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success me-2">Speichern</button>
+                        <button type="submit" name="action" value="del" class="py-2 btn btn-outline-success me-2">Bestellung stornieren</button>
+                        <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
                         <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                     </form>
                 <?php endif ?>
