@@ -207,7 +207,7 @@ foreach ($products as $product) {
                                                     print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
                                                 }?>
                                             </div>
-                                            <div class="ms-3 col-md-6 text-wrap">
+                                            <div class="col-md-6 text-wrap">
                                                 <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle text-wrap"><?=$product['name']?></a>
                                             </div>
                                         </div>
