@@ -80,7 +80,6 @@ if(isset($_GET['save'])) {
 	} else if($save == 'address') {
 		
 		if(isset($_POST['standardaddresse']) && !empty($_POST['standardaddresse'])) {
-			print_r($_POST);
 			$error_msg = "Bitte Addresse auswählen.";
 		} else {
 			$stmt = $pdo->prepare("UPDATE address SET default = 0, updated_at=NOW() WHERE default = 1 and user_id = ?");
