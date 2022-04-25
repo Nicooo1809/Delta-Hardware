@@ -73,6 +73,7 @@ foreach ($products as $product) {
                         <h1>Bestellung bearbeiten</h1>
                         <p>Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
                     <div class="col-6">
+                        <h2>Rechnungsaddresse</h2>
                         <div class="card cbg2 mx-auto py-2 px-2">
                             <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
                             <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
@@ -80,6 +81,7 @@ foreach ($products as $product) {
                         </div>
                     </div>
                     <div class="col-6">
+                        <h2>Lieferaddresse</h2>
                         <div class="card cbg2 mx-auto py-2 px-2">
                             <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
                             <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
