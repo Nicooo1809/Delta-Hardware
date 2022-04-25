@@ -19,8 +19,6 @@ if(isset($_POST['action'])) {
 
         if(isset($_POST['addressid']) and isset($_POST['street']) and isset($_POST['number']) and isset($_POST['PLZ']) and isset($_POST['city']) and !empty($_POST['addressid']) and !empty($_POST['street']) and !empty($_POST['number']) and !empty($_POST['PLZ']) and !empty($_POST['city'])) {
 
-
-
             $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
             $stmt->bindValue(1, $_POST['PLZ']);
             $stmt->bindValue(2, $_POST['city']);
@@ -82,7 +80,7 @@ if(isset($_POST['action'])) {
                         </div>
                         <div class="input-group py-2" style="max-width: 50rem;">
                             <span style="width: 150px;" class="input-group-text" for="inputPlz">PLZ</span>
-                            <input class="form-control" id="inputPlz" name="PLZ" type="text" value="<?=$address[0]['PLZ']?>">
+                            <input class="form-control" id="inputPlz" name="PLZ" type="text" value="<?=$address[0]['PLZ']?>" required>
                         </div>
                         <div class="input-group py-2" style="max-width: 50rem;">
                             <span style="width: 150px;" class="input-group-text" for="inputCity">Stadt</span>
@@ -103,7 +101,97 @@ if(isset($_POST['action'])) {
         } 
     }
     if($_POST['action'] == 'add') {
-        
+        $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where `address`.`citys_id` = citys.id and `address`.`user_id` = ? and `address`.`id` = ?');
+        $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+        $stmt->bindValue(2, $_POST['addressid'], PDO::PARAM_INT);
+        $result = $stmt->execute();
+        if (!$result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
+        $address = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(isset($_POST['addressid']) and isset($_POST['street']) and isset($_POST['number']) and isset($_POST['PLZ']) and isset($_POST['city']) and !empty($_POST['addressid']) and !empty($_POST['street']) and !empty($_POST['number']) and !empty($_POST['PLZ']) and !empty($_POST['city'])) {
+
+            $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
+            $stmt->bindValue(1, $_POST['PLZ']);
+            $stmt->bindValue(2, $_POST['city']);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
+            $total = $stmt->rowCount();
+            $city = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($total == 1) {
+                $cityid = $city[0]['id'];
+            } else {
+                $stmt = $pdo->prepare('INSERT INTO `citys` (PLZ, city) VALUES (?, ?)');
+                $stmt->bindValue(1, $_POST['PLZ']);
+                $stmt->bindValue(2, $_POST['city']);
+                $result = $stmt->execute();
+                if (!$result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }
+                $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
+                $stmt->bindValue(1, $_POST['PLZ']);
+                $stmt->bindValue(2, $_POST['city']);
+                $result = $stmt->execute();
+                if (!$result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }
+                $total = $stmt->rowCount();
+                $city = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($total == 1) {
+                    $cityid = $city[0]['id'];
+                }
+            }
+            $stmt = $pdo->prepare("INSERT INTO `address` (user_id, street, `number`, citys_id, updated_at, created_at) VALUES (?, ?, ?, ?, now(), now())");
+            $stmt->bindValue(1, $user['id']);
+            $stmt->bindValue(2, $_POST['street']);
+            $stmt->bindValue(3, $_POST['number']);
+            $stmt->bindValue(4, $cityid);
+            $stmt->bindValue(5, $_POST['addressid'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
+            echo("<script>location.href='address.php'</script>");
+            exit;
+        } else {
+        require_once("templates/header.php");
+        ?>
+        <div class="minheight100 px-3 my-3">
+            <div>
+                <h1>Adresse anpassen</h1>
+                <div>
+                    <form action="address.php" method="post" enctype="multipart/form-data">
+                        <div class="input-group py-2" style="max-width: 50rem;">
+                            <span style="width: 150px;" class="input-group-text" for="inputStreet">Straße</span>
+                            <input class="form-control" id="inputStreet" name="street" type="text" required>
+                        </div>
+                        <div class="input-group py-2" style="max-width: 50rem;">
+                            <span style="width: 150px;" class="input-group-text" for="inputNumber">Hausnummer</span>
+                            <input class="form-control" id="inputNumber" name="number" type="text" required>
+                        </div>
+                        <div class="input-group py-2" style="max-width: 50rem;">
+                            <span style="width: 150px;" class="input-group-text" for="inputPlz">PLZ</span>
+                            <input class="form-control" id="inputPlz" name="PLZ" type="text" required>
+                        </div>
+                        <div class="input-group py-2" style="max-width: 50rem;">
+                            <span style="width: 150px;" class="input-group-text" for="inputCity">Stadt</span>
+                            <input class="form-control" id="inputCity" name="city" type="text" required>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                                <button class="btn btn-success mx-1" type="submit" name="action" value="add">Speichern</button>
+                                <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = '/address.php';">Abbrechen</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php 
+        include_once("templates/footer.php");
+        exit;
+        } 
     }
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='address.php'</script>");
