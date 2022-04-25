@@ -93,7 +93,7 @@ foreach ($products as $product) {
             <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Bestellen</h1>
                 <p>Sie sind im Begriff folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> kostenpflichtig zu bestellen. Sind Sie Sicher?</p>
-                <?php if (!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])) {
+                <?php if (/*!isset($user['city']) and !isset($user['streetHouseNr']) and empty($user['city']) and empty($user['streetHouseNr'])*/ true) {
                     print('Bitte zuerst eine Addresse in den Einstellungen hinterlegen!');
                 } else {?>
                 <form action="placeorder.php" method="post" class="">
