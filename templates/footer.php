@@ -72,3 +72,4 @@ if(!isMobile()):
 <script>
 setStyle();
 </script>
+<?php unset($_SESSION['userid'])?>
