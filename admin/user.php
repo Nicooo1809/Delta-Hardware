@@ -187,7 +187,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="p-2 px-3 text-uppercase ctext">E-Mail</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase ctext">Rechte</div>
+                                    <div class="p-2 px-3 text-uppercase ctext" href="/admin/perms.php">Rechte</div>
                                 </th>
                                 <th scope="col" class="border-0">
                                     <div class="p-2 px-3 text-uppercase ctext">Erstellt</div>
