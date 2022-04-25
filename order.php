@@ -215,22 +215,49 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
                 <div class="card mx-auto my-2 cbg">
-                    <div class="card-body">
-                        <h2>Rechnungsaddresse</h2>
-                        <div class="card-text">
-                            <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
-                            <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
-                            <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
+                    <?php if ($order[0]['sent']!=1): ?>
+                        <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
+                            <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
+                                <?php foreach ($addresses as $address): ?>
+                                    <?php if ($address['default'] == 1): ?>
+                                        <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                    <?php else:?>
+                                        <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                            <label class="text-dark fw-bold" for="inputRechnugsaddresse">Rechnungsadresse</label>
+                            <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
+                                <?php foreach ($addresses as $address): ?>
+                                    <?php if ($address['default'] == 1): ?>
+                                        <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                    <?php else:?>
+                                        <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                            <label class="text-dark fw-bold" for="inputLieferaddresse">Lieferadresse</label>
+                            <button type="submit" name="action" value="del" class="py-2 btn btn-outline-success me-2">Bestellung stornieren</button>
+                            <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
+                        </form>
+                    <?php else: ?>
+                        <div class="card-body">
+                            <h2>Rechnungsaddresse</h2>
+                            <div class="card-text">
+                                <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
+                                <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
+                                <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <h2>Lieferaddresse</h2>
-                        <div class="card-text">
-                            <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
-                            <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
-                            <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
+                        <div class="card-body">
+                            <h2>Lieferaddresse</h2>
+                            <div class="card-text">
+                                <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
+                                <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
+                                <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif ?>
                 </div>
             </div>
             <?php foreach ($products as $product): ?>
