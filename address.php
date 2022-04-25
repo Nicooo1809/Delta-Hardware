@@ -13,7 +13,7 @@ if(isset($_POST['action'])) {
     if($_POST['action'] == 'mod') {
         $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and `address.user_id` = ? and `address.id` = ?');
         $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
-        $stmt->bindValue(1, $_POST['addressid'], PDO::PARAM_INT);
+        $stmt->bindValue(2, $_POST['addressid'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
