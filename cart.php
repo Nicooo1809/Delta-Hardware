@@ -200,14 +200,14 @@ foreach ($products as $product) {
                                 <tr>
                                     <th scope="row" class="border-0">
                                         <div class="p-2">
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <?php if (empty($product['image'])) {
                                                     print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
                                                 } else {
                                                     print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
                                                 }?>
                                             </div>
-                                            <div class="col-8 text-wrap">
+                                            <div class="col-9 text-wrap">
                                                 <a href="product.php?id=<?=$product['product_id']?>" class="ctext align-middle text-wrap"><?=$product['name']?></a>
                                             </div>
                                         </div>
