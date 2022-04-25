@@ -139,10 +139,10 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 						<!-- Adresse -->
 						<div class="col-6">
 							<h3 class="ctext">Adresse</h3>
-							<button class="btn btn-danger mx-1" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
-							<form action="?save=address" method="post">
+								<button class="btn btn-primary mb-2" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
+								<form action="?save=address" method="post">
 								<div class="form-floating mb-2">
-									<select class="form-select" id="inputStandardaddresse" name="standardaddresse">
+									<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
 										<?php foreach ($addresses as $address) {
 											if ($address['default'] == 1) {
 												print('<option class="text-dark" value="' . $address['id'] . '" selected>' . $address['street'] . ' ' . $address['number'] . ', ' . $address['citys_id'] . '</option>');
@@ -152,7 +152,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 										}
 										?>
 									</select>
-									<label class="text-dark fw-bold" for="inputVorname">Standardaddresse</label>
+									<label class="text-dark fw-bold" for="inputVorname">Standard Adresse</label>
 								</div>
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>
