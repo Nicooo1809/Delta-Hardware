@@ -54,6 +54,13 @@ if (!$result) {
 }
 $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
+$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
+$addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php if (!isMobile()): ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
@@ -64,6 +71,32 @@ $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
                 <?php if ($order[0]['sent']==1): ?>
                     <p>Versanddatum: <?=$order[0]['sent_date']?></p>
+                <?php endif ?>
+                <?php if ($order[0]['sent']!=1): ?>
+                    <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
+                        <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
+                            <?php foreach ($addresses as $address): ?>
+                                <?php if ($address['default'] == 1): ?>
+                                    <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                <?php else:?>
+                                    <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </select>
+                        <label class="text-dark fw-bold" for="inputRechnugsaddresse">Rechnungsadresse</label>
+                        <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
+                            <?php foreach ($addresses as $address): ?>
+                                <?php if ($address['default'] == 1): ?>
+                                    <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                <?php else:?>
+                                    <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </select>
+                        <label class="text-dark fw-bold" for="inputLieferaddresse">Lieferadresse</label>
+                        <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success me-2">Speichern</button>
+                        <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
+                    </form>
                 <?php endif ?>
                 <div class="row mb-2">
                     <div class="col-6">
