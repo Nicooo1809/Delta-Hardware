@@ -20,6 +20,7 @@ CREATE TABLE `permission_group` (
 
 CREATE TABLE `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `permission_group` int(10) NOT NULL DEFAULT 1,
   `email` varchar(255) NOT NULL,
   `passwort` varchar(255) NOT NULL,
   `vorname` varchar(255) NOT NULL DEFAULT '',
@@ -28,7 +29,6 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `passwortcode` varchar(255) DEFAULT NULL,
   `passwortcode_time` timestamp NULL DEFAULT NULL,
-  `permission_group` int(10) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`permission_group`) REFERENCES `permission_group`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -75,9 +75,9 @@ CREATE TABLE `products_types` (
 
 CREATE TABLE `products` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `product_type_id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   `desc` mediumtext NOT NULL,
-  `product_type_id` int(10) NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `rrp` decimal(7,2) NOT NULL DEFAULT 0.00,
   `quantity` int(10) NOT NULL,
@@ -90,8 +90,8 @@ CREATE TABLE `products` (
 
 CREATE TABLE `product_images` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `img` varchar(255) NOT NULL,
   `product_id` int(10) NOT NULL,
+  `img` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`product_id`) REFERENCES `products`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
