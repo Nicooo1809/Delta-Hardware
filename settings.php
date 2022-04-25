@@ -146,9 +146,9 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 									<select class="form-select" id="inputStandardaddresse" name="standardaddresse">
 										<?php foreach ($addresses as $address) {
 											if ($address['default'] == 1) {
-												print('<option class="text-dark" value="' . $address['id'] . '" selected>' . $address['type'] . '</option>');
+												print('<option class="text-dark" value="' . $address['id'] . '" selected>' . $address['street'] . ' ' . $address['number'] . ', ' . $address['citys_id'] . '</option>');
 											} else {
-												print('<option class="text-dark" value="' . $address['id'] . '">' . $address['type'] . '</option>');
+												print('<option class="text-dark" value="' . $address['id'] . '">' . $address['street'] . ' ' . $address['number'] . ', ' . $address['citys_id'] . '</option>');
 											}
 										}
 										?>
