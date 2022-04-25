@@ -29,7 +29,7 @@ if(!isMobile()):
                 Delta-Hardware
             </div>
             <div class="col text-center">
-                <a href="/aboutus.php" class="ctext me-2">Über uns</a>
+                <a href="/aboutus.php" class="ctext me-0">Über uns</a>
                 <div class="vr mx-2"></div>
                 <a class="ctext me-2" href="/impressum.php">Impressum</a>
             </div>
