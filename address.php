@@ -11,8 +11,8 @@ if ($user['showProduct'] != 1) {
 }
 if(isset($_POST['action'])) {
     if($_POST['action'] == 'mod') {
-        $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
-        $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
+        $stmt = $pdo->prepare('SELECT * FROM `address` where id = ?');
+        $stmt->bindValue(1, $_POST['addressid'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
             error('Database error', pdo_debugStrParams($stmt));
@@ -126,7 +126,7 @@ $total_addresses = $stmt->rowCount();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($addresss as $address): ?>
+                        <?php foreach ($addresses as $address): ?>
                             <tr>
                                 <td class="border-0 text-center">
                                     <strong><?=$address['id']?></strong>
