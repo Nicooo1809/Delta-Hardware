@@ -199,7 +199,7 @@ foreach ($products as $product) {
                             <?php foreach ($products as $product): ?>
                                 <tr>
                                     <th scope="row" class="border-0">
-                                        <div class="p-2">
+                                        <div class="max-h-150 p-2">
                                             <?php if (empty($product['image'])) {
                                                 print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
                                             } else {
