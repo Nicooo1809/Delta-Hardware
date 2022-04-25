@@ -129,9 +129,8 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <label class="text-dark fw-bold" for="inputLieferaddresse">Lieferadresse</label>
                         <button type="submit" name="action" value="del" class="py-2 btn btn-outline-success me-2">Bestellung stornieren</button>
                         <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
-                        <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                     </form>
-                <?php endif ?>
+                <?php else: ?>
                 <div class="row mb-2">
                     <div class="col-6">
                         <h2>Rechnungsaddresse</h2>
@@ -150,6 +149,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                 </div>
+                <?php endif ?>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -196,6 +196,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </table>
                 </div>         
                 <strong>Summe: <?=$summprice?>&euro;</strong>
+                <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
             </div>
         </div>
     </div> 
@@ -255,6 +256,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="card-body">
                         <h2 class="card-title name">Summe:</h2>
                         <strong class="card-text"><?=$summprice?>&euro;</strong>
+                        <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                     </div>
                 </div>
             </div>
