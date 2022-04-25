@@ -31,8 +31,8 @@ function check_user($redirect = TRUE) {
 			if (!$result) {
 				error('Database error', pdo_debugStrParams($stmt));
 			}
-			setcookie("identifier",$identifier,time()+(3600*24*90)); //90 Tage Gültigkeit
-			setcookie("securitytoken",$neuer_securitytoken,time()+(3600*24*90)); //90 Tage Gültigkeit
+			setcookie("identifier",$identifier,time()+(3600*24*90),'/'); //90 Tage Gültigkeit
+			setcookie("securitytoken",$neuer_securitytoken,time()+(3600*24*90),'/'); //90 Tage Gültigkeit
 			//Logge den Benutzer ein
 			$_SESSION['userid'] = $securitytoken_row['user_id'];
 		}
