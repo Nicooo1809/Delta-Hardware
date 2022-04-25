@@ -39,7 +39,7 @@ foreach ($products as $product) {
 }
 
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
-$stmt->bindValue(1, $customer[0]['rechnungsadresse'], PDO::PARAM_INT);
+$stmt->bindValue(1, $order[0]['rechnungsadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
@@ -47,7 +47,7 @@ if (!$result) {
 $rechnungsadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
-$stmt->bindValue(1, $customer[0]['lieferadresse'], PDO::PARAM_INT);
+$stmt->bindValue(1, $order[0]['lieferadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
@@ -66,12 +66,10 @@ $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p>Versanddatum: <?=$order[0]['sent_date']?></p>
                 <?php endif ?>
                 <div class="row mb-2">
-                        <h1>Bestellung bearbeiten</h1>
-                        <p>Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
                     <div class="col-6">
                         <h2>Rechnungsaddresse</h2>
                         <div class="card cbg2 mx-auto py-2 px-2">
-                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
                             <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
                             <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
                         </div>
@@ -79,7 +77,7 @@ $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="col-6">
                         <h2>Lieferaddresse</h2>
                         <div class="card cbg2 mx-auto py-2 px-2">
-                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
                             <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
                             <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
                         </div>
@@ -152,7 +150,7 @@ $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="card-body">
                         <h2>Rechnungsaddresse</h2>
                         <div class="card-text">
-                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
                             <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
                             <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
                         </div>
@@ -160,7 +158,7 @@ $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="card-body">
                         <h2>Lieferaddresse</h2>
                         <div class="card-text">
-                            <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
+                            <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
                             <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
                             <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
                         </div>
