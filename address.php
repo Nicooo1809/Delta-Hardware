@@ -54,7 +54,7 @@ if(isset($_POST['action'])) {
             $stmt = $pdo->prepare("UPDATE `address` SET street = ?, `number` = ?, citys_id = ?, updated_at = now() WHERE `address`.`id` = ?");
             $stmt->bindValue(1, $_POST['street']);
             $stmt->bindValue(2, $_POST['number']);
-            $stmt->bindValue(3, $cityid);
+            $stmt->bindValue(3, $cityid, PDO::PARAM_INT);
             $stmt->bindValue(4, $_POST['addressid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
@@ -145,11 +145,10 @@ if(isset($_POST['action'])) {
                 }
             }
             $stmt = $pdo->prepare("INSERT INTO `address` (user_id, street, `number`, citys_id, updated_at, created_at) VALUES (?, ?, ?, ?, now(), now())");
-            $stmt->bindValue(1, $user['id']);
+            $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['street']);
             $stmt->bindValue(3, $_POST['number']);
-            $stmt->bindValue(4, $cityid);
-            $stmt->bindValue(5, $_POST['addressid'], PDO::PARAM_INT);
+            $stmt->bindValue(4, $cityid, PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
                 error('Database error', pdo_debugStrParams($stmt));
