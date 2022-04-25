@@ -30,6 +30,7 @@ if(!isMobile()):
             </div>
             <div class="col text-center">
                 <a href="/aboutus.php" class="ctext me-2">Über uns</a>
+                <div class="vr mx-2"></div>
                 <a class="ctext me-2" href="/impressum.php">Impressum</a>
             </div>
             <div class="col d-flex justify-content-end align-items-center text-end ctext">
@@ -47,9 +48,8 @@ if(!isMobile()):
 <?php else:?>
     <footer class="container-fluid footer-footer sticky-bottom footer py-1 cbg">
         <div class="ctext">
-            <div class="col py-1 text-center">
+            <div class="ctext col py-1 text-center">
                 <a href="/aboutus.php" class="ctext">Über uns</a>
-                <div class="vr mx-2"></div>
                 <a class="ctext" href="/impressum.php">Impressum</a>
             </div>
             <div class="row">
