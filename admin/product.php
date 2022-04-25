@@ -396,7 +396,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <strong><?=$product['id']?></strong>
                                 </td>
                                 <td class="border-0 text-center">
-                                    <a href="/product.php?id=<?=$product['id']?>"><strong><?=$product['name']?></strong></a>
+                                    <a href="/product.php?id=<?=$product['id']?>"><strong class="ctext"><?=$product['name']?></strong></a>
                                 </td>
                                 <td class="border-0 text-center">
                                     <strong><?=$product['type']?></strong>
