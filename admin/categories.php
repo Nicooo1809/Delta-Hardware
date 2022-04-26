@@ -96,6 +96,7 @@ if(isset($_POST['action'])) {
                                                 <?php } else {
                                                     print('<input type="number" value="0" name="newparentcategorie" style="display: none;" required>');
                                                 } ?>
+                                                <input type="number" value="<?=$_POST['categoriesid']?>" name="categoriesid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
                                                 <a href="categories.php"><button class="btn btn-outline-primary mx-2" type="button">Nein</button></a>
