@@ -153,20 +153,25 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg rounded">
-            <h1>Menüverwaltung</h1>
-            <form action="categories.php" method="post" class="">
-                <div class="input-group">
-                    <input type="text" name="categoriesname" class="form-control" required>
-                    <select class="form-select" id="parentcategorie" name="parentcategorie">
-                        <?php foreach ($cats as $cat) {
-                            print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
-                        }
-                        print('<option class="text-dark" value="0">ROOT</option>');
-                        ?>
-                    </select>
-                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
-                </div>
-            </form>
+            <div class="d-flex justify-content-between">
+                    <div class="col-4">
+                        <h1>Menüverwaltung</h1>
+                    </div>
+                    <div class="col-7 d-flex justify-content-end">
+                        <form action="categories.php" method="post" class="">
+                            <div class="input-group">
+                                <input type="text" name="categoriesname" class="form-control" required>
+                                <select class="form-select" id="parentcategorie" name="parentcategorie">
+                                    <?php foreach ($cats as $cat) {
+                                        print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
+                                    }
+                                    print('<option class="text-dark" value="0">ROOT</option>');
+                                    ?>
+                                </select>
+                                <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+                            </div>
+                        </form>
+                    </div>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
