@@ -24,7 +24,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if ($total_products > 0) {
     if(isset($_POST['action'])) {
         if($_POST['action'] == 'edit') {
-            $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ?, lieferadresse = ? WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT sent = 1');
+            $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ?, lieferadresse = ? WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT `sent` = 1');
             $stmt->bindValue(1, $_POST['rechnugsaddresse'], PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['lieferaddresse'], PDO::PARAM_INT);
             $stmt->bindValue(3, $_GET['id'], PDO::PARAM_INT);
@@ -145,7 +145,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="text-dark input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
                                         <select class="form-select border-0 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
                                             <?php foreach ($addresses as $address): ?>
-                                                <?php if ($address['default'] == 1): ?>
+                                                <?php if ($order[0]['rechnungsadresse'] == 1): ?>
                                                     <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
                                                 <?php else:?>
                                                     <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
@@ -159,7 +159,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="text-dark input-group-text" for="inputLieferaddresse">Lieferadresse</label>
                                         <select class="form-select border-0 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
                                             <?php foreach ($addresses as $address): ?>
-                                                <?php if ($address['default'] == 1): ?>
+                                                <?php if ($order[0]['lieferadresse'] == 1): ?>
                                                     <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
                                                 <?php else:?>
                                                     <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
