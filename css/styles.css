@@ -15,13 +15,12 @@ header {
 
 
 
-/* remove scrollbar */
-::-webkit-scrollbar {
-    display: none;
+body {
+    overflow-y: scroll; /* Show vertical scrollbar */
+    overflow-x: scroll; /* Show horizontal scrollbar */
 }
 
 * {
-    overflow-x: hidden;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
@@ -29,6 +28,8 @@ header {
 .perms::-webkit-scrollbar {
     overflow-x: scroll;
 }
+
+
 
 
 /* Höhen auf 100vh (Vertical Height) setzen */
