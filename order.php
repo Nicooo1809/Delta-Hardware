@@ -107,17 +107,35 @@ if (!$result) {
 $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php if (!isMobile()): ?>
-    <div class="container minheight100 products content-wrapper py-3 px-3">
-        <div class="row">
+    <div class="container minheight100 py-3 px-3">
+        <div class="row d-flex justify-content-between">
             <div class="py-3 px-3 cbg ctext rounded">
-                <h1>Bestellung</h1>
-                <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
-                <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
-                <?php if ($order[0]['sent']==1): ?>
-                    <p>Versanddatum: <?=$order[0]['sent_date']?></p>
-                <?php endif ?>
+                <div class="col-5">
+                    <h1>Bestellung</h1>
+                    <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
+                    <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
+                    <?php if ($order[0]['sent']==1): ?>
+                        <p>Versanddatum: <?=$order[0]['sent_date']?></p>
+                    <?php endif ?>
+                </div>
                 <?php if ($order[0]['sent']!=1): ?>
-                    <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
+                    <div class="col-5">
+                        <form action="?id=<?=$_GET['id']?>" method="post" class="">
+                            <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
+                            <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+                                <div class="offcanvas-header">
+                                    <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirlich Löschen?</h2>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <button class="btn btn-outline-success mx-2" type="submit" name="action" value="del">Ja</button>
+                                    <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
+                                </div>
+                            </div>
+                            <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
+                        </form>
+                    </div>
+                    <form action="?id=<?=$_GET['id']?>" method="post" class="">
                         <div class="row d-flex justify-content-between">
                             <div class="col-5 mx-1">
                                 <div class="input-group mb-3">
@@ -148,20 +166,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
-                            <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-                                <div class="offcanvas-header">
-                                    <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirlich Löschen?</h2>
-                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                </div>
-                                <div class="offcanvas-body">
-                                    <button class="btn btn-outline-success mx-2" type="submit" name="action" value="del">Ja</button>
-                                    <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
-                                </div>
-                            </div>
-                            <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
-                        </div>
+                        
                     </form>
                 <?php else: ?>
                 <div class="row mb-2">
