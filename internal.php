@@ -114,59 +114,54 @@ $orders1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				</div>
 			</div>
 		<?php } ?>
-		<?php if ($user['showOrders'] == 1) { ?>
-			<div class="card cbg ctext my-3 mx-auto">
-				<div class="card-body text-center">
-					<h1 class="card-title">Getätigte Bestellungen</h1>
-					<div class="card-text">
-						<p><?=$total_orders1?> Bestellung<?=($total_orders1==1 ? '':'en')?></p>
-						<div class="table-responsive">
-							<table class="table">
-								<thead>
+		<div class="card cbg ctext my-3 mx-auto">
+			<div class="card-body text-center">
+				<h1 class="card-title">Getätigte Bestellungen</h1>
+				<div class="card-text">
+					<p><?=$total_orders1?> Bestellung<?=($total_orders1==1 ? '':'en')?></p>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<div class="ctext rounded">
+										<th scope="col" class="border-0">
+											<div class="p-2 px-3 text-uppercase ctext">#</div>
+										</th>
+										<th scope="col" class="border-0 text-center">
+											<div class="p-2 px-3 text-uppercase ctext">Bestelldatum</div>
+										</th>
+										<th scope="col" class="border-0 text-center">
+											<div class="p-2 px-3 text-uppercase ctext">Versanddatum</div>
+										</th>
+										<th scope="col" class="border-0 text-center">
+											<div class="p-2 px-3 text-uppercase ctext">Produkte</div>
+										</th>
+									</div>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($orders1 as $order): ?>
 									<tr>
-										<div class="ctext rounded">
-											<th scope="col" class="border-0">
-												<div class="p-2 px-3 text-uppercase ctext">#</div>
-											</th>
-											<th scope="col" class="border-0 text-center">
-												<div class="p-2 px-3 text-uppercase ctext">Bestelldatum</div>
-											</th>
-											<th scope="col" class="border-0 text-center">
-												<div class="p-2 px-3 text-uppercase ctext">Versanddatum</div>
-											</th>
-											<th scope="col" class="border-0 text-center">
-												<div class="p-2 px-3 text-uppercase ctext">Produkte</div>
-											</th>
-										</div>
+										<td class="border-0 align-middle text-center ctext">
+											<span><a href="/order.php?id=<?=$order['id']?>"><?=$order['id']?></a></span>
+										</td>
+										<td class="border-0 align-middle text-center ctext">
+											<span><?=date('d.m.Y', strtotime($order['ordered_date']))?></span>
+										</td>
+										<td class="border-0 align-middle text-center ctext">
+											<span><?=($order['sent']==1 ? date('d.m.Y', strtotime($order['sent_date'])):'-')?></span>
+										</td>
+										<td class="border-0 align-middle text-center ctext">
+											<span><?=$order['products']?></span>
+										</td>
 									</tr>
-								</thead>
-								<tbody>
-									<?php foreach ($orders1 as $order): ?>
-										<tr>
-											<td class="border-0 align-middle text-center ctext">
-												<span><a href="/order.php?id=<?=$order['id']?>"><?=$order['id']?></a></span>
-											</td>
-											<td class="border-0 align-middle text-center ctext">
-												<span><?=date('d.m.Y', strtotime($order['ordered_date']))?></span>
-											</td>
-											<td class="border-0 align-middle text-center ctext">
-												<span><?=($order['sent']==1 ? date('d.m.Y', strtotime($order['sent_date'])):'-')?></span>
-											</td>
-											<td class="border-0 align-middle text-center ctext">
-												<span><?=$order['products']?></span>
-											</td>
-										</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
-						</div>         
-					</div>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>         
 				</div>
 			</div>
-		<?php } ?>
-	</div>
-	<div>
-
+		</div>
 	</div>
 </div>
 <?php 
