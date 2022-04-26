@@ -124,7 +124,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php if ($order[0]['sent']!=1): ?>
                     <div class="col-5">
                         <form action="?id=<?=$_GET['id']?>" method="post" class="">
-                            <button class="btn btn-outline-danger row" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
+                            <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                             <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
                                 <div class="offcanvas-header">
                                     <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirlich Löschen?</h2>
@@ -137,7 +137,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" name="action" value="edit" class="row btn btn-outline-success">Speichern</button>
+                            <button type="submit" name="action" value="edit" class="btn btn-outline-success">Speichern</button>
                         </form>
                     </div>
                 </div>
