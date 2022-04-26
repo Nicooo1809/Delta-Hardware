@@ -34,6 +34,7 @@ if ($total_products > 0) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             echo("<script>location.href='/internal.php'</script>");
+            exit;
         }
         if($_POST['action'] == 'del') {
             foreach ($products as $product) {
@@ -59,6 +60,7 @@ if ($total_products > 0) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             echo("<script>location.href='/internal.php'</script>");
+            exit;
         }
     }
 } else {
