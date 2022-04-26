@@ -69,7 +69,7 @@ if (isset($user['id'])) {
 							<p class="text-muted mb-4">Schön, dass du wieder da bist!</p>
 							<!-- Login-Input boxen für E-Mail, passwort und ide Abfrage ob man angemeldet bleiben möchte
 							Die Auswahl wird dann als Cookie gespeichert -->
-							<form action="login.php" method="post">
+							<form action="/login.php" method="post">
 								<div class="form-floating mb-3">
 									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 ps-4 text-dark fw-bold" required>
 									<label for="inputEmail" class="text-dark fw-bold">E-Mail</label>
