@@ -131,7 +131,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body">
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-center">
                                         <button class="btn btn-outline-success mx-2" type="submit" name="action" value="del">Ja</button>
                                         <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
                                     </div>
