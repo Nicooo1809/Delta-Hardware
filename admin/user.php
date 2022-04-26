@@ -102,30 +102,30 @@ if(isset($_POST['action'])) {
                     <div class="row d-flex justify-content-between">
                         <div class="col-6">
                             <div class="input-group py-2">
-                                <span class="input-group-text" for="inputVorname">Vorname</span>
+                                <span class="input-group-text" for="inputVorname" style="min-width: 150px;">Vorname</span>
                                 <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
                             </div>
                             <div class="input-group py-2">
-                                <span class="input-group-text" for="inputNachname">Nachname</span>
+                                <span class="input-group-text" for="inputNachname" style="min-width: 150px;">Nachname</span>
                                 <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
                             </div>
                             <div class="input-group py-2">    
-                                <span class="input-group-text" for="inputEmail">E-Mail</span>
+                                <span class="input-group-text" for="inputEmail" style="min-width: 150px;">E-Mail</span>
                                 <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="input-group py-2">
-                                <span class="input-group-text" for="inputPasswortNeu">Neues Passwort</span>
+                                <span class="input-group-text" for="inputPasswortNeu" style="min-width: 300px;">Neues Passwort</span>
                                 <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
                             </div>
                             <div class="input-group py-2">
-                                <span class="input-group-text" for="inputPasswortNeu2">Neues Passwort (wiederholen)</span>
+                                <span class="input-group-text" for="inputPasswortNeu2" style="min-width: 300px;">Neues Passwort (wiederholen)</span>
                                 <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
                             </div>
                             <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <div class="input-group py-2">
-                                    <span class="input-group-text" for="permissions">Permissions</span>
+                                    <span class="input-group-text" for="permissions" style="min-width: 300px;">Permissions</span>
                                     <select class="form-select" id="permissions" name="permissions">
                                         <?php foreach ($permissions as $permission) {
                                             if ($permission['id'] == $user1[0]['permission_group']) {
