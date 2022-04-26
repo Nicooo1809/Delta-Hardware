@@ -36,6 +36,15 @@ if ($total_products > 0) {
             echo("<script>location.href='/internal.php'</script>");
         }
         if($_POST['action'] == 'del') {
+            foreach ($products as $product) {
+                $stmt = $pdo->prepare('UPDATE products SET products.quantity = products.quantity + ? WHERE id = ?');
+                $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
+                $stmt->bindValue(2, $product['product_id'], PDO::PARAM_INT);
+                $result = $stmt->execute();
+                if (!$result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }
+            }
             $stmt = $pdo->prepare('DELETE FROM product_list WHERE list_id = ?');
             $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
@@ -52,6 +61,8 @@ if ($total_products > 0) {
             echo("<script>location.href='/internal.php'</script>");
         }
     }
+} else {
+    error('Wrong ID!');
 }
 if ($total_products < 1) {
     error('Permission denied!');

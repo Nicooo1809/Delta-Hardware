@@ -100,7 +100,7 @@ CREATE TABLE `orders` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `kunden_id` int(10) NOT NULL,
   `rechnungsadresse` int(10),
-  `leiferadresse` int(10),
+  `lieferadresse` int(10),
   `ordered` tinyint(1) NOT NULL DEFAULT 0,
   `ordered_date` datetime DEFAULT NULL,
   `sent` tinyint(1) NOT NULL DEFAULT 0,
