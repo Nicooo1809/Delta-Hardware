@@ -108,8 +108,11 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php if (!isMobile()): ?>
     <div class="container minheight100 py-3 px-3">
-        <div class="row d-flex justify-content-between">
+        <div class="row">
             <div class="py-3 px-3 cbg ctext rounded">
+                <?php if ($order[0]['sent']!=1): ?>
+                    <div class="row d-flex justify-content-between">
+                <?php endif;?>
                 <div class="col-5">
                     <h1>Bestellung</h1>
                     <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
@@ -135,6 +138,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
                         </form>
                     </div>
+                </div>
                     <form action="?id=<?=$_GET['id']?>" method="post" class="">
                         <div class="row d-flex justify-content-between">
                             <div class="col-5 mx-1">
