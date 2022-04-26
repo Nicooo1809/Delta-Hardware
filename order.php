@@ -112,17 +112,17 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container minheight100 py-3 px-3">
         <div class="row">
             <div class="py-3 px-3 cbg ctext rounded">
-                <form action="?id=<?=$_GET['id']?>" method="post" class="">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-5">
-                            <h1>Bestellung</h1>
-                            <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
-                            <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
-                            <?php if ($order[0]['sent']==1): ?>
-                                <p>Versanddatum: <?=$order[0]['sent_date']?></p>
-                            <?php endif ?>
-                        </div>
-                        <?php if ($order[0]['sent']!=1): ?>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-5">
+                        <h1>Bestellung</h1>
+                        <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
+                        <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
+                        <?php if ($order[0]['sent']==1): ?>
+                            <p>Versanddatum: <?=$order[0]['sent_date']?></p>
+                        <?php endif ?>
+                    </div>
+                    <?php if ($order[0]['sent']!=1): ?>
+                        <form action="?id=<?=$_GET['id']?>" method="post" class="">
                             <div class="col-5 d-flex justify-content-end">
                                 <button class="btn btn-outline-danger me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                                 <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
@@ -169,29 +169,28 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    <?php else: ?>
-                            </div>
                         </form>
-                <div class="row mb-2">
-                    <div class="col-6">
-                        <h2>Rechnungsaddresse</h2>
-                        <div class="card cbg2 mx-auto py-2 px-2">
-                            <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
-                            <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
-                            <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
+                    </div>
+                <?php else: ?>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <h2>Rechnungsaddresse</h2>
+                            <div class="card cbg2 mx-auto py-2 px-2">
+                                <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
+                                <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
+                                <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h2>Lieferaddresse</h2>
+                            <div class="card cbg2 mx-auto py-2 px-2">
+                                <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
+                                <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
+                                <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <h2>Lieferaddresse</h2>
-                        <div class="card cbg2 mx-auto py-2 px-2">
-                            <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
-                            <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
-                            <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
-                        </div>
-                    </div>
-                </div>
                 <?php endif ?>
                 <div class="table-responsive">
                     <table class="table">
