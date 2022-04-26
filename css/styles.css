@@ -15,23 +15,6 @@ header {
 
 
 
-body {
-    overflow-y: scroll; /* Show vertical scrollbar */
-    overflow-x: hidden; /* Show horizontal scrollbar */
-}
-
-* {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-.perms {
-    overflow-x: scroll;
-}
-
-
-
-
 /* Höhen auf 100vh (Vertical Height) setzen */
 .header-header {
     min-height: 8vh;
