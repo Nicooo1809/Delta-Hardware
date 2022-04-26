@@ -97,7 +97,7 @@ if(isset($_POST['action'])) {
         ?>
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
-            <div>
+            <div class="col-8">
                 <form action="user.php" method="post">
                     <div class="input-group py-2">
                         <span class="input-group-text" for="inputVorname">Vorname</span>
@@ -134,8 +134,8 @@ if(isset($_POST['action'])) {
                         </div>
                     <?php }?>
                     <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
-                    <button type="submit" name="action" value="mod" class="py-2 btn btn-outline-success">Speichern</button>
-                    <button type="submit" name="action" value="cancel" class="py-2 btn btn-outline-danger">Abrechen</button>
+                    <button type="submit" name="action" value="mod" class="me-2 btn btn-outline-success">Speichern</button>
+                    <button type="submit" name="action" value="cancel" class="ms-2 btn btn-outline-danger">Abrechen</button>
                 </form>
             </div>
         </div>
