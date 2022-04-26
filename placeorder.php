@@ -98,31 +98,39 @@ foreach ($products as $product) {
 ?>
 <?php if (!isMobile()): ?>
     <div class="container minheight100 py-3 px-3">
-        <div class="row">
+        <div class="">
             <div class="py-3 px-3 cbg ctext rounded">
                 <h1>Bestellen</h1>
                 <p>Sie sind im Begriff folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> kostenpflichtig zu bestellen. Sind Sie Sicher?</p>
-                <form action="placeorder.php" method="post" class="">
-                    <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
-                        <?php foreach ($addresses as $address): ?>
-                            <?php if ($address['default'] == 1): ?>
-                                <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                            <?php else:?>
-                                <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
-                    <label class="text-dark fw-bold" for="inputRechnugsaddresse">Rechnungsadresse</label>
-                    <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
-                        <?php foreach ($addresses as $address): ?>
-                            <?php if ($address['default'] == 1): ?>
-                                <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                            <?php else:?>
-                                <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
-                    <label class="text-dark fw-bold" for="inputLieferaddresse">Lieferadresse</label>
+                <form action="placeorder.php" method="post" class="row d-flex justify-content-around">
+                    <div class="col-5">
+                        <div class="input-group mb-3">
+                            <label class="ctext input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
+                            <select class="form-select border-0 ctext fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
+                                <?php foreach ($addresses as $address): ?>
+                                    <?php if ($address['default'] == 1): ?>
+                                        <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                    <?php else:?>
+                                        <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="input-group mb-3">
+                            <label class="ctext input-group-text" for="inputLieferaddresse">Lieferadresse</label>
+                            <select class="form-select border-0 ctext fw-bold" id="inputLieferaddresse" name="lieferaddresse">
+                                <?php foreach ($addresses as $address): ?>
+                                    <?php if ($address['default'] == 1): ?>
+                                        <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                    <?php else:?>
+                                        <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
                     <button class="btn btn-success mx-1" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
                     <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
                 </form>
