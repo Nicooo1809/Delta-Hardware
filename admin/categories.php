@@ -226,10 +226,10 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <td class="border-0 align-middle actions">
                                             <div class="px-1 py-1">
                                                 <input type="number" value="<?=$categorie['id']?>" name="categoriesid" style="display: none;" required>
-                                                <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                                                <button type="submit" name="action" value="mod" class="btn btn-outline-success">Speichern</button>
                                             </div>
                                             <div class="px-1 py-1">
-                                                <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
+                                                <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button>
                                             </div>
                                         </td>
                                     </form>
