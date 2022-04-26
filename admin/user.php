@@ -166,8 +166,14 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
-            <h1>Benutzerverwaltung</h1>
-            <a href="register.php">Benutzer hinzufügen</a>
+            <div class="d-flex justify-content-between">
+                <div class="col-4">
+                    <h1>Benutzerverwaltung</h1>
+                </div>
+                <div class="col-4 d-flex justify-content-end">
+                    <a href="register.php" class="btn btn-outline-primary">Hinzufügen</a>
+                </div>
+            </div>
             <p><?php print($total_users); ?> Benutzer</p>
             <div class="table-responsive">
                 <table class="table align-middle table-borderless table-hover">
