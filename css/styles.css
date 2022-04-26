@@ -13,8 +13,6 @@ header {
     word-wrap:break-word;
 }
 
-
-
 /* Höhen auf 100vh (Vertical Height) setzen */
 .header-header {
     min-height: 8vh;
@@ -27,7 +25,6 @@ header {
 .footer-footer {
     min-height: 6vh;
 }
-
 
 
 /* Light/Dark mode Switch */
