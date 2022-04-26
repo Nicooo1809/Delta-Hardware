@@ -73,9 +73,9 @@ if(isset($_POST['confirm'])) {
             <div class="row">
                 <div class="py-3 px-3 cbg ctext rounded">
                     <div>
-                        <p class="mb-0 text-success">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</p>
+                        <h1 class="mb-0 text-success text-center">Die Bestellung wurde erfolgreich aufgegeben und wird in kürze bei Ihnen sein.</h1>
                         <?php print($msg); ?>
-                        <a href="products.php">Zurück zum Sortiment</a>
+                        <button class="btn btn-outline-primary" onclick="window.location.href = '/products.php';">Zurück zum Sortiment</button>
                     </div>
                 </div>
             </div>
