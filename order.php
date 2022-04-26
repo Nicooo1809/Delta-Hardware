@@ -145,7 +145,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="text-dark input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
                                         <select class="form-select border-0 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
                                             <?php foreach ($addresses as $address): ?>
-                                                <?php if ($order[0]['rechnungsadresse'] == 1): ?>
+                                                <?php if ($order[0]['rechnungsadresse'] == $address['id']): ?>
                                                     <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
                                                 <?php else:?>
                                                     <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
@@ -159,7 +159,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="text-dark input-group-text" for="inputLieferaddresse">Lieferadresse</label>
                                         <select class="form-select border-0 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
                                             <?php foreach ($addresses as $address): ?>
-                                                <?php if ($order[0]['lieferadresse'] == 1): ?>
+                                                <?php if ($order[0]['lieferadresse'] == $address['id']): ?>
                                                     <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
                                                 <?php else:?>
                                                     <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
