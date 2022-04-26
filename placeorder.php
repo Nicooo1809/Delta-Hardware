@@ -103,8 +103,8 @@ foreach ($products as $product) {
                 <h1>Bestellen</h1>
                 <p>Sie sind im Begriff folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> kostenpflichtig zu bestellen. Sind Sie Sicher?</p>
                 <form action="placeorder.php" method="post" class="">
-                    <div class="row d-flex justify-content-around">
-                        <div class="col-5">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-5 mx-1">
                             <div class="input-group mb-3">
                                 <label class="text-dark input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
                                 <select class="form-select border-0 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
@@ -118,7 +118,7 @@ foreach ($products as $product) {
                                 </select>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-5 mx-1">
                             <div class="input-group mb-3">
                                 <label class="text-dark input-group-text" for="inputLieferaddresse">Lieferadresse</label>
                                 <select class="form-select border-0 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
