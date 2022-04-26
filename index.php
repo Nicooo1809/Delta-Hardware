@@ -25,7 +25,7 @@ require_once("templates/header.php");
             <div class="container">
                 <div class="d-flex flex-row minimum-vh justify-content-start align-items-center">
                     <div class="col-md-12 mt-1 text-white text-start">
-                        <a href="products.php?search=RTX">
+                        <a href="products.php?search=">
                             <h1 class="h1-reponsive text-uppercase fw-bold mb-0 pt-md-5 pt-5 index-rtx-text text-primary text-center">HERZLICH WILLKOMMEN</h1>
                             <hr class="hr-light my-3">
                             <h2 class="h2-responsive text-white fw-bold text-center">Delta-Hardware, dein Hardware Onlinehandel</h2>

@@ -17,7 +17,7 @@ header {
 
 body {
     overflow-y: scroll; /* Show vertical scrollbar */
-    overflow-x: scroll; /* Show horizontal scrollbar */
+    overflow-x: hidden; /* Show horizontal scrollbar */
 }
 
 * {
@@ -25,7 +25,7 @@ body {
     scrollbar-width: none;  /* Firefox */
 }
 
-.perms::-webkit-scrollbar {
+.perms {
     overflow-x: scroll;
 }
 
