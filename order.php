@@ -124,18 +124,20 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php if ($order[0]['sent']!=1): ?>
                     <div class="col-5">
                         <form action="?id=<?=$_GET['id']?>" method="post" class="">
-                            <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
+                            <button class="btn btn-outline-danger row" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                             <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
                                 <div class="offcanvas-header">
                                     <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirlich Löschen?</h2>
                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body">
-                                    <button class="btn btn-outline-success mx-2" type="submit" name="action" value="del">Ja</button>
-                                    <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-outline-success mx-2" type="submit" name="action" value="del">Ja</button>
+                                        <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
+                                    </div>
                                 </div>
                             </div>
-                            <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
+                            <button type="submit" name="action" value="edit" class="row btn btn-outline-success">Speichern</button>
                         </form>
                     </div>
                 </div>
