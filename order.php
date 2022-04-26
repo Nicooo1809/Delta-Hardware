@@ -24,7 +24,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if ($total_products > 0) {
     if(isset($_POST['action'])) {
         if($_POST['action'] == 'edit') {
-            $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = 1, lieferadresse = ? WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT sent = 1');
+            $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ?, lieferadresse = ? WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT sent = 1');
             $stmt->bindValue(1, $_POST['rechnugsaddresse'], PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['lieferaddresse'], PDO::PARAM_INT);
             $stmt->bindValue(3, $_GET['id'], PDO::PARAM_INT);
