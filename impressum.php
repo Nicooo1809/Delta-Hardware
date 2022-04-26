@@ -20,14 +20,7 @@ require_once("templates/header.php")
             <p></p><p><em>Das Impressum wurde mit dem <a href="https://www.activemind.de/datenschutz/impressums-generator/">Impressums-Generator der activeMind AG</a> erstellt.</em></p>            </p>
         </div>
     </div>
-
 </div>
-
-
-
-
-
-
 
 
 <?php 

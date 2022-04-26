@@ -20,6 +20,15 @@ header {
     display: none;
 }
 
+* {
+    overflow-y: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.perms::-webkit-scrollbar {
+    overflow-y: scroll; /* Show vertical scrollbar */
+}
 
 
 /* Höhen auf 100vh (Vertical Height) setzen */
