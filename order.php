@@ -148,7 +148,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
                         </div>
-                        <div class="">
+                        <div class="row">
                             <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                             <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
                                 <div class="offcanvas-header">
@@ -160,8 +160,8 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
                                 </div>
                             </div>
+                            <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
                         </div>
-                        <button type="submit" name="action" value="edit" class="py-2 btn btn-outline-success me-2">Speichern</button>
                     </form>
                 <?php else: ?>
                 <div class="row mb-2">
