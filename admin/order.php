@@ -78,8 +78,8 @@ foreach ($products as $product) {
                         <div class="col-4">
                             <?php if ($user['markOrders'] == 1) { ?>
                                 <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
-                                    <button type="submit" name="confirm" value="yes" class="py-2 btn btn-outline-success me-2">Erledigt</button>
-                                    <button class="py-2 ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
+                                    <button type="submit" name="confirm" value="yes" class="btn btn-outline-success me-2">Erledigt</button>
+                                    <button class="ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
                                 </form>
                             <?php } ?>
                         </div>
