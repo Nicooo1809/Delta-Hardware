@@ -129,9 +129,9 @@ if (!$result) {
 }
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<div class="container minheight100 users content-wrapper py-3 px-3 mx-auto">
+<div class="container minheight100 py-3 px-3 mx-auto">
     <div class="row">
-        <div class="py-3 px-3 cbg rounded">
+        <div class="py-3 px-3 cbg rounded perms">
             <div class="d-flex justify-content-between">
                 <div class="col-4">
                     <h1>Rechteverwaltung</h1>
