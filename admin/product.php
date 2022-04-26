@@ -351,7 +351,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-4">
                     <h1>Produktverwaltung</h1>
                 </div>
-                <div class="col-4">
+                <div class="col-4 d-flex justify-content-end">
                     <form action="product.php" method="post">
                         <div>
                             <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
