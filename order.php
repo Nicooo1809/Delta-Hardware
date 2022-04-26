@@ -122,7 +122,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif ?>
                 </div>
                 <?php if ($order[0]['sent']!=1): ?>
-                    <div class="col-5">
+                    <div class="col-5 d-flex justify-content-end">
                         <form action="?id=<?=$_GET['id']?>" method="post" class="">
                             <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                             <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
