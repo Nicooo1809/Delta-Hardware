@@ -97,42 +97,48 @@ if(isset($_POST['action'])) {
         ?>
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
-            <div class="col-8">
+            <div>
                 <form action="user.php" method="post">
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputVorname">Vorname</span>
-                        <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputNachname">Nachname</span>
-                        <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
-                    </div>
-                    <div class="input-group py-2">    
-                        <span class="input-group-text" for="inputEmail">E-Mail</span>
-                        <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputPasswortNeu">Neues Passwort</span>
-                        <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
-                    </div>
-                    <div class="input-group py-2">
-                        <span class="input-group-text" for="inputPasswortNeu2">Neues Passwort (wiederholen)</span>
-                        <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
-                    </div>
-                    <?php if ($user['modifyUserPerms'] == 1) {?>
-                        <div class="input-group py-2">
-                            <span class="input-group-text" for="permissions">Permissions</span>
-                            <select class="form-select" id="permissions" name="permissions">
-                                <?php foreach ($permissions as $permission) {
-                                    if ($permission['id'] == $user1[0]['permission_group']) {
-                                        print('<option class="text-dark" value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
-                                    } else { 
-                                        print('<option class="text-dark" value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
-                                    }
-                                }?>
-                            </select>
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-6">
+                            <div class="input-group py-2">
+                                <span class="input-group-text" for="inputVorname">Vorname</span>
+                                <input class="form-control" id="inputVorname" name="vorname" type="text" value="<?=$user1[0]['vorname']?>" required>
+                            </div>
+                            <div class="input-group py-2">
+                                <span class="input-group-text" for="inputNachname">Nachname</span>
+                                <input class="form-control" id="inputNachname" name="nachname" type="text" value="<?=$user1[0]['nachname']?>" required>
+                            </div>
+                            <div class="input-group py-2">    
+                                <span class="input-group-text" for="inputEmail">E-Mail</span>
+                                <input class="form-control" id="inputEmail" name="email" type="email" value="<?=$user1[0]['email']?>" required>
+                            </div>
                         </div>
-                    <?php }?>
+                        <div class="col-6">
+                            <div class="input-group py-2">
+                                <span class="input-group-text" for="inputPasswortNeu">Neues Passwort</span>
+                                <input class="form-control" id="inputPasswortNeu" name="passwortNeu" type="password">
+                            </div>
+                            <div class="input-group py-2">
+                                <span class="input-group-text" for="inputPasswortNeu2">Neues Passwort (wiederholen)</span>
+                                <input class="form-control" id="inputPasswortNeu2" name="passwortNeu2" type="password">
+                            </div>
+                            <?php if ($user['modifyUserPerms'] == 1) {?>
+                                <div class="input-group py-2">
+                                    <span class="input-group-text" for="permissions">Permissions</span>
+                                    <select class="form-select" id="permissions" name="permissions">
+                                        <?php foreach ($permissions as $permission) {
+                                            if ($permission['id'] == $user1[0]['permission_group']) {
+                                                print('<option class="text-dark" value="' . $permission['id'] . '" selected>' . $permission['name'] . '</option>');
+                                            } else { 
+                                                print('<option class="text-dark" value="' . $permission['id'] . '">' . $permission['name'] . '</option>');
+                                            }
+                                        }?>
+                                    </select>
+                                </div>
+                            <?php }?>
+                        </div>
+                    </div>
                     <input type="number" value="<?=$_POST['userid']?>" name="userid" style="display: none;" required>
                     <button type="submit" name="action" value="mod" class="me-2 btn btn-outline-success">Speichern</button>
                     <button type="submit" name="action" value="cancel" class="ms-2 btn btn-outline-danger">Abrechen</button>
