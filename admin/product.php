@@ -347,12 +347,18 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
-            <h1>Produktverwaltung</h1>
-            <form action="product.php" method="post">
-                <div>
-                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+            <div class="d-flex justify-content-between">
+                <div class="col-4">
+                    <h1>Produktverwaltung</h1>
                 </div>
-            </form>
+                <div class="col-4">
+                    <form action="product.php" method="post">
+                        <div>
+                            <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <p><?php print($total_products); ?> Produkt<?=($total_products==1 ? '':'e')?></p>
             <div class="table-responsive">
                 <table class="table align-middle table-borderless table-hover">
