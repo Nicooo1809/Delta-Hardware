@@ -21,13 +21,13 @@ header {
 }
 
 * {
-    overflow-y: hidden;
+    overflow-x: hidden;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
 
 .perms::-webkit-scrollbar {
-    overflow-y: scroll; /* Show vertical scrollbar */
+    overflow-x: scroll;
 }
 
 
