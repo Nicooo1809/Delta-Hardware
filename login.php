@@ -6,37 +6,34 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 	$email = $_POST['email'];
 	$passwort = $_POST['passwort'];
 
-	$statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-	$result = $statement->execute(array('email' => $email));
-	$user = $statement->fetch();
-	#error_log(print_r($user,true));
-
+	$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+	$stmt->bindValue(1, $email);
+	$result = $stmt->execute();
+	if (!$result) {
+		error('Database error', pdo_debugStrParams($stmt));
+	}
+	$user = $stmt->fetch();
 	//Überprüfung des Passworts
 	if ($user !== false && password_verify($passwort, $user['passwort'])) {
 		$_SESSION['userid'] = $user['id'];
 		//Möchte der Nutzer angemeldet beleiben?
 		if(isset($_POST['angemeldet_bleiben'])) {
-			#print_r($_POST);
 			$identifier = md5(uniqid());
 			$securitytoken = md5(uniqid());
 			
-			$insert = $pdo->prepare("INSERT INTO securitytokens (user_id, identifier, securitytoken) VALUES (:user_id, :identifier, :securitytoken)");
-			$insert->execute(array('user_id' => $user['id'], 'identifier' => $identifier, 'securitytoken' => sha1($securitytoken)));
+			$stmt = $pdo->prepare("INSERT INTO securitytokens (user_id, identifier, securitytoken) VALUES (?, ?, ?)");
+			$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+			$stmt->bindValue(2, $identifier);
+			$stmt->bindValue(3, sha1($securitytoken));
+			$result = $stmt->execute();
+			if (!$result) {
+				error('Database error', pdo_debugStrParams($stmt));
+			}
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
-			#error_log(pdo_debugStrParams($insert));
 		}
-		#print($_SERVER['HTTP_REFERER']);
-		/*
-		if( strpos( $_SERVER['HTTP_REFERER'], "login" ) !== false) {
-			header("Location: internal.php");
-			#print("Location: internal.php");
-		} else {
-			header("Location: " . $_SERVER['HTTP_REFERER']);
-			#print("Location: " . $_SERVER['HTTP_REFERER']);
-		}
-		*/
-		header("Location: internal.php");
+
+		echo("<script>location.href='internal.php'</script>");
 		exit;
 	} else {
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
@@ -51,7 +48,7 @@ if(isset($_POST['email'])) {
 }
 $user = require_once("templates/header.php");
 if (isset($user['id'])) {
-    require_once("internal.php");
+    echo("<script>location.href='internal.php'</script>");
     exit;
 }
 ?>
@@ -63,13 +60,15 @@ if (isset($user['id'])) {
 					<div class="row">
 						<div class="col-lg-10 col-xl-7 mx-auto cbg rounded">
 							<h3 class="display-4 ">Anmelden</h3>
+							<!-- Zeigt eine Error-nachricht an, wenn es einen Fehler gibt -->
 							<?php 
 							if(isset($error_msg) && !empty($error_msg)) {
 								echo $error_msg;
 							}
 							?>
 							<p class="text-muted mb-4">Schön, dass du wieder da bist!</p>
-							
+							<!-- Login-Input boxen für E-Mail, passwort und ide Abfrage ob man angemeldet bleiben möchte
+							Die Auswahl wird dann als Cookie gespeichert -->
 							<form action="login.php" method="post">
 								<div class="form-floating mb-3">
 									<input id="inputEmail" type="email" name="email" placeholder="E-Mail" value="<?php echo $email_value; ?>" autofocus class="form-control border-0 ps-4 text-dark fw-bold" required>

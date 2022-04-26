@@ -1,4 +1,5 @@
 <?php
+chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 if (!isset($user['id'])) {
@@ -16,7 +17,10 @@ if(isset($_POST['action'])) {
         if (isset($_POST['permsname'])) {
             $stmt = $pdo->prepare('INSERT INTO permission_group (name) VALUES (?)');
             $stmt->bindValue(1, $_POST['permsname']);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
         } else {
             error('Some informations are missing!');
         }
@@ -29,21 +33,29 @@ if(isset($_POST['action'])) {
         if(isset($_POST['permsid']) and !empty($_POST['permsid'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
                 if ($_POST['confirm'] == 'yes') {
-                    // User clicked the "Yes" button, delete record
-                    $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
-                    $stmt->bindValue(1, 1, PDO::PARAM_INT);
-                    $stmt->bindValue(2, $_POST['permsid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
-                    $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
-                    $stmt->execute();
-                    echo("<script>location.href='perms.php'</script>");
-                    #header('Location: perms.php');
-                    exit;
+                    if (!(( $perms['id'] == 1 ) || ( $perms['id'] == 2 ))) {
+                        // User clicked the "Yes" button, delete record
+                        $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
+                        $stmt->bindValue(1, 1, PDO::PARAM_INT);
+                        $stmt->bindValue(2, $_POST['permsid'], PDO::PARAM_INT);
+                        $result = $stmt->execute();
+                        if (!$result) {
+                            error('Database error', pdo_debugStrParams($stmt));
+                        }
+                        $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
+                        $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
+                        $result = $stmt->execute();
+                        if (!$result) {
+                            error('Database error', pdo_debugStrParams($stmt));
+                        }
+                        echo("<script>location.href='perms.php'</script>");
+                        exit;
+                    } else {
+                        error('Permission denied!');
+                    }
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
                     echo("<script>location.href='perms.php'</script>");
-                    #header('Location: perms.php');
                     exit;
                 }
             } else {
@@ -60,7 +72,7 @@ if(isset($_POST['action'])) {
                                                 <input type="number" value="<?=$_POST['permsid']?>" name="permsid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="no">Nein</button>
+                                                <a href="perms.php"><button class="btn btn-outline-primary mx-2" type="button">Nein</button></a>
                                             </form>
                                         </p>
                                     </div>
@@ -97,91 +109,92 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(13, (isset($_POST['showOrders']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(14, (isset($_POST['markOrders']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(15, $_POST['permsid'], PDO::PARAM_INT);
-        $stmt->execute();
-
-        #showProduct
-        #showOrders
-        #markOrders
-
-        #error_log(pdo_debugStrParams($stmt));
+        $result = $stmt->execute();
+        if (!$result) {
+            error('Database error', pdo_debugStrParams($stmt));
+        }
         echo("<script>location.href='perms.php'</script>");
-        #header("location: perms.php");
         exit;
     }
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='perms.php'</script>");
-        #header("location: perms.php");
         exit;
     }
 }
 
 $stmt = $pdo->prepare('SELECT * FROM permission_group');
-$stmt->execute();
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($permissiontypes);
 ?>
-<div class="container minheight100 users content-wrapper py-3 px-3">
+<div class="container minheight100 py-3 px-3 mx-auto">
     <div class="row">
-        <div class="py-3 px-3 cbg rounded">
-            <h1>Rechteverwaltung</h1>
-            <form action="perms.php" method="post" class="">
-                <div class="input-group">
-                    <input type="text" name="permsname" class="form-control" required>
-                    <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+        <div class="py-3 px-3 cbg rounded perms">
+            <div class="d-flex justify-content-between">
+                <div class="col-4">
+                    <h1>Rechteverwaltung</h1>
                 </div>
-            </form>
+                <div class="col-4">
+                    <form action="perms.php" method="post" class="input-group">
+                        <input type="text" name="permsname" class="form-control" required>
+                        <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>
+                    </form>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
                             <div class="cbg rounded">
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">#</div>
+                                    <div class="p-2 px-1 text-uppercase">#</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Name</div>
+                                    <div class="p-2 px-1 text-uppercase">Name</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show User</div>
+                                    <div class="p-2 px-1 text-uppercase">Show User</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify User</div>
+                                    <div class="p-2 px-1 text-uppercase">Modify User</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Delete User</div>
+                                    <div class="p-2 px-1 text-uppercase">Delete User</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show User Permission</div>
+                                    <div class="p-2 px-1 text-uppercase">Show User Permission</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify User Permission</div>
+                                    <div class="p-2 px-1 text-uppercase">Modify User Permission</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show Product</div>
+                                    <div class="p-2 px-1 text-uppercase">Show Product</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Create Product</div>
+                                    <div class="p-2 px-1 text-uppercase">Create Product</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify Product</div>
+                                    <div class="p-2 px-1 text-uppercase">Modify Product</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show Kategorien</div>
+                                    <div class="p-2 px-1 text-uppercase">Show Kategorien</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Modify Kategorien</div>
+                                    <div class="p-2 px-1 text-uppercase">Modify Kategorien</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Delete Kategorien</div>
+                                    <div class="p-2 px-1 text-uppercase">Delete Kategorien</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Create Kategorien</div>
+                                    <div class="p-2 px-1 text-uppercase">Create Kategorien</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Show Order</div>
+                                    <div class="p-2 px-1 text-uppercase">Show Order</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Mark Order</div>
+                                    <div class="p-2 px-1 text-uppercase">Mark Order</div>
                                 </th>
                                 <?php if ($user['modifyUserPerms'] == 1) {?>
                                 <th scope="col" class="border-0" style="width: 15%">
@@ -246,11 +259,11 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <td class="border-0 align-middle actions">
                                             <div class="px-1 py-1">
                                                 <input type="number" value="<?=$perms['id']?>" name="permsid" style="display: none;" required>
-                                                <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
+                                                <button type="submit" name="action" value="mod" class="btn btn-outline-success">Speichern</button>
                                             </div>
-                                            <?php if ($perms['id'] != 1){?>
+                                            <?php if (!(( $perms['id'] == 1 ) || ( $perms['id'] == 2 ))) {?>
                                             <div class="px-1 py-1">
-                                                <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
+                                                <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button>
                                             </div>
                                             <?php }?>
                                         </td>

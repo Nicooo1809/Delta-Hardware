@@ -1,5 +1,4 @@
 <?php
-#require_once("php/mysql.php");
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 //Überprüfe, dass der User eingeloggt ist
@@ -18,8 +17,14 @@ if(isset($_GET['save'])) {
 		if($vorname == "" || $nachname == "") {
 			$error_msg = "Bitte Vor- und Nachname ausfüllen.";
 		} else {
-			$stmt = $pdo->prepare("UPDATE users SET vorname = :vorname, nachname = :nachname, updated_at=NOW() WHERE id = :userid");
-			$result = $stmt->execute(array('vorname' => $vorname, 'nachname'=> $nachname, 'userid' => $user['id'] ));
+			$stmt = $pdo->prepare("UPDATE users SET vorname = ?, nachname = ?, updated_at=NOW() WHERE id = ?");
+			$stmt->bindValue(1, $vorname);
+			$stmt->bindValue(2, $nachname);
+			$stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
+			$result = $stmt->execute();
+			if (!$result) {
+				error('Database error', pdo_debugStrParams($stmt));
+			}
 			$user['vorname'] = $vorname;
 			$user['nachname'] = $nachname;
 
@@ -37,8 +42,13 @@ if(isset($_GET['save'])) {
 		} else if(!password_verify($passwort, $user['passwort'])) {
 			$error_msg = "Bitte korrektes Passwort eingeben.";
 		} else {
-			$stmt = $pdo->prepare("UPDATE users SET email = :email WHERE id = :userid");
-			$result = $stmt->execute(array('email' => $email, 'userid' => $user['id'] ));
+			$stmt = $pdo->prepare("UPDATE users SET email = ? WHERE id = ?");
+			$stmt->bindValue(1, $email);
+			$stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+			$result = $stmt->execute();
+			if (!$result) {
+				error('Database error', pdo_debugStrParams($stmt));
+			}
 			$user['email'] = $email;
 			
 			echo("<script>location.href='settings.php'</script>");
@@ -58,30 +68,46 @@ if(isset($_GET['save'])) {
 		} else {
 			$passwort_hash = password_hash($passwortNeu, PASSWORD_DEFAULT);
 				
-			$stmt = $pdo->prepare("UPDATE users SET passwort = :passwort WHERE id = :userid");
-			$result = $stmt->execute(array('passwort' => $passwort_hash, 'userid' => $user['id'] ));
-				
+			$stmt = $pdo->prepare("UPDATE users SET passwort = ? WHERE id = ?");
+			$stmt->bindValue(1, $passwort_hash);
+			$stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+			$result = $stmt->execute();
+			if (!$result) {
+				error('Database error', pdo_debugStrParams($stmt));
+			}
 			echo("<script>location.href='settings.php'</script>");
 		}
 	} else if($save == 'address') {
-		$street = $_POST['strasse'];
-		$city = $_POST['stadt'];
 		
-		if($street == "" || $city == "") {
-			$error_msg = "Bitte Addresse eintragen.";
-		} else {
-			$stmt = $pdo->prepare("UPDATE users SET streetHouseNr = ?, city = ?, updated_at=NOW() WHERE id = ?");
-			$stmt->bindValue(1, $street);
-			$stmt->bindValue(2, $city);
-			$stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
+		if(isset($_POST['standardaddresse']) && !empty($_POST['standardaddresse'])) {
+			$stmt = $pdo->prepare("UPDATE `address` SET `default` = 0, updated_at=NOW() WHERE `default` = 1 and user_id = ?");
+			$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 			$result = $stmt->execute();
-			$user['streetHouseNr'] = $street;
-			$user['city'] = $city;
+			if (!$result) {
+				error('Database error', pdo_debugStrParams($stmt));
+			}
+			$stmt = $pdo->prepare("UPDATE `address` SET `default` = 1, updated_at=NOW() WHERE id = ? and user_id = ?");
+			$stmt->bindValue(1, $_POST['standardaddresse'], PDO::PARAM_INT);
+			$stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+			$result = $stmt->execute();
+			if (!$result) {
+				error('Database error', pdo_debugStrParams($stmt));
+			}
 
 			echo("<script>location.href='settings.php'</script>");
+		} else {
+			$error_msg = "Bitte Addresse auswählen.";
 		}
 	}
 }
+$stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
+$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
+$addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <div class="container minheight100 py-2 px-2">
@@ -112,15 +138,20 @@ if(isset($_GET['save'])) {
 						</div>
 						<!-- Adresse -->
 						<div class="col-6">
-							<h3 class="ctext my-0">Adresse</h3>
-							<form action="?save=address" method="post">
+							<h3 class="ctext">Adresse</h3>
+								<button class="btn btn-primary mb-2" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
+								<form action="?save=address" method="post">
 								<div class="form-floating mb-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputStrasse" placeholder="Straße und Hausnummer" name="strasse" type="text" value="<?=$user['streetHouseNr']?>" required>
-									<label class="text-dark fw-bold" for="inputStrasse">Straße und Hausnummer</label>
-								</div>
-								<div class="form-floating my-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputStadt" placeholder="Stadt" name="stadt" type="text" value="<?=$user['city']?>" required>
-									<label class="text-dark fw-bold" for="inputStadt">Stadt mit Postleitzahl</label>
+									<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
+										<?php foreach ($addresses as $address): ?>
+											<?php if ($address['default'] == 1): ?>
+												<option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+											<?php else:?>
+												<option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
+									</select>
+									<label class="text-dark fw-bold" for="inputStandardaddresse">Standard Adresse</label>
 								</div>
 								<button class="btn btn-outline-primary" type="submit">Speichern</button>
 							</form>

@@ -13,15 +13,6 @@ header {
     word-wrap:break-word;
 }
 
-
-
-/* remove scrollbar */
-::-webkit-scrollbar {
-    display: none;
-}
-
-
-
 /* Höhen auf 100vh (Vertical Height) setzen */
 .header-header {
     min-height: 8vh;
@@ -34,7 +25,6 @@ header {
 .footer-footer {
     min-height: 6vh;
 }
-
 
 
 /* Light/Dark mode Switch */
@@ -179,4 +169,22 @@ header {
 /* IMPRESSUM.PHP */
 .impressum-breite{
     width: 75%;
+}
+
+/* BOOTSTRAP CUSTOM STUFF */
+.card-img-top {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+}
+
+/* HEADER */
+.header-header {
+    border-bottom: 3px solid #0d6efd;
+    display: block;
+}
+
+.max-h-150 {
+    max-height: 150px;
+    overflow: auto;
 }

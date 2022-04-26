@@ -11,42 +11,55 @@ if (!isset($_GET["id"])) {
 $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
-$stmt->execute();
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 if ($stmt->rowCount() != 1) {
     header("location: 404.php");
 }
 // Fetch the products from the database and return the result as an Array
 
 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($product);
-#$stmt->debugDumpParams();
 
 $stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
-$stmt->execute();
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 // Fetch the products from the database and return the result as an Array
 $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($images);
-#$stmt->debugDumpParams();
-require("templates/header.php");
+
+$stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = ?) AND NOT product_list.product_id = ? and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;');
+$stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
+$stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
+// Fetch the products from the database and return the result as an Array
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+require_once("templates/header.php");
 ?>
 <div class="container-fluid minheight100 px-3 py-3 row row-cols-1 row-cols-md-2 gx-0 product content-wrapper">
     <div class="col">
-        <div class="card cbg py-2 px-2 mx-2">
+        <div class="card cbg mx-2">
             <div class="card-body px-3 py-3">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <?php if($images == null):?>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="images/image-not-found.png" class="img-fluid rounded" alt="<?=$product[0]['name']?>">
+                                <img src="images/image-not-found.png" class="img-fluid mx-auto d-block rounded" alt="<?=$product[0]['name']?>">
                             </div>
                         </div>
                     <?php elseif (count($images) == 1):?>
                         <div class="carousel-inner">
                             <?php foreach ($images as $image) {
                                 print('<div class="carousel-item active">');
-                                    print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                    print('<img src="product_img/'.$image['img'].'" class="img-fluid mx-auto d-block rounded" alt="'.$product[0]['name'].'">');
                                 print('</div>');
                             } ?>
                         </div>
@@ -66,12 +79,12 @@ require("templates/header.php");
                             <?php $i = 1; foreach ($images as $image) {
                                 if ($i == 1) {
                                     print('<div class="carousel-item active" data-bs-interval="10000">');
-                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid mx-auto d-block rounded" alt="'.$product[0]['name'].'">');
                                     print('</div>');
                                 }
                                 else {
                                     print('<div class="carousel-item" data-bs-interval="10000">');
-                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid rounded" alt="'.$product[0]['name'].'">');
+                                        print('<img src="product_img/'.$image['img'].'" class="img-fluid mx-auto d-block rounded" alt="'.$product[0]['name'].'">');
                                     print('</div>');
                                 }
                                 $i++;
@@ -89,9 +102,40 @@ require("templates/header.php");
                 </div>
             </div>
         </div>
+        <div class="card cbg mx-2 my-3">
+            <div class="card-body px-3 py-3">
+                <div class="row">
+                    <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
+                    <div class="row row-cols-<?php if (isMobile()) print("1"); else print("3");?>">
+                        <?php foreach ($products as $product1): ?>
+                            <div class="col my-2">
+                                <div class="card prodcard cbg2">
+                                    <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
+                                        <div class="card-body">
+                                            <?php if (empty($product1['image'])) {
+                                                print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
+                                            } else {
+                                                print('<img src="product_img/' . $product1['image'] . '" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
+                                            }?>
+                                            <h4 class="card-title name"><?=$product1['name']?></h4>
+                                            <p class="card-text ctext price">Preis: 
+                                                <?=$product1['price']?>&euro;
+                                                <?php if ($product1['rrp'] > 0): ?>
+                                                <span class="rrp ctext"><br>UVP: <?=$product1['rrp']?> &euro;</span>
+                                                <?php endif; ?>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col">
-        <div class="card cbg py-2 px-2 mx-2">
+        <div class="card cbg mx-2">
             <div class="card-body px-3 py-3">
                 <div class="row">
                     <div>
@@ -100,20 +144,21 @@ require("templates/header.php");
                         <?php if ($product[0]['rrp'] > 0): ?>
                             <span class="ctext col">UVP <?=$product[0]['rrp']?>&euro;</span>
                         <?php endif; ?>
+                            <p class="ctext">Artikelnummer: <?=$product[0]['id']?></p>
                         <?php if ($product[0]['visible'] == 0):?>
                             <h2 class="text-danger my-2">Das Produkt aktuell nicht bestellbar!</h2>
                         <?php elseif ($product[0]['quantity'] >= 20):?>
                             <h2 class="text-success my-2">Auf Lager</h2>
                         <?php elseif ($product[0]['quantity'] > 5 && $product[0]['quantity'] < 20):?>
                             <h2 class="text-warning my-2">Nur noch <?=$product[0]['quantity']?> auf Lager!</h2>
-                        <?php elseif ($product[0]['quantity'] == 0):?>
+                        <?php elseif ($product[0]['quantity'] <= 0):?>
                             <h2 class="text-danger my-2">Das Produkt ist ausverkauft!</h2>
                         <?php else: ?>
                             <h2 class="text-danger my-2">Nur noch <?=$product[0]['quantity']?> auf Lager!</h2>
                         <?php endif; ?>
                     </div>
                 </div>
-                <?php if ($product[0]['visible'] == 1 && $product[0]['quantity'] != 0):?>
+                <?php if ($product[0]['visible'] == 1 && $product[0]['quantity'] > 0):?>
                 <div class="row">
                     <div class="cart">
                         <form action="cart.php" method="post">
@@ -126,19 +171,20 @@ require("templates/header.php");
                         </form>
                     </div>
                 </div>
-                <div class="row">
-                <p class="ctext"><?=$product[0]['desc']?></p>
-                </div>
                 <?php endif; ?>
+            </div>
+        </div>
+        <div class="card cbg mx-2 my-3">
+            <div class="card-body px-3 py-3">
+                <div class="row">
+                    <h2 class="fw-blod">Beschreibung</h2>
+                    <p class="ctext mb-0"><?=$product[0]['desc']?></p>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!--
-Ein Wird oft zusammen gekauf fehlt noch
-SQL ABFRAGE:
-SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = 1) AND NOT product_list.product_id = 1 and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;
--->
+
 <?php
 include_once("templates/footer.php")
 ?>

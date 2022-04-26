@@ -13,10 +13,11 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            #error_log(print_r($product, true));
-
             if (isset($product[0])) {
                 if ($_POST['quantity'] + $product[0]['quantity'] > $product[0]['maxquantity']) {
                     $quantity = $product[0]['maxquantity'];
@@ -29,16 +30,20 @@ if(isset($_POST['action'])) {
                 $stmt = $pdo->prepare('UPDATE product_list SET quantity = ? WHERE id = ?');
                 $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
                 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
-                $stmt->execute();
+                $result = $stmt->execute();
+                if (!$result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }                
                 echo("<script>location.href='cart.php'</script>");
-                #header("location: cart.php");
                 exit;
             } else {
                 $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
                 $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
-                $stmt->execute();
+                $result = $stmt->execute();
+                if (!$result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }                
                 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                #print_r($product);
                 if ($_POST['quantity'] > $product[0]['quantity']) {
                     $quantity = $product[0]['quantity'];
                 } else {
@@ -51,9 +56,11 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
                 $stmt->bindValue(2, $_POST['productid']);
                 $stmt->bindValue(3, $quantity, PDO::PARAM_INT);
-                $stmt->execute();
+                $result = $stmt->execute();
+                if (!$result) {
+                    error('Database error', pdo_debugStrParams($stmt));
+                }                
                 echo("<script>location.href='cart.php'</script>");
-                #header("location: cart.php");
                 exit;
             }
             
@@ -70,14 +77,15 @@ if(isset($_POST['action'])) {
                     $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
                     $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
-                    $stmt->execute();
+                    $result = $stmt->execute();
+                    if (!$result) {
+                        error('Database error', pdo_debugStrParams($stmt));
+                    }                    
                     echo("<script>location.href='cart.php'</script>");
-                    #header('Location: cart.php');
                     exit;
                 } else {
                     // User clicked the "No" button, redirect them back to the read page
                     echo("<script>location.href='cart.php'</script>");
-                    #header('Location: cart.php');
                     exit;
                 }
             } else {
@@ -95,7 +103,7 @@ if(isset($_POST['action'])) {
                                                 <input type="number" value="<?=$_POST['listid']?>" name="listid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
                                                 <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="no">Nein</button>
+                                                <a href="cart.php"><button class="btn btn-outline-primary mx-2" type="button">Nein</button></a>
                                             </form>
                                         </p>
                                     </div>
@@ -115,7 +123,10 @@ if(isset($_POST['action'])) {
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
             $stmt = $pdo->prepare('select *, products.quantity as maxquantity from products, product_list where products.id = product_list.product_id and product_list.id = ?');
             $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }            
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($_POST['quantity'] > $product[0]['maxquantity']) {
                 $quantity = $product[0]['maxquantity'];
@@ -129,9 +140,11 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['listid'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
-            $stmt->execute();
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }            
             echo("<script>location.href='cart.php'</script>");
-            #header('Location: cart.php');
             exit;
         } else {
             error('Some informations are missing!');
@@ -139,19 +152,18 @@ if(isset($_POST['action'])) {
     }
 }
 
-// SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
 // Select products ordered by the date added
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products_types, products, product_list where product_list.product_id = products.id and products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
-#$stmt = $pdo->prepare('SELECT *,(SELECT quantity From product_list WHERE product_list.product_id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? )) LIMIT 1) AS quantity,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products_types, products where products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? ))');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
-$stmt->execute();
+$result = $stmt->execute();
+if (!$result) {
+    error('Database error', pdo_debugStrParams($stmt));
+}
 // Get the total number of products
 $total_products = $stmt->rowCount();
 // Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-#print_r($products);
-#$stmt->debugDumpParams();
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
@@ -187,16 +199,16 @@ foreach ($products as $product) {
                             <?php foreach ($products as $product): ?>
                                 <tr>
                                     <th scope="row" class="border-0">
-                                        <div class="p-2">
-                                            <?php if (empty($product['image'])) {
-                                                print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                            } else {
-                                                print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                            }?>
-                                            <div class="ms-3 d-inline-block align-middle">
-                                                <h5 class="mb-0"> 
-                                                    <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle"><?=$product['name']?></a>
-                                                </h5>
+                                        <div class="p-2 row align-items-center" style="max-width: 40rem">
+                                            <div class="col-md-3">
+                                                <?php if (empty($product['image'])) {
+                                                    print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                                } else {
+                                                    print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
+                                                }?>
+                                            </div>
+                                            <div class="col-md-9 text-wrap">
+                                                <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle text-wrap"><?=$product['name']?></a>
                                             </div>
                                         </div>
                                     </th>
@@ -228,7 +240,7 @@ foreach ($products as $product) {
                 <strong>Summe: <?=$summprice?>&euro;</strong>
                 <?php
                 if ($total_products > 0) {
-                    print('<a href="order.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
+                    print('<a href="placeorder.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
                 } ?>
             </div>
         </div>
@@ -253,7 +265,7 @@ foreach ($products as $product) {
                             } else {
                                 print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
                             }?>
-                            <h4 class="card-title name"><?=$product['name']?></h4>
+                            <h4 class="card-title name text-wrap"><?=$product['name']?></h4>
                             <span class="card-text price">
                                 Preis: &euro;<?=$product['price']?><br>
                                 Menge: <?=$product['quantity']?>
@@ -281,7 +293,7 @@ foreach ($products as $product) {
                         <strong class="card-text"><?=$summprice?>&euro;</strong>
                         <?php
                         if ($total_products > 0) {
-                            print('<a href="order.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
+                            print('<a href="placeorder.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Bestellen</button></a>');
                         } ?>
                     </div>
                 </div>

@@ -17,9 +17,9 @@
 
 
 <?php
-$vernum = "0.0.7";
+$vernum = "0.1.0";
 # Like this, cause we want the Date the current Version was developed, not the current dates
-$verdate ="24.03.2022";
+$verdate ="25.04.2022";
 #$verdate = date("d.m.Y");
 if(!isMobile()):
 ?>
@@ -29,7 +29,9 @@ if(!isMobile()):
                 Delta-Hardware
             </div>
             <div class="col text-center">
-                <a href="/aboutus.php" class="ctext">Über uns</a>
+                <a href="/aboutus.php" class="ctext me-0">Über uns</a>
+                <div class="vr mx-2"></div>
+                <a class="ctext me-2" href="/impressum.php">Impressum</a>
             </div>
             <div class="col d-flex justify-content-end align-items-center text-end ctext">
                 <input onchange="toggleStyle()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
@@ -46,8 +48,9 @@ if(!isMobile()):
 <?php else:?>
     <footer class="container-fluid footer-footer sticky-bottom footer py-1 cbg">
         <div class="ctext">
-            <div class="col py-1 text-center">
-                <a href="aboutus.php" class="ctext">Über uns</a>
+            <div class="ctext col py-1 text-center">
+                <a href="/aboutus.php" class="ctext">Über uns</a>
+                <a class="ctext" href="/impressum.php">Impressum</a>
             </div>
             <div class="row">
                 <div class="ctext col-4 py-1 pb-2 mb-2 d-flex align-items-center justify-content-start">
@@ -69,3 +72,4 @@ if(!isMobile()):
 <script>
 setStyle();
 </script>
+<?php unset($_SESSION['userid'])?>

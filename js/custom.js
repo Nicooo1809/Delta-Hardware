@@ -13,7 +13,6 @@ function toggleStyle() {
 
 function setStyle() {
   if (getCookie("style") == "dark") {
-    document.getElementById('style_switch').checked = true;
     setCookie("style", "dark", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
@@ -63,4 +62,13 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+function showPreview(event){
+	var files = event.target.files;
+	var preview = document.getElementById('preview');
+	preview.innerHTML = '';
+	for (var i = 0, f; f = files[i]; i++) { 
+		preview.innerHTML += ['<div class="col"><div class="card prodcard bg-dark"><img src="', URL.createObjectURL(f), '" class="card-img-top img-fluid rounded" title="', escape(f.name), '" alt="', escape(f.name), '"></div></div>'].join('');
+	}
 }

@@ -1,8 +1,6 @@
 <?php 
-session_start();
-require_once("php/mysql.php");
 require_once("php/functions.php");
-include("templates/header.php")
+$user = require_once("templates/header.php");
 ?>
 
 <?php
@@ -36,8 +34,9 @@ if(isset($_GET['register'])) {
 	
 	//Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
 	if(!$error) { 
-		$stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-		$result = $stmt->execute(array('email' => $email));
+		$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+		$stmt->bindValue(1, $email);
+		$result = $stmt->execute();
 		$user = $stmt->fetch();
 		
 		if($user !== false) {
@@ -61,7 +60,6 @@ if(isset($_GET['register'])) {
 			$error = true;
 		}	
 	}
-
 	//Keine Fehler, wir können den Nutzer registrieren
 	if(!$error) {	
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
@@ -72,7 +70,7 @@ if(isset($_GET['register'])) {
 		$stmt->bindValue(3, $vorname);
 		$stmt->bindValue(4, $nachname);
 		$result = $stmt->execute();
-		if ($result) {
+		if (!$result) {
 			$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES ((select id from users where email = ?), '0', '0')");
 			$stmt->bindValue(1, $email);
 			$result = $stmt->execute();
