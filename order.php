@@ -118,26 +118,36 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif ?>
                 <?php if ($order[0]['sent']!=1): ?>
                     <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
-                        <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
-                            <?php foreach ($addresses as $address): ?>
-                                <?php if ($address['default'] == 1): ?>
-                                    <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                                <?php else:?>
-                                    <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </select>
-                        <label class="text-dark fw-bold" for="inputRechnugsaddresse">Rechnungsadresse</label>
-                        <select class="form-select border-0 ps-4 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
-                            <?php foreach ($addresses as $address): ?>
-                                <?php if ($address['default'] == 1): ?>
-                                    <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                                <?php else:?>
-                                    <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </select>
-                        <label class="text-dark fw-bold" for="inputLieferaddresse">Lieferadresse</label>
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-5 mx-1">
+                                <div class="input-group mb-3">
+                                    <label class="text-dark input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
+                                    <select class="form-select border-0 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
+                                        <?php foreach ($addresses as $address): ?>
+                                            <?php if ($address['default'] == 1): ?>
+                                                <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                            <?php else:?>
+                                                <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-5 mx-1">
+                                <div class="input-group mb-3">
+                                    <label class="text-dark input-group-text" for="inputLieferaddresse">Lieferadresse</label>
+                                    <select class="form-select border-0 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
+                                        <?php foreach ($addresses as $address): ?>
+                                            <?php if ($address['default'] == 1): ?>
+                                                <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                            <?php else:?>
+                                                <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="">
                             <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                             <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
