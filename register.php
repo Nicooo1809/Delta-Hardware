@@ -37,6 +37,9 @@ if(isset($_GET['register'])) {
 		$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
 		$stmt->bindValue(1, $email);
 		$result = $stmt->execute();
+		if (!$result) {
+			error('Database error', pdo_debugStrParams($stmt));
+		}
 		$user = $stmt->fetch();
 		
 		if($user !== false) {
@@ -71,9 +74,14 @@ if(isset($_GET['register'])) {
 		$stmt->bindValue(4, $nachname);
 		$result = $stmt->execute();
 		if (!$result) {
-			$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES ((select id from users where email = ?), '0', '0')");
-			$stmt->bindValue(1, $email);
-			$result = $stmt->execute();
+			error('Database error', pdo_debugStrParams($stmt));
+		}
+		
+		$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES ((select id from users where email = ?), '0', '0')");
+		$stmt->bindValue(1, $email);
+		$result = $stmt->execute();
+		if (!$result) {
+			error('Database error', pdo_debugStrParams($stmt));
 		}
 
 		if($result) {
