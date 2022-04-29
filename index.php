@@ -17,7 +17,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 require_once("templates/header.php");
 ?>
-<script src="/js/slider.js"></script>
 <!-- Hauptteil bzw die eigentliche Website -->
 <main>
     <!-- Titelbild + Text ganz oben auf der Startseite einfügen -->
