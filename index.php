@@ -40,31 +40,59 @@ require_once("templates/header.php");
     <!-- Die mit dem oben geschriebenen PHP-Code geholten Dateien werden ein einer Reihe angezeigt
     dabei sieht man immer nur 4 Produkte für 5 Sekunden und geht dann zu den nächsten 4.
     Es werden maximal 12 Produkte angezeigt (12 neuste) -->
-    <div class="container my-3">
-        <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEU
-            ERSCHEINUNGEN</h1>
-        <hr class="hr-light my-3">
-        <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
-            <div class="carousel-inner py-4">
-                <?php $i = 0; $first = true; foreach ($products as $product): ?>
-                    <?php if ($i % 4 == 0):?>
-                        <?php if ($first != true):?>
+    <!-- Desktop Design -->
+    <?php if (!isMobile()): ?>
+        <div class="container my-3">
+            <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEU ERSCHEINUNGEN</h1>
+            <hr class="hr-light my-3">
+            <div id="newproductcarousel"class="carousel slide text-center" data-bs-ride="carousel">
+                <div class="carousel-inner py-4">
+                    <?php $i = 0; $first = true; foreach ($products as $product): ?>
+                        <?php if ($i % 4 == 0):?>
+                            <?php if ($first != true):?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endif; ?>
-                    <?php endif;?>
-                    <?php if ($i % 4 == 0):?>
-                        <?php if ($first == true):?>
-                            <div class="carousel-item active" data-bs-interval="5000">
-                                <div class="container">
-                                    <div class="row">
-                        <?php else: ?>
-                            <div class="carousel-item" data-bs-interval="5000">
-                                <div class="container">
-                                    <div class="row">
+                            <?php endif; ?>
                         <?php endif;?>
-                    <?php endif;?>
+                        <?php if ($i % 4 == 0):?>
+                            <?php if ($first == true):?>
+                                <div class="carousel-item active" data-bs-interval="5000">
+                                    <div class="container">
+                                        <div class="row">
+                            <?php else: ?>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <div class="container">
+                                        <div class="row">
+                            <?php endif;?>
+                        <?php endif;?>
+                        <div class="col">
+                            <div class="card cbg prodcard">
+                                <!-- Bild wird aus der Datenbank gezogen, falls keins vorhanden ist wird ein Platzhalter angezeigt -->
+                                <?php if (empty($product['image'])): ?>
+                                    <img src="images/image-not-found.png" class="card-img-top" alt="<?=$product['name']?>">
+                                <?php else: ?>
+                                    <img src="product_img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
+                                <?php endif; ?>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?=$product['name']?></h5>
+                                    <p class="card-text"><?=$product['shortdesc']?></p>
+                                    <a href="product.php?id=<?=$product['id']?>" class="btn btn-primary">Mehr erfahren</a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php $first = false; $i++;?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    <!-- Mobile Design -->
+    <?php else: ?>
+        <div class="container my-3">
+            <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEU ERSCHEINUNGEN</h1>
+            <hr class="hr-light my-3">
+            <div class="row row-cols-1">
+                <?php $i = 0; while ($i < 4): foreach ($products as $product):?>
                     <div class="col">
                         <div class="card cbg prodcard">
                             <!-- Bild wird aus der Datenbank gezogen, falls keins vorhanden ist wird ein Platzhalter angezeigt -->
@@ -80,11 +108,10 @@ require_once("templates/header.php");
                             </div>
                         </div>
                     </div>
-                    <?php $first = false; $i++;?>
-                <?php endforeach; ?>
+                <?php $i++; endforeach; endwhile;?>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 </main>
 
 
