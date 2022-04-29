@@ -11,24 +11,23 @@ function toggleStyle() {
 }
 
 function setStyle() {
-  if (getCookie("style") == "dark" || getCookie("style") == "custom" ) {
-    if (e.ctrlKey) {
-      setCookie("style", "custom", 365);
+  if (e.ctrlKey || getCookie("style") == "custom") {
+    setCookie("style", "custom", 365);
 
-      var head = document.getElementsByTagName('head')[0];
-      var style = document.createElement('link');
-      style.href = '/css/custom.css';
-      style.type = 'text/css';
-      style.rel = 'stylesheet';
-      head.append(style);
+    var head = document.getElementsByTagName('head')[0];
+    var style = document.createElement('link');
+    style.href = '/css/custom.css';
+    style.type = 'text/css';
+    style.rel = 'stylesheet';
+    head.append(style);
 
-      document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
-      document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
-    } else {
-      setCookie("style", "dark", 365);
-      document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
-      document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
-    }
+    document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
+    document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
+  }
+  if (getCookie("style") == "dark") {
+    setCookie("style", "dark", 365);
+    document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
+    document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
   } else {
     setCookie("style", "light", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
