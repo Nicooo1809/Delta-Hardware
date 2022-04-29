@@ -66,9 +66,9 @@ if(isset($_POST['action'])) {
         require_once("templates/header.php");
         ?>
         <div class="container minheight100 px-3 py-3">
-            <div class="card bg-dark">
+            <div class="card cbg ctext">
                 <div class="card-body">
-                    <h1 class="card-title">Adresse anpassen</h1>
+                    <h1 class="card-title text-center ctext">Adresse anpassen</h1>
                     <form action="address.php" method="post" enctype="multipart/form-data">
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputStreet">Straße</span>
@@ -150,9 +150,9 @@ if(isset($_POST['action'])) {
         require_once("templates/header.php");
         ?>
         <div class="container minheight100 px-3 py-3">
-            <div class="card bg-dark">
+            <div class="card cbg ctext">
                 <div class="card-body">
-                    <h1 class="card-title">Adresse Hinzufügen</h1>
+                    <h1 class="card-title text-center ctext">Adresse Hinzufügen</h1>
                     <form action="address.php" method="post" enctype="multipart/form-data">
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputStreet">Straße</span>
