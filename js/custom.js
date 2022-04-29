@@ -4,25 +4,23 @@ setStyle();
 var pressed = false;
 document.onkeydown = function (e) {
   if (e['key'] == 's') { // ctrl
-    console.log('key down');
     pressed = true;
   }
 };
 document.onkeyup = function (e) {
   if (e['key'] == 's') { // ctrl
-    console.log('key up');
     pressed = false;
   }
 };
 
 function toggleStyle() {
-  if (pressed) {
-    setCookie("style", "custom", 365);
-  }
   if (getCookie("style") == "dark") {
     setCookie("style", "light", 365);
-  } else if (getCookie("style") == "light"){
+  } else {
     setCookie("style", "dark", 365);
+  }
+  if (pressed) {
+    setCookie("style", "custom", 365);
   }
   setStyle();
 }
