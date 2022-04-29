@@ -35,7 +35,7 @@ if(!isMobile()):
                 <a class="ctext me-2" href="/impressum.php">Impressum</a>
             </div>
             <div class="col d-flex justify-content-end align-items-center text-end ctext">
-                <input onchange="toggleStyle()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
+                <input onchange="toggleStyle(e)" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
                 <label class="styleswitcherlabel" for="style_switch"></label>
                 <div class="ps-3 text-end ctext">
                     Version <?=$vernum?> 
@@ -55,7 +55,7 @@ if(!isMobile()):
             </div>
             <div class="row">
                 <div class="ctext col-4 py-1 pb-2 mb-2 d-flex align-items-center justify-content-start">
-                    <input onchange="toggleStyle()" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
+                    <input onchange="toggleStyle(e)" class="styleswitcher" type="checkbox" name="switch" id="style_switch" <?php if (check_style() == "dark") {print("checked");}?>>
                     <label class="styleswitcherlabel" for="style_switch"></label>
                 </div>
                 <div class="ctext col-8 py-1 pb-2 mb-2 d-flex align-items-center justify-content-end text-end">
