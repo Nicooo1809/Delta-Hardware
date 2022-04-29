@@ -1,7 +1,10 @@
 // NOT CLEAR
 setStyle();
 
-function toggleStyle() {
+function toggleStyle(e) {
+  if (e.ctrlKey) {
+    setCookie("style", "custom", 365);
+  }
   if (getCookie("style") == "dark") {
     setCookie("style", "light", 365);
   } else {
@@ -10,8 +13,8 @@ function toggleStyle() {
   setStyle();
 }
 
-function setStyle(e) {
-  if (e.ctrlKey || getCookie("style") == "custom") {
+function setStyle() {
+  if (getCookie("style") == "custom") {
     setCookie("style", "custom", 365);
 
     var head = document.getElementsByTagName('head')[0];
