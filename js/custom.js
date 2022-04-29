@@ -38,7 +38,6 @@ function setStyle() {
       style.rel = 'stylesheet';
       head.append(style);
     }
-    document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = false;
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
   }
@@ -46,12 +45,16 @@ function setStyle() {
     setCookie("style", "dark", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
-    document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = true;
+    if (document.querySelectorAll("link[href='/css/custom.css']").length > 0) {
+      document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = true;
+    }
   } else if (getCookie("style") == "light") {
     setCookie("style", "light", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = false;
-    document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = true;
+    if (document.querySelectorAll("link[href='/css/custom.css']").length > 0) {
+      document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = true;
+    }
   }
 }
 
