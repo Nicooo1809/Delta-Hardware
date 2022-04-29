@@ -323,26 +323,30 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                 <?php endif ?>
-                <?php foreach ($products as $product): ?>
-                    <div class="col">
-                        <div class="card mx-auto cbg2">
-                            <div class="card-body">
-                                <?php if (empty($product['image'])) {
-                                    print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                                } else {
-                                    print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                                }?>
-                                <h4 class="card-title name"><?=$product['name']?></h4>
-                                <span class="card-text price">
-                                    Preis: &euro;<?=$product['price']?><br>
-                                    Menge: <?=$product['quantity']?>
-                                </span>
+                <div class="row row-cols-1">
+                    <?php foreach ($products as $product): ?>
+                        <div class="col">
+                            <div class="card mx-auto cbg2">
+                                <div class="card-body">
+                                    <?php if (empty($product['image'])) {
+                                        print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                    } else {
+                                        print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                    }?>
+                                    <h4 class="card-title name"><?=$product['name']?></h4>
+                                    <span class="card-text price">
+                                        Preis: &euro;<?=$product['price']?><br>
+                                        Menge: <?=$product['quantity']?>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>       
-                <strong>Summe: <?=$summprice?>&euro;</strong>
-                <button class="ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
+                    <?php endforeach; ?>  
+                </div>
+                <div class="d-flex justify-content-between my-2">     
+                    <strong class="col">Summe: <?=$summprice?>&euro;</strong>
+                    <button class="col ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
+                </div>
             </div>
         </div>
     </div> 
