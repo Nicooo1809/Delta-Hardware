@@ -257,53 +257,49 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php endif ?>
                     </div>
                     <?php if ($order[0]['sent']!=1): ?>
-                            <div class="col-5 d-flex justify-content-end">
-                                <form action="?id=<?=$_GET['id']?>" method="post" class="">
-                                <button class="btn btn-outline-danger me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
-                                <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-                                    <div class="offcanvas-header">
-                                        <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirklich Stonieren?</h2>
-                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                    </div>
-                                    <div class="offcanvas-body">
-                                        <div class="d-flex justify-content-center">
-                                            <button class="btn btn-outline-success mx-2" type="submit" name="action" value="del">Ja</button>
-                                            <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
-                                        </div>
-                                    </div>
+                        <form action="?id=<?=$_GET['id']?>" method="post" class="">                                
+                            <div class="col-12 my-2">
+                                <div class="input-group mb-3">
+                                    <label class="text-dark input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
+                                    <select class="form-select border-0 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
+                                        <?php foreach ($addresses as $address): ?>
+                                            <?php if ($order[0]['rechnungsadresse'] == $address['id']): ?>
+                                                <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                            <?php else:?>
+                                                <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
-                                <button type="submit" name="action" value="edit" class="btn btn-outline-success ms-2">Speichern</button>
                             </div>
-                            <div class="row d-flex justify-content-between">
-                                <div class="col-5 mx-1">
-                                    <div class="input-group mb-3">
-                                        <label class="text-dark input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
-                                        <select class="form-select border-0 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
-                                            <?php foreach ($addresses as $address): ?>
-                                                <?php if ($order[0]['rechnungsadresse'] == $address['id']): ?>
-                                                    <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                                                <?php else:?>
-                                                    <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
+                            <div class="col-12 my-2">
+                                <div class="input-group mb-3">
+                                    <label class="text-dark input-group-text" for="inputLieferaddresse">Lieferadresse</label>
+                                    <select class="form-select border-0 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
+                                        <?php foreach ($addresses as $address): ?>
+                                            <?php if ($order[0]['lieferadresse'] == $address['id']): ?>
+                                                <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                            <?php else:?>
+                                                <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
-                                <div class="col-5 mx-1">
-                                    <div class="input-group mb-3">
-                                        <label class="text-dark input-group-text" for="inputLieferaddresse">Lieferadresse</label>
-                                        <select class="form-select border-0 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
-                                            <?php foreach ($addresses as $address): ?>
-                                                <?php if ($order[0]['lieferadresse'] == $address['id']): ?>
-                                                    <option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                                                <?php else:?>
-                                                    <option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </select>
+                            </div>
+                            <button class="col-12 btn btn-outline-danger my-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
+                            <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+                                <div class="offcanvas-header">
+                                    <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirklich Stonieren?</h2>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-outline-success mx-2" type="submit" name="action" value="del">Ja</button>
+                                        <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
                                     </div>
                                 </div>
                             </div>
+                            <button type="submit" name="action" value="edit" class="col-12 btn btn-outline-success my-2">Speichern</button>
                         </form>
                     </div>
                 <?php else: ?>
