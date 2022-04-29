@@ -6,6 +6,7 @@ $search = "";
 $type = "";
 $sortsql = "";
 
+// generiere SQL für die Sortierung
 if (isset($_GET["sortby"])) {
     $order = "";
     if ($_GET["order"] == "Absteigend"){
@@ -13,10 +14,11 @@ if (isset($_GET["sortby"])) {
     }
     $sortsql = "ORDER BY products." . $_GET["sortby"] . $order;
 }
-
+// generiere SQL für Typenbezogene ansicht
 if (isset($_GET["type"])) {
     $type = "and products.product_type_id = '" . $_GET["type"] . "' ";
 }
+// generiere SQL für die Suche
 if (isset($_GET["search"])) {
     $search = 'and lower(products.name) like lower("%' . $_GET["search"] . '%") ';
 }
@@ -24,14 +26,16 @@ if (isset($_GET["search"])) {
 // Suche Produkte aus der Datenbank und sortiere nach oben generiertem SQL
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ' . $type . $search . $sortsql);
 $result = $stmt->execute();
+// Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler', pdo_debugStrParams($stmt));
 }
-// Get the total number of products
+// Zähle Zeilen für maximale Anzahl an Produkten
 $total_products = $stmt->rowCount();
-// Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// 
 require_once("templates/header.php");
+// Gibt die Seite aus
 ?>
 
 <div class="container-fluid minheight100 py-3 products content-wrapper">
@@ -79,5 +83,6 @@ require_once("templates/header.php");
     </div>
 </div>
 <?php
+// Bindet den Footer ein
 include_once("templates/footer.php")
 ?>
