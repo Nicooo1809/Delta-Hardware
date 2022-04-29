@@ -127,7 +127,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <button class="btn btn-outline-danger me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                                 <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
                                     <div class="offcanvas-header">
-                                        <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirlich Löschen?</h2>
+                                        <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirklich Stonieren?</h2>
                                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                     </div>
                                     <div class="offcanvas-body">

@@ -246,7 +246,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas<?=$user1['id']?>" aria-controls="offcanvas<?=$user1['id']?>">Löschen</button>
                                                 <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas<?=$user1['id']?>" aria-labelledby="offcanvas<?=$user1['id']?>Label">
                                                     <div class="offcanvas-header">
-                                                        <h2 class="offcanvas-title ctext" id="offcanvas<?=$user1['id']?>Label">Wirlich Löschen?</h2>
+                                                        <h2 class="offcanvas-title ctext" id="offcanvas<?=$user1['id']?>Label">Wirklich Löschen?</h2>
                                                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                                     </div>
                                                     <div class="offcanvas-body">
