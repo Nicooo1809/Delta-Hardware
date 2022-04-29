@@ -2,19 +2,22 @@
 setStyle();
 
 // https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
-var ctrlPressed = false;
-$(window).keydown(function(evt) {
-  if (evt.which == 83) { // ctrl
-    ctrlPressed = true;
+var pressed = false;
+document.onkeydown = function (e) {
+  console.log('key down');
+  if (e['key'] == 's') { // ctrl
+    pressed = true;
   }
-}).keyup(function(evt) {
-  if (evt.which == 83) { // ctrl
-    ctrlPressed = false;
+};
+document.onkeyup = function (e) {
+  console.log('key up');
+  if (e['key'] == 's') { // ctrl
+    pressed = false;
   }
-});
+};
 
 function toggleStyle(e) {
-  if (ctrlPressed) {
+  if (pressed) {
     setCookie("style", "custom", 365);
   }
   if (getCookie("style") == "dark") {
