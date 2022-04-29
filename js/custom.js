@@ -5,7 +5,7 @@ function toggleStyle(e) {
   if (e.ctrlKey) {
     setCookie("style", "custom", 365);
   }
-  if (getCookie("style") == "dark") {
+  else if (getCookie("style") == "dark") {
     setCookie("style", "light", 365);
   } else {
     setCookie("style", "dark", 365);
