@@ -121,7 +121,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			<div class="card-body text-center">
 				<h1 class="card-title">Persönliche Daten</h1>
 				<div class="card-text">
-					<div class="row justify-content-between <?php if (isMobile()) { print("row-cols-1"); ?>}">
+					<div class="row justify-content-between <?php if (isMobile()) { print("row-cols-1"); } ?>}">
 						<!-- Name -->
 						<div class="cvl col-6">
 							<h3 class="ctext">Name</h3>
@@ -167,7 +167,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			<div class="card-body text-center">
 				<h1 class="card-title">Sicherheit</h1>
 				<div class="card-text">
-					<div class="row justify-content-between <?php if (isMobile()) { print("row-cols-1"); ?>">
+					<div class="row justify-content-between <?php if (isMobile()) { print("row-cols-1"); }?>">
 						<div class="cvl col-6">
 							<!-- E-Mail -->
 							<h3 class="ctext">E-Mail-Adresse</h3>
