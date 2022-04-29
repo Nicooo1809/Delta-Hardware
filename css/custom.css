@@ -46,7 +46,7 @@ a {
 }
 
 .cbg2 {
-    background-color: #bc13fe !important;
+    background-color: #fe019a !important;
 }
 
 .ctext {
@@ -94,6 +94,10 @@ a {
 .cvl {
     border-right: 2px solid #cfff04;
     height: 100%;
+}
+
+.bg-dark {
+    background-color: #fe019a !important;
 }
 
 .text-primary {
