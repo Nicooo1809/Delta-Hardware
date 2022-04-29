@@ -33,9 +33,8 @@ if (!$result) {
 // Zähle Zeilen für maximale Anzahl an Produkten
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// 
+// Header einbindung
 require_once("templates/header.php");
-// Gibt die Seite aus
 ?>
 
 <div class="container-fluid minheight100 py-3 products content-wrapper">
