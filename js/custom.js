@@ -1,8 +1,20 @@
 // NOT CLEAR
 setStyle();
 
+// https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+var ctrlPressed = false;
+$(window).keydown(function(evt) {
+  if (evt.which == 83) { // ctrl
+    ctrlPressed = true;
+  }
+}).keyup(function(evt) {
+  if (evt.which == 83) { // ctrl
+    ctrlPressed = false;
+  }
+});
+
 function toggleStyle(e) {
-  if (e.ctrlKey) {
+  if (ctrlPressed) {
     setCookie("style", "custom", 365);
   }
   if (getCookie("style") == "dark") {
