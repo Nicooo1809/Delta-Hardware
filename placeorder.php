@@ -215,7 +215,7 @@ foreach ($products as $product) {
                 <p>Sie sind im Begriff folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> kostenpflichtig zu bestellen. Sind Sie Sicher?</p>
                 <form action="placeorder.php" method="post" class="">
                     <div class="row">
-                        <div class="my-3">
+                        <div class="my-2">
                             <div class="input-group">
                                 <label class="text-dark input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
                                 <select class="form-select border-0 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
@@ -229,7 +229,7 @@ foreach ($products as $product) {
                                 </select>
                             </div>
                         </div>
-                        <div class="my-3">
+                        <div class="my-2">
                             <div class="input-group">
                                 <label class="text-dark input-group-text" for="inputLieferaddresse">Lieferadresse</label>
                                 <select class="form-select border-0 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
@@ -244,8 +244,8 @@ foreach ($products as $product) {
                             </div>
                         </div>
                     </div>
-                    <div class="my-3 d-flex justify-content-center">
-                        <button class="btn btn-success mb-3" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
+                    <div class="my-2 d-flex justify-content-center">
+                        <button class="btn btn-success mb-2" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button><br>
                         <button class="btn btn-danger" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
                     </div>
                 </form>
