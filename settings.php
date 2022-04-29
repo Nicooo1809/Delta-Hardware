@@ -234,6 +234,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 									<button class="btn btn-outline-primary" type="submit">Speichern</button>
 								</form>
 							</div>
+							<hr class="hr-light">
 							<!-- Adresse -->
 							<div class="col my-3">
 								<h3 class="ctext">Adresse</h3>
@@ -284,13 +285,14 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 									<button class="btn btn-outline-primary" type="submit">Speichern</button>
 								</form>
 							</div>
+							<hr class="hr-light">
 							<!-- Passwort -->
 							<div class="col my-3">
 								<h3 class="ctext">Passwort</h3>
 								<form>
 									<div class="form-floating mb-2">
-										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswort" placeholder="Altes Passwort" name="passwortAlt" type="password" required>
-										<label class="text-dark fw-bold" for="inputPasswort">Altes Passwort</label>
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputOldPasswort" placeholder="Altes Passwort" name="passwortAlt" type="password" required>
+										<label class="text-dark fw-bold" for="inputOldPasswort">Altes Passwort</label>
 									</div>
 									<div class="form-floating my-2">
 										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswortNeu" placeholder="Neues Passwort" name="passwortNeu" type="password" required>
