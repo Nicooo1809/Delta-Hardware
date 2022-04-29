@@ -1,22 +1,21 @@
 // NOT CLEAR
 setStyle();
 
-// https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 var pressed = false;
 document.onkeydown = function (e) {
-  console.log('key down');
   if (e['key'] == 's') { // ctrl
+    console.log('key down');
     pressed = true;
   }
 };
 document.onkeyup = function (e) {
-  console.log('key up');
   if (e['key'] == 's') { // ctrl
+    console.log('key up');
     pressed = false;
   }
 };
 
-function toggleStyle(e) {
+function toggleStyle() {
   if (pressed) {
     setCookie("style", "custom", 365);
   }
