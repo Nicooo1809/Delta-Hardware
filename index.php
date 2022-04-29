@@ -93,7 +93,7 @@ require_once("templates/header.php");
             <hr class="hr-light my-3">
             <div class="row row-cols-1">
                 <?php $i = 0; while ($i < 4) { foreach ($products as $product):?>
-                    <div class="col">
+                    <div class="col my-3">
                         <div class="card cbg prodcard">
                             <!-- Bild wird aus der Datenbank gezogen, falls keins vorhanden ist wird ein Platzhalter angezeigt -->
                             <?php if (empty($product['image'])): ?>
