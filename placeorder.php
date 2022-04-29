@@ -244,13 +244,15 @@ foreach ($products as $product) {
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-success my-3" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
-                    <button class="btn btn-danger my-3" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
+                    <div class="my-3">
+                        <button class="btn btn-success mb-3" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
+                        <button class="btn btn-danger" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
+                    </div>
                 </form>
                 <div class="row row-cols-1">
                     <?php foreach ($products as $product): ?>
                         <div class="col">
-                            <div class="card mx-auto cbg">
+                            <div class="card mx-auto cbg2">
                                 <div class="card-body">
                                     <?php if (empty($product['image'])) {
                                         print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
@@ -267,7 +269,6 @@ foreach ($products as $product) {
                         </div>
                     <?php endforeach; ?>
                 </div>
-                </div>         
                 <strong>Summe: <?=$summprice?>&euro;</strong>
             </div>
         </div>
