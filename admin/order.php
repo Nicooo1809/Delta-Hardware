@@ -162,7 +162,7 @@ foreach ($products as $product) {
         <div class="card mx-auto my-2 cbg">
             <div class="card-body">
                 <h2>Rechnungsaddresse</h2>
-                <div class="card-text">
+                <div class="card-text cbg2">
                     <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
                     <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
                     <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
@@ -170,7 +170,7 @@ foreach ($products as $product) {
             </div>
             <div class="card-body">
                 <h2>Lieferaddresse</h2>
-                <div class="card-text">
+                <div class="card-text cbg2">
                     <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
                     <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
                     <?=$lieferadresse[0]['PLZ']?> <?=$lieferadresse[0]['city']?></br>
