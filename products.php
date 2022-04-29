@@ -1,8 +1,6 @@
-<!-- NOT CLEAR -->
 <?php
+// bindet die PHP-Funktionen ein
 require_once("php/functions.php");
-// The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
-$current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
 $type = "";
 $search = "";
 $type = "";
@@ -23,8 +21,7 @@ if (isset($_GET["search"])) {
     $search = 'and lower(products.name) like lower("%' . $_GET["search"] . '%") ';
 }
 
-// SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
-// Select products ordered by the date added
+// Suche Produkte aus der Datenbank und sortiere nach oben generiertem SQL
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ' . $type . $search . $sortsql);
 $result = $stmt->execute();
 if (!$result) {
