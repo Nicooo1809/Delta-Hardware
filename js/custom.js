@@ -14,10 +14,10 @@ document.onkeyup = function (e) {
 };
 
 function toggleStyle() {
-  if (getCookie("style") == "dark") {
-    setCookie("style", "light", 365);
-  } else {
+  if (getCookie("style") == "light") {
     setCookie("style", "dark", 365);
+  } else {
+    setCookie("style", "light", 365);
   }
   if (pressed) {
     setCookie("style", "custom", 365);
