@@ -248,7 +248,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="row">
             <div class="py-3 px-3 cbg ctext rounded">
                 <div class="row d-flex justify-content-between">
-                    <div class="col-5">
+                    <div>
                         <h1>Bestellung</h1>
                         <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
                         <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
@@ -259,7 +259,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if ($order[0]['sent']!=1): ?>
                         <form action="?id=<?=$_GET['id']?>" method="post" class="">                                
                             <div class="col-12 my-2">
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <label class="text-dark input-group-text" for="inputRechnugsaddresse">Rechnungsadresse</label>
                                     <select class="form-select border-0 text-dark fw-bold" id="inputRechnugsaddresse" name="rechnugsaddresse">
                                         <?php foreach ($addresses as $address): ?>
@@ -273,7 +273,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
                             <div class="col-12 my-2">
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <label class="text-dark input-group-text" for="inputLieferaddresse">Lieferadresse</label>
                                     <select class="form-select border-0 text-dark fw-bold" id="inputLieferaddresse" name="lieferaddresse">
                                         <?php foreach ($addresses as $address): ?>
@@ -304,8 +304,8 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 <?php else: ?>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-6">
+                    <div class="row mb-2 row-cols-1">
+                        <div class="col-12">
                             <h2>Rechnungsaddresse</h2>
                             <div class="card cbg2 mx-auto py-2 px-2">
                                 <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
@@ -313,7 +313,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?=$rechnungsadresse[0]['PLZ']?> <?=$rechnungsadresse[0]['city']?></br>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <h2>Lieferaddresse</h2>
                             <div class="card cbg2 mx-auto py-2 px-2">
                                 <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
@@ -323,51 +323,24 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                 <?php endif ?>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <div class="ctext rounded">
-                                    <th scope="col" class="border-0">
-                                        <div class="p-2 px-3 text-uppercase ctext">Produkt</div>
-                                    </th>
-                                    <th scope="col" class="border-0 text-center">
-                                        <div class="p-2 px-3 text-uppercase ctext">Preis</div>
-                                    </th>
-                                    <th scope="col" class="border-0 text-center">
-                                        <div class="p-2 px-3 text-uppercase ctext">Menge</div>
-                                    </th>
-                                </div>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($products as $product): ?>
-                                <tr>
-                                    <th scope="row" class="border-0">
-                                        <div class="p-2">
-                                            <?php if (empty($product['image'])) {
-                                                print('<img src="images/image-not-found.png" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                            } else {
-                                                print('<img src="product_img/' . $product['image'] . '" width="150" class="img-fluid rounded shadow-sm" alt="' . $product['name'] . '">');
-                                            }?>
-                                            <div class="ms-3 d-inline-block align-middle">
-                                                <h5 class="mb-0"> 
-                                                    <a href="product.php?id=<?=$product['product_id']?>" class="ctext d-inline-block align-middle text-wrap"><?=$product['name']?></a>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <td class="border-0 align-middle text-center ctext">
-                                        <span><?=$product['price']?>&euro;</span>
-                                    </td>
-                                    <td class="border-0 align-middle text-center ctext">
-                                        <span><?=$product['quantity']?></span>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>         
+                <?php foreach ($products as $product): ?>
+                    <div class="col">
+                        <div class="card mx-auto cbg2">
+                            <div class="card-body">
+                                <?php if (empty($product['image'])) {
+                                    print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                } else {
+                                    print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                                }?>
+                                <h4 class="card-title name"><?=$product['name']?></h4>
+                                <span class="card-text price">
+                                    Preis: &euro;<?=$product['price']?><br>
+                                    Menge: <?=$product['quantity']?>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>       
                 <strong>Summe: <?=$summprice?>&euro;</strong>
                 <button class="ms-2 btn btn-outline-danger" type="button" onclick="window.location.href = '/internal.php';">Abbrechen</button>
             </div>
