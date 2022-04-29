@@ -10,7 +10,7 @@ function toggleStyle() {
   setStyle();
 }
 
-function setStyle() {
+function setStyle(e) {
   if (e.ctrlKey || getCookie("style") == "custom") {
     setCookie("style", "custom", 365);
 
