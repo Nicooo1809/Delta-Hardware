@@ -16,13 +16,13 @@ document.onkeyup = function (e) {
 };
 
 function toggleStyle() {
+  if (pressed) {
+    setCookie("style", "custom", 365);
+  }
   if (getCookie("style") == "dark") {
     setCookie("style", "light", 365);
   } else if (getCookie("style") == "light"){
     setCookie("style", "dark", 365);
-  }
-  if (pressed) {
-    setCookie("style", "custom", 365);
   }
   setStyle();
 }
@@ -45,7 +45,7 @@ function setStyle() {
     setCookie("style", "dark", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
-  } else {
+  } else if (getCookie("style") == "light") {
     setCookie("style", "light", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = false;
