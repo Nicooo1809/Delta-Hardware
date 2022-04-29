@@ -244,12 +244,12 @@ foreach ($products as $product) {
                             </div>
                         </div>
                     </div>
-                    <div class="my-3">
+                    <div class="my-3 d-flex justify-content-center">
                         <button class="btn btn-success mb-3" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
                         <button class="btn btn-danger" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
                     </div>
                 </form>
-                <div class="row row-cols-1">
+                <div class="row row-cols-1 my-3">
                     <?php foreach ($products as $product): ?>
                         <div class="col">
                             <div class="card mx-auto cbg2">
@@ -269,7 +269,7 @@ foreach ($products as $product) {
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <strong>Summe: <?=$summprice?>&euro;</strong>
+                <strong class="text-center">Summe: <?=$summprice?>&euro;</strong>
             </div>
         </div>
     </div> 
