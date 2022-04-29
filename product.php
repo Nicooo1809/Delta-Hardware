@@ -105,32 +105,30 @@ require_once("templates/header.php");
         </div>
         <div class="card cbg mx-2 my-3">
             <div class="card-body px-3 py-3">
-                <div class="row">
-                    <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
-                    <div class="row row-cols-<?php if (isMobile()) print("1"); else print("3");?>">
-                        <?php foreach ($products as $product1): ?>
-                            <div class="col my-2">
-                                <div class="card prodcard cbg2">
-                                    <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
-                                        <div class="card-body">
-                                            <?php if (empty($product1['image'])) {
-                                                print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
-                                            } else {
-                                                print('<img src="product_img/' . $product1['image'] . '" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
-                                            }?>
-                                            <h4 class="card-title name"><?=$product1['name']?></h4>
-                                            <p class="card-text ctext price">Preis: 
-                                                <?=$product1['price']?>&euro;
-                                                <?php if ($product1['rrp'] > 0): ?>
-                                                <span class="rrp ctext"><br>UVP: <?=$product1['rrp']?> &euro;</span>
-                                                <?php endif; ?>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
+                <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
+                <div class="row row-cols-<?php if (isMobile()) print("1"); else print("3");?>">
+                    <?php foreach ($products as $product1): ?>
+                        <div class="col my-2">
+                            <div class="card prodcard cbg2">
+                                <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
+                                    <div class="card-body">
+                                        <?php if (empty($product1['image'])) {
+                                            print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
+                                        } else {
+                                            print('<img src="product_img/' . $product1['image'] . '" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
+                                        }?>
+                                        <h4 class="card-title name"><?=$product1['name']?></h4>
+                                        <p class="card-text ctext price">Preis: 
+                                            <?=$product1['price']?>&euro;
+                                            <?php if ($product1['rrp'] > 0): ?>
+                                            <span class="rrp ctext"><br>UVP: <?=$product1['rrp']?> &euro;</span>
+                                            <?php endif; ?>
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
