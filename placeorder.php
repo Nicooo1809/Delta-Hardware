@@ -244,8 +244,8 @@ foreach ($products as $product) {
                             </div>
                         </div>
                     </div>
-                    <button class="col btn btn-success my-2" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
-                    <button class="col btn btn-danger my-2" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
+                    <button class="col-12 btn btn-success my-2" type="submit" name="confirm" value="yes">Kostenpflichtig bestellen</button>
+                    <button class="col-12 btn btn-danger my-2" type="button" onclick="window.location.href = 'cart.php';">Abbrechen</button>
                 </form>
                 <div class="row row-cols-1 my-3">
                     <?php foreach ($products as $product): ?>
