@@ -92,7 +92,7 @@ require_once("templates/header.php");
             <h1 class="h1-reponsive text-uppercase fw-bold pt-md-3 pt-3 index-rtx-text text-primary text-center">NEU ERSCHEINUNGEN</h1>
             <hr class="hr-light my-3">
             <div class="row row-cols-1">
-                <?php $i = 0; while ($i < 4) { foreach ($products as $product):?>
+                <?php $products = array_slice($products, 0, 4); foreach ($products as $product):?>
                     <div class="col my-3">
                         <div class="card cbg prodcard">
                             <!-- Bild wird aus der Datenbank gezogen, falls keins vorhanden ist wird ein Platzhalter angezeigt -->
@@ -108,8 +108,7 @@ require_once("templates/header.php");
                             </div>
                         </div>
                     </div>
-                    <?php $i++; ?>
-                <?php endforeach; }?>
+                <?php endforeach;?>
             </div>
         </div>
     <?php endif; ?>
