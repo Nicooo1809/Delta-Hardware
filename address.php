@@ -65,28 +65,28 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
-        <div class="minheight100 px-3 my-3">
-            <div>
-                <h1>Adresse anpassen</h1>
-                <div>
+        <div class="container minheight100 px-3 py-3">
+            <div class="card cbg ctext">
+                <div class="card-body">
+                    <h1 class="card-title text-center ctext">Adresse anpassen</h1>
                     <form action="address.php" method="post" enctype="multipart/form-data">
-                        <div class="input-group py-2" style="max-width: 50rem;">
+                        <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputStreet">Straße</span>
                             <input class="form-control" id="inputStreet" name="street" type="text" value="<?=$address[0]['street']?>" required>
                         </div>
-                        <div class="input-group py-2" style="max-width: 50rem;">
+                        <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputNumber">Hausnummer</span>
                             <input class="form-control" id="inputNumber" name="number" type="text" value="<?=$address[0]['number']?>" required>
                         </div>
-                        <div class="input-group py-2" style="max-width: 50rem;">
+                        <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputPlz">PLZ</span>
                             <input class="form-control" id="inputPlz" name="PLZ" type="text" value="<?=$address[0]['PLZ']?>" required>
                         </div>
-                        <div class="input-group py-2" style="max-width: 50rem;">
+                        <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputCity">Stadt</span>
                             <input class="form-control" id="inputCity" name="city" type="text" value="<?=$address[0]['city']?>" required>
                         </div>
-                        <div class="col-6 d-flex justify-content-end">
+                        <div class="py-2 d-flex justify-content-center">
                                 <input type="number" value="<?=$_POST['addressid']?>" name="addressid" style="display: none;" required>
                                 <button class="btn btn-success mx-1" type="submit" name="action" value="mod">Speichern</button>
                                 <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = '/address.php';">Abbrechen</button>
@@ -149,28 +149,28 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
-        <div class="minheight100 px-3 my-3">
-            <div>
-                <h1>Adresse anpassen</h1>
-                <div>
+        <div class="container minheight100 px-3 py-3">
+            <div class="card cbg ctext">
+                <div class="card-body">
+                    <h1 class="card-title text-center ctext">Adresse Hinzufügen</h1>
                     <form action="address.php" method="post" enctype="multipart/form-data">
-                        <div class="input-group py-2" style="max-width: 50rem;">
+                        <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputStreet">Straße</span>
                             <input class="form-control" id="inputStreet" name="street" type="text" required>
                         </div>
-                        <div class="input-group py-2" style="max-width: 50rem;">
+                        <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputNumber">Hausnummer</span>
                             <input class="form-control" id="inputNumber" name="number" type="text" required>
                         </div>
-                        <div class="input-group py-2" style="max-width: 50rem;">
+                        <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputPlz">PLZ</span>
                             <input class="form-control" id="inputPlz" name="PLZ" type="text" required>
                         </div>
-                        <div class="input-group py-2" style="max-width: 50rem;">
+                        <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputCity">Stadt</span>
                             <input class="form-control" id="inputCity" name="city" type="text" required>
                         </div>
-                        <div class="col-6 d-flex justify-content-end">
+                        <div class="d-flex justify-content-center">
                                 <button class="btn btn-success mx-1" type="submit" name="action" value="add">Speichern</button>
                                 <button class="btn btn-danger mx-1" type="button" onclick="window.location.href = '/address.php';">Abbrechen</button>
                             </div>
@@ -215,9 +215,6 @@ $total_addresses = $stmt->rowCount();
                         <tr>
                             <div class="cbg ctext rounded">
                                 <th scope="col" class="border-0 text-center">
-                                    <div class="p-2 px-3 text-uppercase ctext">#</div>
-                                </th>
-                                <th scope="col" class="border-0 text-center">
                                     <div class="p-2 px-3 text-uppercase ctext">Straße</div>
                                 </th>
                                 <th scope="col" class="border-0 text-center">
@@ -236,9 +233,6 @@ $total_addresses = $stmt->rowCount();
                     <tbody>
                         <?php foreach ($addresses as $address): ?>
                             <tr>
-                                <td class="border-0 text-center">
-                                    <strong><?=$address['id']?></strong>
-                                </td>
                                 <td class="border-0 text-center">
                                     <strong><?=$address['street']?></strong>
                                 </td>
