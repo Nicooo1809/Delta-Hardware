@@ -92,6 +92,18 @@ hr {
     height: 100%;
 }
 
+.text-primary {
+    color: #bc13fe !important;
+}
+
+.text-white {
+    color: #cfff04 !important;
+}
+
+.text-dark {
+    color: #cfff04 !important;
+}
+
 .btn-primary {
     background-color: #cfff04 !important;
     border-color: #bce507 !important;
