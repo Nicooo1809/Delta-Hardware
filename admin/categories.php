@@ -1,80 +1,105 @@
-<!-- NOT CLEAR -->
 <?php
+// Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);
+// einbindung der functions.php
 require_once("php/functions.php");
+// Einbindung des Headers, gleichzeitig werden wenn der User angemeldet ist die User Daten übergeben
 $user = require_once("templates/header.php");
+// zeigt die Loginseite an wenn der User nicht angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Zeit die Error seite wenn der User keine berechtigungen hat die Kategorien zu sehen
 if ($user['showCategories'] != 1) {
-    error('Permission denied!');
+    error('Unzureichende Berechtigungen!');
 }
+// Überprüft ob eine Action zu erledigen ist 
 if(isset($_POST['action'])) {
+    // überprüft ob die aktion "add" ist
     if($_POST['action'] == 'add') {
+        // überprüft ob der User die berechtigungen hat Kategorien zu bearbeiten
         if ($user['modifyCategories'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
+        // Überprüft ob benötigten Variablen gesetzt sind
         if (isset($_POST['categoriesname']) and isset($_POST['parentcategorie'])) {
+            // SQL INSERT für unsere Produkt Typen
             $stmt = $pdo->prepare('INSERT INTO products_types (type, parent_id) VALUES (?,?)');
             $stmt->bindValue(1, $_POST['categoriesname']);
             $stmt->bindValue(2, $_POST['parentcategorie']);
             $result = $stmt->execute();
+            // Zeige Error wenn ein Fehler beim Einfügen auftritt
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
-            
+            // zurückleiten auf die bearbeitungsseite
             echo("<script>location.href='categories.php'</script>");
+            // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
         } else {
-            error('Some informations are missing!');
+            error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
-
+    // überprüft ob die aktion "del" (also delete) ist
     if($_POST['action'] == 'del') {
+        // überprüft ob der User die berechtigungen hat Kategorien zu bearbeiten
         if ($user['modifyCategories'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
+        // Überprüft ob benötigten Variablen gesetzt sind
         if(isset($_POST['categoriesid']) and !empty($_POST['categoriesid'])) {
+            // überprüfe ob die Confirm gesetzt und nicht lehr ist
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
+                // überprüfe ob der User den Ja button gedrückt hat
                 if ($_POST['confirm'] == 'yes') {
-                    // User clicked the "Yes" button, delete record
+                    // SQL UPDATE für unsere Produkte (hier wird der produkt_typ (Kategorie) auf eine andere Kategorie gesetzt)
                     $stmt = $pdo->prepare('UPDATE products SET product_type_id = ? WHERE product_type_id = ?');
                     $stmt->bindValue(1, $_POST['newparentcategorie'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $_POST['categoriesid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
+                    // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
                     if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
+                        error('Datenbank Fehler', pdo_debugStrParams($stmt));
                     }
-
+                    // Produkt Typ wird gelöscht
                     $stmt = $pdo->prepare('DELETE FROM products_types WHERE id = ?');
                     $stmt->bindValue(1, $_POST['categoriesid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
+                    // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
                     if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
+                        error('Datenbank Fehler', pdo_debugStrParams($stmt));
                     }
-                    
-
+                    // zurückleiten auf die bearbeitungsseite
                     echo("<script>location.href='categories.php'</script>");
                     exit;
+                // Wenn der User nicht Ja Klickt
                 } else {
-                    // User clicked the "No" button, redirect them back to the read page
+                    // zurückleiten auf die bearbeitungsseite
                     echo("<script>location.href='categories.php'</script>");
                     exit;
                 }
+            // Bestätigungs Formular anzeigen
             } else {
+                // Ruft alle nicht root Kategorien der Datenbank ab
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE NOT parent_id = 0');
                 $result = $stmt->execute();
+                // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler', pdo_debugStrParams($stmt));
                 }
-                $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Alle Kategorien werden in das array "root_cats" geschrieben (mit der abkürzung root_cats sind nicht Wurzel Katzen gemeint)
+                $root_cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Abfrage aller Produkt Kategorien
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE id = ?');
                 $stmt->bindValue(1, $_POST['categoriesid'], PDO::PARAM_INT);
                 $result = $stmt->execute();
+                // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler', pdo_debugStrParams($stmt));
                 }
+                // Abfrage wird in eine Temporäre Variable gespeichert
                 $tmp = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Bestätigungs Formular
                 ?>
                     <div class="container-fluid">
                         <div class="row no-gutter">
@@ -88,9 +113,9 @@ if(isset($_POST['action'])) {
                                         <p class="text-center">
                                             <form action="categories.php" method="post">
                                                 <?php if ($tmp[0]['parent_id'] != 0) { ?>
-                                                    <select class="form-select" id="newparentcategorie" name="newparentcategorie">
-                                                        <?php foreach ($cats as $cat) {
-                                                            print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
+                                                    <select class="form-select mb-3" id="newparentcategorie" name="newparentcategorie">
+                                                        <?php foreach ($root_cats as $root_cat) {
+                                                            print('<option class="text-dark" value="' . $root_cat['id'] . '">' . $root_cat['type'] . '</option>');
                                                         }
                                                         ?>
                                                     </select>
@@ -99,8 +124,8 @@ if(isset($_POST['action'])) {
                                                 } ?>
                                                 <input type="number" value="<?=$_POST['categoriesid']?>" name="categoriesid" style="display: none;" required>
                                                 <input type="text" value="del" name="action" style="display: none;" required>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
-                                                <a href="categories.php"><button class="btn btn-outline-primary mx-2" type="button">Nein</button></a>
+                                                <button class="btn btn-outline-success mx-2" type="submit" name="confirm" value="yes">Ja</button>
+                                                <a href="categories.php"><button class="btn btn-outline-danger mx-2" type="button">Nein</button></a>
                                             </form>
                                         </p>
                                     </div>
@@ -108,48 +133,61 @@ if(isset($_POST['action'])) {
                             </div>
                         </div>
                     </div>
+                <!-- Einbindung des Footers -->
                 <?php
                 require_once("templates/footer.php");
                 exit;
             }
+        // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
         } else {
-            error('Some informations are missing!');
+            error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
+    // überprüft ob die aktion "add" ist
     if($_POST['action'] == 'mod') {
+        // überprüft ob der User die berechtigungen hat Kategorien zu bearbeiten
         if ($user['modifyCategories'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
-
+        // Update der Elternkategorie & des Namens
         $stmt = $pdo->prepare("UPDATE products_types SET type = ?, parent_id = ? WHERE id = ?");
         $stmt->bindValue(1, $_POST['categoriesname']);
         $stmt->bindValue(2, $_POST['parentcategories'], PDO::PARAM_INT);
         $stmt->bindValue(3, $_POST['categoriesid'], PDO::PARAM_INT);
         $result = $stmt->execute();
+        // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler', pdo_debugStrParams($stmt));
         }
+        // zurückleiten auf die bearbeitungsseite
         echo("<script>location.href='categories.php'</script>");
         exit;
     }
+    // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
+        // zurückleiten auf die bearbeitungsseite
         echo("<script>location.href='categories.php'</script>");
         exit;
     }
 }
-
+// Abfrage der Kategorien und Zählung der Produkte
 $stmt = $pdo->prepare('SELECT *,(SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id) as products from products_types');
 $result = $stmt->execute();
+// Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler', pdo_debugStrParams($stmt));
 }
+// Ergebniss der Abfrage wird in categories eingefügt
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Abfrage aller ROOT Kategorien
 $stmt = $pdo->prepare('SELECT * from products_types where parent_id = 0');
 $result = $stmt->execute();
+// Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler', pdo_debugStrParams($stmt));
 }
-$cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Alle Kategorien werden in das array "root_cats" geschrieben (mit der abkürzung root_cats sind nicht Wurzel Katzen gemeint)
+$root_cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
@@ -163,8 +201,8 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="input-group">
                             <input type="text" name="categoriesname" class="form-control" required>
                             <select class="form-select" id="parentcategorie" name="parentcategorie">
-                                <?php foreach ($cats as $cat) {
-                                    print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
+                                <?php foreach ($root_cats as $root_cat) {
+                                    print('<option class="text-dark" value="' . $root_cat['id'] . '">' . $root_cat['type'] . '</option>');
                                 }
                                 print('<option class="text-dark" value="0">ROOT</option>');
                                 ?>
@@ -186,10 +224,10 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="p-2 px-3 text-uppercase">Name</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Parrent Categorie</div>
+                                    <div class="p-2 px-3 text-uppercase">Eltern Kategorie</div>
                                 </th>
                                 <th scope="col" class="border-0">
-                                    <div class="p-2 px-3 text-uppercase">Products</div>
+                                    <div class="p-2 px-3 text-uppercase text-center">Products</div>
                                 </th>
                                 <?php if ($user['modifyCategories'] == 1) {?>
                                 <th scope="col" class="border-0" style="width: 15%">
@@ -211,11 +249,11 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </td>
                                         <td class="border-0 align-middle text-center">
                                             <select class="form-select" id="parentcategories" name="parentcategories">
-                                                <?php foreach ($cats as $cat) {
-                                                    if ($cat['id'] == $categorie['parent_id']) {
-                                                        print('<option class="text-dark" value="' . $cat['id'] . '" selected>' . $cat['type'] . '</option>');
+                                                <?php foreach ($root_cats as $root_cat) {
+                                                    if ($root_cat['id'] == $categorie['parent_id']) {
+                                                        print('<option class="text-dark" value="' . $root_cat['id'] . '" selected>' . $root_cat['type'] . '</option>');
                                                     } else {
-                                                        print('<option class="text-dark" value="' . $cat['id'] . '">' . $cat['type'] . '</option>');
+                                                        print('<option class="text-dark" value="' . $root_cat['id'] . '">' . $root_cat['type'] . '</option>');
                                                     }
                                                 }
                                                 if ($categorie['parent_id'] == 0) {
@@ -251,9 +289,9 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <strong><?=$categorie['type']?></strong>
                                 </td>
                                 <td class="border-0 align-middle text-center">
-                                    <?php foreach ($cats as $cat) {
-                                        if ($cat['id'] == $categorie['parent_id']) {
-                                            print('<a value="' . $cat['id'] . '">' . $cat['type'] . '</a>');
+                                    <?php foreach ($root_cats as $root_cat) {
+                                        if ($root_cat['id'] == $categorie['parent_id']) {
+                                            print('<a value="' . $root_cat['id'] . '">' . $root_cat['type'] . '</a>');
                                         }
                                     }
                                     if ($categorie['parent_id'] == 0) {
@@ -274,7 +312,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </div> 
-
+<!-- Footer einbindung -->
 <?php
 include_once("templates/footer.php")
 ?>

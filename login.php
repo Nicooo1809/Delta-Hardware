@@ -86,7 +86,7 @@ if (isset($user['id'])) {
 								</div>
 								
 								<button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm">Anmelden</button>
-								<div class="text-center d-flex justify-content-between mt-4 "><p>Noch kein Kunde? <a href="register" class="font-italic text-muted"> 
+								<div class="text-center d-flex justify-content-between mt-4 "><p>Noch kein Kunde? <a href="register.php" class="font-italic text-muted"> 
 									<u>Registrieren</u></a></p>
 								</div>
 							</form>
