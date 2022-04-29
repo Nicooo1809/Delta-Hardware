@@ -1,3 +1,4 @@
+<!-- NOT CLEAR -->
 <?php
 chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");

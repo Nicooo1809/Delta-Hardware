@@ -1,5 +1,5 @@
+<!-- NOT CLEAR -->
 <?php
-chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 if (!isset($user['id'])) {

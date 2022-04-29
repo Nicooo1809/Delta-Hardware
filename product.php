@@ -1,3 +1,4 @@
+<!-- NOT CLEAR -->
 <?php
 require_once("php/functions.php");
 // The amounts of products to show on each page

@@ -1,3 +1,4 @@
+<!-- NOT CLEAR -->
 <?php
 require_once("php/functions.php");
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...

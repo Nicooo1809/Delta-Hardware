@@ -1,3 +1,4 @@
+<!-- NOT CLEAR -->
 <div class="alert text-center cookiealert" role="alert">
     <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten.
 
