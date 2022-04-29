@@ -50,7 +50,7 @@ a {
 }
 
 .ctext {
-    color: #cfff04 !important;
+    color: #bc13fe !important;
 }
 
 .dropdown-menu {
@@ -59,7 +59,7 @@ a {
 
 .dropdown-item {
     font-size: 1.3rem;
-    color: #cfff04 !important;
+    color: #bc13fe !important;
 }
 
 .dropdown-item:hover {
@@ -74,7 +74,7 @@ a {
 
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
     font-size: 1.5rem;
-    color: #cfff04 !important;
+    color: #bc13fe !important;
     transition: all 0.5s ease;
 }
 
