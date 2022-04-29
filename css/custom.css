@@ -8,7 +8,6 @@
     padding: 0;
     scroll-behavior: smooth;
     font-family: "Montserrat", sans-serif;
-    border-style: dotted !important;
 }
 
 html, body {
@@ -24,6 +23,7 @@ li, a, button {
     font-size: 18px !important;
     color: #bc13fe !important;
     text-decoration: none !important;
+    border-style: dotted !important;
 }
 
 span, div, i {
@@ -160,4 +160,8 @@ a {
 .btn-outline-primary.disabled,.btn-outline-primary:disabled {
 	color:#cfff04 !important;
 	background-color:transparent;
+}
+
+.card {
+    border-style: dotted !important;
 }
