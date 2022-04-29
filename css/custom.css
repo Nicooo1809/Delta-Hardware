@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
 * {
-    color: #cfff04 !important;
+    color: #bc13fe !important;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -21,12 +21,12 @@ li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
     font-size: 18px !important;
-    color: #cfff04 !important;
+    color: #bc13fe !important;
     text-decoration: none !important;
 }
 
 span, div, i {
-    color: #cfff04 !important;
+    color: #bc13fe !important;
 }
 
 hr {
@@ -101,11 +101,11 @@ a {
 }
 
 .text-white {
-    color: #cfff04 !important;
+    color: #bc13fe !important;
 }
 
 .text-dark {
-    color: #cfff04 !important;
+    color: #bc13fe !important;
 }
 
 .btn-primary {
