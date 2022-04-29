@@ -16,7 +16,7 @@ function check_user($redirect = TRUE) {
 		$securitytoken_row = $stmt->fetch();
 		if(sha1($securitytoken) !== $securitytoken_row['securitytoken']) {
 			//Vermutlich wurde der Security Token gestohlen
-			header("location: logout.php");
+			header("location: /logout.php");
 		} else { //Token war korrekt
 			//Setze neuen Token
 			$neuer_securitytoken = md5(uniqid());
