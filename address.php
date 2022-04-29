@@ -101,16 +101,6 @@ if(isset($_POST['action'])) {
         } 
     }
     if($_POST['action'] == 'add') {
-        /*
-        $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where `address`.`citys_id` = citys.id and `address`.`user_id` = ? and `address`.`id` = ?');
-        $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
-        $stmt->bindValue(2, $_POST['addressid'], PDO::PARAM_INT);
-        $result = $stmt->execute();
-        if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
-        }
-        $address = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        */
         if(isset($_POST['street']) and isset($_POST['number']) and isset($_POST['PLZ']) and isset($_POST['city']) and !empty($_POST['street']) and !empty($_POST['number']) and !empty($_POST['PLZ']) and !empty($_POST['city'])) {
 
             $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
