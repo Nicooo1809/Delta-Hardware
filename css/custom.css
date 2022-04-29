@@ -21,12 +21,12 @@ li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
     font-size: 18px !important;
-    color: #cfff04;
+    color: #cfff04 !important;
     text-decoration: none !important;
 }
 
 span, div, i {
-    color: #cfff04;
+    color: #cfff04 !important;
 }
 
 hr {
@@ -35,10 +35,6 @@ hr {
     width: 90% !important;
     margin: auto !important;
     opacity: .25 !important;
-}
-
-a {
-    color: #bc13fe !important;
 }
 
 .cbg {
