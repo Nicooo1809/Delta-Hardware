@@ -115,101 +115,202 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	<div class="row no-gutter">
 		<!-- will do somethinge else for error/success_msg later -->
 		<?php if(isset($error_msg) && !empty($error_msg)) {echo $error_msg;}?>
-
-		<!-- Persönliche Daten Card -->
-		<div class="card cbg ctext my-2 mx-auto">
-			<div class="card-body text-center">
-				<h1 class="card-title">Persönliche Daten</h1>
-				<div class="card-text">
-					<div class="row justify-content-between <?php if (isMobile()) { print("row-cols-1"); } ?>}">
-						<!-- Name -->
-						<div class="cvl col-6">
-							<h3 class="ctext">Name</h3>
-							<form action="?save=personal_data" method="post">
-								<div class="form-floating mb-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputVorname" placeholder="Vorname" name="vorname" type="text" value="<?=$user['vorname']?>" required>
-									<label class="text-dark fw-bold" for="inputVorname">Vorname</label>
-								</div>
-								<div class="form-floating my-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputNachname" placeholder="Nachname" name="nachname" type="text" value="<?=$user['nachname']?>" required>
-									<label class="text-dark fw-bold" for="inputNachname">Nachname</label>
-								</div>
-								<button class="btn btn-outline-primary" type="submit">Speichern</button>
-							</form>
-						</div>
-						<!-- Adresse -->
-						<div class="col-6">
-							<h3 class="ctext">Adresse</h3>
-								<button class="btn btn-primary mb-2" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
-								<form action="?save=address" method="post">
-								<div class="form-floating mb-2">
-									<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
-										<?php foreach ($addresses as $address): ?>
-											<?php if ($address['default'] == 1): ?>
-												<option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-											<?php else:?>
-												<option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
-											<?php endif; ?>
-										<?php endforeach; ?>
-									</select>
-									<label class="text-dark fw-bold" for="inputStandardaddresse">Standard Adresse</label>
-								</div>
-								<button class="btn btn-outline-primary" type="submit">Speichern</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- E-Mail und Password Card -->
-		<div class="card cbg ctext my-2 mx-auto">
-			<div class="card-body text-center">
-				<h1 class="card-title">Sicherheit</h1>
-				<div class="card-text">
-					<div class="row justify-content-between <?php if (isMobile()) { print("row-cols-1"); }?>">
-						<div class="cvl col-6">
-							<!-- E-Mail -->
-							<h3 class="ctext">E-Mail-Adresse</h3>
-							<form action="?save=email" method="post">
-								<div class="form-floating mb-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswort" placeholder="Passwort" name="passwort" type="password" required>
-									<label class="text-dark fw-bold" for="inputPasswort">Passwort</label>
-								</div>
-								<div class="form-floating my-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputEmail" placeholder="E-Mail" name="email" type="email" value="<?=$user['email']?>" required>
-									<label class="text-dark fw-bold" for="inputEmail">E-Mail</label>
-								</div>
-								<div class="form-floating my-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputEmail2" placeholder="E-Mail wiederholen" name="email2" type="email" required>
-									<label class="text-dark fw-bold" for="inputEmail2">E-Mail wiederholen</label>
-								</div>
-								<button class="btn btn-outline-primary" type="submit">Speichern</button>
-							</form>
-						</div>
-						<!-- Passwort -->
-						<div class="col-6">
-							<h3 class="ctext">Passwort</h3>
-							<form>
-								<div class="form-floating mb-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswort" placeholder="Altes Passwort" name="passwortAlt" type="password" required>
-									<label class="text-dark fw-bold" for="inputPasswort">Altes Passwort</label>
-								</div>
-								<div class="form-floating my-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswortNeu" placeholder="Neues Passwort" name="passwortNeu" type="password" required>
-									<label class="text-dark fw-bold" for="inputPasswortNeu">Neues Passwort</label>
-								</div>
-								<div class="form-floating my-2">
-									<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswortNeu2" placeholder="Neues Passwort wiederholen" name="passwortNeu2" type="password"  required>
-									<label class="text-dark fw-bold" for="inputPasswortNeu2">Neues Passwort wiederholen</label>
-								</div>
-								<button class="btn btn-outline-primary" type="submit">Speichern</button>
-							</form>
+		<!-- Desktop Design -->
+		<?php if (!isMobile()): ?>
+			<!-- Persönliche Daten Card -->
+			<div class="card cbg ctext my-2 mx-auto">
+				<div class="card-body text-center">
+					<h1 class="card-title">Persönliche Daten</h1>
+					<div class="card-text">
+						<div class="row justify-content-between">
+							<!-- Name -->
+							<div class="cvl col-6">
+								<h3 class="ctext">Name</h3>
+								<form action="?save=personal_data" method="post">
+									<div class="form-floating mb-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputVorname" placeholder="Vorname" name="vorname" type="text" value="<?=$user['vorname']?>" required>
+										<label class="text-dark fw-bold" for="inputVorname">Vorname</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputNachname" placeholder="Nachname" name="nachname" type="text" value="<?=$user['nachname']?>" required>
+										<label class="text-dark fw-bold" for="inputNachname">Nachname</label>
+									</div>
+									<button class="btn btn-outline-primary" type="submit">Speichern</button>
+								</form>
+							</div>
+							<!-- Adresse -->
+							<div class="col-6">
+								<h3 class="ctext">Adresse</h3>
+									<button class="btn btn-primary mb-2" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
+									<form action="?save=address" method="post">
+									<div class="form-floating mb-2">
+										<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
+											<?php foreach ($addresses as $address): ?>
+												<?php if ($address['default'] == 1): ?>
+													<option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+												<?php else:?>
+													<option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+												<?php endif; ?>
+											<?php endforeach; ?>
+										</select>
+										<label class="text-dark fw-bold" for="inputStandardaddresse">Standard Adresse</label>
+									</div>
+									<button class="btn btn-outline-primary" type="submit">Speichern</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+
+			<!-- E-Mail und Password Card -->
+			<div class="card cbg ctext my-2 mx-auto">
+				<div class="card-body text-center">
+					<h1 class="card-title">Sicherheit</h1>
+					<div class="card-text">
+						<div class="row justify-content-between">
+							<div class="cvl col-6">
+								<!-- E-Mail -->
+								<h3 class="ctext">E-Mail-Adresse</h3>
+								<form action="?save=email" method="post">
+									<div class="form-floating mb-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswort" placeholder="Passwort" name="passwort" type="password" required>
+										<label class="text-dark fw-bold" for="inputPasswort">Passwort</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputEmail" placeholder="E-Mail" name="email" type="email" value="<?=$user['email']?>" required>
+										<label class="text-dark fw-bold" for="inputEmail">E-Mail</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputEmail2" placeholder="E-Mail wiederholen" name="email2" type="email" required>
+										<label class="text-dark fw-bold" for="inputEmail2">E-Mail wiederholen</label>
+									</div>
+									<button class="btn btn-outline-primary" type="submit">Speichern</button>
+								</form>
+							</div>
+							<!-- Passwort -->
+							<div class="col-6">
+								<h3 class="ctext">Passwort</h3>
+								<form>
+									<div class="form-floating mb-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswort" placeholder="Altes Passwort" name="passwortAlt" type="password" required>
+										<label class="text-dark fw-bold" for="inputPasswort">Altes Passwort</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswortNeu" placeholder="Neues Passwort" name="passwortNeu" type="password" required>
+										<label class="text-dark fw-bold" for="inputPasswortNeu">Neues Passwort</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswortNeu2" placeholder="Neues Passwort wiederholen" name="passwortNeu2" type="password"  required>
+										<label class="text-dark fw-bold" for="inputPasswortNeu2">Neues Passwort wiederholen</label>
+									</div>
+									<button class="btn btn-outline-primary" type="submit">Speichern</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- Mobile Design -->
+		<?php else: ?>
+			<!-- Persönliche Daten Card -->
+			<div class="card cbg ctext my-2 mx-auto">
+				<div class="card-body text-center">
+					<h1 class="card-title">Persönliche Daten</h1>
+					<div class="card-text">
+						<div class="row justify-content-between row-cols-1">
+							<!-- Name -->
+							<div class="col my-3">
+								<h3 class="ctext">Name</h3>
+								<form action="?save=personal_data" method="post">
+									<div class="form-floating mb-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputVorname" placeholder="Vorname" name="vorname" type="text" value="<?=$user['vorname']?>" required>
+										<label class="text-dark fw-bold" for="inputVorname">Vorname</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputNachname" placeholder="Nachname" name="nachname" type="text" value="<?=$user['nachname']?>" required>
+										<label class="text-dark fw-bold" for="inputNachname">Nachname</label>
+									</div>
+									<button class="btn btn-outline-primary" type="submit">Speichern</button>
+								</form>
+							</div>
+							<!-- Adresse -->
+							<div class="col my-3">
+								<h3 class="ctext">Adresse</h3>
+									<button class="btn btn-primary mb-2" type="button" onclick="window.location.href = '/address.php';">Bearbeiten</button>
+									<form action="?save=address" method="post">
+									<div class="form-floating mb-2">
+										<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
+											<?php foreach ($addresses as $address): ?>
+												<?php if ($address['default'] == 1): ?>
+													<option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+												<?php else:?>
+													<option class="text-dark" value="<?=$address['id']?>" ><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
+												<?php endif; ?>
+											<?php endforeach; ?>
+										</select>
+										<label class="text-dark fw-bold" for="inputStandardaddresse">Standard Adresse</label>
+									</div>
+									<button class="btn btn-outline-primary" type="submit">Speichern</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- E-Mail und Password Card -->
+			<div class="card cbg ctext my-2 mx-auto">
+				<div class="card-body text-center">
+					<h1 class="card-title">Sicherheit</h1>
+					<div class="card-text">
+						<div class="row justify-content-between row-cols-1">
+							<div class="col my-3">
+								<!-- E-Mail -->
+								<h3 class="ctext">E-Mail-Adresse</h3>
+								<form action="?save=email" method="post">
+									<div class="form-floating mb-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswort" placeholder="Passwort" name="passwort" type="password" required>
+										<label class="text-dark fw-bold" for="inputPasswort">Passwort</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputEmail" placeholder="E-Mail" name="email" type="email" value="<?=$user['email']?>" required>
+										<label class="text-dark fw-bold" for="inputEmail">E-Mail</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputEmail2" placeholder="E-Mail wiederholen" name="email2" type="email" required>
+										<label class="text-dark fw-bold" for="inputEmail2">E-Mail wiederholen</label>
+									</div>
+									<button class="btn btn-outline-primary" type="submit">Speichern</button>
+								</form>
+							</div>
+							<!-- Passwort -->
+							<div class="col my-3">
+								<h3 class="ctext">Passwort</h3>
+								<form>
+									<div class="form-floating mb-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswort" placeholder="Altes Passwort" name="passwortAlt" type="password" required>
+										<label class="text-dark fw-bold" for="inputPasswort">Altes Passwort</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswortNeu" placeholder="Neues Passwort" name="passwortNeu" type="password" required>
+										<label class="text-dark fw-bold" for="inputPasswortNeu">Neues Passwort</label>
+									</div>
+									<div class="form-floating my-2">
+										<input class="form-control border-0 ps-4 text-dark fw-bold" id="inputPasswortNeu2" placeholder="Neues Passwort wiederholen" name="passwortNeu2" type="password"  required>
+										<label class="text-dark fw-bold" for="inputPasswortNeu2">Neues Passwort wiederholen</label>
+									</div>
+									<button class="btn btn-outline-primary" type="submit">Speichern</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		<?php endif; ?>
 	</div>
 </div>
 	
