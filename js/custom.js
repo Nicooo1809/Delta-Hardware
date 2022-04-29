@@ -1,8 +1,6 @@
 // NOT CLEAR
 setStyle();
 
-//document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
-
 function toggleStyle() {
   if (getCookie("style") == "dark") {
     setCookie("style", "light", 365);
@@ -13,32 +11,28 @@ function toggleStyle() {
 }
 
 function setStyle() {
-  if (getCookie("style") == "dark") {
-    setCookie("style", "dark", 365);
-    document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
-    document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
-    //document.getElementById("theme_css").remove()
-    /*
-    var fileref = document.createElement("link");
-    fileref.setAttribute("rel", "stylesheet");
-    fileref.setAttribute("type", "text/css");
-    fileref.setAttribute("href", "/css/dark.css");
-    //fileref.setAttribute("id", "theme_css");
-    document.getElementsByTagName("head")[0].appendChild(fileref);
-    */
+  if (getCookie("style") == "dark" || getCookie("style") == "custom" ) {
+    if (e.ctrlKey) {
+      setCookie("style", "custom", 365);
+
+      var head = document.getElementsByTagName('head')[0];
+      var style = document.createElement('link');
+      style.href = '/css/custom.css';
+      style.type = 'text/css';
+      style.rel = 'stylesheet';
+      head.append(style);
+
+      document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
+      document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
+    } else {
+      setCookie("style", "dark", 365);
+      document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = false;
+      document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
+    }
   } else {
     setCookie("style", "light", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = false;
-    //document.getElementById("theme_css").remove()
-    /*
-    var fileref = document.createElement("link");
-    fileref.setAttribute("rel", "stylesheet");
-    fileref.setAttribute("type", "text/css");
-    fileref.setAttribute("href", "/css/light.css");
-    //fileref.setAttribute("id", "theme_css");
-    document.getElementsByTagName("head")[0].appendChild(fileref);
-    */
   }
 }
 
