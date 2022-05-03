@@ -12,7 +12,7 @@
 
 html, body {
     /*background-color: rgb(66, 66, 66); */
-    background-color: #fe2f4a !important;
+    background-color: #2d3238 !important;
     height: 100%;
 	margin: 0;
 }
@@ -43,6 +43,8 @@ a {
 
 .cbg {
     background-color: #4efd54 !important;
+    border-style: dotted;
+    border-color: #fe2f4a;
 }
 
 .cbg2 {
