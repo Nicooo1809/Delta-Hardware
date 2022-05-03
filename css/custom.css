@@ -72,7 +72,7 @@ a {
     height: 50px;
     width: 50px;
     display: block;
-    filter: brightness(0.5) sepia(1) saturate(10000%);
+    filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(290deg);
 }
 
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
