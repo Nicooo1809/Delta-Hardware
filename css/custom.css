@@ -56,7 +56,8 @@ a {
 }
 
 .dropdown-menu {
-    background-color: #4efd54 !important;
+    background-color: #4efd54;
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red) !important;
 }
 
 .dropdown-item {
@@ -121,7 +122,8 @@ a {
 }
 
 .btn-primary:hover {
-    background-color: #bce507 !important;
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red) !important;
+    background-color: #bce507;
     border-color: #9fc205 !important;
 }
 
@@ -130,7 +132,8 @@ a {
 }
 
 .btn-check:active+.btn-primary,.btn-check:checked+.btn-primary,.btn-primary.active,.btn-primary:active,.show>.btn-primary.dropdown-toggle {
-    background-color: #cfff04 !important;
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red) !important;
+    background-color: #cfff04;
     border-color: #bce507 !important;
 }
 
