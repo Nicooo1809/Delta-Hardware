@@ -72,6 +72,7 @@ a {
     height: 50px;
     width: 50px;
     display: block;
+    filter:hue-rotate(100deg);
 }
 
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
