@@ -57,7 +57,8 @@ a {
 
 .dropdown-menu {
     background-color: #4efd54;
-    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red) !important;
+    animation: rainbow-bg 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
 }
 
 .dropdown-item {
@@ -122,7 +123,8 @@ a {
 }
 
 .btn-primary:hover {
-    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red) !important;
+    animation: rainbow-bg 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     background-color: #bce507;
     border-color: #9fc205 !important;
 }
@@ -132,7 +134,8 @@ a {
 }
 
 .btn-check:active+.btn-primary,.btn-check:checked+.btn-primary,.btn-primary.active,.btn-primary:active,.show>.btn-primary.dropdown-toggle {
-    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red) !important;
+    animation: rainbow-bg 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     background-color: #cfff04;
     border-color: #bce507 !important;
 }
@@ -169,4 +172,82 @@ a {
 .btn-outline-primary.disabled,.btn-outline-primary:disabled {
 	color:#cfff04 !important;
 	background-color:transparent;
+}
+
+@keyframes rainbow-bg{
+    100%,0%{
+        background-color: rgb(255,0,0);
+    }
+    8%{
+        background-color: rgb(255,127,0);
+    }
+    16%{
+        background-color: rgb(255,255,0);
+    }
+    25%{
+        background-color: rgb(127,255,0);
+    }
+    33%{
+        background-color: rgb(0,255,0);
+    }
+    41%{
+        background-color: rgb(0,255,127);
+    }
+    50%{
+        background-color: rgb(0,255,255);
+    }
+    58%{
+        background-color: rgb(0,127,255);
+    }
+    66%{
+        background-color: rgb(0,0,255);
+    }
+    75%{
+        background-color: rgb(127,0,255);
+    }
+    83%{
+        background-color: rgb(255,0,255);
+    }
+    91%{
+        background-color: rgb(255,0,127);
+    }
+}
+
+@keyframes rainbow{
+    100%,0%{
+        color: rgb(255,0,0);
+    }
+    8%{
+        color: rgb(255,127,0);
+    }
+    16%{
+        color: rgb(255,255,0);
+    }
+    25%{
+        color: rgb(127,255,0);
+    }
+    33%{
+        color: rgb(0,255,0);
+    }
+    41%{
+        color: rgb(0,255,127);
+    }
+    50%{
+        color: rgb(0,255,255);
+    }
+    58%{
+        color: rgb(0,127,255);
+    }
+    66%{
+        color: rgb(0,0,255);
+    }
+    75%{
+        color: rgb(127,0,255);
+    }
+    83%{
+        color: rgb(255,0,255);
+    }
+    91%{
+        color: rgb(255,0,127);
+    }
 }
