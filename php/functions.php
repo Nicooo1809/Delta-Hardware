@@ -70,7 +70,7 @@ function error($error_msg, $error_log = "") {
 	exit();
 }
 
-// Überprüft ob es ein Handy ist
+// Überprüft ob das verwendete Gerät ein Handy ist
 function isMobile () {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }

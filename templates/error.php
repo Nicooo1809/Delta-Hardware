@@ -1,4 +1,3 @@
-<!-- NOT CLEAR -->
 <div class="minheight100 container-fluid">
     <div class="position-absolute top-50 start-50 translate-middle">
         <!-- Zeigt die Fehlermeldung in der Mitte des bildschirms -->

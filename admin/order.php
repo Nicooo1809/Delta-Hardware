@@ -1,71 +1,85 @@
-<!-- NOT CLEAR -->
 <?php
+// Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
+// Leite User auf Login weiter wenn dieser nicht Angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Zeit die Error seite wenn der User keine berechtigungen hat
 if ($user['showOrders'] != 1) {
-    error('Permission denied!');
+    error('Unzureichende Berechtigungen!');
 }
+// Falls in der URL keine ID angegeben ist wird auf die internal.php umgeleitet
 if (!isset($_GET['id']) or empty($_GET['id'])) {
     echo("<script>location.href='/internal.php'</script>");
 }
+// Ruft alle Produkte und Bilder dieser von der Datenbank ab, welche im Wahrenkorb mit entsprechender ID sind
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and product_list.list_id = ?');
 $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
+// Zeige die Error Page mit der Meldung "Datenbank Fehler!"
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Überprüfe ob die POST Action "confirm" gesetzt ist
 if(isset($_POST['confirm'])) {
+    // Überprüfe ob die POST Action "confirm" auf "yes" gesetzt ist
     if($_POST['confirm'] == 'yes') {
-		if ($user['markOrders'] != 1) {
-			error('Permission denied!');
+		// Zeit die Error seite wenn der User keine berechtigungen hat
+        if ($user['markOrders'] != 1) {
+			error('Unzureichende Berechtigungen!');
 		}
+        // Updatet die Bestellung mit Enstprechender ID, der Parametrer "sent" wird auf 1 gesetzt und das sent_date wird auf das Aktuelle Datum gesetzt
         $stmt = $pdo->prepare('UPDATE orders SET sent = 1, sent_date = now() WHERE id = ? and ordered = 1');
         $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
         $result = $stmt->execute();
+        // Zeige die Error Page mit der Meldung "Datenbank Fehler!"
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
+        // Weiterleiten auf die Internal
 		echo("<script>location.href='/internal.php'</script>");
     }
 }
-
+// Ruft die Order mit der ID aus der URL ab, hierbei werden auch die Daten des Users gezogen
 $stmt = $pdo->prepare('SELECT * FROM users, orders where users.id = orders.kunden_id AND orders.id = ?');
 $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
+// Zeige die Error Page mit der Meldung "Datenbank Fehler!"
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $customer = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// SQL Abfrage für die Adresse bei der Bestellung ausgeählten Rechnungsadresse
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $customer[0]['rechnungsadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
+// Zeige die Error Page mit der Meldung "Datenbank Fehler!"
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $rechnungsadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// SQL Abfrage für die Adresse bei der Bestellung ausgeählten Lieferadresse
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $customer[0]['lieferadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
+// Zeige die Error Page mit der Meldung "Datenbank Fehler!"
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Summe wird berechnet
 $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
 }
 ?>
+<!-- Desktop View -->
 <?php if (!isMobile()): ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row">
@@ -77,6 +91,7 @@ foreach ($products as $product) {
                             <p>Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
                         </div>
                         <div class="col-4">
+                            <!-- Wird nur angezeit wenn der user die Berechtigungen zum erledigen von Bestellungen hat -->
                             <?php if ($user['markOrders'] == 1) { ?>
                                 <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
                                     <button type="submit" name="confirm" value="yes" class="btn btn-outline-success me-2">Erledigt</button>
@@ -120,6 +135,7 @@ foreach ($products as $product) {
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Für Produkte der Bestellung -->
                             <?php foreach ($products as $product): ?>
                                 <tr>
                                     <th scope="row" class="border-0">
@@ -151,6 +167,7 @@ foreach ($products as $product) {
             </div>
         </div>
     </div> 
+<!-- Mobile View -->
 <?php else: ?>
     <div class="container minheight100 products content-wrapper py-2 px-2">
         <div class="card mx-auto my-2 cbg">
@@ -177,6 +194,7 @@ foreach ($products as $product) {
                 </div>
             </div>
         </div>
+        <!-- Wird nur angezeigt wenn der User berechtigungen hat die Bestellungen als Erledigt zu Markieren -->
         <?php if ($user['markOrders'] == 1) { ?>
             <div class="card mx-auto my-2 cbg">
                 <div class="card-body">
@@ -187,6 +205,7 @@ foreach ($products as $product) {
                 </div>
             </div>
         <?php } ?>
+        <!-- Für jedes Produkt der bestellung -->
         <?php foreach ($products as $product): ?>
             <div class="col">
                 <div class="card mx-auto my-2 cbg">
