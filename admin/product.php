@@ -1,4 +1,3 @@
-<!-- NOT CLEAR -->
 <?php
 // Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);

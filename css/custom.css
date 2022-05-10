@@ -1,6 +1,8 @@
 /* NOT CLEAR */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
+/* ALLES */
+/* CSS für "alles" */
 * {
     color: #bc13fe !important;
     box-sizing: border-box;
@@ -10,6 +12,7 @@
     font-family: "Montserrat", sans-serif;
 }
 
+/* CSS für <html> und <body> */
 html, body {
     /*background-color: rgb(66, 66, 66); */
     background-color: #2d3238 !important;
@@ -17,6 +20,7 @@ html, body {
 	margin: 0;
 }
 
+/* CSS für List Items, verlinkungen und Knöpfe */
 li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
@@ -25,10 +29,12 @@ li, a, button {
     text-decoration: none !important;
 }
 
+/* CSS für <span> <div> und <i> */
 span, div, i {
     color: #bc13fe !important;
 }
 
+/* CSS für <hr> (Horizontal Line) */
 hr {
     border: 0 !important;
     border-top: 1px solid #cfff04 !important;
@@ -37,52 +43,28 @@ hr {
     opacity: .25 !important;
 }
 
-a {
-    color: #bc13fe !important;
-}
 
+/* Aufgrund von unserem Style Switch (classes welche sich je nach CSS Datei ändern) */
+/* Custom Background */
 .cbg {
     background-color: #4efd54 !important;
     border-style: dotted;
     border-color: #fe2f4a;
 }
 
+/* Custom Background 2 */
 .cbg2 {
     background-color: #fe019a !important;
 }
 
+/* Custom Text */
 .ctext {
     color: #bc13fe !important;
 }
 
-.dropdown-menu {
-    background-color: #4efd54;
-    animation: rainbow-bg 2.5s linear  !important;
-    animation-iteration-count: infinite  !important;
-}
 
-.dropdown-item {
-    font-size: 1.3rem;
-    color: white !important;
-}
 
-.dropdown-item:hover {
-    background-color: #2c3135 !important;
-}
-
-.navbar-icon {
-    height: 50px;
-    width: 50px;
-    display: block;
-    filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(290deg);
-}
-
-.fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
-    font-size: 1.5rem;
-    color: #bc13fe !important;
-    transition: all 0.5s ease;
-}
-
+/* CSS für das 404 Image */
 .fof-img {
     background-image: url("/media/404_dark.gif");
     height: 70%; 
@@ -91,24 +73,64 @@ a {
     background-size: contain;
 }
 
+/* Custom Vertical line left */
 .cvr {
     border-left: 2px solid #cfff04;
     height: 100%;
 }
 
+/* Custom Vertical line right */
 .cvl {
     border-right: 2px solid #cfff04;
     height: 100%;
 }
 
+
+
+/* Custom CSS für Bootstrap sachen */
+/* CSS für dropdown-menus (kommt an sich nur im Header vor) */
+.dropdown-menu {
+    background-color: #4efd54;
+    animation: rainbow-bg 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+}
+
+/* CSS fpr dropdown-items (kommt so auch nur im Header vor) */
+.dropdown-item {
+    font-size: 1.3rem;
+    color: white !important;
+}
+
+/* CSS für das hovern auf dropdown-items */
+.dropdown-item:hover {
+    background-color: #2c3135 !important;
+}
+
+/* Navbar Icon CSS */
+.navbar-icon {
+    height: 50px;
+    width: 50px;
+    display: block;
+    filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(290deg);
+}
+
+/* CSS für unsere Icons (an sich auch nur die im Header) */
+.fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
+    font-size: 1.5rem;
+    color: #bc13fe !important;
+    transition: all 0.5s ease;
+}
+
+/* Anpassung am Bootstrap dark background */
 .bg-dark {
     background-color: #fe019a !important;
 }
 
+/* Anpassung am Bootstrap Primary text */
 .text-primary {
     color: #bc13fe !important;
 }
-
+/* Anpassung am  */
 .text-white {
     color: #bc13fe !important;
 }

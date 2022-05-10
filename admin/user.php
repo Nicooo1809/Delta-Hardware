@@ -1,4 +1,3 @@
-<!-- NOT CLEAR -->
 <?php
 // Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);
@@ -21,14 +20,16 @@ if(isset($_POST['action'])) {
         if ($user['deleteUser'] != 1 || $_POST['userid'] == 1) {
             error('Unzureichende Berechtigungen!');
         }
-        // Wenn die User IC ausgewählt ist
+        // Wenn die User ID gesetzt ist
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
+            // Lösche alle securitytokens mit gegebener user ID
             $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
+            // Setzt alle Bestellungen des gegebenen Users auf den Admin user um
             $stmt = $pdo->prepare('UPDATE orders SET kunden_id = ? WHERE kunden_id = ?');
             $stmt->bindValue(1, 1, PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
@@ -36,6 +37,7 @@ if(isset($_POST['action'])) {
             if (!$result) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
+            // Löscht den gegebenen User
             $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
@@ -52,6 +54,7 @@ if(isset($_POST['action'])) {
         if ($user['modifyUser'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
+        // Ziehe alle Daten zu gegebenen User aus der Datenbank
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
         $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
         $result = $stmt->execute();
@@ -59,13 +62,14 @@ if(isset($_POST['action'])) {
             error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+        // Rufe alle Berechtigungsgruppen ab
         $stmt = $pdo->prepare('SELECT * FROM permission_group');
         $result = $stmt->execute();
         if (!$result) {
             error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Wenn alle benötigten Felder für den User gesetzt und nicht leer sind
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
             $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE users.id = ?");
             $stmt->bindValue(1, $_POST['email']);
@@ -75,8 +79,10 @@ if(isset($_POST['action'])) {
             $result = $stmt->execute();
             if (!$result) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
-            }            
+            }
+            // Überprüfe ob die eingegebenen Passwörter übereinstimmen
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
+                // überprüft das die Passwörter nicht leer sind
                 if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
                     $stmt = $pdo->prepare("UPDATE users SET passwort = ?, updated_at = now() WHERE users.id = ?");
                     $stmt->bindValue(1, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
@@ -89,7 +95,9 @@ if(isset($_POST['action'])) {
             } else {
                 error('Passwörter stimmen nicht überein!');
             }
+            // Wenn der Admin die Berechtigungen hat User Perms anzupassen
             if ($user['modifyUserPerms'] == 1) {
+                // Wenn eine Berechtigungsgruppe für den User gesetzt ist und diese nicht nichts ist
                 if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
                     $stmt = $pdo->prepare("UPDATE users SET permission_group = ?, updated_at = now() WHERE users.id = ?");
                     $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
@@ -105,6 +113,7 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
+        <!-- Formular zur bearbeitung des Users anzeigen -->
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>
@@ -160,25 +169,23 @@ if(isset($_POST['action'])) {
         exit;
         } 
     }
+    // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
+        // Zurückleiten auf die Admin User übersicht
         echo("<script>location.href='user.php'</script>");
         exit;
     }
 }
-
-// SELECT * ,(SELECT img From user1_images WHERE user1_images.user1_id=users.id ORDER BY id LIMIT 1) as image FROM users_types, users where users.user1_type_id = users_types.id and users_types.type = 'Test' ORDER BY users.name DESC;
-// Select users ordered by the date added
+// FRage alle user und Berechtigungsgruppen ab
 $stmt = $pdo->prepare('SELECT * FROM permission_group, users where users.permission_group = permission_group.id ORDER BY users.id');
 $result = $stmt->execute();
 if (!$result) {
     error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
-// Get the total number of users
 $total_users = $stmt->rowCount();
-// Fetch the users from the database and return the result as an Array
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<!-- Admin user Seite -->
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
@@ -188,6 +195,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="col-4 d-flex justify-content-end">
                     <form>
+                        <!-- Weiterleiten auf die register page -->
                         <button class="btn btn-outline-primary" onclick="window.location.href = '/register.php';">Hinzufügen</button>
                     </form>
                 </div>
@@ -264,7 +272,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
                                                     </div>
                                                 </div>
-                                            <!-- <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button> -->
                                         </div>
                                         <?php }?>
                                     </form>

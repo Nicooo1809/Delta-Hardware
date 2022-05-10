@@ -1,6 +1,8 @@
 /* NOT CLEAR */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
+/* ALLES */
+/* CSS für "alles" */
 * {
     animation: rainbow 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
@@ -12,6 +14,7 @@
     font-family: "Montserrat", sans-serif;
 }
 
+/* CSS für <html> und <body> */
 html, body {
     /*background-color: rgb(66, 66, 66); */
     animation: rainbow 2.5s linear  !important;
@@ -21,6 +24,7 @@ html, body {
 	margin: 0;
 }
 
+/* CSS für List Items, verlinkungen und Knöpfe */
 li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
@@ -31,12 +35,14 @@ li, a, button {
     text-decoration: none !important;
 }
 
+/* CSS für <span> <div> und <i> */
 span, div, i {
     animation: rainbow 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
     color: #ffffff;
 }
 
+/* CSS für <hr> (Horizontal Line) */
 hr {
     animation: rainbow 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
@@ -47,66 +53,29 @@ hr {
     opacity: .25 !important;
 }
 
+
+/* Aufgrund von unserem Style Switch (classes welche sich je nach CSS Datei ändern) */
+/* Custom Background */
 .cbg {
     background-color: #212529 !important;
 }
 
+/* Custom Background 2 */
 .cbg2 {
     background-color: #141618 !important;
 }
 
+/* Custom Text */
 .ctext {
     animation: rainbow 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
     color: #ffffff;
 }
 
-.text-dark {
-    animation: rainbow 2.5s linear  !important;
-    animation-iteration-count: infinite  !important;
-    color: #212529;
-}
 
-.text-white {
-    animation: rainbow 2.5s linear  !important;
-    animation-iteration-count: infinite  !important;
-    color: #ffffff;
-}
 
-.dropdown-menu {
-    background-color: #212529 !important;
-}
-
-.dropdown-item {
-    animation: rainbow 2.5s linear  !important;
-    animation-iteration-count: infinite  !important;
-    font-size: 1.3rem;
-    color: #ffffff;
-}
-
-.dropdown-item:hover {
-    animation: rainbow 2.5s linear  !important;
-    animation-iteration-count: infinite  !important;
-    color: #ffffff;
-    background-color: #2c3135 !important;
-}
-
-.navbar-icon {
-    height: 50px;
-    width: 50px;
-    display: block;
-    animation: rainbow-icon 5s linear  !important;
-    animation-iteration-count: infinite  !important;
-}
-
-.fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
-    animation: rainbow 2.5s linear  !important;
-    animation-iteration-count: infinite  !important;
-    font-size: 1.5rem;
-    color: #ffffff;
-    transition: all 0.5s ease;
-}
-
+/* Other Custom stuff */
+/* CSS für das 404 Image */
 .fof-img {
     background-image: url("/media/404_dark.gif");
     height: 70%; 
@@ -115,35 +84,108 @@ hr {
     background-size: contain;
 }
 
+/* Custom Vertical line left */
 .cvr {
     border-left: 2px solid #dee2e6;
     height: 100%;
 }
 
+/* Custom Vertical line right */
 .cvl {
     border-right: 2px solid #dee2e6;
     height: 100%;
 }
 
-.btn-primary:hover {
-    color: #ffffff;
-    animation: rainbow-bg 2.5s linear  !important;
-    animation-iteration-count: infinite  !important;
-}
 
+
+/* Styleswitcher CSS für Rainbow Style */
+/* der Switcher an sich */
 .styleswitcherlabel {
     color: #ffffff;
     animation: rainbow-bg 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
 }
 
+/* Ausblenden der Sonne wenn "nicht aktiv" */
 .styleswitcherlabel::after {
     display: none;
 }
 
+/* Ausblenden des Mondes wenn "nicht aktiv" */
 .styleswitcher:checked + .styleswitcherlabel:after {
     display: none;
 }
+
+
+
+/* Custom CSS für Bootstrap sachen */
+/* CSS für dropdown-menus (kommt an sich nur im Header vor) */
+.dropdown-menu {
+    background-color: #212529 !important;
+}
+
+/* CSS fpr dropdown-items (kommt so auch nur im Header vor) */
+.dropdown-item {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+/* CSS für das hovern auf dropdown-items */
+.dropdown-item:hover {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: #ffffff;
+    background-color: #2c3135 !important;
+}
+
+/* Navbar Icon CSS */
+.navbar-icon {
+    height: 50px;
+    width: 50px;
+    display: block;
+    animation: rainbow-icon 5s linear  !important;
+    animation-iteration-count: infinite  !important;
+}
+
+/* CSS für unsere Icons (an sich auch nur die im Header) */
+.fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    font-size: 1.5rem;
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+
+/* Anpassung am Bootstrap Primary text */
+.text-primary {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: teal;
+}
+
+/* Anpassung am Bootstrap Dark text */
+.text-dark {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: #212529;
+}
+
+/* Anpassung am Bootstrap White text */
+.text-white {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: #ffffff;
+}
+
+/* Bootstrap Button Primary hover anpassung (Rainbow animation) */
+.btn-primary:hover {
+    color: #ffffff;
+    animation: rainbow-bg 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+}
+
 @keyframes rainbow-bg{
     100%,0%{
         background-color: rgb(255,0,0);
