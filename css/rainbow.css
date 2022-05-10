@@ -61,6 +61,18 @@ hr {
     color: #ffffff;
 }
 
+.text-dark {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: #212529;
+}
+
+.text-light {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: #ffffff;
+}
+
 .dropdown-menu {
     background-color: #212529 !important;
 }
@@ -109,7 +121,7 @@ hr {
 }
 
 .btn-primary:hover {
-    color: white;
+    color: #ffffff;
     animation: rainbow-bg 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
 }
