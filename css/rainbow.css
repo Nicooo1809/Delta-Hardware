@@ -145,6 +145,10 @@ hr {
     width: 50px;
     display: block;
 }
+.navbar-icon-g {
+    animation: rainbow-icon 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+}
 
 /* CSS für unsere Icons (an sich auch nur die im Header) */
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
@@ -323,63 +327,39 @@ hr {
 
 @keyframes rainbow-icon{
     100%,0%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(0deg);
+        fill: rgb(255,0,0);
     }
-    5%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(36deg);
+    8%{
+        fill: rgb(255,127,0);
     }
-    10%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(72deg);
-    }
-    15%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(108deg);
-    }
-    20%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(144deg);
+    16%{
+        fill: rgb(255,255,0);
     }
     25%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(180deg);
+        fill: rgb(127,255,0);
     }
-    30%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(216deg);
+    33%{
+        fill: rgb(0,255,0);
     }
-    35%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(252deg);
-    }
-    40%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(288deg);
-    }
-    45%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(324deg);
+    41%{
+        fill: rgb(0,255,127);
     }
     50%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(360deg);
+        fill: rgb(0,255,255);
     }
-    55%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(324deg);
+    58%{
+        fill: rgb(0,127,255);
     }
-    60%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(288deg);
-    }
-    65%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(252deg);
-    }
-    70%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(216deg);
+    66%{
+        fill: rgb(0,0,255);
     }
     75%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(180deg);
+        fill: rgb(127,0,255);
     }
-    80%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(144deg);
+    83%{
+        fill: rgb(255,0,255);
     }
-    85%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(108deg);
-    }
-    90%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(72deg);
-    }
-    95%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(36deg);
+    91%{
+        fill: rgb(255,0,127);
     }
 }
