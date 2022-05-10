@@ -1,8 +1,10 @@
 <!-- NOT CLEAR -->
 <?php
+// Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
+// Leite User auf Login weiter wenn dieser nicht Angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;

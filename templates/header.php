@@ -16,8 +16,8 @@ $user1 = check_user(FALSE);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css?v=<?php print(date("Y.m.d.H.i.s")); ?>">
-    <link rel="stylesheet"  href="/css/dark.css" disabled>
-    <link rel="stylesheet"  href="/css/light.css" disabled>
+    <link rel="stylesheet" href="/css/dark.css" disabled>
+    <link rel="stylesheet" href="/css/light.css">
     <link rel="icon" type="image/png" href="/favicon.png" sizes="1024x1024" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/bootstrap.bundle.min.js"></script>
