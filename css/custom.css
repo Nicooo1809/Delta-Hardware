@@ -13,7 +13,6 @@
 
 /* CSS für <html> und <body> */
 html, body {
-    /*background-color: rgb(66, 66, 66); */
     background-color: #2d3238 !important;
     height: 100%;
 	margin: 0;
@@ -41,6 +40,7 @@ hr {
     margin: auto !important;
     opacity: .25 !important;
 }
+
 
 
 /* Aufgrund von unserem Style Switch (classes welche sich je nach CSS Datei ändern) */
