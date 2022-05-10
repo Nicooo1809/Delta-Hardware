@@ -129,6 +129,12 @@ hr {
     animation-iteration-count: infinite  !important;
 }
 
+.styleswitcherlabel {
+    color: #ffffff;
+    animation: rainbow-bg 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+}
+
 @keyframes rainbow-bg{
     100%,0%{
         background-color: rgb(255,0,0);
