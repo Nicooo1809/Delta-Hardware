@@ -67,7 +67,7 @@ hr {
     color: #212529;
 }
 
-.text-light {
+.text-white {
     animation: rainbow 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
     color: #ffffff;
