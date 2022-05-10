@@ -104,10 +104,12 @@ hr {
 
 /* Navbar Icon CSS */
 .navbar-icon {
-    filter: invert(100%);
     height: 50px;
     width: 50px;
     display: block;
+}
+.navbar-icon-g {
+    fill: #000;
 }
 
 /* CSS für unsere Icons (an sich auch nur die im Header) */
