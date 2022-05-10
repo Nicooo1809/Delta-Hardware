@@ -2,27 +2,22 @@
 setStyle();
 
 var pressedc = false;
+var pressedr = false;
 document.onkeydown = function (e) {
-  if (e['key'] == 'c') { // ctrl
+  if (e['key'] == 'c') {
     console.log('pressed');
     pressedc = true;
   }
-};
-document.onkeyup = function (e) {
-  if (e['key'] == 'c') { // ctrl
-    console.log('not pressed');
-    pressedc = false;
-  }
-};
-
-var pressedr = false;
-document.onkeydown = function (e) {
-  if (e['key'] == 'r') { // ctrl
+  if (e['key'] == 'r') {
     pressedr = true;
   }
 };
 document.onkeyup = function (e) {
-  if (e['key'] == 'r') { // ctrl
+  if (e['key'] == 'c') {
+    console.log('not pressed');
+    pressedc = false;
+  }
+  if (e['key'] == 'r') {
     pressedr = false;
   }
 };
