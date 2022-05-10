@@ -113,6 +113,9 @@ hr {
     display: block;
     filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(290deg);
 }
+.navbar-icon-g {
+    fill: #bc13fe !important;
+}
 
 /* CSS für unsere Icons (an sich auch nur die im Header) */
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
