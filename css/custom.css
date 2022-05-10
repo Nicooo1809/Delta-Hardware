@@ -64,6 +64,7 @@ hr {
 
 
 
+/* Other Custom stuff */
 /* CSS für das 404 Image */
 .fof-img {
     background-image: url("/media/404_dark.gif");
@@ -130,15 +131,17 @@ hr {
 .text-primary {
     color: #bc13fe !important;
 }
-/* Anpassung am  */
+/* Anpassung am Bootstrap White text */
 .text-white {
     color: #bc13fe !important;
 }
 
+/* Anpassung am Bootstrap Dark text */
 .text-dark {
     color: #bc13fe !important;
 }
 
+/* Bootstrap Button Primary anpassung */
 .btn-primary {
     background-color: #cfff04 !important;
     border-color: #bce507 !important;
@@ -155,7 +158,6 @@ hr {
 .btn-check:focus+.btn-primary,.btn-primary:focus {
     box-shadow: 0 0 0 .25rem #cfff04 !important;
 }
-
 .btn-check:active+.btn-primary,.btn-check:checked+.btn-primary,.btn-primary.active,.btn-primary:active,.show>.btn-primary.dropdown-toggle {
     animation: rainbow-bg 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
@@ -167,6 +169,7 @@ hr {
     box-shadow: 0 0 0 .25rem #cfff04 !important;
 }
 
+/* Bootstrap Button Outline Primary anpassung */
 .btn-outline-primary {
 	color:#cfff04 !important;
 	border-color:#cfff04 !important;
@@ -197,6 +200,9 @@ hr {
 	background-color:transparent;
 }
 
+
+
+/* Rainbow Animationen */
 @keyframes rainbow-bg{
     100%,0%{
         background-color: rgb(255,0,0);
