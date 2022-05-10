@@ -79,6 +79,7 @@ if(isset($_POST['action'])) {
                     echo("<script>location.href='perms.php'</script>");
                     exit;
                 }
+            // Zeige Bestätigungsanfrage
             } else {
                 ?>
                     <div class="container-fluid">
@@ -115,8 +116,9 @@ if(isset($_POST['action'])) {
         if ($user['modifyUserPerms'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
-
+        // Update der ausgewählten Gruppe
         $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, deleteUser = ?, modifyUserPerms = ?, showUserPerms = ?, showProduct = ?, createProduct = ?, modifyProduct = ?, showCategories = ?, modifyCategories = ?, deleteCategories = ?, createCategories = ?, showOrders = ?, markOrders = ? WHERE permission_group.id = ?");
+        // if "showUser" is set then value = 1 else 0
         $stmt->bindValue(1, (isset($_POST['showUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(2, (isset($_POST['modifyUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(3, (isset($_POST['deleteUser']) ? "1" : "0"), PDO::PARAM_INT);
@@ -140,6 +142,7 @@ if(isset($_POST['action'])) {
         echo("<script>location.href='perms.php'</script>");
         exit;
     }
+    // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='perms.php'</script>");
         exit;
@@ -222,8 +225,8 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="p-2 px-1 text-uppercase">Mark Order</div>
                                 </th>
                                 <?php if ($user['modifyUserPerms'] == 1) {?>
-                                <th scope="col" class="border-0" style="width: 15%">
-                                </th>
+                                    <th scope="col" class="border-0" style="width: 15%">
+                                    </th>
                                 <?php }?>
                             </div>
                         </tr>
