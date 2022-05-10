@@ -1,15 +1,17 @@
 // NOT CLEAR
 setStyle();
 
-var presseds = false;
+var pressedc = false;
 document.onkeydown = function (e) {
-  if (e['key'] == 's') { // ctrl
-    presseds = true;
+  if (e['key'] == 'c') { // ctrl
+    console.log('pressed');
+    pressedc = true;
   }
 };
 document.onkeyup = function (e) {
-  if (e['key'] == 's') { // ctrl
-    presseds = false;
+  if (e['key'] == 'c') { // ctrl
+    console.log('not pressed');
+    pressedc = false;
   }
 };
 
@@ -31,7 +33,7 @@ function toggleStyle() {
   } else {
     setCookie("style", "light", 365);
   }
-  if (presseds) {
+  if (pressedc) {
     setCookie("style", "custom", 365);
   }
   if (pressedr) {
