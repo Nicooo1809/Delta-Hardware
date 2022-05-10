@@ -13,11 +13,7 @@
 
 /* CSS für <html> und <body> */
 html, body {
-    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3) !important;  
-    -webkit-animation: rainbowback 18s ease infinite !important;
-    -z-animation: rainbowback 18s ease infinite !important;
-    -o-animation: rainbowback 18s ease infinite !important;
-      animation: rainbowback 18s ease infinite !important;
+    background-color: #2d3238 !important;
     height: 100%;
 	margin: 0;
 }
@@ -50,14 +46,22 @@ hr {
 /* Aufgrund von unserem Style Switch (classes welche sich je nach CSS Datei ändern) */
 /* Custom Background */
 .cbg {
-    background-color: #4efd54 !important;
-    border-style: dotted;
-    border-color: #fe2f4a;
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3) !important;  
+    background-size: 1800% 1800% !important;
+    -webkit-animation: rainbowback 18s ease infinite !important;
+    -z-animation: rainbowback 18s ease infinite !important;
+    -o-animation: rainbowback 18s ease infinite !important;
+      animation: rainbowback 18s ease infinite !important;
 }
 
 /* Custom Background 2 */
 .cbg2 {
-    background-color: #fe019a !important;
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3) !important; 
+    background-size: 1800% 1800% !important; 
+    -webkit-animation: rainbowback 18s ease infinite !important;
+    -z-animation: rainbowback 18s ease infinite !important;
+    -o-animation: rainbowback 18s ease infinite !important;
+      animation: rainbowback 18s ease infinite !important;
 }
 
 /* Custom Text */
