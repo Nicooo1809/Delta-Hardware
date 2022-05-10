@@ -53,6 +53,7 @@ hr {
 }
 
 
+
 /* Aufgrund von unserem Style Switch (classes welche sich je nach CSS Datei ändern) */
 /* Custom Background */
 .cbg {
@@ -190,6 +191,8 @@ hr {
     animation: rainbow-border 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
 }
+
+
 
 /* Rainbow Animationen */
 @keyframes rainbow-bg{

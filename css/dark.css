@@ -1,6 +1,8 @@
 /* NOT CLEAR */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
+/* ALLES */
+/* CSS für "alles" */
 * {
     color: #ffffff;
     box-sizing: border-box;
@@ -10,6 +12,7 @@
     font-family: "Montserrat", sans-serif;
 }
 
+/* CSS für <html> und <body> */
 html, body {
     /*background-color: rgb(66, 66, 66); */
     background-color: #2d3238 !important;
@@ -17,6 +20,7 @@ html, body {
 	margin: 0;
 }
 
+/* CSS für List Items, verlinkungen und Knöpfe */
 li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
@@ -25,10 +29,12 @@ li, a, button {
     text-decoration: none !important;
 }
 
+/* CSS für <span> <div> und <i> */
 span, div, i {
     color: #ffffff;
 }
 
+/* CSS für <hr> (Horizontal Line) */
 hr {
     border: 0 !important;
     border-top: 1px solid #ffffff !important;
@@ -37,6 +43,10 @@ hr {
     opacity: .25 !important;
 }
 
+
+
+/* Aufgrund von unserem Style Switch (classes welche sich je nach CSS Datei ändern) */
+/* Custom Background */
 .cbg {
     background-color: #212529 !important;
 }
