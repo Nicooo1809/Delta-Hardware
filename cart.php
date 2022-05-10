@@ -25,6 +25,7 @@ if(isset($_POST['action'])) {
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Wenn ein Produkt im Cart ist
             if (isset($product[0])) {
+                // Sicherstellen 
                 if ($_POST['quantity'] + $product[0]['quantity'] > $product[0]['maxquantity']) {
                     $quantity = $product[0]['maxquantity'];
                 } else {
@@ -33,6 +34,7 @@ if(isset($_POST['action'])) {
                 if ($quantity < 1) {
                     $quantity = 1;
                 }
+                // Update der quantity der eines Produktes
                 $stmt = $pdo->prepare('UPDATE product_list SET quantity = ? WHERE id = ?');
                 $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
                 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
