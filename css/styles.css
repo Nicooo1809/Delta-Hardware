@@ -1,16 +1,8 @@
-/* NOT CLEAR */
 @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+/* CSS für <header> */
 header {
     margin-bottom: 0 !important;
-}
-
-
-
-/* BreakLine at 400px (used for user.php for breaking the E-Mail at a certain lenght) */
-.bl-400 {
-    max-width:400px;
-    word-wrap:break-word;
 }
 
 /* Höhen auf 100vh (Vertical Height) setzen */
@@ -25,6 +17,7 @@ header {
 .footer-footer {
     min-height: 6vh;
 }
+
 
 
 /* Light/Dark mode Switch */
@@ -138,8 +131,6 @@ header {
     width: 80px;
 }
 
-
-
 .bg { 
     background-image: url("/media/bg-img.jpg");
     height: 70%; 
@@ -187,4 +178,12 @@ header {
 .max-h-150 {
     max-height: 150px;
     overflow: auto;
+}
+
+
+/* Custom Stuff */
+/* BreakLine at 400px (used for user.php for breaking the E-Mail at a certain lenght) */
+.bl-400 {
+    max-width:400px;
+    word-wrap:break-word;
 }
