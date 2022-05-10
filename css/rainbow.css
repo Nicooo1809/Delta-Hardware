@@ -14,6 +14,8 @@
 
 html, body {
     /*background-color: rgb(66, 66, 66); */
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     background-color: #2d3238 !important;
     height: 100%;
 	margin: 0;
@@ -36,6 +38,8 @@ span, div, i {
 }
 
 hr {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     border: 0 !important;
     border-top: 1px solid #ffffff !important;
     width: 90% !important;
@@ -54,7 +58,7 @@ hr {
 .ctext {
     animation: rainbow 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
 .dropdown-menu {
