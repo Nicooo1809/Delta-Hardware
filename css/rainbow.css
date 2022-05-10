@@ -52,6 +52,8 @@ hr {
 }
 
 .ctext {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     color: #ffffff !important;
 }
 
