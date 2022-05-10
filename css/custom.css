@@ -26,6 +26,8 @@ li, a, button {
 }
 
 span, div, i {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     color: #bc13fe !important;
 }
 
