@@ -123,6 +123,7 @@ a {
 }
 
 .btn-primary:hover {
+    transition: 0.2s !important;
     animation: rainbow-bg 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
     background-color: #bce507;
