@@ -194,8 +194,10 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h1>Benutzerverwaltung</h1>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
-                    <!-- Weiterleiten auf die register page -->
-                    <button class="btn btn-outline-primary" onclick="window.location.href = '/register.php';">Hinzufügen</button>
+                    <div>
+                        <!-- Weiterleiten auf die register page -->
+                        <button class="btn btn-outline-primary" onclick="window.location.href = '/register.php';">Hinzufügen</button>
+                    </div>
                 </div>
             </div>
             <p><?php print($total_users); ?> Benutzer</p>
