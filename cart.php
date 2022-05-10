@@ -2,14 +2,18 @@
 <?php
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
+// Leite User auf Login weiter wenn dieser nicht Angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Wenn "action" gesetzt ist
 if(isset($_POST['action'])) {
+    // Wenn die action "add" ist
     if($_POST['action'] == 'add') {
+        // Wenn alle benötigten Felder gesetzt und nicht leer sind
         if(isset($_POST['productid']) and isset($_POST['quantity']) and !empty($_POST['productid']) and !empty($_POST['quantity'])) {
-
+            // Abfrage der Produkte des aktuellen Warenkorbs, hierbei darf der Warenkorb weder Bestellt, noch von uns bearbeitet sein darf
             $stmt = $pdo->prepare('SELECT *, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and product_id = ? and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
             $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
@@ -19,6 +23,7 @@ if(isset($_POST['action'])) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Wenn ein Produkt im Cart ist
             if (isset($product[0])) {
                 if ($_POST['quantity'] + $product[0]['quantity'] > $product[0]['maxquantity']) {
                     $quantity = $product[0]['maxquantity'];

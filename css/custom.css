@@ -126,7 +126,11 @@ hr {
 
 /* Anpassung am Bootstrap dark background */
 .bg-dark {
-    background-color: #fe019a !important;
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3) !important;  
+    -webkit-animation: rainbowback 18s ease infinite !important;
+    -z-animation: rainbowback 18s ease infinite !important;
+    -o-animation: rainbowback 18s ease infinite !important;
+      animation: rainbowback 18s ease infinite !important;
 }
 
 /* Anpassung am Bootstrap Primary text */
@@ -281,4 +285,28 @@ hr {
     91%{
         color: rgb(255,0,127);
     }
+}
+    
+@-webkit-keyframes rainbowback {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+@-moz-keyframes rainbowback {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+@-o-keyframes rainbowback {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+@keyframes rainbowback { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
 }

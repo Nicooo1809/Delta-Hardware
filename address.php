@@ -1,56 +1,64 @@
-<!-- NOT CLEAR -->
 <?php
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
+// Leite User auf Login weiter wenn dieser nicht Angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Wenn "action" gesetzt ist
 if(isset($_POST['action'])) {
+    // Wenn die action auf "mod" gesetzt ist
     if($_POST['action'] == 'mod') {
+        // Rufe die Adresse mit gegebener ID ab
         $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where `address`.`citys_id` = citys.id and `address`.`user_id` = ? and `address`.`id` = ?');
         $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
         $stmt->bindValue(2, $_POST['addressid'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $address = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        // Wenn alle benötigten Felder gesetzt und nicht leer sind
         if(isset($_POST['addressid']) and isset($_POST['street']) and isset($_POST['number']) and isset($_POST['PLZ']) and isset($_POST['city']) and !empty($_POST['addressid']) and !empty($_POST['street']) and !empty($_POST['number']) and !empty($_POST['PLZ']) and !empty($_POST['city'])) {
-
+            // Abfrage nach angegebener Stadt und PLZ
             $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
             $stmt->bindValue(1, $_POST['PLZ']);
             $stmt->bindValue(2, $_POST['city']);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $total = $stmt->rowCount();
             $city = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Wenn der eintrag bereits vorhanden ist wird die CityID zwischengespeichert
             if ($total == 1) {
                 $cityid = $city[0]['id'];
+            // Wenn der Eintrag noch nicht vorhanden ist wird die Stadt erstellt
             } else {
                 $stmt = $pdo->prepare('INSERT INTO `citys` (PLZ, city) VALUES (?, ?)');
                 $stmt->bindValue(1, $_POST['PLZ']);
                 $stmt->bindValue(2, $_POST['city']);
                 $result = $stmt->execute();
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                 }
+                // Abfrage nach der ID welche die Stadt bekommen hat
                 $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
                 $stmt->bindValue(1, $_POST['PLZ']);
                 $stmt->bindValue(2, $_POST['city']);
                 $result = $stmt->execute();
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                 }
                 $total = $stmt->rowCount();
                 $city = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                //  ID wird zwischengespeichert
                 if ($total == 1) {
                     $cityid = $city[0]['id'];
                 }
             }
+            // Adresse wird aktuallisiert
             $stmt = $pdo->prepare("UPDATE `address` SET street = ?, `number` = ?, citys_id = ?, updated_at = now() WHERE `address`.`id` = ?");
             $stmt->bindValue(1, $_POST['street']);
             $stmt->bindValue(2, $_POST['number']);
@@ -58,13 +66,14 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(4, $_POST['addressid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             echo("<script>location.href='address.php'</script>");
             exit;
         } else {
         require_once("templates/header.php");
         ?>
+        <!-- Anzeigen der Anpassungs Seite -->
         <div class="container minheight100 px-3 py-3">
             <div class="card cbg ctext">
                 <div class="card-body">
@@ -100,41 +109,48 @@ if(isset($_POST['action'])) {
         exit;
         } 
     }
+    // Wenn die action "add" ist
     if($_POST['action'] == 'add') {
+        // Wenn alle benötigten Felder gesetzt und nicht leer sind
         if(isset($_POST['street']) and isset($_POST['number']) and isset($_POST['PLZ']) and isset($_POST['city']) and !empty($_POST['street']) and !empty($_POST['number']) and !empty($_POST['PLZ']) and !empty($_POST['city'])) {
-
+            // Abfrage nach angegebener Stadt und PLZ
             $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
             $stmt->bindValue(1, $_POST['PLZ']);
             $stmt->bindValue(2, $_POST['city']);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $total = $stmt->rowCount();
             $city = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Wenn der eintrag bereits vorhanden ist wird die CityID zwischengespeichert
             if ($total == 1) {
                 $cityid = $city[0]['id'];
+            // Wenn der Eintrag noch nicht vorhanden ist wird die Stadt erstellt
             } else {
                 $stmt = $pdo->prepare('INSERT INTO `citys` (PLZ, city) VALUES (?, ?)');
                 $stmt->bindValue(1, $_POST['PLZ']);
                 $stmt->bindValue(2, $_POST['city']);
                 $result = $stmt->execute();
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                 }
+                // Abfrage nach der ID welche die Stadt bekommen hat
                 $stmt = $pdo->prepare('SELECT * FROM `citys` where `PLZ` = ? and city = ?');
                 $stmt->bindValue(1, $_POST['PLZ']);
                 $stmt->bindValue(2, $_POST['city']);
                 $result = $stmt->execute();
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                 }
                 $total = $stmt->rowCount();
                 $city = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                //  ID wird zwischengespeichert
                 if ($total == 1) {
                     $cityid = $city[0]['id'];
                 }
             }
+            // Adresse wird Hinzugefügt
             $stmt = $pdo->prepare("INSERT INTO `address` (user_id, street, `number`, citys_id, updated_at, created_at) VALUES (?, ?, ?, ?, now(), now())");
             $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['street']);
@@ -142,13 +158,14 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(4, $cityid, PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             echo("<script>location.href='address.php'</script>");
             exit;
         } else {
         require_once("templates/header.php");
         ?>
+        <!-- Anzeigen der Seite zum Hinzufügen einer Adresse -->
         <div class="container minheight100 px-3 py-3">
             <div class="card cbg ctext">
                 <div class="card-body">
@@ -183,22 +200,23 @@ if(isset($_POST['action'])) {
         exit;
         } 
     }
+    // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='address.php'</script>");
         exit;
     }
 }
-
+// Abfrage der Adressen eines Users
 $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $total_addresses = $stmt->rowCount();
 ?>
-
+<!-- Seite zur Addressverwaltung -->
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
