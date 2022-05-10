@@ -1,8 +1,7 @@
-<!-- NOT CLEAR -->
 <?php 
 require_once("templates/header.php")
 ?>
-
+<!-- Impressum -->
 <div class="container minheight100 py-5">
     <div class="row no-gutter">
         <div class="col cbg impressum-breite text-center">

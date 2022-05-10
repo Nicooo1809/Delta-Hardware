@@ -140,12 +140,10 @@ hr {
 }
 
 /* Navbar Icon CSS */
-.navbar-icon {
+#navbar-icon {
     height: 50px;
     width: 50px;
     display: block;
-    animation: rainbow-icon 5s linear  !important;
-    animation-iteration-count: infinite  !important;
 }
 
 /* CSS für unsere Icons (an sich auch nur die im Header) */
