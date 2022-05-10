@@ -1,29 +1,25 @@
-<!-- NOT CLEAR -->
+<!-- Cookie Banner -->
 <div class="alert text-center cookiealert" role="alert">
     <b>Magst du Kekse?</b> &#x1F36A; Wir verwenden Cookies um dir ein großartiges Website-Erlebnis zu bieten.
-
     <a href="/cookies.php">
     <button type="button" class="btn btn-outline-primary btn-sm ms-3 me-3" data-bs-toggle="modal" data-bs-target="#cookieModal">
         Mehr erfahren
     </button>
     </a>
-
     <div class="vr"></div>
     <button type="button" class="btn btn-primary btn-sm acceptcookies ms-3">
         Ich stimme zu
     </button>
 </div>
-
 <script src="/js/cookies.js"></script>
 
 
 <?php
+// Variablen für Version und Datum
 $vernum = "1.2.0";
-# Like this, cause we want the Date the current Version was developed, not the current dates
-$verdate ="29.04.2022";
-#$verdate = date("d.m.Y");
-if(!isMobile()):
-?>
+$verdate ="10.05.2022";
+// Wenn es sich um ein Desktop Handelt
+if(!isMobile()):?>
     <footer class="container-fluid footer-footer sticky-bottom footer py-3 cbg">
         <div class="row">
             <div class="col ctext">
@@ -45,7 +41,7 @@ if(!isMobile()):
             </div>
         </div>
     </footer>
-
+<!-- Wenn es sich um ein Mobiles Gerät handelt -->
 <?php else:?>
     <footer class="container-fluid footer-footer sticky-bottom footer py-1 cbg">
         <div class="ctext">
@@ -71,6 +67,7 @@ if(!isMobile()):
 </body>
 </html>
 <script>
-setStyle();
+    // Style aktualisieren
+    setStyle();
 </script>
 <?php unset($_SESSION['userid'])?>
