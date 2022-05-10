@@ -23,7 +23,7 @@ if (isset($_GET["search"])) {
     $search_pieces = explode(" ", $_GET["search"]);
     
     foreach ($search_pieces as $search_piece) {
-        $search .= 'and ((lower(products.name) like lower("%' . $search_piece . '%")) or (lower(products.id) like lower("%' . $search_piece . '%"))) ';
+        $search .= 'and ((lower(products.name) like lower("%' . $search_piece . '%")) or (products.id = ' . $search_piece . ')) ';
     }
 }
 
