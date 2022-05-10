@@ -4,12 +4,24 @@ setStyle();
 var pressed = false;
 document.onkeydown = function (e) {
   if (e['key'] == 's') { // ctrl
-    pressed = true;
+    presseds = true;
   }
 };
 document.onkeyup = function (e) {
   if (e['key'] == 's') { // ctrl
-    pressed = false;
+    presseds = false;
+  }
+};
+
+var pressed = false;
+document.onkeydown = function (e) {
+  if (e['key'] == 'r') { // ctrl
+    pressedr = true;
+  }
+};
+document.onkeyup = function (e) {
+  if (e['key'] == 'r') { // ctrl
+    pressedr = false;
   }
 };
 
@@ -19,8 +31,11 @@ function toggleStyle() {
   } else {
     setCookie("style", "light", 365);
   }
-  if (pressed) {
+  if (presseds) {
     setCookie("style", "custom", 365);
+  }
+  if (pressedr) {
+    setCookie("style", "rainbow", 365);
   }
   setStyle();
 }
@@ -40,6 +55,27 @@ function setStyle() {
     }
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
+    if (document.querySelectorAll("link[href='/css/rainbow.css']").length > 0) {
+      document.querySelectorAll("link[href='/css/rainbow.css']")[0].disabled = true;
+    }
+  }
+  if (getCookie("style") == "rainbow") {
+    setCookie("style", "rainbow", 365);
+    if (document.querySelectorAll("link[href='/css/rainbow.css']").length > 0) {
+      document.querySelectorAll("link[href='/css/rainbow.css']")[0].disabled = false;
+    } else {
+      var head = document.getElementsByTagName('head')[0];
+      var style = document.createElement('link');
+      style.href = '/css/rainbow.css';
+      style.type = 'text/css';
+      style.rel = 'stylesheet';
+      head.append(style);
+    }
+    document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
+    document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
+    if (document.querySelectorAll("link[href='/css/custom.css']").length > 0) {
+      document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = true;
+    }
   }
   if (getCookie("style") == "dark") {
     setCookie("style", "dark", 365);
@@ -48,12 +84,18 @@ function setStyle() {
     if (document.querySelectorAll("link[href='/css/custom.css']").length > 0) {
       document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = true;
     }
+    if (document.querySelectorAll("link[href='/css/rainbow.css']").length > 0) {
+      document.querySelectorAll("link[href='/css/rainbow.css']")[0].disabled = true;
+    }
   } else if (getCookie("style") == "light") {
     setCookie("style", "light", 365);
     document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
     document.querySelectorAll("link[href='/css/light.css']")[0].disabled = false;
     if (document.querySelectorAll("link[href='/css/custom.css']").length > 0) {
       document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = true;
+    }
+    if (document.querySelectorAll("link[href='/css/rainbow.css']").length > 0) {
+      document.querySelectorAll("link[href='/css/rainbow.css']")[0].disabled = true;
     }
   }
 }
