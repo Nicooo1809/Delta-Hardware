@@ -108,6 +108,9 @@ hr {
     width: 50px;
     display: block;
 }
+.navbar-icon-g {
+    fill: #fff;
+}
 
 /* CSS für unsere Icons (an sich auch nur die im Header) */
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
