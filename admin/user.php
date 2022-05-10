@@ -9,54 +9,61 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Zeit die Error seite wenn der User keine berechtigungen hat
 if ($user['showUser'] != 1) {
-    error('Permission denied!');
+    error('Unzureichende Berechtigungen!');
 }
+// Wenn "action" gesetzt ist
 if(isset($_POST['action'])) {
+    // Wenn action "deleteconfirm" ist
     if ($_POST['action'] == 'deleteconfirm') {
+        // Zeit die Error seite wenn der User keine berechtigungen hat
         if ($user['deleteUser'] != 1 || $_POST['userid'] == 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
+        // Wenn die User IC ausgewählt ist
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
             $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $stmt = $pdo->prepare('UPDATE orders SET kunden_id = ? WHERE kunden_id = ?');
             $stmt->bindValue(1, 1, PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             echo("<script>location.href='user.php'</script>");
             exit;
         }
     }
+    // Wenn action "mod" ist
     if($_POST['action'] == 'mod') {
+        // Zeit die Error seite wenn der User keine berechtigungen hat
         if ($user['modifyUser'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
         $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         $stmt = $pdo->prepare('SELECT * FROM permission_group');
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
@@ -67,7 +74,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }            
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
                 if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
@@ -76,11 +83,11 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
                     if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
+                        error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                     }                    
                 }
             } else {
-                error('Password not equal!');
+                error('Passwörter stimmen nicht überein!');
             }
             if ($user['modifyUserPerms'] == 1) {
                 if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
@@ -89,7 +96,7 @@ if(isset($_POST['action'])) {
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
                     if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
+                        error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                     }                    
                 }
             }
@@ -164,7 +171,7 @@ if(isset($_POST['action'])) {
 $stmt = $pdo->prepare('SELECT * FROM permission_group, users where users.permission_group = permission_group.id ORDER BY users.id');
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 // Get the total number of users
 $total_users = $stmt->rowCount();

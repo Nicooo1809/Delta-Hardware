@@ -95,7 +95,7 @@ hr {
     height: 50px;
     width: 50px;
     display: block;
-    animation: rainbow-icon 1.625s linear  !important;
+    animation: rainbow-icon 1.25s linear  !important;
     animation-iteration-count: infinite  !important;
 }
 
