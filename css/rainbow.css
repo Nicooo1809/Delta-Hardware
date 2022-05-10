@@ -95,6 +95,8 @@ hr {
     height: 50px;
     width: 50px;
     display: block;
+    animation: rainbow-icon 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
 }
 
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
@@ -217,5 +219,44 @@ hr {
     }
     91%{
         color: rgb(255,0,127);
+    }
+}
+
+@keyframes rainbow-icon{
+    100%,0%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(0deg);
+    }
+    8%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(30deg);
+    }
+    16%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(60deg);
+    }
+    25%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(90deg);
+    }
+    33%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(120deg);
+    }
+    41%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(150deg);
+    }
+    50%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(180deg);
+    }
+    58%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(210deg);
+    }
+    66%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(240deg);
+    }
+    75%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(270deg);
+    }
+    83%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(300deg);
+    }
+    91%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(330deg);
     }
 }
