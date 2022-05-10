@@ -1,7 +1,7 @@
 // NOT CLEAR
 setStyle();
 
-var pressed = false;
+var presseds = false;
 document.onkeydown = function (e) {
   if (e['key'] == 's') { // ctrl
     presseds = true;
@@ -13,7 +13,7 @@ document.onkeyup = function (e) {
   }
 };
 
-var pressed = false;
+var pressedr = false;
 document.onkeydown = function (e) {
   if (e['key'] == 'r') { // ctrl
     pressedr = true;
