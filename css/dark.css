@@ -103,7 +103,7 @@ hr {
 }
 
 /* Navbar Icon CSS */
-.navbar-icon {
+#navbar-icon {
     height: 50px;
     width: 50px;
     display: block;
