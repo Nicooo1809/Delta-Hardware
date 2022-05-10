@@ -14,6 +14,8 @@
 
 html, body {
     /*background-color: rgb(66, 66, 66); */
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     background-color: #2d3238 !important;
     height: 100%;
 	margin: 0;
@@ -36,6 +38,8 @@ span, div, i {
 }
 
 hr {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     border: 0 !important;
     border-top: 1px solid #ffffff !important;
     width: 90% !important;
@@ -54,7 +58,19 @@ hr {
 .ctext {
     animation: rainbow 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
-    color: #ffffff !important;
+    color: #ffffff;
+}
+
+.text-dark {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: #212529;
+}
+
+.text-white {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: #ffffff;
 }
 
 .dropdown-menu {
@@ -62,11 +78,16 @@ hr {
 }
 
 .dropdown-item {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     font-size: 1.3rem;
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
 .dropdown-item:hover {
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
+    color: #ffffff;
     background-color: #2c3135 !important;
 }
 
@@ -77,6 +98,8 @@ hr {
 }
 
 .fa-user, .fa-cart-shopping, .fa-circle-info, .fa-exclamation{
+    animation: rainbow 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
     font-size: 1.5rem;
     color: #ffffff;
     transition: all 0.5s ease;
@@ -98,6 +121,12 @@ hr {
 .cvl {
     border-right: 2px solid #dee2e6;
     height: 100%;
+}
+
+.btn-primary:hover {
+    color: #ffffff;
+    animation: rainbow-bg 2.5s linear  !important;
+    animation-iteration-count: infinite  !important;
 }
 
 @keyframes rainbow-bg{
@@ -141,39 +170,39 @@ hr {
 
 @keyframes rainbow{
     100%,0%{
-        color: rgb(255,0,0);
+        color: rgb(255,0,0) !important;
     }
     8%{
-        color: rgb(255,127,0);
+        color: rgb(255,127,0) !important;
     }
     16%{
-        color: rgb(255,255,0);
+        color: rgb(255,255,0) !important;
     }
     25%{
-        color: rgb(127,255,0);
+        color: rgb(127,255,0) !important;
     }
     33%{
-        color: rgb(0,255,0);
+        color: rgb(0,255,0) !important;
     }
     41%{
-        color: rgb(0,255,127);
+        color: rgb(0,255,127) !important;
     }
     50%{
-        color: rgb(0,255,255);
+        color: rgb(0,255,255) !important;
     }
     58%{
-        color: rgb(0,127,255);
+        color: rgb(0,127,255) !important;
     }
     66%{
-        color: rgb(0,0,255);
+        color: rgb(0,0,255) !important;
     }
     75%{
-        color: rgb(127,0,255);
+        color: rgb(127,0,255) !important;
     }
     83%{
-        color: rgb(255,0,255);
+        color: rgb(255,0,255) !important;
     }
     91%{
-        color: rgb(255,0,127);
+        color: rgb(255,0,127) !important;
     }
 }
