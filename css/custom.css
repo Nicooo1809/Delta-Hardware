@@ -126,13 +126,11 @@ hr {
 
 /* Anpassung am Bootstrap dark background */
 .bg-dark {
-    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
-    background-size: 1800% 1800%;
-    
-    -webkit-animation: rainbowback 18s ease infinite;
-    -z-animation: rainbowback 18s ease infinite;
-    -o-animation: rainbowback 18s ease infinite;
-      animation: rainbowback 18s ease infinite;
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3) !important;  
+    -webkit-animation: rainbowback 18s ease infinite !important;
+    -z-animation: rainbowback 18s ease infinite !important;
+    -o-animation: rainbowback 18s ease infinite !important;
+      animation: rainbowback 18s ease infinite !important;
 }
 
 /* Anpassung am Bootstrap Primary text */
