@@ -226,37 +226,61 @@ hr {
     100%,0%{
         filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(0deg);
     }
-    8%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(30deg);
+    5%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(36deg);
     }
-    16%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(60deg);
+    10%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(72deg);
+    }
+    15%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(108deg);
+    }
+    20%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(144deg);
     }
     25%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(90deg);
-    }
-    33%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(120deg);
-    }
-    41%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(150deg);
-    }
-    50%{
         filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(180deg);
     }
-    58%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(210deg);
+    30%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(216deg);
     }
-    66%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(240deg);
+    35%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(252deg);
+    }
+    40%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(288deg);
+    }
+    45%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(324deg);
+    }
+    50%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(360deg);
+    }
+    55%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(324deg);
+    }
+    60%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(288deg);
+    }
+    65%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(252deg);
+    }
+    70%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(216deg);
     }
     75%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(270deg);
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(180deg);
     }
-    83%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(300deg);
+    80%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(144deg);
     }
-    91%{
-        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(330deg);
+    85%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(108deg);
+    }
+    90%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(72deg);
+    }
+    95%{
+        filter: brightness(0.5) sepia(1) saturate(10000%) hue-rotate(36deg);
     }
 }
