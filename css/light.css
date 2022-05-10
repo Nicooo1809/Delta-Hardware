@@ -103,7 +103,7 @@ hr {
 }
 
 /* Navbar Icon CSS */
-#navbar-icon {
+.navbar-icon {
     filter: invert(100%);
     height: 50px;
     width: 50px;
