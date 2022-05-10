@@ -186,11 +186,13 @@ hr {
     animation-iteration-count: infinite  !important;
 }
 
+/* Bootstrap Button Outline Primary anpassung (Rainbow animation) */
 .btn-outline-primary {
     animation: rainbow-border 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
 }
 
+/* Rainbow Animationen */
 @keyframes rainbow-bg{
     100%,0%{
         background-color: rgb(255,0,0);
