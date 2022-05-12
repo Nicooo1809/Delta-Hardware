@@ -1,75 +1,85 @@
-<!-- NOT CLEAR -->
 <?php
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
+// Sicherstellen das der User eingeloggt ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Abfrage aller Produkte im Warenkorb
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Wenn weniger wie Ein Produkt im Warenkorb ist wird auf die Warenkorb seite zurückgeleitet
 if ($total_products < 1) {
     echo("<script>location.href='cart.php'</script>");
     exit;
 }
-
+// Datenbankabfrage der Adressen des Users
 $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Wenn POST "confirm" gesetzt ist
 if(isset($_POST['confirm'])) {
+    // Wenn confirm auf "yes" gesetzt ist
     if($_POST['confirm'] == 'yes') {
+        // Wenn keine Rechnungs und Lieferungs Adresse gesetzt ist und oder diese Leer sind
         if (!isset($_POST['rechnugsaddresse']) and !isset($_POST['lieferaddresse']) and empty($_POST['rechnugsaddresse']) and empty($_POST['lieferaddresse'])) {
             error('Keine Addresse ausgewählt! Tipp: In den Einstellungen können sie eine Standardaddresse hinterlegen');
         }
         $msg = '';
+        // für alle Produkte im Warenkorb
         foreach ($products as $product) {
+            // Abfrage der Produktdetails zum Jeweiligen produkt
             $stmt = $pdo->prepare('SELECT * from  products WHERE id = ?');
             $stmt->bindValue(1, $product['product_id'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Zeige eine Warnung an wenn vn einemm Produkt weniger wie bestellt im lager war (das ist für den fall das Zwei Personen gleichzeitig bestellen)
             if ($product['quantity'] > $product1[0]['quantity']) {
                 $msg = '<p class="mb-0 text-danger">Wir haben von mindestens einem der bestellten Artikel weniger als bestellt auf lager. <br>Deine Bestellung könnte sich deshalb eventuell ein wenig verzögern.</p>';
             }
+            // Aktualisierung der Produktmenge in der Datenbank
             $stmt = $pdo->prepare('UPDATE products SET quantity = quantity - ? WHERE id = ?');
             $stmt->bindValue(1, $product['quantity'], PDO::PARAM_INT);
             $stmt->bindValue(2, $product['product_id'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
         }
+        // Update des Warenkorbs mit den entsprechenden Daten
         $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ?, lieferadresse = ?, ordered = 1, ordered_date = now() WHERE kunden_id = ? and ordered = 0');
         $stmt->bindValue(1, $_POST['rechnugsaddresse'], PDO::PARAM_INT);
         $stmt->bindValue(2, $_POST['lieferaddresse'], PDO::PARAM_INT);
         $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
-        $stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES (?, 0, 0)");
+        // Neuer Warenkorb wird für den User erstellt
+        $stmt = $pdo->prepare('INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES (?, 0, 0)');
         $stmt->bindValue(1, $user['id']);
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         require_once("templates/header.php");
         ?>
+        <!-- Bestellung erfolgreich -->
         <div class="container minheight100 py-3 px-3">
             <div class="row">
                 <div class="py-3 px-3 cbg ctext rounded">
@@ -84,21 +94,21 @@ if(isset($_POST['confirm'])) {
             </div>
         </div>
         <?php 
-        $error = true;
     }
+    // Wenn confirm auf "no" gesetzt ist
     if($_POST['confirm'] == 'no') {
         echo("<script>location.href='cart.php'</script>");
         exit;
     }
 }
-// SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
-// Select products ordered by the date added
 
 $summprice = 0;
+// Berechnung der Summe
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
 }
 ?>
+<!-- Desktop Ansicht -->
 <?php if (!isMobile()): ?>
     <div class="container minheight100 py-3 px-3">
         <div class="row">
@@ -207,6 +217,7 @@ foreach ($products as $product) {
             </div>
         </div>
     </div> 
+<!-- Mobile Ansicht -->
 <?php else: ?>
     <div class="container minheight100 py-3 px-3">
         <div class="row">
