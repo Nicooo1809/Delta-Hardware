@@ -20,7 +20,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Wenn das Produkt bereits im Warenkorb ist
@@ -40,7 +40,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
                 $result = $stmt->execute();
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                 }                
                 echo("<script>location.href='cart.php'</script>");
                 exit;
@@ -51,7 +51,7 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
                 $result = $stmt->execute();
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                 }
                 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 // Sicherstellen das die quantity mindestens 1 und nicht höher wie der Lagerbestand ist
@@ -63,49 +63,53 @@ if(isset($_POST['action'])) {
                 if ($quantity < 1) {
                     $quantity = 1;
                 }
+                // Produkt in den Warenkorb hinzufügen
                 $stmt = $pdo->prepare('INSERT INTO product_list (list_id, product_id, quantity) VALUES ((select id from orders where kunden_id = ? and ordered = 0 and sent = 0), ?, ?)');
                 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
                 $stmt->bindValue(2, $_POST['productid']);
                 $stmt->bindValue(3, $quantity, PDO::PARAM_INT);
                 $result = $stmt->execute();
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                 }
                 echo("<script>location.href='cart.php'</script>");
                 exit;
             }
         } else {
-            error('Some informations are missing!');
+            error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
     // Wenn die action "del" ist
     if($_POST['action'] == 'del') {
         // Wenn die listid gesetzt und nicht leer ist
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
-            // User clicked the "Yes" button, delete record
+            // Löschen des Items aus dem Warenkorb
             $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
             $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
             $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }                    
             echo("<script>location.href='cart.php'</script>");
             exit;
         } else {
-            error('Some informations are missing!');
+            error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
     // Wenn die action "mod" ist
     if($_POST['action'] == 'mod') {
+        // Wenn die listid gesetzt und nicht leer ist
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
-            $stmt = $pdo->prepare('select *, products.quantity as maxquantity from products, product_list where products.id = product_list.product_id and product_list.id = ?');
+            // Produkt details aus der Datenbank abfragen
+            $stmt = $pdo->prepare('SELECT *, products.quantity as maxquantity from products, product_list where products.id = product_list.product_id and product_list.id = ?');
             $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }            
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Sicherstellen das die quantity mindestens 1 und nicht höher wie der Lagerbestand ist
             if ($_POST['quantity'] > $product[0]['maxquantity']) {
                 $quantity = $product[0]['maxquantity'];
             } else {
@@ -114,39 +118,40 @@ if(isset($_POST['action'])) {
             if ($quantity < 1) {
                 $quantity = 1;
             }
+            // Update der Produktliste (also des Warenkorbs)
             $stmt = $pdo->prepare('UPDATE product_list SET quantity = ? WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
             $stmt->bindValue(1, $quantity, PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['listid'], PDO::PARAM_INT);
             $stmt->bindValue(3, $user['id'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }            
             echo("<script>location.href='cart.php'</script>");
             exit;
         } else {
-            error('Some informations are missing!');
+            error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
 }
 
-// Select products ordered by the date added
+// Abfrage aller Produkte und Sortierung nach date added
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products_types, products, product_list where product_list.product_id = products.id and products.product_type_id = products_types.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)) and product_list.list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
-// Get the total number of products
 $total_products = $stmt->rowCount();
-// Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $summprice = 0;
+// Summe
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
 }
 ?>
+<!-- Desktop Ansicht -->
 <?php if (!isMobile()): ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row">
@@ -235,6 +240,7 @@ foreach ($products as $product) {
             </div>
         </div>
     </div> 
+<!-- Mobile Ansicht -->
 <?php else: ?>
     <div class="container minheight100 products content-wrapper py-3 px-3">
         <div class="row row-cols-1 row-cols-md-1 g-3">
