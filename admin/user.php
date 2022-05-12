@@ -262,16 +262,16 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas<?=$user1['id']?>" aria-controls="offcanvas<?=$user1['id']?>">Löschen</button>
-                                                <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas<?=$user1['id']?>" aria-labelledby="offcanvas<?=$user1['id']?>Label">
-                                                    <div class="offcanvas-header">
-                                                        <h2 class="offcanvas-title ctext" id="offcanvas<?=$user1['id']?>Label">Wirklich Löschen?</h2>
-                                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="offcanvas-body">
-                                                        <button class="btn btn-outline-success mx-2" type="submit" name="action" value="deleteconfirm">Ja</button>
-                                                        <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
-                                                    </div>
+                                            <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas<?=$user1['id']?>" aria-labelledby="offcanvas<?=$user1['id']?>Label">
+                                                <div class="offcanvas-header">
+                                                    <h2 class="offcanvas-title ctext" id="offcanvas<?=$user1['id']?>Label">Wirklich Löschen?</h2>
+                                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                                 </div>
+                                                <div class="offcanvas-body">
+                                                    <button class="btn btn-outline-success mx-2" type="submit" name="action" value="deleteconfirm">Ja</button>
+                                                    <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <?php }?>
                                     </form>
