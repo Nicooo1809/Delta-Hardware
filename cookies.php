@@ -6,8 +6,8 @@ require_once("templates/header.php");
 <div class="container-fluid minheight100 py-4 px-3">
     <div class="row no-gutter">
         <div class="col">
-            <div class="card cbg ctext mx-auto" style="width: <?php if(!isMobile()) print('75%'); else print('95%');?>;">
             <!-- Das If-statement verändert die Breite, sobald es sich um ein Mobilgerät mit kleinerem Bildschirm handelt -->
+            <div class="card cbg ctext mx-auto" style="width: <?php if(!isMobile()) print('75%'); else print('95%');?>;">
                 <div class="card-body">
                 <h4 class="fw-bold ctext">Wir verwenden nur notwendige Cookies um folgende Funktion bereitzustellen:</h4>
                     <br>
