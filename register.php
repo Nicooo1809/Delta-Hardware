@@ -1,13 +1,15 @@
-<!-- NOT CLEAR -->
 <?php 
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
 ?>
 
 <?php
-$showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
+//Variable ob das Registrierungsformular anezeigt werden soll
+$showFormular = true;
  
+// Wenn register gesetzt ist
 if(isset($_GET['register'])) {
+	// Setzen und befüllen der Variablen
 	$error = false;
 	$vorname = trim($_POST['vorname']);
 	$nachname = trim($_POST['nachname']);
@@ -15,31 +17,37 @@ if(isset($_GET['register'])) {
 	$passwort = $_POST['passwort'];
 	$passwort2 = $_POST['passwort2'];
 	
+	// Vorname, Nachname und E-Mail werden nach ausfüllung überprüft
 	if(empty($vorname) || empty($nachname) || empty($email)) {
 		echo 'Bitte alle Felder ausfüllen<br>';
 		$error = true;
 	}
-  
+
+	// es wird überprüft ob die E-Mail wirklich gültig ist
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
 		$error = true;
 	} 	
+
+	// Es wird überprüft ob das Passwort feld gefüllt ist
 	if(strlen($passwort) == 0) {
 		echo 'Bitte ein Passwort angeben<br>';
 		$error = true;
 	}
+
+	// Überprüft ob die 2 eingegebenen Passwörter überein Stimmen
 	if($passwort != $passwort2) {
 		echo 'Die Passwörter müssen übereinstimmen<br>';
 		$error = true;
 	}
 	
-	//Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
+	// Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
 	if(!$error) { 
 		$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
 		$stmt->bindValue(1, $email);
 		$result = $stmt->execute();
 		if (!$result) {
-			error('Database error', pdo_debugStrParams($stmt));
+			error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 		}
 		$user = $stmt->fetch();
 		
@@ -49,7 +57,7 @@ if(isset($_GET['register'])) {
 		}	
 	}
 	
-	//Überprüfe, ob die DSGVO akzeptiert wurde
+	// Überprüfe, ob die DSGVO akzeptiert wurde
 	if(!$error) { 
 		if(!(isset($_POST['dsgvo']))) {
 			echo 'Sie müssen die Datenschutzerklärung akzeptieren!<br>';
@@ -57,17 +65,19 @@ if(isset($_GET['register'])) {
 		}	
 	}
 	
-	//Überprüfe, ob die AGBs akzeptiert wurden
+	// Überprüfe, ob die AGBs akzeptiert wurden
 	if(!$error) { 
 		if(!(isset($_POST['agb']))) {
 			echo 'Sie müssen die AGBs akzeptieren!<br>';
 			$error = true;
 		}	
 	}
-	//Keine Fehler, wir können den Nutzer registrieren
+	// Keine Fehler, wir können den Nutzer registrieren
 	if(!$error) {	
+		// Hashen des Passworts
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 		
+		// Insert des Users in die Datenbank
 		$stmt = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (?, ?, ?, ?)");
 		$stmt->bindValue(1, $email);
 		$stmt->bindValue(2, $passwort_hash);
@@ -75,16 +85,19 @@ if(isset($_GET['register'])) {
 		$stmt->bindValue(4, $nachname);
 		$result = $stmt->execute();
 		if (!$result) {
-			error('Database error', pdo_debugStrParams($stmt));
+			error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 		}
 		
+		// Warenkorb wird für den User erstellt
 		$stmt = $pdo->prepare("INSERT INTO `orders` (`kunden_id`, `ordered`, `sent`) VALUES ((select id from users where email = ?), '0', '0')");
 		$stmt->bindValue(1, $email);
 		$result = $stmt->execute();
 		if (!$result) {
-			error('Database error', pdo_debugStrParams($stmt));
+			error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 		}
+		
 
+		// Wenn das einfügen erfolgreich war wird eubne Erfolgs meldung angezeigt
 		if($result) {
 			$showFormular = false;
 			?>
@@ -100,33 +113,10 @@ if(isset($_GET['register'])) {
 				</div>
 			</div>
 			<meta http-equiv="refresh" content="5;url=login.php">
-			
-
-		<?php
-		} else {
-			$showFormular = false;
-			?>
-			<div class="container minheight100">
-				<div class="row">
-					<div class="col-lg-10 col-xl-7 mx-auto my-5 py-3 px-5 text-center rounded cbg">
-						<h1 class="text-danger">Oops, das hat nicht geklappt!<br><i class="fa-solid fa-x"></i></h1>
-						<p class="ctext">
-						Beim Abspeichern ist leider ein Fehler aufgetreten, bitte versuche es später erneut.
-						Du wirst automatisch in 5 Sekunden zurückgeleitet, solltest du nicht weitergeleitet werden klicke <a href="register.php">hier</a>.
-						</p>
-					</div>
-				</div>
-			</div>
-
-			
-
 		<?php
 		}
 	} 
 }
-
-
-
 if($showFormular) {
 ?>
 
@@ -137,8 +127,6 @@ if($showFormular) {
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-10 col-xl-7 mx-auto cbg rounded">
-
-
 							<h3 class="display-4 ctext">Registrierung</h3>
 
 							<?php 
@@ -189,10 +177,5 @@ if($showFormular) {
 </div>
  
 <?php
-} //Ende von if($showFormular)
-	
-
-?>
-<?php 
-include_once("templates/footer.php")
+} include_once("templates/footer.php")
 ?>
