@@ -35,7 +35,7 @@ $user1 = check_user(FALSE);
 
 
 <!-- Navigationsleiste die auf jeder einzelnen Seite zu sehen ist -->
-<nav class="navbar header-header navbar-expand-lg navbar-<?php print(check_style());?> cbg ctext sticky-top">
+<nav class="navbar header-header navbar-expand-lg navbar-dark cbg ctext sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <?php include_once('favicon.svg') ?>
