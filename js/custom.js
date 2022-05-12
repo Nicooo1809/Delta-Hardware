@@ -1,6 +1,6 @@
 // Triggert das neues setzten des Themes
 setStyle();
-// Setzt die Variablen
+// Initialisiert die Variablen
 var pressedc = false;
 var pressedr = false;
 // fügt ein Event für eine getrückte Taste hinzu
@@ -46,10 +46,14 @@ function setStyle() {
   // Überprüft den Cookie und stzt den style
   switch (getCookie("style")) {
     case ("custom"):
+      // Setzt/Aktualisiert den Cookie
       setCookie("style", "custom", 365);
+      // Überprüft ob das Stylesheet bereits vorhanden ist
       if (document.querySelectorAll("link[href='/css/custom.css']").length > 0) {
+        // Aktiviert das Stylesheet
         document.querySelectorAll("link[href='/css/custom.css']")[0].disabled = false;
       } else {
+        // Függt das Stylesheet zum Header hinzu
         var head = document.getElementsByTagName('head')[0];
         var style = document.createElement('link');
         style.href = '/css/custom.css';
@@ -57,9 +61,12 @@ function setStyle() {
         style.rel = 'stylesheet';
         head.append(style);
       }
+      // Deaktiviert die Übrigen Stylesheets
       document.querySelectorAll("link[href='/css/dark.css']")[0].disabled = true;
       document.querySelectorAll("link[href='/css/light.css']")[0].disabled = true;
+      // überprüft ob das Stylesheet existiert
       if (document.querySelectorAll("link[href='/css/rainbow.css']").length > 0) {
+        // Deaktiviert das Stylesheet
         document.querySelectorAll("link[href='/css/rainbow.css']")[0].disabled = true;
       }
       break;
