@@ -1,8 +1,10 @@
-// NOT CLEAR
+// Triggert das neues setzten des Themes
 setStyle();
-
+// Setzt die Variablen
 var pressedc = false;
 var pressedr = false;
+// fügt ein Event für eine getrückte Taste hinzu
+// und setzt die Variable auf true
 document.onkeydown = function (e) {
   if (e['key'] == 'c') {
     console.log('pressed');
@@ -12,6 +14,8 @@ document.onkeydown = function (e) {
     pressedr = true;
   }
 };
+// fügt ein Event für eine losgelassene Taste hinzu 
+// und setzt die Variable auf false
 document.onkeyup = function (e) {
   if (e['key'] == 'c') {
     console.log('not pressed');
@@ -21,7 +25,8 @@ document.onkeyup = function (e) {
     pressedr = false;
   }
 };
-
+// wird aufgerufen wenn der Switch im Footer betätigt wird
+// es wird ein Cookie für das gewählte theme gesetzt
 function toggleStyle() {
   if (getCookie("style") == "light") {
     setCookie("style", "dark", 365);
@@ -36,8 +41,9 @@ function toggleStyle() {
   }
   setStyle();
 }
-
+// Deaktiviert und Aktiviert die entsprechenden Stylesheets
 function setStyle() {
+  // Überprüft den Cookie und stzt den style
   switch (getCookie("style")) {
     case ("custom"):
       setCookie("style", "custom", 365);
@@ -99,14 +105,14 @@ function setStyle() {
       break;
   }
 }
-
+// setzt ein Cookie
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   let expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-
+// gibt den Cookie-Content
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -122,7 +128,7 @@ function getCookie(cname) {
   }
   return "";
 }
-
+// Zeigt die hochzuladende Bilde live an
 function showPreview(event){
 	var files = event.target.files;
 	var preview = document.getElementById('preview');
