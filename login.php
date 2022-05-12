@@ -101,7 +101,6 @@ if (isset($user['id'])) {
 		</div>
 	</div>
 </div>
-
 <?php 
 // fügt den Footer hinzu
 include_once("templates/footer.php")
