@@ -21,7 +21,7 @@ if (isset($_GET["type"])) {
 // generiere SQL für die Suche
 if (isset($_GET["search"])) {
     $search_pieces = explode(" ", $_GET["search"]);
-    if (len($search_pieces) == 0 and is_numeric($search_pieces[0])) {
+    if (count($search_pieces) == 0 and is_numeric($search_pieces[0])) {
         $search .= 'and products.id = ' . $search_pieces[0] . ' ';
     } else {
         foreach ($search_pieces as $search_piece) {
