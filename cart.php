@@ -82,52 +82,16 @@ if(isset($_POST['action'])) {
     if($_POST['action'] == 'del') {
         // Wenn die listid gesetzt und nicht leer ist
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
-            // Wenn confirm gesetzt und nicht leer ist
-            if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
-                // Wenn der Bestätigungs Button 
-                if ($_POST['confirm'] == 'yes') {
-                    // User clicked the "Yes" button, delete record
-                    $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
-                    $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
-                    $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
-                    $result = $stmt->execute();
-                    if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
-                    }                    
-                    echo("<script>location.href='cart.php'</script>");
-                    exit;
-                } else {
-                    // User clicked the "No" button, redirect them back to the read page
-                    echo("<script>location.href='cart.php'</script>");
-                    exit;
-                }
-            } else {
-                require_once("templates/header.php");
-                ?>
-                    <div class="container-fluid">
-                        <div class="row no-gutter">
-                            <div class="minheight100 col py-4 px-3">
-                                <div class="card cbg text-center mx-auto" style="width: 75%;">
-                                    <div class="card-body">
-                                        <h1 class="card-title mb-2 text-center">Wirklich Löschen?</h1>
-                                        <p class="text-center">
-                                            <div>
-                                            <form action="cart.php" method="post">
-                                                <input type="number" value="<?=$_POST['listid']?>" name="listid" style="display: none;" required>
-                                                <input type="text" value="del" name="action" style="display: none;" required>
-                                                <button class="btn btn-outline-primary mx-2" type="submit" name="confirm" value="yes">Ja</button>
-                                                <a href="cart.php"><button class="btn btn-outline-primary mx-2" type="button">Nein</button></a>
-                                            </form>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                require_once("templates/footer.php");
-                exit;
-            }
+            // User clicked the "Yes" button, delete record
+            $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
+            $stmt->bindValue(1, $_POST['listid'], PDO::PARAM_INT);
+            $stmt->bindValue(2, $user['id'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Database error', pdo_debugStrParams($stmt));
+            }                    
+            echo("<script>location.href='cart.php'</script>");
+            exit;
         } else {
             error('Some informations are missing!');
         }
