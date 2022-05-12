@@ -24,8 +24,17 @@ if (isset($_GET["search"])) {
     if (count($search_pieces) == 0 and is_numeric($search_pieces[0])) {
         $search .= 'and products.id = ' . $search_pieces[0] . ' ';
     } else {
-        foreach ($search_pieces as $search_piece) {
+        foreach ($search_pieces as $index => $search_piece) {
             if (!empty($search_piece) and $search_piece != '') {
+                $search_piece = ' ' . $search_piece . ' ';
+                if ($index == 0) {
+                    $search_piece = trim($search_piece);
+                    $search_piece = $search_piece . ' ';
+                }
+                if ($index == (count($search_pieces) - 1)) {
+                    $search_piece = trim($search_piece);
+                    $search_piece = ' ' . $search_piece;
+                }
                 $search .= 'and lower(products.name) like lower("%' . $search_piece . '%") ';
             }
         }
