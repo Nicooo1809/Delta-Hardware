@@ -21,9 +21,14 @@ if (isset($_GET["type"])) {
 // generiere SQL für die Suche
 if (isset($_GET["search"])) {
     $search_pieces = explode(" ", $_GET["search"]);
-    
-    foreach ($search_pieces as $search_piece) {
-        $search .= 'and ((lower(products.name) like lower("%' . $search_piece . '%")) or (products.id = ' . $search_piece . ')) ';
+    if (len($search_pieces) == 0 and is_numeric($search_pieces[0])) {
+        $search .= 'and products.id = ' . $search_pieces[0] . ' ';
+    } else {
+        foreach ($search_pieces as $search_piece) {
+            if (!empty($search_piece) and $search_piece != '') {
+                $search .= 'and lower(products.name) like lower("%' . $search_piece . '%") ';
+            }
+        }
     }
 }
 
