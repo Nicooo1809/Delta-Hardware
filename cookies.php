@@ -1,4 +1,3 @@
-<!-- NOT CLEAR -->
 <?php 
 require_once("templates/header.php"); 
 ?>
