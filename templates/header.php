@@ -128,5 +128,6 @@ $user1 = check_user(FALSE);
     </div>
 </nav>
 <?php
+// gibt die Benutzer informationen an die Hauptseite weiter
 return $user1;
 ?>
