@@ -1,4 +1,3 @@
-// NOT CLEAR
 /*
  * Cookie code von:
  * https://github.com/Wruczek/Bootstrap-Cookie-Alert
