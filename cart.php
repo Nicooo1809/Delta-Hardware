@@ -23,9 +23,9 @@ if(isset($_POST['action'])) {
                 error('Database error', pdo_debugStrParams($stmt));
             }
             $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // Wenn ein Produkt im Cart ist
+            // Wenn das Produkt bereits im Warenkorb ist
             if (isset($product[0])) {
-                // Sicherstellen 
+                // Sicherstellen das die quantity mindestens 1 und nicht höher wie der Lagerbestand ist
                 if ($_POST['quantity'] + $product[0]['quantity'] > $product[0]['maxquantity']) {
                     $quantity = $product[0]['maxquantity'];
                 } else {
@@ -44,14 +44,17 @@ if(isset($_POST['action'])) {
                 }                
                 echo("<script>location.href='cart.php'</script>");
                 exit;
+            // Wenn das Produkt zum Warenkorb hinzugefügt wird und noch nicht im Warenkorb war
             } else {
+                // Datenbank abfrage des Produktes
                 $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
                 $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
                 $result = $stmt->execute();
                 if (!$result) {
                     error('Database error', pdo_debugStrParams($stmt));
-                }                
+                }
                 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Sicherstellen das die quantity mindestens 1 und nicht höher wie der Lagerbestand ist
                 if ($_POST['quantity'] > $product[0]['quantity']) {
                     $quantity = $product[0]['quantity'];
                 } else {
@@ -67,19 +70,21 @@ if(isset($_POST['action'])) {
                 $result = $stmt->execute();
                 if (!$result) {
                     error('Database error', pdo_debugStrParams($stmt));
-                }                
+                }
                 echo("<script>location.href='cart.php'</script>");
                 exit;
             }
-            
-            
         } else {
             error('Some informations are missing!');
         }
     }
+    // Wenn die action "del" ist
     if($_POST['action'] == 'del') {
+        // Wenn die listid gesetzt und nicht leer ist
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
+            // Wenn confirm gesetzt und nicht leer ist
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
+                // Wenn der Bestätigungs Button 
                 if ($_POST['confirm'] == 'yes') {
                     // User clicked the "Yes" button, delete record
                     $stmt = $pdo->prepare('DELETE FROM product_list WHERE id = ? and list_id = (select id from orders where kunden_id = ? and ordered = 0 and sent = 0)');
@@ -127,6 +132,7 @@ if(isset($_POST['action'])) {
             error('Some informations are missing!');
         }
     }
+    // Wenn die action "mod" ist
     if($_POST['action'] == 'mod') {
         if(isset($_POST['listid']) and !empty($_POST['listid'])) {
             $stmt = $pdo->prepare('select *, products.quantity as maxquantity from products, product_list where products.id = product_list.product_id and product_list.id = ?');
@@ -235,8 +241,20 @@ foreach ($products as $product) {
                                                 <button type="submit" name="action" value="mod" class="btn btn-outline-primary">Speichern</button>
                                             </div>
                                             <div class="col-3 px-3">
+                                                <!-- <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
+                                                <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button> -->
                                                 <input type="number" value="<?=$product['id']?>" name="listid" style="display: none;" required>
-                                                <button type="submit" name="action" value="del" class="btn btn-outline-primary">Löschen</button>
+                                                <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas<?=$product['id']?>" aria-controls="offcanvas<?=$product['id']?>">Löschen</button>
+                                                <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas<?=$product['id']?>" aria-labelledby="offcanvas<?=$product['id']?>Label">
+                                                    <div class="offcanvas-header">
+                                                        <h2 class="offcanvas-title ctext" id="offcanvas<?=$product['id']?>Label">Wirklich Löschen?</h2>
+                                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="offcanvas-body">
+                                                        <button class="btn btn-outline-success mx-2" type="submit" name="action" value="del">Ja</button>
+                                                        <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </form>
                                     </td>
