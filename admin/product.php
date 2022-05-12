@@ -78,7 +78,7 @@ if(isset($_POST['action'])) {
                             error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                         }                        
                         if (!$stmt) {
-                            error("Fehler beim Hochladen der Datei");
+                            error("Hochladen Fehlgeschlagen");
                         } 
                     } else {
                         error("Hochladen Fehlgeschlagen");
@@ -258,7 +258,7 @@ if(isset($_POST['action'])) {
                                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                             }                            
                             if (!$stmt) {
-                                error("Fehler beim Hochladen der Datei");
+                                error("Hochladen Fehlgeschlagen");
                             } 
                         } else {
                             error("Hochladen Fehlgeschlagen");
