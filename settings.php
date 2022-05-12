@@ -1,16 +1,17 @@
-<!-- NOT CLEAR -->
 <?php
+// fügt die php-Funktionen hinzu
 require_once("php/functions.php");
+// fügt den header hinzu und liest die Benutzer-Infos hinzu
 $user = require_once("templates/header.php");
-//Überprüfe, dass der User eingeloggt ist
-//Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
+//Überprüfe, dass der User eingeloggt ist und bindet evtl. die login.php ein
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Überprüft ob ein Feld gespeichert werden soll
 if(isset($_GET['save'])) {
 	$save = $_GET['save'];
-	
+	// Speichert die Persönlichen daten
 	if($save == 'personal_data') {
 		$vorname = trim($_POST['vorname']);
 		$nachname = trim($_POST['nachname']);
@@ -31,6 +32,8 @@ if(isset($_GET['save'])) {
 
 			echo("<script>location.href='settings.php'</script>");
 		}
+	// Speichert die E-Mail
+	// erfordert ein Password da die E-Mail in anderen Anwendungen zum zurücksetzen des Password genutzt werden könnte
 	} else if($save == 'email') {
 		$passwort = $_POST['passwort'];
 		$email = trim($_POST['email']);
@@ -54,7 +57,7 @@ if(isset($_GET['save'])) {
 			
 			echo("<script>location.href='settings.php'</script>");
 		}
-		
+	// Speicht das Password
 	} else if($save == 'passwort') {
 		$passwortAlt = $_POST['passwortAlt'];
 		$passwortNeu = trim($_POST['passwortNeu']);
@@ -78,8 +81,8 @@ if(isset($_GET['save'])) {
 			}
 			echo("<script>location.href='settings.php'</script>");
 		}
+	// Speichert die Standard Addressen
 	} else if($save == 'address') {
-		
 		if(isset($_POST['standardaddresse']) && !empty($_POST['standardaddresse'])) {
 			$stmt = $pdo->prepare("UPDATE `address` SET `default` = 0, updated_at=NOW() WHERE `default` = 1 and user_id = ?");
 			$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
@@ -101,6 +104,7 @@ if(isset($_GET['save'])) {
 		}
 	}
 }
+// Fragt die Addressen für die Dropdown Menu
 $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -113,7 +117,6 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="container minheight100 py-2 px-2">
 	<div class="row no-gutter">
-		<!-- will do somethinge else for error/success_msg later -->
 		<?php if(isset($error_msg) && !empty($error_msg)) {echo $error_msg;}?>
 		<!-- Desktop Design -->
 		<?php if (!isMobile()): ?>
@@ -145,6 +148,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 									<form action="?save=address" method="post">
 									<div class="form-floating mb-2">
 										<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
+											<!-- Fügt alle Addressen in die Dropdown hinzu -->
 											<?php foreach ($addresses as $address): ?>
 												<?php if ($address['default'] == 1): ?>
 													<option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>
@@ -309,13 +313,10 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					</div>
 				</div>
 			</div>
-
-
-
 		<?php endif; ?>
 	</div>
 </div>
-	
 <?php 
+// Bindet den Footer ein
 include_once("templates/footer.php")
 ?>
