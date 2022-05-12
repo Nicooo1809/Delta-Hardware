@@ -4,8 +4,6 @@
  * https://github.com/Wruczek/Bootstrap-Cookie-Alert
  */
 (function() {
-    "use strict";
-
     var cookieAlert = document.querySelector(".cookiealert");
     var acceptCookies = document.querySelector(".acceptcookies");
 
@@ -15,18 +13,17 @@
 
     cookieAlert.offsetHeight; // Force browser to trigger reflow (https://stackoverflow.com/a/39451131)
 
-    // Show the alert if we cant find the "acceptCookies" cookie
+    // Zeigt das Popup wenn der Cookie "acceptCookies" nicht gefunden wird
     if (!getCookie("acceptCookies")) {
         cookieAlert.classList.add("show");
     }
 
-    // When clicking on the agree button, create a 1 year
-    // cookie to remember user's choice and close the banner
+    // Wenn den Cookies zu gestimmt wird, wird ein Cookie für 1 Jahr erstellt und das Popup geschlossen
     acceptCookies.addEventListener("click", function() {
         setCookie("acceptCookies", true, 365);
         cookieAlert.classList.remove("show");
 
-        // dispatch the accept event
+        // des Event wird gelöscht nach dem Zustimmen gelöscht
         window.dispatchEvent(new Event("cookieAlertAccept"))
     });
 })();
