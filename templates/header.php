@@ -1,7 +1,9 @@
-<!-- NOT CLEAR -->
 <?php
+// Fügt die php-Funktionen hinzu
 require_once("php/functions.php");
+// Startet eine PHP-Session
 session_start();
+// Überprüft ob der Benutzer eingeloogt ist 
 $user1 = check_user(FALSE);
 ?>
 
@@ -37,22 +39,21 @@ $user1 = check_user(FALSE);
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <?php include_once('favicon.svg') ?>
-            <!--<img src="/favicon.svg" class="navbar-icon">-->
         </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Der folgende Code holt sich die Produktkategorien sowie subkategorieren, 
-                ID's und Quantität der Produkte aus der Datenbank per SQL befehl und fügt diese im Dropdown-Menü ein -->
-                <?php           
+                <?php
+                    //Der folgende Code holt sich die Produktkategorien sowie subkategorieren, ID's und Quantität der Produkte aus der Datenbank per SQL befehl und fügt diese im Dropdown-Menü ein
                     $stmt = $pdo->prepare("SELECT * FROM products_types WHERE parent_id = 0");
                     $result = $stmt->execute();
                     if (!$result) {
                         error('Database error', pdo_debugStrParams($stmt));
                     }
                     $roottypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    // Loopt durch alle Eltern Kategorien durch und ruft die Unterkategorien ab
                     foreach ($roottypes as $roottype) {
                         $stmt = $pdo->prepare("SELECT *, (SELECT COUNT(*) FROM products WHERE products_types.id = products.product_type_id and visible = 1) as quantity FROM products_types WHERE parent_id = ?");
                         $stmt->bindValue(1, $roottype['id'], PDO::PARAM_INT);
@@ -74,6 +75,7 @@ $user1 = check_user(FALSE);
                             <li class="nav-item"><?=$roottype['type']?></li>
                             <?php
                         }
+                        // Geht durch alle Unterkategorien und gibt sie aus
                         foreach ($subtypes as $subtype) {
                         ?>
                             <?php if ($subtype['type'] == "line"):?>
