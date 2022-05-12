@@ -1,15 +1,18 @@
-<!-- NOT CLEAR -->
 <?php
+// fügt die php-Funktionen hinzu
 require_once("php/functions.php");
+// fügt den header hinzu und liest die Benutzer-Infos hinzu
 $user = require_once("templates/header.php");
+//Überprüfe, dass der User eingeloggt ist und bindet evtl. die login.php ein
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Überprüft ob eine ID übergeben wurde
 if (!isset($_GET['id'])) {
     echo("<script>location.href='internal.php'</script>");
 }
-
+// Liest die Produkte der Bestellung aus
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and products.id in (SELECT product_id FROM product_list where list_id = (select id from orders where kunden_id = ? and id = ?)) and product_list.list_id = (select id from orders where kunden_id = ? and id = ?)');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $_GET['id'], PDO::PARAM_INT);
@@ -21,9 +24,10 @@ if (!$result) {
 }
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Überprüft ob Produkte zu vorhanden sind
 if ($total_products > 0) {
     if(isset($_POST['action'])) {
+        // Überprüft ob etwas geändert werden soll
         if($_POST['action'] == 'edit') {
             $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ?, lieferadresse = ? WHERE id = ? AND kunden_id = ? AND ordered = 1 AND NOT `sent` = 1');
             $stmt->bindValue(1, $_POST['rechnugsaddresse'], PDO::PARAM_INT);
@@ -37,6 +41,7 @@ if ($total_products > 0) {
             echo("<script>location.href='/internal.php'</script>");
             exit;
         }
+        // Überprüft ob die Bestellung storniert werden soll
         if($_POST['action'] == 'del') {
             foreach ($products as $product) {
                 $stmt = $pdo->prepare('UPDATE products SET products.quantity = products.quantity + ? WHERE id = ?');
@@ -65,13 +70,11 @@ if ($total_products > 0) {
         }
     }
 } else {
+    // Wenn keine Produkte zurück kommen ist das nicht die Bestellung des Benutzers oder die ID existiert nicht
     error('Wrong ID!');
-}
-if ($total_products < 1) {
-    error('Permission denied!');
     exit;
 }
-
+// Ruft die Bestelleigenschafte ab
 $stmt = $pdo->prepare('SELECT * FROM orders where kunden_id = ? and id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $_GET['id'], PDO::PARAM_INT);
@@ -81,10 +84,11 @@ if (!$result) {
 }
 $order = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $summprice = 0;
+// Errechnet die Summe
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
 }
-
+// Ruft die Rechnungsddressen ab
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $order[0]['rechnungsadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -92,7 +96,7 @@ if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $rechnungsadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Ruft die Lieferaddresse ab
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $order[0]['lieferadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -100,7 +104,7 @@ if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Ruft die Addressen ab
 $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -118,10 +122,12 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h1>Bestellung</h1>
                         <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
                         <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
+                        <!-- Zeigt das Versandtdatum an wenn es bereits verschickt wurde -->
                         <?php if ($order[0]['sent']==1): ?>
                             <p>Versanddatum: <?=$order[0]['sent_date']?></p>
                         <?php endif ?>
                     </div>
+                    <!-- Zeigt die Option der Stornierung und Editierung an wenn es noch nicht verschickt wurde -->
                     <?php if ($order[0]['sent']!=1): ?>
                             <div class="col-5 d-flex justify-content-end">
                                 <form action="?id=<?=$_GET['id']?>" method="post" class="">
@@ -172,6 +178,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </form>
                     </div>
+                <!-- Sonst zeigt es nur die Addresse an -->
                 <?php else: ?>
                     </div>
                     <div class="row mb-2">
@@ -211,6 +218,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Zeigt alle Produkte an -->
                             <?php foreach ($products as $product): ?>
                                 <tr>
                                     <th scope="row" class="border-0">
@@ -243,6 +251,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div> 
+<!-- Mobile-View nur leicht abgawandeltes HTML-->
 <?php else: ?>
     <div class="container minheight100 py-3 px-3">
         <div class="row">
@@ -350,16 +359,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div> 
-<?php endif; ?>
-<?php
+<?php endif; 
+// Fügt den Footer ein
 include_once("templates/footer.php")
 ?>
-
-
-<!-- 
-
-
-
-
-
- -->
