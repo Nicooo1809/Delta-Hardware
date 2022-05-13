@@ -42,7 +42,6 @@ if (isset($_GET["search"])) {
         }
     }
 }
-print($search);
 // Suche Produkte aus der Datenbank und sortiere nach oben generiertem SQL
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ' . $type . $search . $sortsql);
 $result = $stmt->execute();
