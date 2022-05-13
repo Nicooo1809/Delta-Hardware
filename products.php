@@ -24,6 +24,7 @@ if (isset($_GET["search"])) {
     if (is_numeric($_GET["search"])) {
         $search .= 'and products.id = ' . $_GET["search"] . ' ';
     } else {
+        print('ddddddddddddd');
         $search = 'and lower(products.name) like lower("%' . $_GET["search"] . '%")';
         $stmt = $pdo->prepare('SELECT * FROM products where visible = 1 ' . $type . $search);
         $result = $stmt->execute();
@@ -31,6 +32,7 @@ if (isset($_GET["search"])) {
             error('Datenbank Fehler', pdo_debugStrParams($stmt));
         }
         if ($stmt->rowCount() < 1) {
+            print('fsgfdgdfg');
             $search_pieces = explode(" ", $_GET["search"]);
             foreach ($search_pieces as $index => $search_piece) {
                 if (!empty($search_piece) and $search_piece != '') {
