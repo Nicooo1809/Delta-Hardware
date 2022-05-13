@@ -36,13 +36,12 @@ if (isset($_GET["search"])) {
                 if (!empty($search_piece) and $search_piece != '') {
                     $search_piece = trim($search_piece);
                     $search .= 'and lower(products.name) like lower("%' . $search_piece . '%") ';
-                    print($search);
                 }
             }
         }
     }
 }
-
+print($search);
 // Suche Produkte aus der Datenbank und sortiere nach oben generiertem SQL
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ' . $type . $search . $sortsql);
 $result = $stmt->execute();
