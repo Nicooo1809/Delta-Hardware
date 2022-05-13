@@ -31,6 +31,7 @@ if (isset($_GET["search"])) {
             error('Datenbank Fehler', pdo_debugStrParams($stmt));
         }
         if ($stmt->rowCount() < 1) {
+            $search = '';
             $search_pieces = explode(" ", $_GET["search"]);
             foreach ($search_pieces as $search_piece) {
                 if (!empty($search_piece) and $search_piece != '') {
