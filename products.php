@@ -76,26 +76,26 @@ require_once("templates/header.php");
     <p class="my-2"><?php print($total_products); ?> Produkte</p>
     <div class="products-wrapper row row-cols-1 row-cols-md-4 g-4">
         <?php foreach ($products as $product): ?>
-                <div class="col">
-                    <div class="card prodcard cbg">
-                        <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
-                            <div class="card-body">
-                                <?php if (empty($product['image'])) {
-                                    print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                                } else {
-                                    print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                                }?>
-                                <h4 class="card-title name"><?=$product['name']?></h4>
-                                <p class="card-text ctext price">Preis: 
-                                    <?=$product['price']?>&euro;
-                                    <?php if ($product['rrp'] > 0): ?>
-                                    <span class="rrp ctext"><br>UVP: <?=$product['rrp']?> &euro;</span>
-                                    <?php endif; ?>
-                                </p>
-                            </div>
-                        </a>
-                    </div>
+            <div class="col">
+                <div class="card prodcard cbg">
+                    <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
+                        <div class="card-body">
+                            <?php if (empty($product['image'])) {
+                                print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                            } else {
+                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                            }?>
+                            <h4 class="card-title name"><?=$product['name']?></h4>
+                            <p class="card-text ctext price">Preis: 
+                                <?=$product['price']?>&euro;
+                                <?php if ($product['rrp'] > 0): ?>
+                                <span class="rrp ctext"><br>UVP: <?=$product['rrp']?> &euro;</span>
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                    </a>
                 </div>
+            </div>
         <?php endforeach; ?>
     </div>
 </div>
