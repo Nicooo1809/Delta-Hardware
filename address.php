@@ -81,19 +81,19 @@ if(isset($_POST['action'])) {
                     <form action="address.php" method="post" enctype="multipart/form-data">
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputStreet">Straße</span>
-                            <input class="form-control" id="inputStreet" name="street" type="text" value="<?=$address[0]['street']?>" required>
+                            <input class="form-control" pattern="[A-Za-z-]+" id="inputStreet" name="street" type="text" value="<?=$address[0]['street']?>" required>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputNumber">Hausnummer</span>
-                            <input class="form-control" id="inputNumber" name="number" type="text" value="<?=$address[0]['number']?>" required>
+                            <input class="form-control" pattern="[0-9a-zA-Z-\/]+" id="inputNumber" name="number" type="text" value="<?=$address[0]['number']?>" required>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputPlz">PLZ</span>
-                            <input class="form-control" id="inputPlz" name="PLZ" type="text" value="<?=$address[0]['PLZ']?>" required>
+                            <input class="form-control" minlength="3" maxlength="10" pattern="[0-9]+" id="inputPlz" name="PLZ" type="text" value="<?=$address[0]['PLZ']?>" required>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputCity">Stadt</span>
-                            <input class="form-control" id="inputCity" name="city" type="text" value="<?=$address[0]['city']?>" required>
+                            <input class="form-control" pattern="[A-Za-z-]+" id="inputCity" name="city" type="text" value="<?=$address[0]['city']?>" required>
                         </div>
                         <div class="py-2 d-flex justify-content-center">
                                 <input type="number" value="<?=$_POST['addressid']?>" name="addressid" style="display: none;" required>
@@ -173,19 +173,19 @@ if(isset($_POST['action'])) {
                     <form action="address.php" method="post" enctype="multipart/form-data">
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputStreet">Straße</span>
-                            <input class="form-control" id="inputStreet" name="street" type="text" required>
+                            <input class="form-control" pattern="[A-Za-z-]+" id="inputStreet" name="street" type="text" required>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputNumber">Hausnummer</span>
-                            <input class="form-control" id="inputNumber" name="number" type="text" required>
+                            <input class="form-control" pattern="[0-9a-zA-Z-\/]+" id="inputNumber" name="number" type="text" required>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputPlz">PLZ</span>
-                            <input class="form-control" id="inputPlz" name="PLZ" type="text" required>
+                            <input class="form-control" minlength="3" maxlength="10" pattern="[0-9]+" id="inputPlz" name="PLZ" type="text" required>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputCity">Stadt</span>
-                            <input class="form-control" id="inputCity" name="city" type="text" required>
+                            <input class="form-control" pattern="[A-Za-z-]+" id="inputCity" name="city" type="text" required>
                         </div>
                         <div class="d-flex justify-content-center">
                                 <button class="btn btn-success mx-1" type="submit" name="action" value="add">Speichern</button>
