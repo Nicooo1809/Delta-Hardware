@@ -123,3 +123,7 @@ CREATE TABLE `product_list` (
   FOREIGN KEY (`list_id`) REFERENCES `orders`(`id`),
   FOREIGN KEY (`product_id`) REFERENCES `products`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE USER IF NOT EXISTS 'shopuser'@'localhost' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON shop.* TO 'shopuser'@'localhost';
+FLUSH PRIVILEGES;
