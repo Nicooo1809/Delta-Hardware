@@ -11,7 +11,7 @@ if (!isset($user['id'])) {
 // Überprüft ob ein Feld gespeichert werden soll
 if(isset($_GET['save'])) {
 	$save = $_GET['save'];
-	// Speichert die Persönlichen daten
+	// Speichert die Persönlichen Daten
 	if($save == 'personal_data') {
 		$vorname = trim($_POST['vorname']);
 		$nachname = trim($_POST['nachname']);
@@ -57,7 +57,7 @@ if(isset($_GET['save'])) {
 			
 			echo("<script>location.href='settings.php'</script>");
 		}
-	// Speicht das Password
+	// Speiche das Password
 	} else if($save == 'passwort') {
 		$passwortAlt = $_POST['passwortAlt'];
 		$passwortNeu = trim($_POST['passwortNeu']);
@@ -81,7 +81,7 @@ if(isset($_GET['save'])) {
 			}
 			echo("<script>location.href='settings.php'</script>");
 		}
-	// Speichert die Standard Addressen
+	// Speichert die Standard Aderessen
 	} else if($save == 'address') {
 		if(isset($_POST['standardaddresse']) && !empty($_POST['standardaddresse'])) {
 			$stmt = $pdo->prepare("UPDATE `address` SET `default` = 0, updated_at=NOW() WHERE `default` = 1 and user_id = ?");
@@ -104,7 +104,7 @@ if(isset($_GET['save'])) {
 		}
 	}
 }
-// Fragt die Addressen für die Dropdown Menu
+// Fragt die Aderessen für die Dropdown Menu
 $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -148,7 +148,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 									<form action="?save=address" method="post">
 									<div class="form-floating mb-2">
 										<select class="form-select border-0 ps-4 text-dark fw-bold" id="inputStandardaddresse" name="standardaddresse">
-											<!-- Fügt alle Addressen in die Dropdown hinzu -->
+											<!-- Fügt alle Aderessen in die Dropdown hinzu -->
 											<?php foreach ($addresses as $address): ?>
 												<?php if ($address['default'] == 1): ?>
 													<option class="text-dark" value="<?=$address['id']?>" selected><?=$address['street']?> <?=$address['number']?> - <?=$address['PLZ']?>, <?=$address['city']?></option>

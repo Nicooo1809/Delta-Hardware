@@ -3,7 +3,7 @@ setStyle();
 // Initialisiert die Variablen
 var pressedc = false;
 var pressedr = false;
-// fügt ein Event für eine getrückte Taste hinzu
+// fügt ein Event für eine gedrückte Taste hinzu
 // und setzt die Variable auf true
 document.onkeydown = function (e) {
   if (e['key'] == 'c') {

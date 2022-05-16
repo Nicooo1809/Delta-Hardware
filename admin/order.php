@@ -8,7 +8,7 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-// Zeit die Error seite wenn der User keine berechtigungen hat
+// Zeit die Error Seite wenn der User keine Berechtigungen hat
 if ($user['showOrders'] != 1) {
     error('Unzureichende Berechtigungen!');
 }
@@ -16,7 +16,7 @@ if ($user['showOrders'] != 1) {
 if (!isset($_GET['id']) or empty($_GET['id'])) {
     echo("<script>location.href='/internal.php'</script>");
 }
-// Ruft alle Produkte und Bilder dieser von der Datenbank ab, welche im Wahrenkorb mit entsprechender ID sind
+// Ruft alle Produkte und Bilder dieser von der Datenbank ab, welche im Warenkorb mit entsprechender ID sind
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, products.quantity as maxquantity FROM products, product_list where product_list.product_id = products.id and product_list.list_id = ?');
 $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -30,11 +30,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_POST['confirm'])) {
     // Überprüfe ob die POST Action "confirm" auf "yes" gesetzt ist
     if($_POST['confirm'] == 'yes') {
-		// Zeit die Error seite wenn der User keine berechtigungen hat
+		// Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['markOrders'] != 1) {
 			error('Unzureichende Berechtigungen!');
 		}
-        // Updatet die Bestellung mit Enstprechender ID, der Parametrer "sent" wird auf 1 gesetzt und das sent_date wird auf das Aktuelle Datum gesetzt
+        // Updatet die Bestellung mit Entsprechender ID, der Parameter "sent" wird auf 1 gesetzt und das sent_date wird auf das Aktuelle Datum gesetzt
         $stmt = $pdo->prepare('UPDATE orders SET sent = 1, sent_date = now() WHERE id = ? and ordered = 1');
         $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
         $result = $stmt->execute();
@@ -55,7 +55,7 @@ if (!$result) {
     error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $customer = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// SQL Abfrage für die Adresse bei der Bestellung ausgeählten Rechnungsadresse
+// SQL Abfrage für die Adresse bei der Bestellung ausgewählten Rechnungsadresse
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $customer[0]['rechnungsadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -64,7 +64,7 @@ if (!$result) {
     error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $rechnungsadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// SQL Abfrage für die Adresse bei der Bestellung ausgeählten Lieferadresse
+// SQL Abfrage für die Adresse bei der Bestellung ausgewählten Lieferadresse
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $customer[0]['lieferadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -91,7 +91,7 @@ foreach ($products as $product) {
                             <p>Bitte folgende<?=($total_products>1 ? ' '.$total_products:'s')?> Produkt<?=($total_products>1 ? 'e':'')?> für den Kunden einpacken und das Packet mit folgendem Addressaufkleber versehen:</p>
                         </div>
                         <div class="col-4">
-                            <!-- Wird nur angezeit wenn der user die Berechtigungen zum erledigen von Bestellungen hat -->
+                            <!-- Wird nur angezeigt wenn der user die Berechtigungen zum erledigen von Bestellungen hat -->
                             <?php if ($user['markOrders'] == 1) { ?>
                                 <form action="?id=<?=$_GET['id']?>" method="post" class="d-flex justify-content-end">
                                     <button type="submit" name="confirm" value="yes" class="btn btn-outline-success me-2">Erledigt</button>
@@ -101,7 +101,7 @@ foreach ($products as $product) {
                         </div>
                     </div>
                     <div class="col-6">
-                        <h2>Rechnungsaddresse</h2>
+                        <h2>Rechnungsadresse</h2>
                         <div class="card cbg2 mx-auto py-2 px-2">
                             <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
                             <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
@@ -109,7 +109,7 @@ foreach ($products as $product) {
                         </div>
                     </div>
                     <div class="col-6">
-                        <h2>Lieferaddresse</h2>
+                        <h2>Lieferadresse</h2>
                         <div class="card cbg2 mx-auto py-2 px-2">
                             <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
                             <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
@@ -178,7 +178,7 @@ foreach ($products as $product) {
         </div>
         <div class="card mx-auto my-2 cbg">
             <div class="card-body">
-                <h2>Rechnungsaddresse</h2>
+                <h2>Rechnungsadresse</h2>
                 <div class="card-text cbg2 py-2 px-2">
                     <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
                     <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
@@ -186,7 +186,7 @@ foreach ($products as $product) {
                 </div>
             </div>
             <div class="card-body">
-                <h2>Lieferaddresse</h2>
+                <h2>Lieferadresse</h2>
                 <div class="card-text cbg2 py-2 px-2">
                     <p class="mb-0"><?=$customer[0]['vorname'].' '.$customer[0]['nachname']?></br>
                     <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
@@ -194,7 +194,7 @@ foreach ($products as $product) {
                 </div>
             </div>
         </div>
-        <!-- Wird nur angezeigt wenn der User berechtigungen hat die Bestellungen als Erledigt zu Markieren -->
+        <!-- Wird nur angezeigt wenn der User Berechtigungen hat die Bestellungen als Erledigt zu Markieren -->
         <?php if ($user['markOrders'] == 1) { ?>
             <div class="card mx-auto my-2 cbg">
                 <div class="card-body">
@@ -205,7 +205,7 @@ foreach ($products as $product) {
                 </div>
             </div>
         <?php } ?>
-        <!-- Für jedes Produkt der bestellung -->
+        <!-- Für jedes Produkt der Bestellung -->
         <?php foreach ($products as $product): ?>
             <div class="col">
                 <div class="card mx-auto my-2 cbg">

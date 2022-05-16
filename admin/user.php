@@ -8,7 +8,7 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-// Zeit die Error seite wenn der User keine berechtigungen hat
+// Zeit die Error Seite wenn der User keine Berechtigungen hat
 if ($user['showUser'] != 1) {
     error('Unzureichende Berechtigungen!');
 }
@@ -16,13 +16,13 @@ if ($user['showUser'] != 1) {
 if(isset($_POST['action'])) {
     // Wenn action "deleteconfirm" ist
     if ($_POST['action'] == 'deleteconfirm') {
-        // Zeit die Error seite wenn der User keine berechtigungen hat
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['deleteUser'] != 1 || $_POST['userid'] == 1) {
             error('Unzureichende Berechtigungen!');
         }
         // Wenn die User ID gesetzt ist
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
-            // Lösche alle securitytokens mit gegebener user ID
+            // Lösche alle security tokens mit gegebener user ID
             $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
@@ -50,7 +50,7 @@ if(isset($_POST['action'])) {
     }
     // Wenn action "mod" ist
     if($_POST['action'] == 'mod') {
-        // Zeit die Error seite wenn der User keine berechtigungen hat
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyUser'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
@@ -113,7 +113,7 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
-        <!-- Formular zur bearbeitung des Users anzeigen -->
+        <!-- Formular zur Bearbeitung des Users anzeigen -->
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>

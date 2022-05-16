@@ -10,7 +10,7 @@ if (!$result) {
 // Anzahl der Produkte bekommen
 $total_products = $stmt->rowCount();
 // Fetch the products from the database and return the result as an Array
-// Die aus der Datenbank gezogenen Produkte werden in ein Array returned
+// Die aus der Datenbank gezogenen Produkte werden in ein Array ausgegeben
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
@@ -34,7 +34,7 @@ require_once("templates/header.php");
             </div>
         </div>
     </div>
-    <!-- Neuerscheinungen werden als Slider/Carousel angezeigt -->
+    <!-- Neuerscheinungen werden als Slider/Karussell angezeigt -->
     <!-- Die mit dem oben geschriebenen PHP-Code geholten Dateien werden ein einer Reihe angezeigt
     dabei sieht man immer nur 4 Produkte für 5 Sekunden und geht dann zu den nächsten 4.
     Es werden maximal 12 Produkte angezeigt (12 neuste) -->

@@ -8,7 +8,7 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-// Zeit die Error seite wenn der User keine berechtigungen hat
+// Zeit die Error Seite wenn der User keine Berechtigungen hat
 if ($user['showUserPerms'] != 1) {
     error('Unzureichende Berechtigungen!');
 }
@@ -16,13 +16,13 @@ if ($user['showUserPerms'] != 1) {
 if(isset($_POST['action'])) {
     // Überprüfe ob die POST Action "action" auf "add" gesetzt ist
     if($_POST['action'] == 'add') {
-		// Zeit die Error seite wenn der User keine berechtigungen hat
+		// Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyUserPerms'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
         // Wenn "permsname" gesetzt ist
         if (isset($_POST['permsname'])) {
-            // Hinzufügen einer Berechtingungsgruppe
+            // Hinzufügen einer Berechtigungsgruppe
             $stmt = $pdo->prepare('INSERT INTO permission_group (name) VALUES (?)');
             $stmt->bindValue(1, $_POST['permsname']);
             $result = $stmt->execute();
@@ -36,7 +36,7 @@ if(isset($_POST['action'])) {
     }
     // Überprüfe ob die POST Action "action" auf "del" gesetzt ist
     if($_POST['action'] == 'del') {
-        // Zeit die Error seite wenn der User keine berechtigungen hat
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyUserPerms'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
@@ -48,7 +48,7 @@ if(isset($_POST['action'])) {
                 if ($_POST['confirm'] == 'yes') {
                     // Wenn die Berechtigungsgruppe nicht die ID 1 oder 2 hat (um sicherzustellen das die default und Admin Gruppen nicht gelöscht werden können)
                     if (!(( $perms['id'] == 1 ) || ( $perms['id'] == 2 ))) {
-                        // Setze die Berechtringungsgruppe der user welche in der zu Löschenden Gruppe waren auf die default Gruppe
+                        // Setze die Berechtigungsgruppe der user welche in der zu Löschenden Gruppe waren auf die default Gruppe
                         $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
                         $stmt->bindValue(1, 1, PDO::PARAM_INT);
                         $stmt->bindValue(2, $_POST['permsid'], PDO::PARAM_INT);
@@ -57,7 +57,7 @@ if(isset($_POST['action'])) {
                         if (!$result) {
                             error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                         }
-                        // Lösche die Berechtingungsgruppe
+                        // Lösche die Berechtigungsgruppe
                         $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
                         $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
                         $result = $stmt->execute();
@@ -69,12 +69,11 @@ if(isset($_POST['action'])) {
                         echo("<script>location.href='perms.php'</script>");
                         exit;
                     } 	
-                    // Zeit die Error seite wenn der User keine berechtigungen hat
+                    // Zeit die Error Seite wenn der User keine Berechtigungen hat
                     else {
                         error('Unzureichende Berechtigungen!');
                     }
                 } else {
-                    // User clicked the "No" button, redirect them back to the read page
                     echo("<script>location.href='perms.php'</script>");
                     exit;
                 }
@@ -111,7 +110,7 @@ if(isset($_POST['action'])) {
     }
     // Überprüfe ob die POST Action "action" auf "mod" gesetzt ist
     if($_POST['action'] == 'mod') {
-        // Zeit die Error seite wenn der User keine berechtigungen hat
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyUserPerms'] != 1) {
             error('Unzureichende Berechtigungen!');
         }

@@ -1,7 +1,7 @@
 <?php
 require_once("php/mysql.php");
 
-// überprüft ob der Benutzer angemeldet ist und gibt die benutzerbaten zurück und sonst False oder leite auf die Login weiter
+// überprüft ob der Benutzer angemeldet ist und gibt die Benutzerdaten zurück und sonst False oder leite auf die Login weiter
 function check_user($redirect = TRUE) {
 	global $pdo;
 	if(!isset($_SESSION['userid']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
@@ -57,7 +57,7 @@ function check_user($redirect = TRUE) {
 // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
 function error($error_msg, $error_log = "") {
 	global $pdo;
-	// Gibt eine detailierte Fehlermeldung in das error_log
+	// Gibt eine detaillierte Fehlermeldung in das error_log
 	$backtrace = debug_backtrace();
 	if (!empty($error_log)) {
 		error_log($backtrace[count($backtrace)-1]['file'] . ':' . $backtrace[count($backtrace)-1]['line'] . ': ' . $error_msg . ': ' . $error_log);
@@ -75,7 +75,7 @@ function isMobile () {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
 
-// fängt die Debug ausgabe ab und gibt das zurück
+// fängt die Debug Ausgabe ab und gibt das zurück
 function pdo_debugStrParams($stmt) {
 	ob_start();
 	$stmt->debugDumpParams();
@@ -84,7 +84,7 @@ function pdo_debugStrParams($stmt) {
 	return $r;
 }
 
-// Überprüft die Cookies welches Design verwended werden soll
+// Überprüft die Cookies welches Design verwendet werden soll
 function check_style() {
 	if(isset($_COOKIE['style'])) {
 		if ($_COOKIE['style'] == 'dark') {

@@ -14,7 +14,7 @@ if (isset($_GET["sortby"])) {
     }
     $sortsql = "ORDER BY products." . $_GET["sortby"] . $order;
 }
-// generiere SQL für Typenbezogene ansicht
+// generiere SQL für Typenbeziehung
 if (isset($_GET["type"])) {
     $type = "and products.product_type_id = '" . $_GET["type"] . "' ";
 }
@@ -52,7 +52,7 @@ if (!$result) {
 // Zähle Zeilen für maximale Anzahl an Produkten
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// Header einbindung
+// Header Einbindung
 require_once("templates/header.php");
 ?>
 

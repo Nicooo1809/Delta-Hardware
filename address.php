@@ -31,7 +31,7 @@ if(isset($_POST['action'])) {
             }
             $total = $stmt->rowCount();
             $city = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // Wenn der eintrag bereits vorhanden ist wird die CityID zwischengespeichert
+            // Wenn der Eintrag bereits vorhanden ist wird die CityID zwischengespeichert
             if ($total == 1) {
                 $cityid = $city[0]['id'];
             // Wenn der Eintrag noch nicht vorhanden ist wird die Stadt erstellt
@@ -58,7 +58,7 @@ if(isset($_POST['action'])) {
                     $cityid = $city[0]['id'];
                 }
             }
-            // Adresse wird aktuallisiert
+            // Adresse wird aktualisiert
             $stmt = $pdo->prepare("UPDATE `address` SET street = ?, `number` = ?, citys_id = ?, updated_at = now() WHERE `address`.`id` = ?");
             $stmt->bindValue(1, $_POST['street']);
             $stmt->bindValue(2, $_POST['number']);
@@ -123,7 +123,7 @@ if(isset($_POST['action'])) {
             }
             $total = $stmt->rowCount();
             $city = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // Wenn der eintrag bereits vorhanden ist wird die CityID zwischengespeichert
+            // Wenn der Eintrag bereits vorhanden ist wird die CityID zwischengespeichert
             if ($total == 1) {
                 $cityid = $city[0]['id'];
             // Wenn der Eintrag noch nicht vorhanden ist wird die Stadt erstellt
@@ -216,11 +216,11 @@ if (!$result) {
 $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $total_addresses = $stmt->rowCount();
 ?>
-<!-- Seite zur Addressverwaltung -->
+<!-- Seite zur Aderessverwaltung -->
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
-            <h1>Addressverwaltung</h1>
+            <h1>Aderessverwaltung</h1>
             <form action="address.php" method="post">
                 <div>
                     <button type="submit" name="action" value="add" class="btn btn-outline-primary">Hinzufügen</button>

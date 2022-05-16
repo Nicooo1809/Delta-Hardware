@@ -1,16 +1,16 @@
 <?php
 // Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);
-// einbindung der functions.php
+// Einbindung der functions.php
 require_once("php/functions.php");
 // Einbindung des Headers, gleichzeitig werden wenn der User angemeldet ist die User Daten übergeben
 $user = require_once("templates/header.php");
-// zeigt die Loginseite an wenn der User nicht angemeldet ist
+// zeigt die Login Seite an wenn der User nicht angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-// Zeit die Error seite wenn der User keine berechtigungen hat die Kategorien zu sehen
+// Zeit die Error Seite wenn der User keine Berechtigungen hat die Kategorien zu sehen
 if ($user['showCategories'] != 1) {
     error('Unzureichende Berechtigungen!');
 }
@@ -18,7 +18,7 @@ if ($user['showCategories'] != 1) {
 if(isset($_POST['action'])) {
     // überprüft ob die aktion "add" ist
     if($_POST['action'] == 'add') {
-        // überprüft ob der User die berechtigungen hat Kategorien zu bearbeiten
+        // überprüft ob der User die Berechtigungen hat Kategorien zu bearbeiten
         if ($user['modifyCategories'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
@@ -33,16 +33,16 @@ if(isset($_POST['action'])) {
             if (!$result) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
-            // zurückleiten auf die bearbeitungsseite
+            // zurückleiten auf die Seite zur Bearbeitung
             echo("<script>location.href='categories.php'</script>");
-            // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
+        // Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
         } else {
             error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
-    // überprüft ob die aktion "del" (also delete) ist
+    // überprüft ob die action "del" (also delete) ist
     if($_POST['action'] == 'del') {
-        // überprüft ob der User die berechtigungen hat Kategorien zu bearbeiten
+        // überprüft ob der User die Berechtigungen hat Kategorien zu bearbeiten
         if ($user['modifyCategories'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
@@ -52,7 +52,7 @@ if(isset($_POST['action'])) {
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
                 // überprüfe ob der User den Ja button gedrückt hat
                 if ($_POST['confirm'] == 'yes') {
-                    // SQL UPDATE für unsere Produkte (hier wird der produkt_typ (Kategorie) auf eine andere Kategorie gesetzt)
+                    // SQL UPDATE für unsere Produkte (hier wird der Produkt Typ (Kategorie) auf eine andere Kategorie gesetzt)
                     $stmt = $pdo->prepare('UPDATE products SET product_type_id = ? WHERE product_type_id = ?');
                     $stmt->bindValue(1, $_POST['newparentcategorie'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $_POST['categoriesid'], PDO::PARAM_INT);
@@ -69,12 +69,12 @@ if(isset($_POST['action'])) {
                     if (!$result) {
                         error('Datenbank Fehler', pdo_debugStrParams($stmt));
                     }
-                    // zurückleiten auf die bearbeitungsseite
+                    // zurückleiten auf die Seite zur Bearbeitung
                     echo("<script>location.href='categories.php'</script>");
                     exit;
                 // Wenn der User nicht Ja Klickt
                 } else {
-                    // zurückleiten auf die bearbeitungsseite
+                    // zurückleiten auf die Seite zur Bearbeitung
                     echo("<script>location.href='categories.php'</script>");
                     exit;
                 }
@@ -87,7 +87,7 @@ if(isset($_POST['action'])) {
                 if (!$result) {
                     error('Datenbank Fehler', pdo_debugStrParams($stmt));
                 }
-                // Alle Kategorien werden in das array "root_cats" geschrieben (mit der abkürzung root_cats sind nicht Wurzel Katzen gemeint)
+                // Alle Kategorien werden in das array "root_cats" geschrieben (mit der Abkürzung root_cats sind nicht Wurzel Katzen gemeint)
                 $root_cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 // Abfrage aller Produkt Kategorien
                 $stmt = $pdo->prepare('SELECT * from products_types WHERE id = ?');
@@ -143,9 +143,9 @@ if(isset($_POST['action'])) {
             error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
-    // überprüft ob die aktion "add" ist
+    // überprüft ob die action "add" ist
     if($_POST['action'] == 'mod') {
-        // überprüft ob der User die berechtigungen hat Kategorien zu bearbeiten
+        // überprüft ob der User die Berechtigungen hat Kategorien zu bearbeiten
         if ($user['modifyCategories'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
@@ -159,13 +159,13 @@ if(isset($_POST['action'])) {
         if (!$result) {
             error('Datenbank Fehler', pdo_debugStrParams($stmt));
         }
-        // zurückleiten auf die bearbeitungsseite
+        // zurückleiten auf die Seite zur Bearbeitung
         echo("<script>location.href='categories.php'</script>");
         exit;
     }
     // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
-        // zurückleiten auf die bearbeitungsseite
+        // zurückleiten auf die Seite zur Bearbeitung
         echo("<script>location.href='categories.php'</script>");
         exit;
     }
@@ -177,7 +177,7 @@ $result = $stmt->execute();
 if (!$result) {
     error('Datenbank Fehler', pdo_debugStrParams($stmt));
 }
-// Ergebniss der Abfrage wird in categories eingefügt
+// Ergebnis der Abfrage wird in categories eingefügt
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Abfrage aller ROOT Kategorien
 $stmt = $pdo->prepare('SELECT * from products_types where parent_id = 0');
@@ -186,7 +186,7 @@ $result = $stmt->execute();
 if (!$result) {
     error('Datenbank Fehler', pdo_debugStrParams($stmt));
 }
-// Alle Kategorien werden in das array "root_cats" geschrieben (mit der abkürzung root_cats sind nicht Wurzel Katzen gemeint)
+// Alle Kategorien werden in das array "root_cats" geschrieben (mit der Abkürzung root_cats sind nicht Wurzel Katzen gemeint)
 $root_cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container minheight100 users content-wrapper py-3 px-3">
@@ -312,7 +312,7 @@ $root_cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </div> 
-<!-- Footer einbindung -->
+<!-- Footer Einbindung -->
 <?php
 include_once("templates/footer.php")
 ?>

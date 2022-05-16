@@ -5,7 +5,7 @@ unset($_SESSION['userid']);
 // bindet die PHP Funktionen ein
 require_once("php/functions.php");
 
-// Löscht den Securoty Token aus der Datenbank
+// Löscht den Security Token aus der Datenbank
 $stmt = $pdo->prepare("DELETE FROM securitytokens WHERE identifier = ?");
 $stmt->bindValue(1, $_COOKIE['identifier']);
 $result = $stmt->execute();
@@ -14,7 +14,7 @@ if (!$result) {
     error('Datenbank Fehler', pdo_debugStrParams($stmt));
 }
 
-//Enfernt Cookies
+// Entfernt Cookies
 setcookie("identifier","",time()-(3600*24*365)); 
 setcookie("securitytoken","",time()-(3600*24*365)); 
 

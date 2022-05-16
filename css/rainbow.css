@@ -22,7 +22,7 @@ html, body {
 	margin: 0;
 }
 
-/* CSS für List Items, verlinkungen und Knöpfe */
+/* CSS für List Items, Verlinkungen und Knöpfe */
 li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
@@ -117,7 +117,7 @@ hr {
 
 
 
-/* Custom CSS für Bootstrap sachen */
+/* Custom CSS für Bootstrap Sachen */
 /* CSS für dropdown-menus (kommt an sich nur im Header vor) */
 .dropdown-menu {
     background-color: #212529 !important;
@@ -180,14 +180,14 @@ hr {
     color: #ffffff;
 }
 
-/* Bootstrap Button Primary hover anpassung (Rainbow animation) */
+/* Bootstrap Button Primary hover Anpassung (Rainbow animation) */
 .btn-primary:hover {
     color: #ffffff;
     animation: rainbow-bg 2.5s linear  !important;
     animation-iteration-count: infinite  !important;
 }
 
-/* Bootstrap Button Outline Primary anpassung (Rainbow animation) */
+/* Bootstrap Button Outline Primary Anpassung (Rainbow animation) */
 .btn-outline-primary {
     animation: rainbow-border 2.5s linear  !important;
     animation-iteration-count: infinite  !important;

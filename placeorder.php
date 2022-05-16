@@ -16,7 +16,7 @@ if (!$result) {
 }
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// Wenn weniger wie Ein Produkt im Warenkorb ist wird auf die Warenkorb seite zurückgeleitet
+// Wenn weniger wie Ein Produkt im Warenkorb ist wird auf die Warenkorb Seite zurückgeleitet
 if ($total_products < 1) {
     echo("<script>location.href='cart.php'</script>");
     exit;
@@ -33,14 +33,14 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_POST['confirm'])) {
     // Wenn confirm auf "yes" gesetzt ist
     if($_POST['confirm'] == 'yes') {
-        // Wenn keine Rechnungs und Lieferungs Adresse gesetzt ist und oder diese Leer sind
+        // Wenn keine Rechnungs- und Lieferadresse gesetzt ist und oder diese Leer sind
         if (!isset($_POST['rechnugsaddresse']) and !isset($_POST['lieferaddresse']) and empty($_POST['rechnugsaddresse']) and empty($_POST['lieferaddresse'])) {
             error('Keine Addresse ausgewählt! Tipp: In den Einstellungen können sie eine Standardaddresse hinterlegen');
         }
         $msg = '';
         // für alle Produkte im Warenkorb
         foreach ($products as $product) {
-            // Abfrage der Produktdetails zum Jeweiligen produkt
+            // Abfrage der Produktdetails zum Jeweiligen Produkt
             $stmt = $pdo->prepare('SELECT * from  products WHERE id = ?');
             $stmt->bindValue(1, $product['product_id'], PDO::PARAM_INT);
             $result = $stmt->execute();
@@ -48,7 +48,7 @@ if(isset($_POST['confirm'])) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $product1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // Zeige eine Warnung an wenn vn einemm Produkt weniger wie bestellt im lager war (das ist für den fall das Zwei Personen gleichzeitig bestellen)
+            // Zeige eine Warnung an wenn vn einem Produkt weniger wie bestellt im lager war (das ist für den Fall das Zwei Personen gleichzeitig bestellen)
             if ($product['quantity'] > $product1[0]['quantity']) {
                 $msg = '<p class="mb-0 text-danger">Wir haben von mindestens einem der bestellten Artikel weniger als bestellt auf lager. <br>Deine Bestellung könnte sich deshalb eventuell ein wenig verzögern.</p>';
             }
@@ -286,12 +286,3 @@ foreach ($products as $product) {
 <?php
 include_once("templates/footer.php")
 ?>
-
-
-<!-- 
-
-
-
-
-
- -->

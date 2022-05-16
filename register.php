@@ -4,7 +4,7 @@ $user = require_once("templates/header.php");
 ?>
 
 <?php
-//Variable ob das Registrierungsformular anezeigt werden soll
+//Variable ob das Registrierungsformular angezeigt werden soll
 $showFormular = true;
  
 // Wenn register gesetzt ist
@@ -17,7 +17,7 @@ if(isset($_GET['register'])) {
 	$passwort = $_POST['passwort'];
 	$passwort2 = $_POST['passwort2'];
 	
-	// Vorname, Nachname und E-Mail werden nach ausfüllung überprüft
+	// Vorname, Nachname und E-Mail werden nach Ausfüllung überprüft
 	if(empty($vorname) || empty($nachname) || empty($email)) {
 		echo 'Bitte alle Felder ausfüllen<br>';
 		$error = true;
@@ -29,7 +29,7 @@ if(isset($_GET['register'])) {
 		$error = true;
 	} 	
 
-	// Es wird überprüft ob das Passwort feld gefüllt ist
+	// Es wird überprüft ob das Passwort Feld gefüllt ist
 	if(strlen($passwort) == 0) {
 		echo 'Bitte ein Passwort angeben<br>';
 		$error = true;
@@ -97,7 +97,7 @@ if(isset($_GET['register'])) {
 		}
 		
 
-		// Wenn das einfügen erfolgreich war wird eubne Erfolgs meldung angezeigt
+		// Wenn das einfügen erfolgreich war wird eine Erfolgsmeldung angezeigt
 		if($result) {
 			$showFormular = false;
 			?>

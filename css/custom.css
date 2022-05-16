@@ -18,7 +18,7 @@ html, body {
 	margin: 0;
 }
 
-/* CSS für List Items, verlinkungen und Knöpfe */
+/* CSS für List Items, Verlinkungen und Knöpfe */
 li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 200;
@@ -95,7 +95,7 @@ hr {
 
 
 
-/* Custom CSS für Bootstrap sachen */
+/* Custom CSS für Bootstrap Sachen */
 /* CSS für dropdown-menus (kommt an sich nur im Header vor) */
 .dropdown-menu {
     background-color: #4efd54;

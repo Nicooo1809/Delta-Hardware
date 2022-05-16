@@ -88,7 +88,7 @@ $summprice = 0;
 foreach ($products as $product) {
     $summprice = $summprice + ($product['price'] * $product['quantity']);
 }
-// Ruft die Rechnungsddressen ab
+// Ruft die Rechnungsadressen ab
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $order[0]['rechnungsadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -96,7 +96,7 @@ if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $rechnungsadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// Ruft die Lieferaddresse ab
+// Ruft die Lieferadresse ab
 $stmt = $pdo->prepare('SELECT * FROM citys, `address` where `address`.`citys_id` = citys.id AND `address`.`id` = ?');
 $stmt->bindValue(1, $order[0]['lieferadresse'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -104,7 +104,7 @@ if (!$result) {
     error('Database error', pdo_debugStrParams($stmt));
 }
 $lieferadresse = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// Ruft die Addressen ab
+// Ruft die Adressen ab
 $stmt = $pdo->prepare('SELECT * FROM `citys`, `address` where address.citys_id = citys.id and user_id = ?');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
@@ -122,19 +122,19 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h1>Bestellung</h1>
                         <p><?=$total_products?> Produkt<?=($total_products>1 ? 'e':'')?></p>
                         <p>Bestelldatum: <?=$order[0]['ordered_date']?></p>
-                        <!-- Zeigt das Versandtdatum an wenn es bereits verschickt wurde -->
+                        <!-- Zeigt das Versanddatum an wenn es bereits verschickt wurde -->
                         <?php if ($order[0]['sent']==1): ?>
                             <p>Versanddatum: <?=$order[0]['sent_date']?></p>
                         <?php endif ?>
                     </div>
-                    <!-- Zeigt die Option der Stornierung und Editierung an wenn es noch nicht verschickt wurde -->
+                    <!-- Zeigt die Option der Stornierung und Bearbeitung an wenn es noch nicht verschickt wurde -->
                     <?php if ($order[0]['sent']!=1): ?>
                             <div class="col-5 d-flex justify-content-end">
                                 <form action="?id=<?=$_GET['id']?>" method="post" class="">
                                 <button class="btn btn-outline-danger me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                                 <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
                                     <div class="offcanvas-header">
-                                        <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirklich Stonieren?</h2>
+                                        <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirklich Stornieren?</h2>
                                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                     </div>
                                     <div class="offcanvas-body">
@@ -178,12 +178,12 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </form>
                     </div>
-                <!-- Sonst zeigt es nur die Addresse an -->
+                <!-- Sonst zeigt es nur die Addresses an -->
                 <?php else: ?>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6">
-                            <h2>Rechnungsaddresse</h2>
+                            <h2>Rechnungsadresse</h2>
                             <div class="card cbg2 mx-auto py-2 px-2">
                                 <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
                                 <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
@@ -191,7 +191,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
                         <div class="col-6">
-                            <h2>Lieferaddresse</h2>
+                            <h2>Lieferadresse</h2>
                             <div class="card cbg2 mx-auto py-2 px-2">
                                 <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
                                 <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>
@@ -251,7 +251,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div> 
-<!-- Mobile-View nur leicht abgawandeltes HTML-->
+<!-- Mobile-View nur leicht abgewandeltes HTML-->
 <?php else: ?>
     <div class="container minheight100 py-3 px-3">
         <div class="row">
@@ -298,7 +298,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <button class="col-12 btn btn-outline-danger my-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Bestellung stornieren</button>
                             <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
                                 <div class="offcanvas-header">
-                                    <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirklich Stonieren?</h2>
+                                    <h2 class="offcanvas-title ctext" id="offcanvasLabel">Wirklich Stornieren?</h2>
                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body">
@@ -315,7 +315,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="row mb-2 row-cols-1">
                         <div class="col-12">
-                            <h2>Rechnungsaddresse</h2>
+                            <h2>Rechnungsadresse</h2>
                             <div class="card cbg2 mx-auto py-2 px-2">
                                 <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
                                 <?=$rechnungsadresse[0]['street']?> <?=$rechnungsadresse[0]['number']?></br>
@@ -323,7 +323,7 @@ $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
                         <div class="col-12">
-                            <h2>Lieferaddresse</h2>
+                            <h2>Lieferadresse</h2>
                             <div class="card cbg2 mx-auto py-2 px-2">
                                 <p class="mb-0"><?=$user['vorname'].' '.$user['nachname']?></br>
                                 <?=$lieferadresse[0]['street']?> <?=$lieferadresse[0]['number']?></br>

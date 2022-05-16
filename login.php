@@ -1,13 +1,13 @@
 <?php 
 // Bindet die php-Funktionen ein
 require_once("php/functions.php");
-// Initalisiert error_msg
+// Initialisiert error_msg
 $error_msg = "";
-// Überprüft ob das Vormular bereits bestätigt wurde
+// Überprüft ob das Formular bereits bestätigt wurde
 if(isset($_POST['email']) && isset($_POST['passwort'])) {
 	$email = $_POST['email'];
 	$passwort = $_POST['passwort'];
-	// Fragt den Benutzer mit der angageben E.Mail in der Datenbank ab
+	// Fragt den Benutzer mit der angegebenen E-Mail in der Datenbank ab
 	$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
 	$stmt->bindValue(1, $email);
 	$result = $stmt->execute();
@@ -22,7 +22,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 		if(isset($_POST['angemeldet_bleiben'])) {
 			$identifier = md5(uniqid());
 			$securitytoken = md5(uniqid());
-			// Setzt securitytokens in der Datenbank und in den Cookies
+			// Setzt security tokens in der Datenbank und in den Cookies
 			$stmt = $pdo->prepare("INSERT INTO securitytokens (user_id, identifier, securitytoken) VALUES (?, ?, ?)");
 			$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 			$stmt->bindValue(2, $identifier);
@@ -34,7 +34,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 		}
-		// leitet bei Erfolgreicher anmeldung auf die internal.php weiter
+		// leitet bei Erfolgreicher Anmeldung auf die internal.php weiter
 		echo("<script>location.href='internal.php'</script>");
 		exit;
 	} else {

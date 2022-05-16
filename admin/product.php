@@ -8,7 +8,7 @@ if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
-// Zeit die Error seite wenn der User keine berechtigungen hat
+// Zeit die Error Seite wenn der User keine Berechtigungen hat
 if ($user['showProduct'] != 1) {
     error('Unzureichende Berechtigungen!');
 }
@@ -16,7 +16,7 @@ if ($user['showProduct'] != 1) {
 if(isset($_POST['action'])) {
     // Wenn die action "mod" ist
     if($_POST['action'] == 'mod') {
-        // Zeit die Error seite wenn der User keine berechtigungen hat
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyProduct'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
@@ -35,7 +35,7 @@ if(isset($_POST['action'])) {
             error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // Bilder zum Selektiuerten Produkt abfragen
+        // Bilder zum Selektierten Produkt abfragen
         $stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
         $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
         $result = $stmt->execute();
@@ -43,7 +43,7 @@ if(isset($_POST['action'])) {
             error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $imgs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // Löschen aller Ausgefählten Bilder
+        // Löschen aller Ausgewählten Bilder
         for ($x = 0; $x < count($imgs); $x++) {
             $var = 'delImage-'.$x;
             if (isset($_POST[$var])) {
@@ -63,7 +63,7 @@ if(isset($_POST['action'])) {
             $fileCount = count($_FILES['file']['name']);
             // für jedes Bild
             for($i = 0; $i < $fileCount; $i++){
-                // Bild wird zum Abspeichern mit einer Einmaligen ID + Uhrsprungsname versehen
+                // Bild wird zum Abspeichern mit einer Einmaligen ID + Uhrsprungsame versehen
                 $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
                 $targetFilePath = "product_img/" . $fileName;
                 if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
@@ -88,7 +88,7 @@ if(isset($_POST['action'])) {
                 }
             }
         }
-        // Aktualisieren der restlichen Produkt daten
+        // Aktualisieren der restlichen Produkt Daten
         if(isset($_POST['name']) and isset($_POST['price']) and isset($_POST['rrp']) and isset($_POST['quantity']) and isset($_POST['desc']) and isset($_POST['productid']) and isset($_POST['categorie']) and !empty($_POST['name']) and !empty($_POST['price']) and !empty($_POST['desc']) and !empty($_POST['productid']) and !empty($_POST['categorie'])) {
             $stmt = $pdo->prepare("UPDATE products SET name = ?, price = ?, rrp = ?, quantity = ?, `desc` = ?, visible = ?, product_type_id = ?, updated_at = now() WHERE products.id = ?");
             $stmt->bindValue(1, $_POST['name']);
@@ -110,7 +110,7 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
-        <!-- Anzeigen der Produkt Modifizierungs seite -->
+        <!-- Anzeigen der Produkt Modifizierung Seite -->
         <div class="minheight100 px-3 my-3">
             <div>
                 <h1>Produkt anpassen</h1>
@@ -202,7 +202,7 @@ if(isset($_POST['action'])) {
     }
     // Wenn die action "add" ist
     if($_POST['action'] == 'add') {
-        // Zeit die Error seite wenn der User keine berechtigungen hat
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['createProduct'] != 1) {
             error('Unzureichende Berechtigungen!');
         }
@@ -243,7 +243,7 @@ if(isset($_POST['action'])) {
                 $fileCount = count($_FILES['file']['name']);
                 // für jedes Bild
                 for($i = 0; $i < $fileCount; $i++){
-                    // Bild wird zum Abspeichern mit einer Einmaligen ID + Uhrsprungsname versehen
+                    // Bild wird zum Abspeichern mit einer Einmaligen ID + Uhrsprungsame versehen
                     $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
                     $targetFilePath = "product_img/" . $fileName;
                     if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
@@ -340,7 +340,7 @@ if(isset($_POST['action'])) {
     }
     // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
-        // Zurückleiten auf die Admin Produkt seite
+        // Zurückleiten auf die Admin Produkt Seite
         echo("<script>location.href='product.php'</script>");
         exit;
     }
@@ -354,7 +354,7 @@ if (!$result) {
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<!-- Anzeigen der Admin Produkt seite -->
+<!-- Anzeigen der Admin Produkt Seite -->
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">

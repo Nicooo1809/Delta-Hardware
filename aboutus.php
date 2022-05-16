@@ -11,7 +11,7 @@ require_once("templates/header.php")
                     <h1 class="card-title mb-2 text-center">Wer sind wir?</h1>
                     <p class="card-text text-center">
                         Wir sind 5 Schüler*innen der <a href="https://its-stuttgart.de/">it.schule</a> Stuttgart.<br>
-                        Genau genommen sind wir die Projektgruppe Delta, welche an der erstellung eines Hardware Webshops arbeitet. <br>
+                        Genau genommen sind wir die Projektgruppe Delta, welche an der Erstellung eines Hardware Webshops arbeitet. <br>
                         Dieser Webshop wird das Produkt unserer BfK-S Projektarbeit in der Klasse E2FS3BT sein.
                     </p>
                 </div>
