@@ -37,6 +37,13 @@ if(isset($_POST['action'])) {
             if (!$result) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
+            // Löscht die Adresse des Users
+            $stmt = $pdo->prepare('DELETE FROM address WHERE user_id = ?');
+            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
             // Löscht den gegebenen User
             $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
