@@ -45,11 +45,11 @@ if(isset($_POST['action'])) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $addressid = $stmt->fetch();
-            error_log(print_r($addressid,true));
+            error_log($addressid);
             // Umschreiben der Adresse der Bestellungen
             $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ? WHERE rechnungsadresse = ?');
             $stmt->bindValue(1, 1, PDO::PARAM_INT);
-            $stmt->bindValue(2, $addressid, PDO::PARAM_INT);
+            $stmt->bindValue(2, $addressid[0], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
@@ -57,7 +57,7 @@ if(isset($_POST['action'])) {
             // Umschreiben der Adresse der Bestellungen
             $stmt = $pdo->prepare('UPDATE orders SET lieferadresse = ? WHERE lieferadresse = ?');
             $stmt->bindValue(1, 1, PDO::PARAM_INT);
-            $stmt->bindValue(2, $addressid, PDO::PARAM_INT);
+            $stmt->bindValue(2, $addressid[0], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
