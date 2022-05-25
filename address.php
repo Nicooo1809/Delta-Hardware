@@ -173,7 +173,7 @@ if(isset($_POST['action'])) {
                     <form action="address.php" method="post" enctype="multipart/form-data">
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputStreet">Straße</span>
-                            <input class="form-control" pattern="[A-Za-z-ß]+" id="inputStreet" name="street" type="text" required>
+                            <input class="form-control" pattern="[A-Za-z-ßäöü ]+" id="inputStreet" name="street" type="text" required>
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputNumber">Hausnummer</span>
@@ -185,7 +185,7 @@ if(isset($_POST['action'])) {
                         </div>
                         <div class="input-group py-2">
                             <span style="width: 150px;" class="input-group-text" for="inputCity">Stadt</span>
-                            <input class="form-control" pattern="[A-Za-z-ß]+" id="inputCity" name="city" type="text" required>
+                            <input class="form-control" pattern="[A-Za-z-ßäöü ]+" id="inputCity" name="city" type="text" required>
                         </div>
                         <div class="d-flex justify-content-center">
                                 <button class="btn btn-success mx-1" type="submit" name="action" value="add">Speichern</button>
