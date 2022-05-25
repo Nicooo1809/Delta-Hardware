@@ -17,7 +17,7 @@
 <?php
 // Variablen für Version und Datum
 $vernum = "1.2.0";
-$verdate ="16.05.2022";
+$verdate ="25.05.2022";
 // Wenn es sich um ein Desktop Handelt
 if(!isMobile()):?>
     <footer class="container-fluid footer-footer sticky-bottom footer py-3 cbg">
