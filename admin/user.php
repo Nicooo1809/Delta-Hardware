@@ -1,61 +1,106 @@
 <?php
+// Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
+// Leite User auf Login weiter wenn dieser nicht Angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Zeit die Error Seite wenn der User keine Berechtigungen hat
 if ($user['showUser'] != 1) {
-    error('Permission denied!');
+    error('Unzureichende Berechtigungen!');
 }
+// Wenn "action" gesetzt ist
 if(isset($_POST['action'])) {
+    // Wenn action "deleteconfirm" ist
     if ($_POST['action'] == 'deleteconfirm') {
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['deleteUser'] != 1 || $_POST['userid'] == 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
+        // Wenn die User ID gesetzt ist
         if(isset($_POST['userid']) and !empty($_POST['userid'])) {
+            // Lösche alle security tokens mit gegebener user ID
             $stmt = $pdo->prepare('DELETE FROM securitytokens WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
+            // Setzt alle Bestellungen des gegebenen Users auf den Admin user um
             $stmt = $pdo->prepare('UPDATE orders SET kunden_id = ? WHERE kunden_id = ?');
             $stmt->bindValue(1, 1, PDO::PARAM_INT);
             $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
+            // Frage die ID der Adresse ab.
+            $stmt = $pdo->prepare('SELECT id FROM address where user_id = ?');
+            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
+            $addressid = $stmt->fetch();
+            // Umschreiben der Adresse der Bestellungen
+            $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ? WHERE rechnungsadresse = ?');
+            $stmt->bindValue(1, 1, PDO::PARAM_INT);
+            $stmt->bindValue(2, $addressid[0], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
+            // Umschreiben der Adresse der Bestellungen
+            $stmt = $pdo->prepare('UPDATE orders SET lieferadresse = ? WHERE lieferadresse = ?');
+            $stmt->bindValue(1, 1, PDO::PARAM_INT);
+            $stmt->bindValue(2, $addressid[0], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
+            // Löscht die Adresse des Users
+            $stmt = $pdo->prepare('DELETE FROM address WHERE user_id = ?');
+            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
+            // Löscht den gegebenen User
             $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             echo("<script>location.href='user.php'</script>");
             exit;
         }
     }
+    // Wenn action "mod" ist
     if($_POST['action'] == 'mod') {
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyUser'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
+        // Ziehe alle Daten zu gegebenen User aus der Datenbank
         $stmt = $pdo->prepare('SELECT * FROM users where users.id = ?');
         $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $user1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+        // Rufe alle Berechtigungsgruppen ab
         $stmt = $pdo->prepare('SELECT * FROM permission_group');
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Wenn alle benötigten Felder für den User gesetzt und nicht leer sind
         if(isset($_POST['vorname']) and isset($_POST['nachname']) and isset($_POST['email']) and isset($_POST['passwortNeu']) and isset($_POST['passwortNeu2']) and !empty($_POST['vorname']) and !empty($_POST['nachname']) and !empty($_POST['email'])) {
             $stmt = $pdo->prepare("UPDATE users SET email = ?, vorname = ?, nachname = ?, updated_at = now() WHERE users.id = ?");
             $stmt->bindValue(1, $_POST['email']);
@@ -64,29 +109,33 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(4, $_POST['userid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
-            }            
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
+            // Überprüfe ob die eingegebenen Passwörter übereinstimmen
             if($_POST['passwortNeu'] == $_POST['passwortNeu2']) {
+                // überprüft das die Passwörter nicht leer sind
                 if (!empty($_POST['passwortNeu']) and !empty($_POST['passwortNeu2'])) {
                     $stmt = $pdo->prepare("UPDATE users SET passwort = ?, updated_at = now() WHERE users.id = ?");
                     $stmt->bindValue(1, password_hash($_POST['passwortNeu'], PASSWORD_DEFAULT));
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
                     if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
+                        error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                     }                    
                 }
             } else {
-                error('Password not equal!');
+                error('Passwörter stimmen nicht überein!');
             }
+            // Wenn der Admin die Berechtigungen hat User Perms anzupassen
             if ($user['modifyUserPerms'] == 1) {
+                // Wenn eine Berechtigungsgruppe für den User gesetzt ist und diese nicht nichts ist
                 if (isset($_POST['permissions']) and !empty($_POST['permissions'])) {
                     $stmt = $pdo->prepare("UPDATE users SET permission_group = ?, updated_at = now() WHERE users.id = ?");
                     $stmt->bindValue(1, $_POST['permissions'], PDO::PARAM_INT);
                     $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_INT);
                     $result = $stmt->execute();
                     if (!$result) {
-                        error('Database error', pdo_debugStrParams($stmt));
+                        error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                     }                    
                 }
             }
@@ -95,6 +144,7 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
+        <!-- Formular zur Bearbeitung des Users anzeigen -->
         <div class="minheight100 px-3 py-3">
             <h1>Einstellungen</h1>
             <div>
@@ -150,25 +200,23 @@ if(isset($_POST['action'])) {
         exit;
         } 
     }
+    // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
+        // Zurückleiten auf die Admin User übersicht
         echo("<script>location.href='user.php'</script>");
         exit;
     }
 }
-
-// SELECT * ,(SELECT img From user1_images WHERE user1_images.user1_id=users.id ORDER BY id LIMIT 1) as image FROM users_types, users where users.user1_type_id = users_types.id and users_types.type = 'Test' ORDER BY users.name DESC;
-// Select users ordered by the date added
+// FRage alle user und Berechtigungsgruppen ab
 $stmt = $pdo->prepare('SELECT * FROM permission_group, users where users.permission_group = permission_group.id ORDER BY users.id');
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
-// Get the total number of users
 $total_users = $stmt->rowCount();
-// Fetch the users from the database and return the result as an Array
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<!-- Admin user Seite -->
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
@@ -177,9 +225,10 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h1>Benutzerverwaltung</h1>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
-                    <form>
+                    <div>
+                        <!-- Weiterleiten auf die register page -->
                         <button class="btn btn-outline-primary" onclick="window.location.href = '/register.php';">Hinzufügen</button>
-                    </form>
+                    </div>
                 </div>
             </div>
             <p><?php print($total_users); ?> Benutzer</p>
@@ -244,17 +293,16 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="">
                                             <input type="number" value="<?=$user1['id']?>" name="userid" style="display: none;" required>
                                             <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas<?=$user1['id']?>" aria-controls="offcanvas<?=$user1['id']?>">Löschen</button>
-                                                <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas<?=$user1['id']?>" aria-labelledby="offcanvas<?=$user1['id']?>Label">
-                                                    <div class="offcanvas-header">
-                                                        <h2 class="offcanvas-title ctext" id="offcanvas<?=$user1['id']?>Label">Wirlich Löschen?</h2>
-                                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="offcanvas-body">
-                                                        <button class="btn btn-outline-success mx-2" type="submit" name="action" value="deleteconfirm">Ja</button>
-                                                        <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
-                                                    </div>
+                                            <div class="offcanvas offcanvas-end cbg" data-bs-scroll="true" tabindex="-1" id="offcanvas<?=$user1['id']?>" aria-labelledby="offcanvas<?=$user1['id']?>Label">
+                                                <div class="offcanvas-header">
+                                                    <h2 class="offcanvas-title ctext" id="offcanvas<?=$user1['id']?>Label">Wirklich Löschen?</h2>
+                                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                                 </div>
-                                            <!-- <button type="submit" name="action" value="del" class="btn btn-outline-danger">Löschen</button> -->
+                                                <div class="offcanvas-body">
+                                                    <button class="btn btn-outline-success mx-2" type="submit" name="action" value="deleteconfirm">Ja</button>
+                                                    <button class="btn btn-outline-danger mx-2" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Nein</button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <?php }?>
                                     </form>

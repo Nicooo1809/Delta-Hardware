@@ -1,10 +1,7 @@
 <?php
 require_once("php/mysql.php");
 
-/**
- * Checks that the user is logged in. 
- * @return Returns the row of the logged in user
- */
+// überprüft ob der Benutzer angemeldet ist und gibt die Benutzerdaten zurück und sonst False oder leite auf die Login weiter
 function check_user($redirect = TRUE) {
 	global $pdo;
 	if(!isset($_SESSION['userid']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
@@ -19,8 +16,7 @@ function check_user($redirect = TRUE) {
 		$securitytoken_row = $stmt->fetch();
 		if(sha1($securitytoken) !== $securitytoken_row['securitytoken']) {
 			//Vermutlich wurde der Security Token gestohlen
-			//Hier ggf. eine Warnung o.ä. anzeigen
-			error('Security Token gestohlen');
+			header("location: /logout.php");
 		} else { //Token war korrekt
 			//Setze neuen Token
 			$neuer_securitytoken = md5(uniqid());
@@ -37,6 +33,7 @@ function check_user($redirect = TRUE) {
 			$_SESSION['userid'] = $securitytoken_row['user_id'];
 		}
 	}
+	// gibt False zurück oder leitet auf die login weiter
 	if(!isset($_SESSION['userid'])) {
 		if($redirect) {
 			header("location: login.php");
@@ -44,6 +41,7 @@ function check_user($redirect = TRUE) {
 		} else {
 			return FALSE;
 		}
+	// ruft die Benutzerdaten ab und gibt das zurück 
 	} else {
 		$stmt = $pdo->prepare("SELECT * FROM permission_group, users WHERE users.permission_group = permission_group.id and users.id = ?");
 		$stmt->bindValue(1, $_SESSION['userid'], PDO::PARAM_INT);
@@ -56,11 +54,10 @@ function check_user($redirect = TRUE) {
 	}
 }
 
-/**
- * Outputs an error message and stops the further exectution of the script.
- */
+// Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
 function error($error_msg, $error_log = "") {
 	global $pdo;
+	// Gibt eine detaillierte Fehlermeldung in das error_log
 	$backtrace = debug_backtrace();
 	if (!empty($error_log)) {
 		error_log($backtrace[count($backtrace)-1]['file'] . ':' . $backtrace[count($backtrace)-1]['line'] . ': ' . $error_msg . ': ' . $error_log);
@@ -73,10 +70,12 @@ function error($error_msg, $error_log = "") {
 	exit();
 }
 
+// Überprüft ob das verwendete Gerät ein Handy ist
 function isMobile () {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
 
+// fängt die Debug Ausgabe ab und gibt das zurück
 function pdo_debugStrParams($stmt) {
 	ob_start();
 	$stmt->debugDumpParams();
@@ -85,6 +84,7 @@ function pdo_debugStrParams($stmt) {
 	return $r;
 }
 
+// Überprüft die Cookies welches Design verwendet werden soll
 function check_style() {
 	if(isset($_COOKIE['style'])) {
 		if ($_COOKIE['style'] == 'dark') {

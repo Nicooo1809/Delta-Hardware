@@ -1,45 +1,39 @@
 <?php
 require_once("php/functions.php");
-// The amounts of products to show on each page
 $num_products_on_each_page = 4;
-// The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
+// Leite auf die Produktübersicht weiter, wenn keine Produkt ID in der URL gesetzt ist
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
 if (!isset($_GET["id"])) {
     header("location: products.php");
 }
-// Select products ordered by the date added
+// Datenbankabfrage zum Produkt mit entsprechender ID
 $stmt = $pdo->prepare('SELECT * FROM products where id = ?');
-// bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, $_GET["id"], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 if ($stmt->rowCount() != 1) {
-    header("location: 404.php");
+    header("location: products.php");
 }
-// Fetch the products from the database and return the result as an Array
-
 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Abfrage der Produkt Bilder zum Produkt
 $stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
-// bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
-// Fetch the products from the database and return the result as an Array
 $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Abfrage der Häufig zusammengekauften Produkte
 $stmt = $pdo->prepare('SELECT *, (SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image, COUNT(*) as counter FROM product_list, products WHERE product_list.list_id IN (SELECT product_list.list_id FROM product_list WHERE product_list.product_id = ?) AND NOT product_list.product_id = ? and product_list.product_id = products.id GROUP BY product_list.product_id ORDER BY counter DESC LIMIT 3;');
 $stmt->bindValue(1, $product[0]['id'], PDO::PARAM_INT);
 $stmt->bindValue(2, $product[0]['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
-// Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 require_once("templates/header.php");
@@ -104,32 +98,30 @@ require_once("templates/header.php");
         </div>
         <div class="card cbg mx-2 my-3">
             <div class="card-body px-3 py-3">
-                <div class="row">
-                    <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
-                    <div class="row row-cols-<?php if (isMobile()) print("1"); else print("3");?>">
-                        <?php foreach ($products as $product1): ?>
-                            <div class="col my-2">
-                                <div class="card prodcard cbg2">
-                                    <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
-                                        <div class="card-body">
-                                            <?php if (empty($product1['image'])) {
-                                                print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
-                                            } else {
-                                                print('<img src="product_img/' . $product1['image'] . '" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
-                                            }?>
-                                            <h4 class="card-title name"><?=$product1['name']?></h4>
-                                            <p class="card-text ctext price">Preis: 
-                                                <?=$product1['price']?>&euro;
-                                                <?php if ($product1['rrp'] > 0): ?>
-                                                <span class="rrp ctext"><br>UVP: <?=$product1['rrp']?> &euro;</span>
-                                                <?php endif; ?>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
+                <h2 class="fw-blod">Wird oft zusammen gekauft</h2>
+                <div class="row row-cols-<?php if (isMobile()) print("1"); else print("3");?>">
+                    <?php foreach ($products as $product1): ?>
+                        <div class="col my-2">
+                            <div class="card prodcard cbg2">
+                                <a href="product.php?id=<?=$product1['id']?>" class="stretched-link">
+                                    <div class="card-body">
+                                        <?php if (empty($product1['image'])) {
+                                            print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
+                                        } else {
+                                            print('<img src="product_img/' . $product1['image'] . '" class="card-img-top rounded mb-3" alt="' . $product1['name'] . '">');
+                                        }?>
+                                        <h4 class="card-title name"><?=$product1['name']?></h4>
+                                        <p class="card-text ctext price">Preis: 
+                                            <?=$product1['price']?>&euro;
+                                            <?php if ($product1['rrp'] > 0): ?>
+                                            <span class="rrp ctext"><br>UVP: <?=$product1['rrp']?> &euro;</span>
+                                            <?php endif; ?>
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

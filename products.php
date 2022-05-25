@@ -1,12 +1,12 @@
 <?php
+// bindet die PHP-Funktionen ein
 require_once("php/functions.php");
-// The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
-$current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
 $type = "";
 $search = "";
 $type = "";
 $sortsql = "";
 
+// generiere SQL für die Sortierung
 if (isset($_GET["sortby"])) {
     $order = "";
     if ($_GET["order"] == "Absteigend"){
@@ -14,25 +14,45 @@ if (isset($_GET["sortby"])) {
     }
     $sortsql = "ORDER BY products." . $_GET["sortby"] . $order;
 }
-
+// generiere SQL für Typenbeziehung
 if (isset($_GET["type"])) {
     $type = "and products.product_type_id = '" . $_GET["type"] . "' ";
 }
+// generiere SQL für die Suche
 if (isset($_GET["search"])) {
-    $search = 'and lower(products.name) like lower("%' . $_GET["search"] . '%") ';
+    
+    if (is_numeric($_GET["search"])) {
+        $search .= 'and products.id = ' . $_GET["search"] . ' ';
+    } else {
+        $search = 'and lower(products.name) like lower("%' . $_GET["search"] . '%")';
+        $stmt = $pdo->prepare('SELECT * FROM products where visible = 1 ' . $type . $search);
+        $result = $stmt->execute();
+        if (!$result) {
+            error('Datenbank Fehler', pdo_debugStrParams($stmt));
+        }
+        if ($stmt->rowCount() < 1) {
+            $search = '';
+            $search_pieces = explode(" ", $_GET["search"]);
+            foreach ($search_pieces as $search_piece) {
+                if (!empty($search_piece) and $search_piece != '') {
+                    $search_piece = trim($search_piece);
+                    $search .= 'and lower(products.name) like lower("%' . $search_piece . '%") ';
+                }
+            }
+        }
+    }
 }
-
-// SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) as image FROM products_types, products where products.product_type_id = products_types.id and products_types.type = 'Test' ORDER BY products.name DESC;
-// Select products ordered by the date added
+// Suche Produkte aus der Datenbank und sortiere nach oben generiertem SQL
 $stmt = $pdo->prepare('SELECT * ,(SELECT img From product_images WHERE product_images.product_id=products.id ORDER BY id LIMIT 1) AS image FROM products where visible = 1 ' . $type . $search . $sortsql);
 $result = $stmt->execute();
+// Fehler Seite anzeigen (wenn ein Fehler aufgetreten ist)
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler', pdo_debugStrParams($stmt));
 }
-// Get the total number of products
+// Zähle Zeilen für maximale Anzahl an Produkten
 $total_products = $stmt->rowCount();
-// Fetch the products from the database and return the result as an Array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Header Einbindung
 require_once("templates/header.php");
 ?>
 
@@ -57,29 +77,30 @@ require_once("templates/header.php");
     <p class="my-2"><?php print($total_products); ?> Produkte</p>
     <div class="products-wrapper row row-cols-1 row-cols-md-4 g-4">
         <?php foreach ($products as $product): ?>
-                <div class="col">
-                    <div class="card prodcard cbg">
-                        <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
-                            <div class="card-body">
-                                <?php if (empty($product['image'])) {
-                                    print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                                } else {
-                                    print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
-                                }?>
-                                <h4 class="card-title name"><?=$product['name']?></h4>
-                                <p class="card-text ctext price">Preis: 
-                                    <?=$product['price']?>&euro;
-                                    <?php if ($product['rrp'] > 0): ?>
-                                    <span class="rrp ctext"><br>UVP: <?=$product['rrp']?> &euro;</span>
-                                    <?php endif; ?>
-                                </p>
-                            </div>
-                        </a>
-                    </div>
+            <div class="col">
+                <div class="card prodcard cbg">
+                    <a href="product.php?id=<?=$product['id']?>" class="product stretched-link">
+                        <div class="card-body">
+                            <?php if (empty($product['image'])) {
+                                print('<img src="images/image-not-found.png" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                            } else {
+                                print('<img src="product_img/' . $product['image'] . '" class="card-img-top rounded mb-3" alt="' . $product['name'] . '">');
+                            }?>
+                            <h4 class="card-title name"><?=$product['name']?></h4>
+                            <p class="card-text ctext price">Preis: 
+                                <?=$product['price']?>&euro;
+                                <?php if ($product['rrp'] > 0): ?>
+                                <span class="rrp ctext"><br>UVP: <?=$product['rrp']?> &euro;</span>
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                    </a>
                 </div>
+            </div>
         <?php endforeach; ?>
     </div>
 </div>
 <?php
+// Bindet den Footer ein
 include_once("templates/footer.php")
 ?>

@@ -1,63 +1,83 @@
 <?php
+// Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
+// Leite User auf Login weiter wenn dieser nicht Angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Zeit die Error Seite wenn der User keine Berechtigungen hat
 if ($user['showUserPerms'] != 1) {
-    error('Permission denied!');
+    error('Unzureichende Berechtigungen!');
 }
+// Überprüfe ob die POST Action "action" gesetzt ist
 if(isset($_POST['action'])) {
+    // Überprüfe ob die POST Action "action" auf "add" gesetzt ist
     if($_POST['action'] == 'add') {
+		// Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyUserPerms'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
+        // Wenn "permsname" gesetzt ist
         if (isset($_POST['permsname'])) {
+            // Hinzufügen einer Berechtigungsgruppe
             $stmt = $pdo->prepare('INSERT INTO permission_group (name) VALUES (?)');
             $stmt->bindValue(1, $_POST['permsname']);
             $result = $stmt->execute();
+            // Zeige die Error Page mit der Meldung "Datenbank Fehler!"
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
         } else {
-            error('Some informations are missing!');
+            error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
-
+    // Überprüfe ob die POST Action "action" auf "del" gesetzt ist
     if($_POST['action'] == 'del') {
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyUserPerms'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
+        // Wenn "permsid" gesetzt und nicht leer ist
         if(isset($_POST['permsid']) and !empty($_POST['permsid'])) {
+            // Wenn POST "confirm" gesetzt und nicht leer ist
             if (isset($_POST['confirm']) and !empty($_POST['confirm'])) {
+                // Wenn "confirm" auf "yes" gesetzt ist
                 if ($_POST['confirm'] == 'yes') {
+                    // Wenn die Berechtigungsgruppe nicht die ID 1 oder 2 hat (um sicherzustellen das die default und Admin Gruppen nicht gelöscht werden können)
                     if (!(( $perms['id'] == 1 ) || ( $perms['id'] == 2 ))) {
-                        // User clicked the "Yes" button, delete record
+                        // Setze die Berechtigungsgruppe der user welche in der zu Löschenden Gruppe waren auf die default Gruppe
                         $stmt = $pdo->prepare('UPDATE users SET permission_group = ? WHERE permission_group = ?');
                         $stmt->bindValue(1, 1, PDO::PARAM_INT);
                         $stmt->bindValue(2, $_POST['permsid'], PDO::PARAM_INT);
                         $result = $stmt->execute();
+                        // Zeige die Error Page mit der Meldung "Datenbank Fehler!"
                         if (!$result) {
-                            error('Database error', pdo_debugStrParams($stmt));
+                            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                         }
+                        // Lösche die Berechtigungsgruppe
                         $stmt = $pdo->prepare('DELETE FROM permission_group WHERE id = ?');
                         $stmt->bindValue(1, $_POST['permsid'], PDO::PARAM_INT);
                         $result = $stmt->execute();
+                        // Zeige die Error Page mit der Meldung "Datenbank Fehler!"
                         if (!$result) {
-                            error('Database error', pdo_debugStrParams($stmt));
+                            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                         }
+                        // Weiterleitung auf die perms.php
                         echo("<script>location.href='perms.php'</script>");
                         exit;
-                    } else {
-                        error('Permission denied!');
+                    } 	
+                    // Zeit die Error Seite wenn der User keine Berechtigungen hat
+                    else {
+                        error('Unzureichende Berechtigungen!');
                     }
                 } else {
-                    // User clicked the "No" button, redirect them back to the read page
                     echo("<script>location.href='perms.php'</script>");
                     exit;
                 }
+            // Zeige Bestätigungsanfrage
             } else {
                 ?>
                     <div class="container-fluid">
@@ -85,15 +105,18 @@ if(isset($_POST['action'])) {
                 exit;
             }
         } else {
-            error('Some informations are missing!');
+            error('Fehlende Informationen! Bitte erneut versuchen.');
         }
     }
+    // Überprüfe ob die POST Action "action" auf "mod" gesetzt ist
     if($_POST['action'] == 'mod') {
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyUserPerms'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
-
+        // Update der ausgewählten Gruppe
         $stmt = $pdo->prepare("UPDATE permission_group SET showUser = ?, modifyUser = ?, deleteUser = ?, modifyUserPerms = ?, showUserPerms = ?, showProduct = ?, createProduct = ?, modifyProduct = ?, showCategories = ?, modifyCategories = ?, deleteCategories = ?, createCategories = ?, showOrders = ?, markOrders = ? WHERE permission_group.id = ?");
+        // if "showUser" is set then value = 1 else 0
         $stmt->bindValue(1, (isset($_POST['showUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(2, (isset($_POST['modifyUser']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(3, (isset($_POST['deleteUser']) ? "1" : "0"), PDO::PARAM_INT);
@@ -110,12 +133,14 @@ if(isset($_POST['action'])) {
         $stmt->bindValue(14, (isset($_POST['markOrders']) ? "1" : "0"), PDO::PARAM_INT);
         $stmt->bindValue(15, $_POST['permsid'], PDO::PARAM_INT);
         $result = $stmt->execute();
+        // Zeige die Error Page mit der Meldung "Datenbank Fehler!"
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         echo("<script>location.href='perms.php'</script>");
         exit;
     }
+    // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
         echo("<script>location.href='perms.php'</script>");
         exit;
@@ -124,8 +149,9 @@ if(isset($_POST['action'])) {
 
 $stmt = $pdo->prepare('SELECT * FROM permission_group');
 $result = $stmt->execute();
+// Zeige die Error Page mit der Meldung "Datenbank Fehler!"
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -197,8 +223,8 @@ $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="p-2 px-1 text-uppercase">Mark Order</div>
                                 </th>
                                 <?php if ($user['modifyUserPerms'] == 1) {?>
-                                <th scope="col" class="border-0" style="width: 15%">
-                                </th>
+                                    <th scope="col" class="border-0" style="width: 15%">
+                                    </th>
                                 <?php }?>
                             </div>
                         </tr>

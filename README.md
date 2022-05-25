@@ -1,67 +1,30 @@
-# Step by Step anleitung GitHub
+# Shop Installation (XAMPP)
 
 ## [Link zur Haupt-Seite (delta-hardware.de)](https://delta-hardware.de/)
 ## [Link zur Dev-Seite (dev.delta-hardware.de)](https://dev.delta-hardware.de/)
 
 
-## 1. Klicke auf "Current Branch" und wähle Dev aus
-###     -> Wichtig: Oben links muss Delta-Hardware ausgewält sein
+## Um den Shop verwenden zu können benötigt man einen Webserver (bspw.: Apache) mit PHP-Modul, eine Datenbank (bspw.: MySQL oder MariaDB) und eine Software um diese zu Konfigurieren (bspw.: PhpMyAdmin oder MySQL Workbench). Die Dateien des Webshops in dem ZIP-Archiv müssen in den Pfad „XAMPP\htdocs“ verschoben werden, das ganze sollte dann ungefähr folgendermaßen aussehen:
 
-
-## 2. Klicke auf "Fetch Origin"
-![](/readmebilder/Bild_4.png)
+![](/readmebilder/install1.png)
 
 
 
-## 3. Öffne die GitHub Repo in deinen Editor (bei mir VSC)
-### -> Wenn dieser Button nicht angezeigt wird auf "File" -> "Integrations" -> "Editor".
-### -> Öffnen kann man den Editor auch wenn man oben auf "Repository geht" und dann auf "Open in ..."
-![](/readmebilder/Bild_5.png)
+## Nun konfigurieren wir die Datenbank, hierfür müssen 2 SQL Dateien ausgeführt werden. Das setup der Datenbank und dann das einfügen der eigentlichen Daten. Hierfür verwenden wir 2 Dateien in folgender Reihenfolge: 
+## setup.sql – erstellt die Datenbank, den Benutzer und die Tabellen
+## database.sql – Importiert die Beispieldaten
+## Diese sind im Ordner hidden zu finden.
 
+![](/readmebilder/install2.png)
+![](/readmebilder/install3.png)
 
+## Jetzt fehlt nur noch eins, starten:
+## Starten Sie sowohl die Datenbank als auch den Webserver, in XAMPP sollte es nun folgendermaßen aussehen:
 
-## 4. Trage einen Titel ein (was du gemacht hast z.B.: Readme update"). Wenn du willst noch eine Beschreibung.
-## 5. Klicke auf "Commit to Dev"
-### -> Wichtig: da MUSS dev stehen und nicht main
-![](/readmebilder/Bild_6.png)
+![](/readmebilder/install4.png)
 
+## Fertig!
+## Die Website kann nun unter http://127.0.0.1/index.php erreicht werden.
 
+## Alternativ kann man unser Projekt auch unter https://delta-hardware.de erreichen (bis 21.06.22), der Code kann auf https://github.com/Nicooo1809/Delta-Hardware eingesehen werden.
 
-## 6. Klicke auf "Push origin"
-![](/readmebilder/Bild_7.png)
-
-
-
-
-
-
-# Von dem Pull-Request den anderen bitte Bescheid geben und kurz warten falls jemand noch etwas macht
-
-
-
-
-## 7. Klicke auf "Create Pull Request"
-### -> Es öffnet sich der Browser mit GitHub
-![](/readmebilder/Bild_8.png)
-
-
-
-
-
-## 8. Klicke auf "Create Pull Request"
-###     -> Achte darauf dass die Roten kästen genau so aussehen wie in diesem Bild
-![](/readmebilder/Bild_9.png)
-
-
-
-## 9. Klicke auf "Merge Pull Request" (sobald die überprüfung fertig ist)
-###     -> Achte darauf dass die Roten kästen genau so aussehen wie in diesem Bild
-![](/readmebilder/Bild_10.png)
-
-
-
-## 10. Klicke auf "Confirm Merge"
-![](/readmebilder/Bild_11.png)
-
-
-# Fertig!

@@ -1,26 +1,30 @@
 <?php
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
-//Überprüfe, dass der User eingeloggt ist
-//Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
+// Überprüfe, dass der User eingeloggt ist
+// Der Aufruf von check_user() muss in alle internen Seiten eingebaut sein
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Wenn der unser die (Admin) Berechtigungen hat die Bestellungen zu sehen
 if ($user['showOrders'] == 1) {
+	// Frage alle Bestellungen sortiert nach Bestelldatum ab
 	$stmt = $pdo->prepare('SELECT *, COUNT(product_list.id) as products FROM product_list, users, orders where product_list.list_id = orders.id AND orders.kunden_id = users.id AND ordered = 1 and sent = 0 group by orders.id order by orders.ordered_date; ');
 	$result = $stmt->execute();
 	if (!$result) {
-		error('Database error', pdo_debugStrParams($stmt));
+		error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 	}
 	$total_orders = $stmt->rowCount();
 	$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+// Frage alle Bestellungen die ein user Getätigt hat ab
 $stmt = $pdo->prepare('SELECT *, COUNT(product_list.id) as products FROM product_list, orders where product_list.list_id = orders.id AND orders.kunden_id = ? AND ordered = 1 group by orders.id; ');
 $stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $total_orders1 = $stmt->rowCount();
 $orders1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -46,6 +50,7 @@ $orders1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			<div class="card-body text-center">
 				<h1 class="card-title">Adminbereich</h1>
 				<div class="card-text">
+					<!-- Butons nur mit benötigten Berechtigungen anzeigen -->
 					<?php
 						if ($user['showUser'] == 1) {
 							print('<a href="admin/user.php"><button class="btn btn-outline-primary mx-2 my-2" type="button">Benutzer</button></a>');

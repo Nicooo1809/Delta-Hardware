@@ -1,3 +1,6 @@
+CREATE DATABASE `shop`;
+USE `shop`;
+
 CREATE TABLE `permission_group` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -108,7 +111,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`kunden_id`) REFERENCES `users`(`id`),
   FOREIGN KEY (`rechnungsadresse`) REFERENCES `address`(`id`),
-  FOREIGN KEY (`leiferadresse`) REFERENCES `address`(`id`)
+  FOREIGN KEY (`lieferadresse`) REFERENCES `address`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `product_list` (
@@ -120,3 +123,7 @@ CREATE TABLE `product_list` (
   FOREIGN KEY (`list_id`) REFERENCES `orders`(`id`),
   FOREIGN KEY (`product_id`) REFERENCES `products`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE USER IF NOT EXISTS 'shopuser'@'localhost' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON shop.* TO 'shopuser'@'localhost';
+FLUSH PRIVILEGES;

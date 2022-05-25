@@ -1,11 +1,13 @@
 <?php 
+// Bindet die php-Funktionen ein
 require_once("php/functions.php");
-
+// Initialisiert error_msg
 $error_msg = "";
+// Überprüft ob das Formular bereits bestätigt wurde
 if(isset($_POST['email']) && isset($_POST['passwort'])) {
 	$email = $_POST['email'];
 	$passwort = $_POST['passwort'];
-
+	// Fragt den Benutzer mit der angegebenen E-Mail in der Datenbank ab
 	$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
 	$stmt->bindValue(1, $email);
 	$result = $stmt->execute();
@@ -20,7 +22,7 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 		if(isset($_POST['angemeldet_bleiben'])) {
 			$identifier = md5(uniqid());
 			$securitytoken = md5(uniqid());
-			
+			// Setzt security tokens in der Datenbank und in den Cookies
 			$stmt = $pdo->prepare("INSERT INTO securitytokens (user_id, identifier, securitytoken) VALUES (?, ?, ?)");
 			$stmt->bindValue(1, $user['id'], PDO::PARAM_INT);
 			$stmt->bindValue(2, $identifier);
@@ -32,20 +34,21 @@ if(isset($_POST['email']) && isset($_POST['passwort'])) {
 			setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 			setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 		}
-
+		// leitet bei Erfolgreicher Anmeldung auf die internal.php weiter
 		echo("<script>location.href='internal.php'</script>");
 		exit;
 	} else {
+		// Setzt den Fehler in die Variable
 		$error_msg =  "E-Mail oder Passwort war ungültig<br><br>";
 	}
 
 }
-
-
+// setzt die Email in eine Variable um das Formular vor auszufüllen
 $email_value = "";
 if(isset($_POST['email'])) {
 	$email_value = htmlentities($_POST['email']); 
 }
+// Fügt den header hinzu und liest die evtl. die Benutzer Infos ein
 $user = require_once("templates/header.php");
 if (isset($user['id'])) {
     echo("<script>location.href='internal.php'</script>");
@@ -62,6 +65,7 @@ if (isset($user['id'])) {
 							<h3 class="display-4 ">Anmelden</h3>
 							<!-- Zeigt eine Error-nachricht an, wenn es einen Fehler gibt -->
 							<?php 
+							// Gibt evtl. die Fehlermeldung aus
 							if(isset($error_msg) && !empty($error_msg)) {
 								echo $error_msg;
 							}
@@ -85,7 +89,7 @@ if (isset($user['id'])) {
 								</div>
 								
 								<button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm">Anmelden</button>
-								<div class="text-center d-flex justify-content-between mt-4 "><p>Noch kein Kunde? <a href="register" class="font-italic text-muted"> 
+								<div class="text-center d-flex justify-content-between mt-4 "><p>Noch kein Kunde? <a href="register.php" class="font-italic text-muted"> 
 									<u>Registrieren</u></a></p>
 								</div>
 							</form>
@@ -97,41 +101,7 @@ if (isset($user['id'])) {
 		</div>
 	</div>
 </div>
-
-
-
-
-
-<?php
-/*
-
-<div class="form-signin">
-  <form action="login.php" method="post">
-	<h2>Login</h2>
-	
 <?php 
-if(isset($error_msg) && !empty($error_msg)) {
-	echo $error_msg;
-}
-?>
-	<label for="inputEmail" class="sr-only">E-Mail</label>
-	<input type="email" name="email" id="inputEmail" placeholder="E-Mail" value="<?php echo $email_value; ?>" required autofocus>
-	<label for="inputPassword" class="sr-only">Passwort</label>
-	<input type="password" name="passwort" id="inputPassword" placeholder="Passwort" required>
-	<div class="checkbox">
-	  <label>
-		<input type="checkbox" value="remember-me" name="angemeldet_bleiben" value="1" checked> Angemeldet bleiben
-	  </label>
-	</div>
-	<button type="submit">Login</button>
-  </form>
-
-</div>
-*/
-?>
-
-
-
-<?php 
+// fügt den Footer hinzu
 include_once("templates/footer.php")
 ?>

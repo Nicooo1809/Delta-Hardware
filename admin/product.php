@@ -1,42 +1,49 @@
 <?php
+// Aufgrund des Unterordners muss hier erst wieder auf den DOCUMENT ROOT gewechselt werden
 chdir ($_SERVER['DOCUMENT_ROOT']);
 require_once("php/functions.php");
 $user = require_once("templates/header.php");
+// Leite User auf Login weiter wenn dieser nicht Angemeldet ist
 if (!isset($user['id'])) {
     require_once("login.php");
     exit;
 }
+// Zeit die Error Seite wenn der User keine Berechtigungen hat
 if ($user['showProduct'] != 1) {
-    error('Permission denied!');
+    error('Unzureichende Berechtigungen!');
 }
+// Überprüfe ob die POST Action "action" gesetzt ist
 if(isset($_POST['action'])) {
+    // Wenn die action "mod" ist
     if($_POST['action'] == 'mod') {
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['modifyProduct'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
+        // Abfrage des ausgewählten Produktes
         $stmt = $pdo->prepare('SELECT * FROM products where products.id = ?');
         $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        // Abfrage aller ROOT Kategorien
         $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        // Bilder zum Selektierten Produkt abfragen
         $stmt = $pdo->prepare('SELECT * FROM product_images where product_id = ?');
         $stmt->bindValue(1, $_POST['productid'], PDO::PARAM_INT);
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }
         $imgs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        // Löschen aller Ausgewählten Bilder
         for ($x = 0; $x < count($imgs); $x++) {
             $var = 'delImage-'.$x;
             if (isset($_POST[$var])) {
@@ -46,48 +53,48 @@ if(isset($_POST['action'])) {
                 $stmt->bindValue(2, $_POST['productid'], PDO::PARAM_INT);
                 $result = $stmt->execute();
                 if (!$result) {
-                    error('Database error', pdo_debugStrParams($stmt));
+                    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                 }                
             }
         }
-
+        // Wenn Dateien hochgeladen werden
         if (!empty($_FILES["file"]["name"][0])){
             $allowTypes = array('jpg','png','jpeg','gif');
             $fileCount = count($_FILES['file']['name']);
+            // für jedes Bild
             for($i = 0; $i < $fileCount; $i++){
+                // Bild wird zum Abspeichern mit einer Einmaligen ID + Uhrsprungsame versehen
                 $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
                 $targetFilePath = "product_img/" . $fileName;
                 if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
-                    // Upload file to server
+                    // Hochladen der Bilder
                     if(move_uploaded_file($_FILES["file"]["tmp_name"][$i], $targetFilePath)){
-                        // Insert image file name into database
+                        // Einpflegen der Bilder in die Datenbank
                         $stmt = $pdo->prepare("INSERT into product_images (img, product_id) VALUES ( ? , ? )");
                         $stmt->bindValue(1, $fileName);
                         $stmt->bindValue(2, $_POST['productid'], PDO::PARAM_INT);
                         $result = $stmt->execute();
                         if (!$result) {
-                            error('Database error', pdo_debugStrParams($stmt));
+                            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                         }                        
-                        if(!$stmt){
-                            error("File upload failed, please try again.");
+                        if (!$stmt) {
+                            error("Hochladen Fehlgeschlagen");
                         } 
-                    }else{
-                        error("Sorry, there was an error uploading your file.");
+                    } else {
+                        error("Hochladen Fehlgeschlagen");
                     }
-                }else{
-                    error('Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.');
+                } else {
+                    error('Wir unterstützen nur JPG, JPEG, PNG & GIF Dateien.');
                 }
             }
         }
+        // Aktualisieren der restlichen Produkt Daten
         if(isset($_POST['name']) and isset($_POST['price']) and isset($_POST['rrp']) and isset($_POST['quantity']) and isset($_POST['desc']) and isset($_POST['productid']) and isset($_POST['categorie']) and !empty($_POST['name']) and !empty($_POST['price']) and !empty($_POST['desc']) and !empty($_POST['productid']) and !empty($_POST['categorie'])) {
-            $rrp = $_POST['rrp'];
-            if(!empty($_POST['rrp'])) {
-                $rrp = str_replace(",", ".", $_POST['rrp']);
-            }
             $stmt = $pdo->prepare("UPDATE products SET name = ?, price = ?, rrp = ?, quantity = ?, `desc` = ?, visible = ?, product_type_id = ?, updated_at = now() WHERE products.id = ?");
             $stmt->bindValue(1, $_POST['name']);
+            // Komma durch Punkt ersetzen (da sonnst error)
             $stmt->bindValue(2, str_replace(",", ".", $_POST['price']));
-            $stmt->bindValue(3, $rrp);
+            $stmt->bindValue(3, str_replace(",", ".", $_POST['rrp']));
             $stmt->bindValue(4, $_POST['quantity']);
             $stmt->bindValue(5, $_POST['desc']);
             $stmt->bindValue(6, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
@@ -95,7 +102,7 @@ if(isset($_POST['action'])) {
             $stmt->bindValue(8, $_POST['productid'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
 
             echo("<script>location.href='product.php'</script>");
@@ -103,6 +110,7 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
+        <!-- Anzeigen der Produkt Modifizierung Seite -->
         <div class="minheight100 px-3 my-3">
             <div>
                 <h1>Produkt anpassen</h1>
@@ -152,7 +160,7 @@ if(isset($_POST['action'])) {
                         <div class="row row-cols-1 row-cols-md-3 g-4 py-2">
                             <?php for ($x = 0; $x < count($imgs); $x++) :?>
                                 <div class="col">
-                                    <div class="card prodcard bg-dark">
+                                    <div class="card prodcard cbg2">
                                         <img src="/product_img/<?=$imgs[$x]['img']?>" class="card-img-top img-fluid rounded" alt="<?=$imgs[$x]['id']?>">
                                         <div class="card-body">
                                             <div class="input-group py-2 d-flex justify-content-center">
@@ -192,71 +200,71 @@ if(isset($_POST['action'])) {
         exit;
         } 
     }
+    // Wenn die action "add" ist
     if($_POST['action'] == 'add') {
+        // Zeit die Error Seite wenn der User keine Berechtigungen hat
         if ($user['createProduct'] != 1) {
-            error('Permission denied!');
+            error('Unzureichende Berechtigungen!');
         }
-
+        // Abfrage aller ROOT Kategorien
         $stmt = $pdo->prepare('SELECT * FROM products_types where not products_types.parent_id = 0');
         $result = $stmt->execute();
         if (!$result) {
-            error('Database error', pdo_debugStrParams($stmt));
+            error('Datenbank Fehler!', pdo_debugStrParams($stmt));
         }        
         $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        
-        
+        // Erstellen des Produktes
         if(isset($_POST['name']) and isset($_POST['price']) and isset($_POST['rrp']) and isset($_POST['quantity']) and isset($_POST['desc']) and isset($_POST['categorie']) and !empty($_POST['name']) and !empty($_POST['price']) and !empty($_POST['desc']) and !empty($_POST['categorie'])) {
-            $rrp = $_POST['rrp'];
-            if(!empty($_POST['rrp'])) {
-                $rrp = str_replace(",", ".", $_POST['rrp']);
-            }
+            // SQL Insert für das neue Produkt
             $stmt = $pdo->prepare("INSERT INTO products (name, price, rrp, quantity, `desc`, visible, product_type_id, updated_at, created_at) VALUE (?, ?, ?, ?, ?, ?, ?, now(), now())");
             $stmt->bindValue(1, $_POST['name']);
             $stmt->bindValue(2, str_replace(",", ".", $_POST['price']));
-            $stmt->bindValue(3, $rrp);
+            $stmt->bindValue(3, str_replace(",", ".", $_POST['rrp']));
             $stmt->bindValue(4, $_POST['quantity']);
             $stmt->bindValue(5, $_POST['desc']);
             $stmt->bindValue(6, (isset($_POST['visible']) ? "1" : "0"), PDO::PARAM_INT);
             $stmt->bindValue(7, $_POST['categorie'], PDO::PARAM_INT);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
+            // Abfragen des soeben Hinzugefügten Produktes für die Bilder
             $stmt = $pdo->prepare('SELECT * FROM products where name = ? and `desc` = ? order by id desc');
             $stmt->bindValue(1, $_POST['name']);
             $stmt->bindValue(2, $_POST['desc']);
             $result = $stmt->execute();
             if (!$result) {
-                error('Database error', pdo_debugStrParams($stmt));
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }            
-            $productForImg = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+            $productForImg = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+            // Wenn Dateien hochgeladen werden
             if (!empty($_FILES["file"]["name"][0])){
                 $allowTypes = array('jpg','png','jpeg','gif');
                 $fileCount = count($_FILES['file']['name']);
+                // für jedes Bild
                 for($i = 0; $i < $fileCount; $i++){
+                    // Bild wird zum Abspeichern mit einer Einmaligen ID + Uhrsprungsame versehen
                     $fileName = uniqid('image_') . '_' . basename($_FILES["file"]["name"][$i]);
                     $targetFilePath = "product_img/" . $fileName;
                     if(in_array(pathinfo($targetFilePath,PATHINFO_EXTENSION), $allowTypes)){
-                        // Upload file to server
+                        // Hochladen der Bilder
                         if(move_uploaded_file($_FILES["file"]["tmp_name"][$i], $targetFilePath)){
-                            // Insert image file name into database
+                            // Einpflegen der Bilder in die Datenbank
                             $stmt = $pdo->prepare("INSERT into product_images (img, product_id) VALUES ( ? , ? )");
                             $stmt->bindValue(1, $fileName);
                             $stmt->bindValue(2, $productForImg[0]['id'], PDO::PARAM_INT);
                             $result = $stmt->execute();
                             if (!$result) {
-                                error('Database error', pdo_debugStrParams($stmt));
+                                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
                             }                            
-                            if(!$stmt){
-                                error("File upload failed, please try again.");
+                            if (!$stmt) {
+                                error("Hochladen Fehlgeschlagen");
                             } 
-                        }else{
-                            error("Sorry, there was an error uploading your file.");
+                        } else {
+                            error("Hochladen Fehlgeschlagen");
                         }
-                    }else{
-                        error('Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.');
+                    } else {
+                        error('Wir unterstützen nur JPG, JPEG, PNG & GIF Dateien.');
                     }
                 }
             }
@@ -265,6 +273,7 @@ if(isset($_POST['action'])) {
         } else {
         require_once("templates/header.php");
         ?>
+        <!-- Anzeigen der Seite zum Hinzufügen von Produkten -->
         <div class="minheight100 px-3 py-3">
             <h1>Produkt hinzufügen</h1>
             <div>
@@ -329,7 +338,9 @@ if(isset($_POST['action'])) {
         exit;
         } 
     }
+    // Wenn die action "cancel" ist
     if ($_POST['action'] == 'cancel') {
+        // Zurückleiten auf die Admin Produkt Seite
         echo("<script>location.href='product.php'</script>");
         exit;
     }
@@ -338,12 +349,12 @@ if(isset($_POST['action'])) {
 $stmt = $pdo->prepare('SELECT * FROM products_types, products where products.product_type_id = products_types.id ORDER BY products.id;');
 $result = $stmt->execute();
 if (!$result) {
-    error('Database error', pdo_debugStrParams($stmt));
+    error('Datenbank Fehler!', pdo_debugStrParams($stmt));
 }
 $total_products = $stmt->rowCount();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<!-- Anzeigen der Admin Produkt Seite -->
 <div class="container minheight100 users content-wrapper py-3 px-3">
     <div class="row">
         <div class="py-3 px-3 cbg ctext rounded">
