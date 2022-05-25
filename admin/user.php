@@ -45,7 +45,7 @@ if(isset($_POST['action'])) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
             $addressid = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            error_log($addressid);
+            error_log(print_r($addressid,true));
             // Umschreiben der Adresse der Bestellungen
             $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ? WHERE rechnungsadresse = ?');
             $stmt->bindValue(1, 1, PDO::PARAM_INT);
