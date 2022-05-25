@@ -37,6 +37,30 @@ if(isset($_POST['action'])) {
             if (!$result) {
                 error('Datenbank Fehler!', pdo_debugStrParams($stmt));
             }
+            // Frage die ID der Adresse ab.
+            $stmt = $pdo->prepare('SELECT id FROM address where user_id = ?');
+            $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
+            $addressid = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Umschreiben der Adresse der Bestellungen
+            $stmt = $pdo->prepare('UPDATE orders SET rechnungsadresse = ? WHERE rechnungsadresse = ?');
+            $stmt->bindValue(1, 1, PDO::PARAM_INT);
+            $stmt->bindValue(2, $addressid, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
+            // Umschreiben der Adresse der Bestellungen
+            $stmt = $pdo->prepare('UPDATE orders SET lieferadresse = ? WHERE lieferadresse = ?');
+            $stmt->bindValue(1, 1, PDO::PARAM_INT);
+            $stmt->bindValue(2, $addressid, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if (!$result) {
+                error('Datenbank Fehler!', pdo_debugStrParams($stmt));
+            }
             // Löscht die Adresse des Users
             $stmt = $pdo->prepare('DELETE FROM address WHERE user_id = ?');
             $stmt->bindValue(1, $_POST['userid'], PDO::PARAM_INT);
