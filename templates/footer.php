@@ -16,7 +16,7 @@
 
 <?php
 // Variablen für Version und Datum
-$vernum = "1.2.0";
+$vernum = "1.3.0";
 $verdate ="25.05.2022";
 // Wenn es sich um ein Desktop Handelt
 if(!isMobile()):?>
