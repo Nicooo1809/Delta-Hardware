@@ -10,7 +10,7 @@
 
 
 
-## Nun konfigurieren wir die Datenbank, hierfür müssen 2 SQL Dateien ausgeführt werden. Das setup der Datenbank und dann das einfügen der eigentlichen Daten. Hierfür verwenden wir 2 Dateien in folgender Reihenfolge: 
+## Nun konfigurieren wir die Datenbank, hierfür müssen 2 SQL Dateien ausgeführt werden. Das Setup der Datenbank und dann das Einfügen der eigentlichen Daten. Hierfür verwenden wir 2 Dateien in folgender Reihenfolge: 
 ## setup.sql – erstellt die Datenbank, den Benutzer und die Tabellen
 ## database.sql – Importiert die Beispieldaten
 ## Diese sind im Ordner hidden zu finden.
